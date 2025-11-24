@@ -59,6 +59,8 @@
             line-height: 1.6;
             background: linear-gradient(180deg, var(--cream) 0%, #FFFFFF 100%);
             padding: 100px 24px 0 24px;
+            position: relative;
+            overflow: hidden;
         }
 
         .section-vip-fit h1,
@@ -69,275 +71,348 @@
         }
 
         .section-vip-fit .container {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
+            position: relative;
         }
 
         /* Header */
         .section-vip-fit .section-header {
             text-align: center;
             margin-bottom: 60px;
+            position: relative;
+        }
+
+        /* Eyebrow badge */
+        .honesty-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--pink-light), var(--pink-primary));
+            color: white;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 10px 20px;
+            border-radius: 30px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
         }
 
         .section-vip-fit .section-title {
             font-family: 'Ogg', Georgia, serif;
-            font-size: 48px;
+            font-size: 52px;
             font-weight: 700;
             color: var(--navy);
-            margin-bottom: 24px;
-            line-height: 1.2;
+            margin-bottom: 20px;
+            line-height: 1.15;
         }
 
-        .honest-highlight {
+        .title-emphasis {
             position: relative;
             display: inline-block;
         }
 
-        .honest-highlight::after {
+        .title-emphasis::after {
             content: '';
             position: absolute;
-            bottom: 8px;
-            left: 0;
-            right: 0;
-            height: 12px;
-            background: linear-gradient(135deg, var(--pink-light), var(--gold));
-            opacity: 0.4;
+            bottom: 4px;
+            left: -4px;
+            right: -4px;
+            height: 16px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            opacity: 0.35;
             z-index: -1;
             border-radius: 4px;
+            transform: rotate(-1deg);
         }
 
         .section-vip-fit .section-subtitle {
             font-family: 'Satoshi', sans-serif;
-            font-size: 19px;
+            font-size: 20px;
             font-weight: 500;
             color: var(--gray-dark);
-            max-width: 700px;
+            max-width: 650px;
             margin: 0 auto;
             line-height: 1.7;
         }
 
         .section-vip-fit .section-subtitle strong {
-            color: var(--navy);
+            color: var(--teal-dark);
             font-weight: 700;
         }
 
-        /* Comparison Grid */
-        .comparison-grid {
+        /* Main content area */
+        .fit-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 32px;
-            margin-bottom: 48px;
+            gap: 40px;
+            margin-bottom: 50px;
         }
 
-        .filter-card {
-            border-radius: 24px;
+        /* YES Card - Make it exciting */
+        .fit-card {
+            border-radius: 28px;
             position: relative;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .filter-card:hover {
-            transform: translateY(-4px);
-        }
-
-        /* Perfect For You Card - Make it pop */
-        .filter-card.perfect {
-            background: linear-gradient(180deg, #FFFFFF 0%, rgba(78, 205, 196, 0.08) 100%);
+        .fit-card.yes {
+            background: linear-gradient(180deg, #FFFFFF 0%, rgba(78, 205, 196, 0.06) 100%);
             border: 3px solid var(--teal-primary);
-            box-shadow: 0 8px 32px rgba(78, 205, 196, 0.15);
+            box-shadow:
+                0 12px 40px rgba(78, 205, 196, 0.2),
+                0 0 0 1px rgba(78, 205, 196, 0.1);
         }
 
-        .filter-card.perfect:hover {
-            box-shadow: 0 16px 48px rgba(78, 205, 196, 0.25);
-        }
-
-        .filter-card.perfect .card-header {
-            background: linear-gradient(135deg, var(--teal-primary), var(--teal-dark));
-            padding: 20px 28px;
-        }
-
-        /* Sparkle decoration on perfect card */
-        .filter-card.perfect::before {
-            content: '';
-            position: absolute;
-            top: 80px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background: radial-gradient(circle, rgba(78, 205, 196, 0.15) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        /* Not For You Card - Subdued */
-        .filter-card.not-for-you {
+        .fit-card.no {
             background: #FFFFFF;
             border: 2px solid var(--gray-light);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
-        .filter-card.not-for-you:hover {
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-        }
-
-        .filter-card.not-for-you .card-header {
-            background: linear-gradient(135deg, #5a5a5a, #3d3d3d);
-            padding: 20px 28px;
-        }
-
+        /* Card headers */
         .card-header {
+            padding: 24px 32px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
         }
 
-        .header-icon {
-            width: 24px;
-            height: 24px;
+        .fit-card.yes .card-header {
+            background: linear-gradient(135deg, var(--teal-primary), #3DBDB4);
+        }
+
+        .fit-card.no .card-header {
+            background: linear-gradient(135deg, #6B7280, #4B5563);
+        }
+
+        .header-emoji {
+            font-size: 28px;
+            line-height: 1;
         }
 
         .header-text {
-            font-family: 'Satoshi', sans-serif;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
+            font-family: 'Caveat', cursive;
+            font-size: 26px;
+            font-weight: 600;
             color: #FFFFFF;
+        }
+
+        /* Ribbon for YES card */
+        .best-choice-ribbon {
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #FFFFFF;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
             text-transform: uppercase;
+            padding: 8px 50px;
+            transform: rotate(45deg);
+            box-shadow: 0 4px 12px rgba(244, 162, 97, 0.4);
         }
 
+        /* Card body */
         .card-body {
-            padding: 36px 32px;
+            padding: 32px;
         }
 
-        .filter-list {
-            list-style: none;
+        /* The items */
+        .fit-item {
             display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .filter-list li {
-            display: flex;
-            align-items: flex-start;
             gap: 16px;
+            margin-bottom: 24px;
+            align-items: flex-start;
+        }
+
+        .fit-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Fun numbered circles for YES */
+        .item-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 16px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .fit-card.yes .item-number {
+            background: linear-gradient(135deg, var(--teal-light), var(--teal-primary));
+            color: var(--teal-dark);
+        }
+
+        .fit-card.no .item-number {
+            background: var(--gray-light);
+            color: var(--gray-medium);
+            font-size: 18px;
+        }
+
+        .item-text {
             font-family: 'Satoshi', sans-serif;
             font-size: 16px;
             font-weight: 500;
             color: var(--gray-dark);
-            line-height: 1.65;
+            line-height: 1.6;
+            padding-top: 6px;
         }
 
-        .filter-list li strong {
-            color: var(--navy);
+        .item-text strong {
             font-weight: 700;
         }
 
-        .filter-card.perfect .filter-list li strong {
+        .fit-card.yes .item-text strong {
             color: var(--teal-dark);
         }
 
-        .list-icon {
-            width: 26px;
-            height: 26px;
-            flex-shrink: 0;
-            margin-top: 2px;
+        .fit-card.no .item-text strong {
+            color: var(--gray-dark);
         }
 
-        /* Bottom Line Section */
+        /* Hand-drawn arrow pointing to YES card */
+        .arrow-hint {
+            position: absolute;
+            top: 50%;
+            left: -80px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .arrow-hint-text {
+            font-family: 'Caveat', cursive;
+            font-size: 18px;
+            color: var(--pink-primary);
+            transform: rotate(-8deg);
+            white-space: nowrap;
+        }
+
+        /* Bottom Line - Make it punchy */
         .bottom-line {
             background: linear-gradient(135deg, var(--navy), var(--teal-dark));
             border-radius: 24px;
-            padding: 48px 56px;
+            padding: 44px 48px;
             position: relative;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 36px;
         }
 
         .bottom-line::before {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(78, 205, 196, 0.15) 0%, transparent 70%);
             pointer-events: none;
         }
 
-        .bottom-line-content {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .bottom-line-icon {
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.12);
-            border-radius: 20px;
+        .bottom-line-visual {
+            flex-shrink: 0;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
+            position: relative;
+        }
+
+        /* Pulsing ring effect */
+        .bottom-line-visual::after {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border: 2px solid rgba(255, 209, 102, 0.3);
+            border-radius: 30px;
+            animation: pulse-ring 2s ease-out infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.15); opacity: 0; }
         }
 
         .bottom-line-text {
             flex: 1;
+            position: relative;
+            z-index: 1;
         }
 
-        .bottom-line-label {
-            font-family: 'Satoshi', sans-serif;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+        .bottom-line-hook {
+            font-family: 'Caveat', cursive;
+            font-size: 28px;
+            font-weight: 600;
             color: var(--gold);
             margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .bottom-line-message {
             font-family: 'Satoshi', sans-serif;
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 500;
-            color: #FFFFFF;
+            color: rgba(255, 255, 255, 0.9);
             line-height: 1.7;
+            margin-bottom: 16px;
         }
 
         .bottom-line-message strong {
-            color: var(--gold);
+            color: #FFFFFF;
             font-weight: 700;
         }
 
         .bottom-line-tagline {
             font-family: 'Ogg', Georgia, serif;
-            font-size: 22px;
+            font-size: 21px;
             font-weight: 700;
             color: var(--teal-light);
-            margin-top: 16px;
+            line-height: 1.4;
         }
 
         /* Responsive */
         @media (max-width: 900px) {
-            .comparison-grid {
+            .fit-content {
                 grid-template-columns: 1fr;
-                gap: 24px;
+                gap: 28px;
             }
 
-            .filter-card.perfect {
+            .fit-card.yes {
                 order: -1;
             }
 
             .section-vip-fit .section-title {
-                font-size: 36px;
+                font-size: 40px;
+            }
+
+            .arrow-hint {
+                display: none;
             }
 
             .bottom-line {
-                padding: 36px 32px;
-            }
-
-            .bottom-line-content {
                 flex-direction: column;
                 text-align: center;
+                padding: 36px 28px;
             }
         }
 
@@ -347,27 +422,35 @@
             }
 
             .section-vip-fit .section-title {
-                font-size: 30px;
+                font-size: 32px;
+            }
+
+            .header-text {
+                font-size: 22px;
             }
 
             .card-body {
-                padding: 28px 24px;
+                padding: 24px;
             }
 
-            .filter-list {
-                gap: 20px;
-            }
-
-            .filter-list li {
+            .item-text {
                 font-size: 15px;
             }
 
+            .bottom-line-hook {
+                font-size: 24px;
+            }
+
             .bottom-line-message {
-                font-size: 16px;
+                font-size: 15px;
             }
 
             .bottom-line-tagline {
                 font-size: 18px;
+            }
+
+            .best-choice-ribbon {
+                display: none;
             }
         }
     </style>
@@ -377,139 +460,113 @@
 <section class="section-vip-fit">
     <div class="container">
         <div class="section-header">
+            <div class="honesty-badge">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M8 1L10 5.5L15 6L11 9.5L12.5 14.5L8 12L3.5 14.5L5 9.5L1 6L6 5.5L8 1Z" fill="currentColor"/>
+                </svg>
+                Real Talk
+            </div>
             <h2 class="section-title">
-                <span class="honest-highlight">Be Honest With Yourself</span> for a Second
+                <span class="title-emphasis">Be Honest</span> With Yourself
             </h2>
             <p class="section-subtitle">
                 You already know if you're the type who finishes things or the type who collects free content and moves on. <strong>VIP is built for finishers.</strong>
             </p>
         </div>
 
-        <div class="comparison-grid">
-            <!-- Perfect For You -->
-            <div class="filter-card perfect">
+        <div class="fit-content">
+            <!-- YES - This is you -->
+            <div class="fit-card yes">
+                <div class="best-choice-ribbon">That's You!</div>
                 <div class="card-header">
-                    <svg class="header-icon" viewBox="0 0 24 24" fill="none">
-                        <path d="M5 12L10 17L19 8" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <span class="header-text">Perfect for you if...</span>
+                    <span class="header-emoji">&#128588;</span>
+                    <span class="header-text">This is SO you if...</span>
                 </div>
                 <div class="card-body">
-                    <ul class="filter-list">
-                        <li>
-                            <svg class="list-icon" viewBox="0 0 26 26" fill="none">
-                                <circle cx="13" cy="13" r="12" fill="var(--teal-primary)" opacity="0.15"/>
-                                <path d="M8 13L11.5 16.5L18 10" stroke="var(--teal-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            <span>You're tired of being the person who watches free trainings, takes notes, and then <strong>does nothing with them</strong>. This time you actually want to finish what you start.</span>
-                        </li>
-                        <li>
-                            <svg class="list-icon" viewBox="0 0 26 26" fill="none">
-                                <circle cx="13" cy="13" r="12" fill="var(--teal-primary)" opacity="0.15"/>
-                                <path d="M8 13L11.5 16.5L18 10" stroke="var(--teal-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            <span>You know yourself. Life gets busy, things come up, and you need <strong>recordings you can come back to</strong> on your own schedule.</span>
-                        </li>
-                        <li>
-                            <svg class="list-icon" viewBox="0 0 26 26" fill="none">
-                                <circle cx="13" cy="13" r="12" fill="var(--teal-primary)" opacity="0.15"/>
-                                <path d="M8 13L11.5 16.5L18 10" stroke="var(--teal-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            <span>You've tried figuring out Etsy alone and you're done guessing. You want <strong>someone who's already at $1M</strong> to just tell you what works.</span>
-                        </li>
-                        <li>
-                            <svg class="list-icon" viewBox="0 0 26 26" fill="none">
-                                <circle cx="13" cy="13" r="12" fill="var(--teal-primary)" opacity="0.15"/>
-                                <path d="M8 13L11.5 16.5L18 10" stroke="var(--teal-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            <span>You're not here to "learn about Etsy someday." You want to walk out of this challenge with <strong>real changes to your shop</strong>.</span>
-                        </li>
-                        <li>
-                            <svg class="list-icon" viewBox="0 0 26 26" fill="none">
-                                <circle cx="13" cy="13" r="12" fill="var(--teal-primary)" opacity="0.15"/>
-                                <path d="M8 13L11.5 16.5L18 10" stroke="var(--teal-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            <span>You learn better when someone's <strong>actually paying attention to you</strong>, not just talking at a screen.</span>
-                        </li>
-                    </ul>
+                    <div class="fit-item">
+                        <div class="item-number">1</div>
+                        <p class="item-text">You're tired of watching free trainings, taking notes, and then <strong>doing absolutely nothing</strong> with them. This time? You want to finish.</p>
+                    </div>
+                    <div class="fit-item">
+                        <div class="item-number">2</div>
+                        <p class="item-text">You know yourself. Life gets busy. You need <strong>recordings you can come back to</strong> when the kids are asleep.</p>
+                    </div>
+                    <div class="fit-item">
+                        <div class="item-number">3</div>
+                        <p class="item-text">You're done guessing. You want <strong>someone at $1M</strong> to just tell you what actually works.</p>
+                    </div>
+                    <div class="fit-item">
+                        <div class="item-number">4</div>
+                        <p class="item-text">You want to walk away with <strong>real changes to your shop</strong>, not just "someday" ideas.</p>
+                    </div>
+                    <div class="fit-item">
+                        <div class="item-number">5</div>
+                        <p class="item-text">You learn better when someone's <strong>actually paying attention to you</strong>, not talking at 10,000 people.</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- Probably Not For You -->
-            <div class="filter-card not-for-you">
+            <!-- NO - Skip it -->
+            <div class="fit-card no">
                 <div class="card-header">
-                    <svg class="header-icon" viewBox="0 0 24 24" fill="none">
-                        <path d="M7 7L17 17M7 17L17 7" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
-                    </svg>
-                    <span class="header-text">Probably not for you if...</span>
+                    <span class="header-emoji">&#128075;</span>
+                    <span class="header-text">Maybe skip if...</span>
                 </div>
                 <div class="card-body">
-                    <ul class="filter-list">
-                        <li>
-                            <svg class="list-icon" viewBox="0 0 26 26" fill="none">
-                                <circle cx="13" cy="13" r="12" fill="var(--gray-light)"/>
-                                <path d="M9 9L17 17M9 17L17 9" stroke="var(--gray-medium)" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                            <span>You like <strong>collecting free content more than using it</strong>. No judgment, but VIP won't change that.</span>
-                        </li>
-                        <li>
-                            <svg class="list-icon" viewBox="0 0 26 26" fill="none">
-                                <circle cx="13" cy="13" r="12" fill="var(--gray-light)"/>
-                                <path d="M9 9L17 17M9 17L17 9" stroke="var(--gray-medium)" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                            <span>You're <strong>not planning to touch your shop</strong> for the next few months anyway.</span>
-                        </li>
-                        <li>
-                            <svg class="list-icon" viewBox="0 0 26 26" fill="none">
-                                <circle cx="13" cy="13" r="12" fill="var(--gray-light)"/>
-                                <path d="M9 9L17 17M9 17L17 9" stroke="var(--gray-medium)" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                            <span>You prefer to <strong>stay invisible and figure things out alone</strong>, even if it takes 10x longer.</span>
-                        </li>
-                        <li>
-                            <svg class="list-icon" viewBox="0 0 26 26" fill="none">
-                                <circle cx="13" cy="13" r="12" fill="var(--gray-light)"/>
-                                <path d="M9 9L17 17M9 17L17 9" stroke="var(--gray-medium)" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                            <span>Spending <strong>$67 on yourself and your business</strong> feels like "too much" right now.</span>
-                        </li>
-                        <li>
-                            <svg class="list-icon" viewBox="0 0 26 26" fill="none">
-                                <circle cx="13" cy="13" r="12" fill="var(--gray-light)"/>
-                                <path d="M9 9L17 17M9 17L17 9" stroke="var(--gray-medium)" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                            <span>You're okay with this challenge becoming <strong>another thing you "meant to get back to."</strong></span>
-                        </li>
-                    </ul>
+                    <div class="fit-item">
+                        <div class="item-number">&times;</div>
+                        <p class="item-text">You like <strong>collecting free content</strong> more than using it. (No judgment, but VIP won't fix that.)</p>
+                    </div>
+                    <div class="fit-item">
+                        <div class="item-number">&times;</div>
+                        <p class="item-text">You're <strong>not touching your shop</strong> for the next few months anyway.</p>
+                    </div>
+                    <div class="fit-item">
+                        <div class="item-number">&times;</div>
+                        <p class="item-text">You prefer to <strong>stay invisible</strong> and figure it out alone, even if it takes 10x longer.</p>
+                    </div>
+                    <div class="fit-item">
+                        <div class="item-number">&times;</div>
+                        <p class="item-text">Spending <strong>$67 on your business</strong> feels like "too much" right now.</p>
+                    </div>
+                    <div class="fit-item">
+                        <div class="item-number">&times;</div>
+                        <p class="item-text">You're okay with this becoming <strong>another thing you "meant to get back to."</strong></p>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Bottom Line -->
         <div class="bottom-line">
-            <div class="bottom-line-content">
-                <div class="bottom-line-icon">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                        <!-- Thinking/lightbulb moment -->
-                        <circle cx="20" cy="22" r="12" fill="rgba(255, 209, 102, 0.3)"/>
-                        <path d="M20 10C14.5 10 10 14.5 10 20C10 23.5 12 26.5 15 28V32C15 33.1 15.9 34 17 34H23C24.1 34 25 33.1 25 32V28C28 26.5 30 23.5 30 20C30 14.5 25.5 10 20 10Z" stroke="#FFD166" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M17 34V36" stroke="#FFD166" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M23 34V36" stroke="#FFD166" stroke-width="2" stroke-linecap="round"/>
-                        <!-- Light rays -->
-                        <path d="M20 4V6" stroke="#FFD166" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M32 8L30.5 9.5" stroke="#FFD166" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M8 8L9.5 9.5" stroke="#FFD166" stroke-width="2" stroke-linecap="round"/>
+            <div class="bottom-line-visual">
+                <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+                    <!-- Lightbulb with sparkle -->
+                    <circle cx="25" cy="28" r="14" fill="rgba(255, 209, 102, 0.25)"/>
+                    <path d="M25 12C18 12 12 18 12 25C12 29.5 14.5 33.5 18 36V41C18 42.5 19.5 44 21 44H29C30.5 44 32 42.5 32 41V36C35.5 33.5 38 29.5 38 25C38 18 32 12 25 12Z" stroke="#FFD166" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M21 44V47" stroke="#FFD166" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M29 44V47" stroke="#FFD166" stroke-width="2.5" stroke-linecap="round"/>
+                    <!-- Rays -->
+                    <path d="M25 4V7" stroke="#FFD166" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M40 10L38 12" stroke="#FFD166" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M10 10L12 12" stroke="#FFD166" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M46 25H43" stroke="#FFD166" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M7 25H4" stroke="#FFD166" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="bottom-line-text">
+                <div class="bottom-line-hook">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 2L12 7H17L13 10.5L14.5 16L10 13L5.5 16L7 10.5L3 7H8L10 2Z" fill="#FFD166"/>
                     </svg>
+                    Still thinking about it?
                 </div>
-                <div class="bottom-line-text">
-                    <div class="bottom-line-label">Bottom Line</div>
-                    <p class="bottom-line-message">
-                        Still thinking about it? <strong>That's exactly why VIP exists.</strong> It's for the people who know they need a push to actually follow through.
-                    </p>
-                    <p class="bottom-line-tagline">
-                        Same challenge, but with the recordings, support, and tools that make it almost impossible to quit on yourself again.
-                    </p>
-                </div>
+                <p class="bottom-line-message">
+                    <strong>That's exactly why VIP exists.</strong> It's for people who know they need a push to actually follow through. Not more content. More commitment.
+                </p>
+                <p class="bottom-line-tagline">
+                    Same challenge. But with the recordings, support, and tools that make it almost impossible to quit on yourself again.
+                </p>
             </div>
         </div>
     </div>
