@@ -100,7 +100,7 @@
             font-family: 'Ogg', Georgia, serif;
             font-size: 100px;
             font-weight: 700;
-            color: #FFFFFF;
+            color: #FFFFFF !important;
             line-height: 1;
             margin-bottom: 16px;
             text-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
@@ -126,7 +126,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 24px;
-            margin-bottom: 48px;
+            margin-bottom: 0;
         }
 
         .features-column {
@@ -160,102 +160,6 @@
             margin-top: 2px;
         }
 
-        /* CTA Area */
-        .cta-area {
-            margin-bottom: 60px;
-        }
-
-        .btn-cta {
-            display: inline-block;
-            padding: 24px 72px;
-            background: linear-gradient(135deg, var(--pink-primary), var(--pink-dark));
-            color: #FFFFFF;
-            font-family: 'Satoshi', sans-serif;
-            font-size: 20px;
-            font-weight: 700;
-            text-decoration: none;
-            border: none;
-            border-radius: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow:
-                0 8px 32px rgba(255, 107, 157, 0.4),
-                0 0 0 4px rgba(255, 107, 157, 0.15);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-cta::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .btn-cta:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow:
-                0 12px 40px rgba(255, 107, 157, 0.5),
-                0 0 0 4px rgba(255, 107, 157, 0.25);
-        }
-
-        .btn-cta:hover::before {
-            left: 100%;
-        }
-
-        .secure-note {
-            font-family: 'Satoshi', sans-serif;
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.5);
-            margin-top: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .lock-icon {
-            width: 14px;
-            height: 14px;
-            opacity: 0.6;
-        }
-
-        /* Bailey Quote */
-        .bailey-quote {
-            padding-top: 48px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .quote-icon {
-            width: 48px;
-            height: 48px;
-            margin: 0 auto 24px;
-            opacity: 0.3;
-        }
-
-        .quote-text {
-            font-family: 'Ogg', Georgia, serif;
-            font-size: 22px;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.6;
-            margin-bottom: 24px;
-            font-style: italic;
-        }
-
-        .quote-author {
-            font-family: 'Caveat', cursive;
-            font-size: 24px;
-            color: var(--gold);
-            font-weight: 600;
-        }
-
         /* Responsive */
         @media (max-width: 700px) {
             .features-grid {
@@ -271,18 +175,8 @@
                 font-size: 17px;
             }
 
-            .btn-cta {
-                width: 100%;
-                padding: 22px 32px;
-                font-size: 18px;
-            }
-
             .features-column {
                 padding: 24px;
-            }
-
-            .quote-text {
-                font-size: 19px;
             }
         }
 
@@ -370,28 +264,6 @@
             </div>
         </div>
 
-        <!-- CTA Area -->
-        <div class="cta-area">
-            <a href="#upgrade" class="btn-cta">Yes, I want the VIP experience</a>
-            <p class="secure-note">
-                <svg class="lock-icon" viewBox="0 0 14 14" fill="none">
-                    <rect x="3" y="6" width="8" height="6" rx="1" fill="rgba(255,255,255,0.7)"/>
-                    <path d="M5 6V4C5 2.9 5.9 2 7 2C8.1 2 9 2.9 9 4V6" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" fill="none"/>
-                </svg>
-                Secure checkout. Your Quick Start Kit arrives immediately.
-            </p>
-        </div>
-
-        <!-- Bailey Quote -->
-        <div class="bailey-quote">
-            <svg class="quote-icon" viewBox="0 0 48 48" fill="none">
-                <path d="M14 24C14 18 18 14 24 14V10C16 10 10 16 10 24V38H24V24H14ZM34 24C34 18 38 14 44 14V10C36 10 30 16 30 24V38H44V24H34Z" fill="rgba(255,255,255,0.3)"/>
-            </svg>
-            <p class="quote-text">
-                "The free challenge will teach you a lot. But if you're being honest with yourself, you know that's not the part you struggle with. VIP is for when you're done learning and ready to actually do something."
-            </p>
-            <p class="quote-author">— Bailey</p>
-        </div>
     </div>
 </section>
 
