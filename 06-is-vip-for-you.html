@@ -189,9 +189,10 @@
             background: linear-gradient(135deg, #6B7280, #4B5563);
         }
 
-        .header-emoji {
-            font-size: 28px;
-            line-height: 1;
+        .header-icon-svg {
+            width: 32px;
+            height: 32px;
+            flex-shrink: 0;
         }
 
         .header-text {
@@ -479,7 +480,14 @@
             <div class="fit-card yes">
                 <div class="best-choice-ribbon">That's You!</div>
                 <div class="card-header">
-                    <span class="header-emoji">&#128588;</span>
+                    <svg class="header-icon-svg" viewBox="0 0 32 32" fill="none">
+                        <!-- Sparkle/celebration icon -->
+                        <circle cx="16" cy="16" r="10" fill="rgba(255,255,255,0.2)"/>
+                        <path d="M16 6L17.5 12L24 13L18.5 17L20 24L16 20L12 24L13.5 17L8 13L14.5 12L16 6Z" fill="#FFFFFF"/>
+                        <circle cx="8" cy="8" r="2" fill="#FFD166"/>
+                        <circle cx="26" cy="10" r="1.5" fill="#FFD166"/>
+                        <circle cx="24" cy="24" r="1.5" fill="#FFD166"/>
+                    </svg>
                     <span class="header-text">This is SO you if...</span>
                 </div>
                 <div class="card-body">
@@ -509,7 +517,11 @@
             <!-- NO - Skip it -->
             <div class="fit-card no">
                 <div class="card-header">
-                    <span class="header-emoji">&#128075;</span>
+                    <svg class="header-icon-svg" viewBox="0 0 32 32" fill="none">
+                        <!-- Gentle wave/pass icon -->
+                        <circle cx="16" cy="16" r="10" fill="rgba(255,255,255,0.15)"/>
+                        <path d="M10 16H22M22 16L18 12M22 16L18 20" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                     <span class="header-text">Maybe skip if...</span>
                 </div>
                 <div class="card-body">
