@@ -662,7 +662,30 @@
         .tool-card-mint { --card-accent: #2F9F97; }
         .tool-card-coral { --card-accent: #C7254E; }
 
-        /* Value tags */
+        /* Day timing tags */
+        .tool-day-tag {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: rgba(47, 95, 97, 0.1);
+            color: var(--navy);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border: 1px solid rgba(47, 95, 97, 0.15);
+        }
+
+        .tool-day-featured {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #FFFFFF;
+            border: none;
+            box-shadow: 0 4px 12px rgba(244, 162, 97, 0.3);
+        }
+
+        /* Legacy value tags */
         .tool-value-tag {
             position: absolute;
             top: 18px;
@@ -1014,94 +1037,189 @@
             </div>
         </div>
 
-        <!-- Component 5: Fast Action Toolkit -->
+        <!-- Component 5: Your "No Excuses" Implementation Kit -->
         <div class="component-card-hero">
             <div class="component-hero-badge">The Implementation Game-Changer</div>
             <div class="component-number-large">5</div>
-            <h3 class="component-title-hero">The "Fast Action" Toolkit</h3>
+            <h3 class="component-title-hero">Your "No Excuses" Implementation Kit</h3>
             <p class="component-subtitle-hero">
-                Plug-and-play tools so you can move from idea to first sale as fast as possible.
+                The 5 tools that force you to actually change your shop, not just learn about it.
+                <br><span style="opacity: 0.8;">Each one is built to match exactly where you'll be after Days 1, 2, and 3.</span>
             </p>
 
             <div class="toolkit-showcase">
-                <!-- Row 1: 2 featured cards -->
-                <div class="toolkit-row toolkit-row-2">
+                <!-- Row 1: 3 cards -->
+                <div class="toolkit-row toolkit-row-3">
+                    <!-- Card 1: The Shop Autopsy Sheet -->
                     <div class="tool-card tool-card-teal">
-                        <span class="tool-value-tag">$47 value</span>
+                        <span class="tool-day-tag">After Day 1</span>
                         <div class="tool-icon tool-icon-teal">
+                            <!-- Custom SVG: Clipboard with 3 columns (DELETE/FIX/KEEP) -->
                             <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                                <rect x="10" y="8" width="28" height="32" rx="3" fill="#4ECDC4" opacity="0.15"/>
-                                <rect x="10" y="8" width="28" height="32" rx="3" stroke="#4ECDC4" stroke-width="2"/>
-                                <path d="M16 16H32" stroke="#4ECDC4" stroke-width="2" stroke-linecap="round"/>
-                                <path d="M16 22H32" stroke="#4ECDC4" stroke-width="2" stroke-linecap="round"/>
-                                <path d="M16 28H26" stroke="#4ECDC4" stroke-width="2" stroke-linecap="round"/>
-                                <path d="M16 34H22" stroke="#4ECDC4" stroke-width="2" stroke-linecap="round"/>
+                                <!-- Clipboard base -->
+                                <rect x="8" y="8" width="32" height="36" rx="3" fill="#4ECDC4" opacity="0.15"/>
+                                <rect x="8" y="8" width="32" height="36" rx="3" stroke="#4ECDC4" stroke-width="2"/>
+                                <!-- Clipboard clip -->
+                                <rect x="17" y="4" width="14" height="8" rx="2" fill="#4ECDC4" opacity="0.3"/>
+                                <rect x="17" y="4" width="14" height="8" rx="2" stroke="#4ECDC4" stroke-width="1.5"/>
+                                <!-- Three columns -->
+                                <rect x="12" y="16" width="7" height="24" rx="1" fill="#FF6B6B" opacity="0.3"/>
+                                <rect x="20.5" y="16" width="7" height="24" rx="1" fill="#FFD166" opacity="0.3"/>
+                                <rect x="29" y="16" width="7" height="24" rx="1" fill="#4ECDC4" opacity="0.3"/>
+                                <!-- X mark (DELETE) -->
+                                <path d="M13.5 20L17 23.5M17 20L13.5 23.5" stroke="#FF6B6B" stroke-width="1.5" stroke-linecap="round"/>
+                                <!-- Wrench (FIX) -->
+                                <path d="M24 20L24 24M22 22H26" stroke="#F4A261" stroke-width="1.5" stroke-linecap="round"/>
+                                <!-- Check (KEEP) -->
+                                <path d="M31 21L32.5 22.5L35 20" stroke="#4ECDC4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <!-- More rows -->
+                                <path d="M13.5 28L17 31.5M17 28L13.5 31.5" stroke="#FF6B6B" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M31 29L32.5 30.5L35 28" stroke="#4ECDC4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M24 28L24 32M22 30H26" stroke="#F4A261" stroke-width="1.5" stroke-linecap="round"/>
                             </svg>
                         </div>
-                        <h4>AI Prompt Library</h4>
-                        <p>20 copy-paste templates for listings, SEO, and product ideas</p>
+                        <h4>The Shop Autopsy Sheet</h4>
+                        <p>Three simple columns: DELETE, FIX, or KEEP. You'll have a hit list of what to cut before you go to bed.</p>
                     </div>
 
+                    <!-- Card 2: The "Is This Worth My Time?" Calculator -->
                     <div class="tool-card tool-card-pink">
-                        <span class="tool-value-tag">$37 value</span>
+                        <span class="tool-day-tag">Use Anytime</span>
                         <div class="tool-icon tool-icon-pink">
+                            <!-- Custom SVG: Calculator with dollar sign and brutal truth indicator -->
                             <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                                <rect x="10" y="8" width="28" height="32" rx="3" fill="#FF6B9D" opacity="0.15"/>
-                                <rect x="10" y="8" width="28" height="32" rx="3" stroke="#FF6B9D" stroke-width="2"/>
-                                <rect x="14" y="12" width="20" height="8" rx="1" fill="#FF6B9D" opacity="0.3"/>
-                                <path d="M16 26L20 30L30 20" stroke="#FF6B9D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <!-- Calculator body -->
+                                <rect x="10" y="6" width="28" height="36" rx="4" fill="#FF6B9D" opacity="0.15"/>
+                                <rect x="10" y="6" width="28" height="36" rx="4" stroke="#FF6B9D" stroke-width="2"/>
+                                <!-- Screen with dollar sign -->
+                                <rect x="14" y="10" width="20" height="10" rx="2" fill="#FF6B9D" opacity="0.25"/>
+                                <text x="24" y="18" font-size="10" font-weight="bold" fill="#FF6B9D" text-anchor="middle">$?</text>
+                                <!-- Calculator buttons -->
+                                <rect x="14" y="24" width="5" height="4" rx="1" fill="#FF6B9D" opacity="0.4"/>
+                                <rect x="21.5" y="24" width="5" height="4" rx="1" fill="#FF6B9D" opacity="0.4"/>
+                                <rect x="29" y="24" width="5" height="4" rx="1" fill="#FF6B9D" opacity="0.4"/>
+                                <rect x="14" y="30" width="5" height="4" rx="1" fill="#FF6B9D" opacity="0.4"/>
+                                <rect x="21.5" y="30" width="5" height="4" rx="1" fill="#FF6B9D" opacity="0.4"/>
+                                <rect x="29" y="30" width="5" height="4" rx="1" fill="#FF6B9D" opacity="0.4"/>
+                                <!-- Thumbs up/down indicators -->
+                                <circle cx="17" cy="38" r="2.5" fill="#4ECDC4"/>
+                                <circle cx="31" cy="38" r="2.5" fill="#FF6B6B"/>
                             </svg>
                         </div>
-                        <h4>Profit Calculator Spreadsheet</h4>
-                        <p>Quickly see what's worth your time before you invest effort</p>
+                        <h4>The "Is This Worth My Time?" Calculator</h4>
+                        <p>Plug in price, fees, and ad spend. See which products are profitable and which are burning hours for pennies.</p>
+                    </div>
+
+                    <!-- Card 3: The AI Speed-Launch System -->
+                    <div class="tool-card tool-card-gold">
+                        <span class="tool-day-tag tool-day-featured">After Day 2</span>
+                        <div class="tool-icon tool-icon-gold">
+                            <!-- Custom SVG: AI robot with rocket/speed launch -->
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                <!-- Robot head -->
+                                <rect x="14" y="12" width="20" height="16" rx="4" fill="#F4A261" opacity="0.15"/>
+                                <rect x="14" y="12" width="20" height="16" rx="4" stroke="#F4A261" stroke-width="2"/>
+                                <!-- Robot eyes (AI-like) -->
+                                <circle cx="20" cy="20" r="2.5" fill="#F4A261"/>
+                                <circle cx="28" cy="20" r="2.5" fill="#F4A261"/>
+                                <path d="M20 20L22 20" stroke="#FFF" stroke-width="1" stroke-linecap="round"/>
+                                <path d="M28 20L30 20" stroke="#FFF" stroke-width="1" stroke-linecap="round"/>
+                                <!-- Antenna -->
+                                <line x1="24" y1="12" x2="24" y2="7" stroke="#F4A261" stroke-width="2" stroke-linecap="round"/>
+                                <circle cx="24" cy="6" r="2" fill="#F4A261"/>
+                                <!-- Rocket launching from robot -->
+                                <path d="M24 28L24 42" stroke="#F4A261" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M24 28L28 34L24 32L20 34L24 28Z" fill="#F4A261"/>
+                                <!-- Speed lines -->
+                                <path d="M10 32L14 32" stroke="#F4A261" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+                                <path d="M8 36L13 36" stroke="#F4A261" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+                                <path d="M34 32L38 32" stroke="#F4A261" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+                                <path d="M35 36L40 36" stroke="#F4A261" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+                                <!-- "3" badge for 3 listings -->
+                                <circle cx="38" cy="14" r="6" fill="#F4A261" opacity="0.3"/>
+                                <text x="38" y="17" font-size="8" font-weight="bold" fill="#F4A261" text-anchor="middle">3</text>
+                            </svg>
+                        </div>
+                        <h4>The AI Speed-Launch System</h4>
+                        <p>3 copy-paste AI workflows to publish at least 3 new optimized listings before Day 3 even starts.</p>
                     </div>
                 </div>
 
-                <!-- Row 2: 3 cards -->
-                <div class="toolkit-row toolkit-row-3">
-                    <div class="tool-card tool-card-gold">
-                        <span class="tool-value-tag tool-value-featured">$47 value</span>
-                        <div class="tool-icon tool-icon-gold">
-                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                                <rect x="8" y="12" width="32" height="28" rx="3" fill="#FFD166" opacity="0.15"/>
-                                <rect x="8" y="12" width="32" height="28" rx="3" stroke="#F4A261" stroke-width="2"/>
-                                <path d="M8 20H40" stroke="#F4A261" stroke-width="2"/>
-                                <path d="M16 8V14M32 8V14" stroke="#F4A261" stroke-width="2" stroke-linecap="round"/>
-                                <rect x="14" y="26" width="6" height="6" rx="1" fill="#F4A261"/>
-                                <rect x="28" y="26" width="6" height="6" rx="1" fill="#F4A261" opacity="0.5"/>
-                            </svg>
-                        </div>
-                        <h4>2025 Seasonal Planning Calendar</h4>
-                        <p>Ride demand spikes instead of missing them</p>
-                    </div>
-
+                <!-- Row 2: 2 cards centered -->
+                <div class="toolkit-row toolkit-row-2">
+                    <!-- Card 4: The "Get Traffic TODAY" Script Pack -->
                     <div class="tool-card tool-card-mint">
-                        <span class="tool-value-tag">$27 value</span>
+                        <span class="tool-day-tag">After Publishing</span>
                         <div class="tool-icon tool-icon-mint">
+                            <!-- Custom SVG: Messages/social with eyeballs/traffic -->
                             <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                                <path d="M24 10L38 24L24 38L10 24L24 10Z" fill="#2F9F97" opacity="0.15"/>
-                                <path d="M24 10L38 24L24 38L10 24L24 10Z" stroke="#2F9F97" stroke-width="2" stroke-linejoin="round"/>
-                                <path d="M24 16L32 24L24 32L16 24L24 16Z" stroke="#2F9F97" stroke-width="2" stroke-linejoin="round"/>
-                                <circle cx="24" cy="24" r="3" fill="#2F9F97"/>
+                                <!-- Message bubbles -->
+                                <rect x="6" y="8" width="20" height="14" rx="3" fill="#2F9F97" opacity="0.15"/>
+                                <rect x="6" y="8" width="20" height="14" rx="3" stroke="#2F9F97" stroke-width="2"/>
+                                <path d="M10 22L10 28L16 22" fill="#2F9F97" opacity="0.15"/>
+                                <path d="M10 22L10 28L16 22" stroke="#2F9F97" stroke-width="2" stroke-linejoin="round"/>
+                                <!-- Second message (DM style) -->
+                                <rect x="22" y="20" width="20" height="12" rx="3" fill="#2F9F97" opacity="0.25"/>
+                                <rect x="22" y="20" width="20" height="12" rx="3" stroke="#2F9F97" stroke-width="2"/>
+                                <!-- Message lines -->
+                                <path d="M10 13H22" stroke="#2F9F97" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M10 17H18" stroke="#2F9F97" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M26 25H38" stroke="#2F9F97" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M26 28H34" stroke="#2F9F97" stroke-width="1.5" stroke-linecap="round"/>
+                                <!-- Eyeballs (traffic) -->
+                                <ellipse cx="13" cy="40" rx="5" ry="3.5" fill="#2F9F97" opacity="0.2"/>
+                                <ellipse cx="13" cy="40" rx="5" ry="3.5" stroke="#2F9F97" stroke-width="1.5"/>
+                                <circle cx="13" cy="40" r="1.5" fill="#2F9F97"/>
+                                <ellipse cx="27" cy="40" rx="5" ry="3.5" fill="#2F9F97" opacity="0.2"/>
+                                <ellipse cx="27" cy="40" rx="5" ry="3.5" stroke="#2F9F97" stroke-width="1.5"/>
+                                <circle cx="27" cy="40" r="1.5" fill="#2F9F97"/>
+                                <ellipse cx="41" cy="40" rx="5" ry="3.5" fill="#2F9F97" opacity="0.2"/>
+                                <ellipse cx="41" cy="40" rx="5" ry="3.5" stroke="#2F9F97" stroke-width="1.5"/>
+                                <circle cx="41" cy="40" r="1.5" fill="#2F9F97"/>
+                                <!-- Arrow pointing to shop -->
+                                <path d="M24 34L24 36" stroke="#2F9F97" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M21 35L24 38L27 35" stroke="#2F9F97" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </div>
-                        <h4>First Sale Template Pack</h4>
-                        <p>Messages, offers, and mini promotions to get sales in the door</p>
+                        <h4>The "Get Traffic TODAY" Script Pack</h4>
+                        <p>Exact DMs, social posts, and emails you can copy-paste within 10 minutes of finishing the workshop.</p>
                     </div>
 
+                    <!-- Card 5: The 14-Day Momentum Map -->
                     <div class="tool-card tool-card-coral">
-                        <span class="tool-value-tag">$39 value</span>
+                        <span class="tool-day-tag">After Challenge</span>
                         <div class="tool-icon tool-icon-coral">
+                            <!-- Custom SVG: Calendar with 14 days and momentum path -->
                             <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                                <rect x="8" y="10" width="32" height="28" rx="3" fill="#C7254E" opacity="0.1"/>
-                                <rect x="8" y="10" width="32" height="28" rx="3" stroke="#C7254E" stroke-width="2"/>
-                                <circle cx="18" cy="20" r="4" fill="#C7254E" opacity="0.3"/>
-                                <circle cx="18" cy="20" r="4" stroke="#C7254E" stroke-width="1.5"/>
-                                <path d="M8 32L18 24L26 30L34 22L40 28" stroke="#C7254E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <!-- Calendar base -->
+                                <rect x="6" y="10" width="36" height="32" rx="3" fill="#C7254E" opacity="0.15"/>
+                                <rect x="6" y="10" width="36" height="32" rx="3" stroke="#C7254E" stroke-width="2"/>
+                                <!-- Calendar header -->
+                                <rect x="6" y="10" width="36" height="8" rx="3" fill="#C7254E" opacity="0.25"/>
+                                <!-- Calendar hooks -->
+                                <path d="M14 6V12M34 6V12" stroke="#C7254E" stroke-width="2" stroke-linecap="round"/>
+                                <!-- 14-day grid (simplified) -->
+                                <circle cx="13" cy="24" r="2.5" fill="#4ECDC4"/>
+                                <circle cx="20" cy="24" r="2.5" fill="#4ECDC4"/>
+                                <circle cx="27" cy="24" r="2.5" fill="#4ECDC4"/>
+                                <circle cx="34" cy="24" r="2.5" fill="#4ECDC4"/>
+                                <circle cx="13" cy="32" r="2.5" fill="#4ECDC4" opacity="0.6"/>
+                                <circle cx="20" cy="32" r="2.5" fill="#4ECDC4" opacity="0.6"/>
+                                <circle cx="27" cy="32" r="2.5" fill="#4ECDC4" opacity="0.6"/>
+                                <circle cx="34" cy="32" r="2.5" fill="#C7254E" opacity="0.3"/>
+                                <!-- Momentum path connecting dots -->
+                                <path d="M13 24L20 24L27 24L34 24" stroke="#4ECDC4" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2 2"/>
+                                <path d="M34 24L34 28L13 28L13 32L34 32" stroke="#4ECDC4" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2 2" opacity="0.5"/>
+                                <!-- "14" badge -->
+                                <circle cx="40" cy="12" r="6" fill="#C7254E"/>
+                                <text x="40" y="15" font-size="7" font-weight="bold" fill="#FFF" text-anchor="middle">14</text>
+                                <!-- Clock icon (10 min) -->
+                                <circle cx="8" cy="12" r="4" fill="#C7254E" opacity="0.3"/>
+                                <path d="M8 10V12L10 13" stroke="#C7254E" stroke-width="1" stroke-linecap="round"/>
                             </svg>
                         </div>
-                        <h4>Mockup Magic Bundle</h4>
-                        <p>Bailey's personal collection to upgrade your listing photos instantly</p>
+                        <h4>The 14-Day Momentum Map</h4>
+                        <p>One tiny 10-minute task per day for 2 weeks. Keep shipping products instead of slipping back into "I'll do it this weekend" mode.</p>
                     </div>
                 </div>
             </div>
@@ -1112,7 +1230,7 @@
                         <path d="M12 2L14.5 8.5L21 9.5L16 14L17.5 21L12 18L6.5 21L8 14L3 9.5L9.5 8.5L12 2Z" fill="#FFD166"/>
                         <path d="M12 6L13.5 10L17.5 10.5L14.5 13L15.5 17L12 15L8.5 17L9.5 13L6.5 10.5L10.5 10L12 6Z" fill="#F4A261"/>
                     </svg>
-                    <span><strong style="color: #FFD166;">Worth $197</strong> if sold separately &mdash; these aren't PDFs you'll download and forget. These are tools you'll use in the first 48 hours to actually launch or improve your shop.</span>
+                    <span><strong style="color: #FFD166;">Built for action, not "someday"</strong> &mdash; Every tool matches exactly where you'll be in the challenge. You'll have new products live while everyone else is still "thinking about it."</span>
                 </p>
             </div>
         </div>
