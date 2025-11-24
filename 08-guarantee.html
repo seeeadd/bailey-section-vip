@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guarantee Section</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,700,900&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: 'Ogg';
+            src: url('https://cdn.jsdelivr.net/gh/nicxvan/ogg-font@master/fonts/Ogg-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Ogg';
+            src: url('https://cdn.jsdelivr.net/gh/nicxvan/ogg-font@master/fonts/Ogg-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* Scoped reset - only affects this section */
+        .section-guarantee,
+        .section-guarantee *,
+        .section-guarantee *::before,
+        .section-guarantee *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .section-guarantee {
+            --pink-primary: #FF6B9D;
+            --pink-dark: #C7254E;
+            --pink-light: #FFB3D1;
+            --teal-primary: #4ECDC4;
+            --teal-dark: #2F5F61;
+            --teal-light: #A8E6E3;
+            --gold: #FFD166;
+            --gold-dark: #F4A261;
+            --cream: #FAF7F2;
+            --navy: #2F5F61;
+            font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 500;
+            -webkit-font-smoothing: antialiased;
+            color: #333;
+            line-height: 1.6;
+            background: linear-gradient(180deg, #FFFFFF 0%, var(--cream) 100%);
+            padding: 100px 24px 0 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-guarantee .container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero area with badge and title */
+        .guarantee-hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .badge-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 28px;
+        }
+
+        .guarantee-badge {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--teal-primary), var(--teal-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow:
+                0 8px 24px rgba(78, 205, 196, 0.3),
+                inset 0 -4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .guarantee-badge::before {
+            content: '';
+            position: absolute;
+            inset: 6px;
+            border: 2px dashed rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+        }
+
+        .guarantee-badge svg {
+            width: 44px;
+            height: 44px;
+        }
+
+        /* Gold star on badge */
+        .badge-star {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            width: 28px;
+            height: 28px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(255, 209, 102, 0.4);
+        }
+
+        .section-guarantee .section-title {
+            font-family: 'Ogg', Georgia, serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 16px;
+            line-height: 1.15;
+        }
+
+        .section-guarantee .section-subtitle {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 20px;
+            font-weight: 500;
+            color: #666;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Main content card */
+        .guarantee-content {
+            background: #FFFFFF;
+            border-radius: 28px;
+            padding: 50px;
+            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(78, 205, 196, 0.1);
+        }
+
+        /* The deal section */
+        .the-deal {
+            margin-bottom: 40px;
+        }
+
+        .deal-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--teal-light), rgba(78, 205, 196, 0.2));
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .deal-label span {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--teal-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .deal-text {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 18px;
+            font-weight: 500;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* What you can try - visual list */
+        .try-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 32px 0;
+        }
+
+        .try-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            background: linear-gradient(135deg, var(--cream), #FFFFFF);
+            border-radius: 12px;
+            border: 1px solid rgba(78, 205, 196, 0.15);
+        }
+
+        .try-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--teal-primary), var(--teal-dark));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .try-item span {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        /* The promise section */
+        .the-promise {
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.08), rgba(255, 107, 157, 0.02));
+            border-radius: 20px;
+            padding: 32px;
+            margin: 32px 0;
+            border-left: 4px solid var(--pink-primary);
+        }
+
+        .promise-text {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 18px;
+            font-weight: 500;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .promise-text strong {
+            color: var(--pink-dark);
+            font-weight: 700;
+        }
+
+        /* The reframe */
+        .the-reframe {
+            text-align: center;
+            padding: 24px 0;
+            margin-bottom: 32px;
+        }
+
+        .reframe-text {
+            font-family: 'Ogg', Georgia, serif;
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--navy);
+            line-height: 1.5;
+        }
+
+        .reframe-highlight {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        /* Bottom callout - make it pop */
+        .guarantee-callout {
+            background: linear-gradient(135deg, var(--navy), var(--teal-dark));
+            border-radius: 20px;
+            padding: 36px 40px;
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .guarantee-callout::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .callout-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .callout-content {
+            flex: 1;
+        }
+
+        .callout-worst {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 8px;
+        }
+
+        .callout-best {
+            font-family: 'Ogg', Georgia, serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1.3;
+        }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+            .section-guarantee {
+                padding: 70px 16px 0 16px;
+            }
+
+            .section-guarantee .section-title {
+                font-size: 36px;
+            }
+
+            .guarantee-content {
+                padding: 32px 24px;
+            }
+
+            .try-list {
+                grid-template-columns: 1fr;
+            }
+
+            .guarantee-callout {
+                flex-direction: column;
+                text-align: center;
+                padding: 28px 24px;
+                gap: 20px;
+            }
+
+            .callout-best {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .section-guarantee .section-title {
+                font-size: 30px;
+            }
+
+            .section-guarantee .section-subtitle {
+                font-size: 17px;
+            }
+
+            .reframe-text {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<section class="section-guarantee">
+    <div class="container">
+        <!-- Hero with badge -->
+        <div class="guarantee-hero">
+            <div class="badge-wrapper">
+                <div class="guarantee-badge">
+                    <svg viewBox="0 0 44 44" fill="none">
+                        <path d="M22 4C22 4 10 8 10 18C10 28 10 34 22 40C34 34 34 28 34 18C34 8 22 4 22 4Z" fill="rgba(255,255,255,0.2)"/>
+                        <path d="M14 22L19 27L30 16" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <div class="badge-star">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path d="M7 1L8.5 5L12.5 5.5L9.5 8L10.5 12L7 10L3.5 12L4.5 8L1.5 5.5L5.5 5L7 1Z" fill="#FFFFFF"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <h2 class="section-title">Try Everything.<br>Decide Later.</h2>
+            <p class="section-subtitle">Your $67 is protected. Here's how it works:</p>
+        </div>
+
+        <!-- Main content -->
+        <div class="guarantee-content">
+            <!-- The deal -->
+            <div class="the-deal">
+                <div class="deal-label">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M8 1L10 5.5L15 6L11 9.5L12 14.5L8 12L4 14.5L5 9.5L1 6L6 5.5L8 1Z" fill="#2F5F61"/>
+                    </svg>
+                    <span>Here's the deal</span>
+                </div>
+                <p class="deal-text">Go through the entire challenge as a VIP. Try everything:</p>
+            </div>
+
+            <!-- Visual list of what to try -->
+            <div class="try-list">
+                <div class="try-item">
+                    <div class="try-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <rect x="3" y="3" width="14" height="14" rx="2" fill="rgba(255,255,255,0.2)"/>
+                            <path d="M6 10L9 13L14 7" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <span>Use the Quick Start Kit</span>
+                </div>
+                <div class="try-item">
+                    <div class="try-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <circle cx="10" cy="10" r="7" fill="rgba(255,255,255,0.2)"/>
+                            <path d="M8 8L8 12L13 10L8 8Z" fill="#FFFFFF"/>
+                        </svg>
+                    </div>
+                    <span>Watch all recordings</span>
+                </div>
+                <div class="try-item">
+                    <div class="try-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <rect x="2" y="4" width="16" height="12" rx="3" fill="rgba(255,255,255,0.2)"/>
+                            <rect x="2" y="4" width="16" height="12" rx="3" stroke="#FFFFFF" stroke-width="1.5"/>
+                            <circle cx="6" cy="10" r="1.5" fill="#FFFFFF"/>
+                            <circle cx="10" cy="10" r="1.5" fill="#FFFFFF"/>
+                            <circle cx="14" cy="10" r="1.5" fill="#FFFFFF"/>
+                        </svg>
+                    </div>
+                    <span>Ask questions in WhatsApp</span>
+                </div>
+                <div class="try-item">
+                    <div class="try-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <circle cx="10" cy="6" r="3" fill="#FFFFFF"/>
+                            <path d="M4 16C4 12.6863 6.68629 10 10 10C13.3137 10 16 12.6863 16 16" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <span>Show up to Q&A sessions</span>
+                </div>
+            </div>
+
+            <!-- The promise -->
+            <div class="the-promise">
+                <p class="promise-text">
+                    If you get to the end and think <strong>"this wasn't worth $67"</strong> — just email us within 7 days.
+                    You'll get every penny back. No weird forms. No guilt trip. <strong>Just a refund.</strong>
+                </p>
+            </div>
+
+            <!-- The reframe -->
+            <div class="the-reframe">
+                <p class="reframe-text">
+                    You're not deciding if VIP is worth it right now.<br>
+                    <span class="reframe-highlight">You're just deciding to try it.</span>
+                </p>
+            </div>
+
+            <!-- Bottom callout -->
+            <div class="guarantee-callout">
+                <div class="callout-icon">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                        <!-- Two paths: down arrow (worst) and up arrow (best) -->
+                        <path d="M12 8L12 20L8 16" stroke="rgba(255,255,255,0.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M28 32L28 12L32 16" stroke="#FFD166" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="28" cy="8" r="4" fill="#FFD166"/>
+                        <path d="M26 8L27.5 9.5L30 7" stroke="#2F5F61" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="callout-content">
+                    <p class="callout-worst">Worst case? You get your money back.</p>
+                    <p class="callout-best">Best case? Your Etsy shop finally starts working.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

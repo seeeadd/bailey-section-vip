@@ -28,13 +28,17 @@
             font-display: swap;
         }
 
-        * {
+        /* Scoped reset - only affects this section */
+        .section-everything,
+        .section-everything *,
+        .section-everything *::before,
+        .section-everything *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
+        .section-everything {
             --pink-primary: #FF6B9D;
             --pink-dark: #C7254E;
             --pink-light: #FFB3D1;
@@ -49,37 +53,34 @@
             --gray-light: #E8E8E8;
             --gray-medium: #999999;
             --gray-dark: #555555;
-        }
-
-        body {
             font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
             font-weight: 500;
             -webkit-font-smoothing: antialiased;
             color: #333;
             line-height: 1.6;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Ogg', Georgia, serif;
-            font-weight: 700;
-        }
-
-        .section-everything {
             background: #FFFFFF;
             padding: 100px 24px 0 24px;
         }
 
-        .container {
+        .section-everything h1,
+        .section-everything h2,
+        .section-everything h3,
+        .section-everything h4 {
+            font-family: 'Ogg', Georgia, serif;
+            font-weight: 700;
+        }
+
+        .section-everything .container {
             max-width: 1100px;
             margin: 0 auto;
         }
 
-        .section-header {
+        .section-everything .section-header {
             text-align: center;
             margin-bottom: 60px;
         }
 
-        .section-title {
+        .section-everything .section-title {
             font-family: 'Ogg', Georgia, serif;
             font-size: 42px;
             font-weight: 700;
@@ -915,7 +916,7 @@
                 grid-template-columns: 1fr;
             }
 
-            .section-title {
+            .section-everything .section-title {
                 font-size: 32px;
             }
         }
@@ -925,7 +926,7 @@
                 padding: 70px 16px 0 16px;
             }
 
-            .section-title {
+            .section-everything .section-title {
                 font-size: 28px;
             }
 

@@ -28,13 +28,17 @@
             font-display: swap;
         }
 
-        * {
+        /* Scoped reset - only affects this section */
+        .section-why-upgrade,
+        .section-why-upgrade *,
+        .section-why-upgrade *::before,
+        .section-why-upgrade *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
+        .section-why-upgrade {
             --pink-primary: #FF6B9D;
             --pink-dark: #C7254E;
             --pink-light: #FFB3D1;
@@ -45,37 +49,33 @@
             --gold-dark: #F4A261;
             --cream: #FAF7F2;
             --navy: #2F5F61;
-        }
-
-        body {
             font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
             font-weight: 500;
             -webkit-font-smoothing: antialiased;
             color: #333;
             line-height: 1.6;
+            background: linear-gradient(180deg, #FFF9F0 0%, #FFFBF6 100%);
+            padding: 100px 24px 0 24px;
         }
 
-        h1, h2, h3 {
+        .section-why-upgrade h1,
+        .section-why-upgrade h2,
+        .section-why-upgrade h3 {
             font-family: 'Ogg', Georgia, serif;
             font-weight: 700;
         }
 
-        .section-why-upgrade {
-            background: linear-gradient(180deg, #FFF9F0 0%, #FFFBF6 100%);
-            padding: 100px 24px;
-        }
-
-        .container {
+        .section-why-upgrade .container {
             max-width: 1100px;
             margin: 0 auto;
         }
 
-        .section-header {
+        .section-why-upgrade .section-header {
             text-align: center;
             margin-bottom: 60px;
         }
 
-        .section-title {
+        .section-why-upgrade .section-title {
             font-family: 'Ogg', Georgia, serif;
             font-size: 48px;
             font-weight: 700;
@@ -92,7 +92,7 @@
             font-style: italic;
         }
 
-        .section-subtitle {
+        .section-why-upgrade .section-subtitle {
             font-family: 'Satoshi', sans-serif;
             font-size: 20px;
             font-weight: 500;
@@ -180,17 +180,17 @@
                 gap: 24px;
             }
 
-            .section-title {
+            .section-why-upgrade .section-title {
                 font-size: 36px;
             }
 
             .section-why-upgrade {
-                padding: 70px 16px;
+                padding: 70px 16px 0 16px;
             }
         }
 
         @media (max-width: 500px) {
-            .section-title {
+            .section-why-upgrade .section-title {
                 font-size: 30px;
             }
 
@@ -205,6 +205,98 @@
 
             .card-title {
                 font-size: 24px;
+            }
+
+            .version-compare {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .version-box {
+                padding: 20px 24px;
+            }
+
+            .version-box span {
+                font-size: 15px;
+            }
+        }
+
+        /* Version Comparison Banner */
+        .version-compare {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 24px;
+            margin-top: 60px;
+            padding: 40px 0 0 0;
+        }
+
+        .version-box {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 24px 32px;
+            border-radius: 16px;
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .version-box.free {
+            background: #FFFFFF;
+            border: 2px solid var(--teal-light);
+        }
+
+        .version-box.vip {
+            background: linear-gradient(135deg, var(--pink-primary), var(--pink-dark));
+            border: 2px solid transparent;
+            box-shadow: 0 8px 24px rgba(255, 107, 157, 0.3);
+        }
+
+        .version-icon {
+            flex-shrink: 0;
+        }
+
+        .version-box span {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 17px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .version-box.free span {
+            color: var(--navy);
+        }
+
+        .version-box.vip span {
+            color: #FFFFFF;
+        }
+
+        .version-box span strong {
+            font-weight: 800;
+        }
+
+        .version-equals {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--gray-medium);
+            display: flex;
+            align-items: center;
+        }
+
+        @media (max-width: 700px) {
+            .version-compare {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .version-box {
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .version-equals {
+                display: none;
             }
         }
     </style>
@@ -313,6 +405,53 @@
                 <p class="card-desc">
                     You've learned plenty. You don't need more ideas, you need something you can open and use today. <strong>The Toolkit gives you templates, prompts, and calculators</strong> so "I should do this" turns into "I just did this."
                 </p>
+            </div>
+        </div>
+
+        <!-- Version Comparison -->
+        <div class="version-compare">
+            <div class="version-box free">
+                <div class="version-icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                        <!-- Stack of books -->
+                        <rect x="8" y="32" width="32" height="8" rx="2" fill="#4ECDC4"/>
+                        <rect x="10" y="24" width="28" height="8" rx="2" fill="#A8E6E3"/>
+                        <rect x="12" y="16" width="24" height="8" rx="2" fill="#4ECDC4" opacity="0.6"/>
+                        <!-- Book details -->
+                        <rect x="14" y="34" width="8" height="1.5" rx="0.5" fill="#2F5F61"/>
+                        <rect x="14" y="37" width="5" height="1.5" rx="0.5" fill="#2F5F61" opacity="0.5"/>
+                        <rect x="16" y="26" width="6" height="1.5" rx="0.5" fill="#2F5F61"/>
+                    </svg>
+                </div>
+                <span><strong>Free version</strong> = great content</span>
+            </div>
+
+            <div class="version-box vip">
+                <div class="version-icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                        <!-- Rocket body -->
+                        <path d="M24 6C24 6 32 14 32 28C32 32 28 36 24 38C20 36 16 32 16 28C16 14 24 6 24 6Z" fill="#FFFFFF"/>
+                        <path d="M24 6C24 6 28 12 28 24C28 28 26 32 24 34C22 32 20 28 20 24C20 12 24 6 24 6Z" fill="#FFD166" opacity="0.4"/>
+                        <!-- Rocket window -->
+                        <circle cx="24" cy="18" r="4" fill="#4ECDC4"/>
+                        <circle cx="24" cy="18" r="2" fill="#FFFFFF" opacity="0.5"/>
+                        <!-- Rocket fins -->
+                        <path d="M16 28L12 34L16 32V28Z" fill="#FFFFFF"/>
+                        <path d="M32 28L36 34L32 32V28Z" fill="#FFFFFF"/>
+                        <!-- Rocket flames -->
+                        <path d="M24 38L20 46L24 42L28 46L24 38Z" fill="#FFD166"/>
+                        <path d="M24 40L22 44L24 42L26 44L24 40Z" fill="#FF6B9D"/>
+                        <!-- Speed lines -->
+                        <path d="M8 20L12 20" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+                        <path d="M6 26L11 26" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+                        <path d="M36 20L40 20" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+                        <path d="M37 26L42 26" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+                        <!-- Checkmark badge -->
+                        <circle cx="38" cy="12" r="6" fill="#4ECDC4"/>
+                        <path d="M35 12L37 14L41 10" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span><strong>VIP version</strong> = great content + actually finishing it</span>
             </div>
         </div>
     </div>
