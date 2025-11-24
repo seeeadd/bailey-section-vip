@@ -28,13 +28,17 @@
             font-display: swap;
         }
 
-        * {
+        /* Scoped reset - only affects this section */
+        .section-why-upgrade,
+        .section-why-upgrade *,
+        .section-why-upgrade *::before,
+        .section-why-upgrade *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
+        .section-why-upgrade {
             --pink-primary: #FF6B9D;
             --pink-dark: #C7254E;
             --pink-light: #FFB3D1;
@@ -45,37 +49,33 @@
             --gold-dark: #F4A261;
             --cream: #FAF7F2;
             --navy: #2F5F61;
-        }
-
-        body {
             font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
             font-weight: 500;
             -webkit-font-smoothing: antialiased;
             color: #333;
             line-height: 1.6;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Ogg', Georgia, serif;
-            font-weight: 700;
-        }
-
-        .section-why-upgrade {
             background: linear-gradient(180deg, #FFF9F0 0%, #FFFBF6 100%);
             padding: 100px 24px 0 24px;
         }
 
-        .container {
+        .section-why-upgrade h1,
+        .section-why-upgrade h2,
+        .section-why-upgrade h3 {
+            font-family: 'Ogg', Georgia, serif;
+            font-weight: 700;
+        }
+
+        .section-why-upgrade .container {
             max-width: 1100px;
             margin: 0 auto;
         }
 
-        .section-header {
+        .section-why-upgrade .section-header {
             text-align: center;
             margin-bottom: 60px;
         }
 
-        .section-title {
+        .section-why-upgrade .section-title {
             font-family: 'Ogg', Georgia, serif;
             font-size: 48px;
             font-weight: 700;
@@ -92,7 +92,7 @@
             font-style: italic;
         }
 
-        .section-subtitle {
+        .section-why-upgrade .section-subtitle {
             font-family: 'Satoshi', sans-serif;
             font-size: 20px;
             font-weight: 500;
@@ -180,7 +180,7 @@
                 gap: 24px;
             }
 
-            .section-title {
+            .section-why-upgrade .section-title {
                 font-size: 36px;
             }
 
@@ -190,7 +190,7 @@
         }
 
         @media (max-width: 500px) {
-            .section-title {
+            .section-why-upgrade .section-title {
                 font-size: 30px;
             }
 

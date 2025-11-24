@@ -28,13 +28,17 @@
             font-display: swap;
         }
 
-        * {
+        /* Scoped reset - only affects this section */
+        .section-guarantee,
+        .section-guarantee *,
+        .section-guarantee *::before,
+        .section-guarantee *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
+        .section-guarantee {
             --pink-primary: #FF6B9D;
             --pink-dark: #C7254E;
             --pink-light: #FFB3D1;
@@ -45,24 +49,18 @@
             --gold-dark: #F4A261;
             --cream: #FAF7F2;
             --navy: #2F5F61;
-        }
-
-        body {
             font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
             font-weight: 500;
             -webkit-font-smoothing: antialiased;
             color: #333;
             line-height: 1.6;
-        }
-
-        .section-guarantee {
             background: linear-gradient(180deg, #FFFFFF 0%, var(--cream) 100%);
             padding: 100px 24px 0 24px;
             position: relative;
             overflow: hidden;
         }
 
-        .container {
+        .section-guarantee .container {
             max-width: 900px;
             margin: 0 auto;
             position: relative;
@@ -123,7 +121,7 @@
             box-shadow: 0 4px 12px rgba(255, 209, 102, 0.4);
         }
 
-        .section-title {
+        .section-guarantee .section-title {
             font-family: 'Ogg', Georgia, serif;
             font-size: 48px;
             font-weight: 700;
@@ -132,7 +130,7 @@
             line-height: 1.15;
         }
 
-        .section-subtitle {
+        .section-guarantee .section-subtitle {
             font-family: 'Satoshi', sans-serif;
             font-size: 20px;
             font-weight: 500;
@@ -323,7 +321,7 @@
                 padding: 70px 16px 0 16px;
             }
 
-            .section-title {
+            .section-guarantee .section-title {
                 font-size: 36px;
             }
 
@@ -348,11 +346,11 @@
         }
 
         @media (max-width: 500px) {
-            .section-title {
+            .section-guarantee .section-title {
                 font-size: 30px;
             }
 
-            .section-subtitle {
+            .section-guarantee .section-subtitle {
                 font-size: 17px;
             }
 
