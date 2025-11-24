@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Is VIP Right for You - Section</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,700,900&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: 'Ogg';
+            src: url('https://cdn.jsdelivr.net/gh/nicxvan/ogg-font@master/fonts/Ogg-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Ogg';
+            src: url('https://cdn.jsdelivr.net/gh/nicxvan/ogg-font@master/fonts/Ogg-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pink-primary: #FF6B9D;
+            --pink-dark: #C7254E;
+            --pink-light: #FFB3D1;
+            --teal-primary: #4ECDC4;
+            --teal-dark: #2F5F61;
+            --teal-light: #A8E6E3;
+            --gold: #FFD166;
+            --gold-dark: #F4A261;
+            --cream: #FAF7F2;
+            --navy: #2F5F61;
+            --gray-light: #E8E8E8;
+            --gray-medium: #999999;
+            --gray-dark: #555555;
+        }
+
+        body {
+            font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 500;
+            -webkit-font-smoothing: antialiased;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Ogg', Georgia, serif;
+            font-weight: 700;
+        }
+
+        .section {
+            background: var(--cream);
+            padding: 100px 24px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-family: 'Ogg', Georgia, serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .vip-highlight {
+            background: linear-gradient(135deg, var(--teal-primary), var(--pink-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .headline-underline {
+            display: block;
+            width: 100px;
+            height: 6px;
+            margin: 0 auto 20px;
+        }
+
+        .section-subtitle {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--gray-dark);
+            margin-bottom: 50px;
+        }
+
+        /* Comparison Grid */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .filter-card {
+            border-radius: 24px;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Perfect For You Card */
+        .filter-card.perfect {
+            background: linear-gradient(180deg, #FFFFFF 0%, rgba(168, 230, 227, 0.1) 100%);
+            border: 3px solid var(--teal-primary);
+        }
+
+        .filter-card.perfect .card-header {
+            background: var(--teal-primary);
+        }
+
+        /* Not For You Card */
+        .filter-card.not-for-you {
+            background: #FFFFFF;
+            border: 2px solid var(--gray-light);
+        }
+
+        .filter-card.not-for-you .card-header {
+            background: var(--gray-dark);
+        }
+
+        .card-header {
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        .header-text {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #FFFFFF;
+            text-transform: uppercase;
+        }
+
+        .card-body {
+            padding: 32px;
+        }
+
+        .filter-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .filter-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--gray-dark);
+            line-height: 1.6;
+        }
+
+        .filter-list li strong {
+            color: var(--navy);
+            font-weight: 700;
+        }
+
+        .list-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .filter-card.perfect {
+                order: -1;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .section {
+                padding: 70px 16px;
+            }
+
+            .section-title {
+                font-size: 30px;
+            }
+
+            .card-body {
+                padding: 24px;
+            }
+
+            .filter-list li {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Is <span class="vip-highlight">VIP</span> Right for You?</h2>
+            <!-- Hand-drawn underline -->
+            <svg class="headline-underline" viewBox="0 0 100 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 4 Q 25 1, 50 3 T 98 2" stroke="#FFB3D1" stroke-width="3" fill="none" stroke-linecap="round"/>
+            </svg>
+            <p class="section-subtitle">VIP isn't for everyone. Here's how to know if it's your fit.</p>
+        </div>
+
+        <div class="comparison-grid">
+            <!-- Perfect For You -->
+            <div class="filter-card perfect">
+                <div class="card-header">
+                    <svg class="header-icon" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 10L8 14L16 6" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="header-text">Perfect for you if...</span>
+                </div>
+                <div class="card-body">
+                    <ul class="filter-list">
+                        <li>
+                            <svg class="list-icon" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="11" fill="var(--teal-primary)" opacity="0.2"/>
+                                <path d="M7 12L10.5 15.5L17 9" stroke="var(--teal-dark)" stroke-width="2.5" stroke-linecap="round"/>
+                            </svg>
+                            <span>You're ready to <strong>actually implement</strong>, not just collect more info</span>
+                        </li>
+                        <li>
+                            <svg class="list-icon" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="11" fill="var(--teal-primary)" opacity="0.2"/>
+                                <path d="M7 12L10.5 15.5L17 9" stroke="var(--teal-dark)" stroke-width="2.5" stroke-linecap="round"/>
+                            </svg>
+                            <span>You want <strong>personal feedback on YOUR shop</strong> (not generic advice)</span>
+                        </li>
+                        <li>
+                            <svg class="list-icon" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="11" fill="var(--teal-primary)" opacity="0.2"/>
+                                <path d="M7 12L10.5 15.5L17 9" stroke="var(--teal-dark)" stroke-width="2.5" stroke-linecap="round"/>
+                            </svg>
+                            <span>You value <strong>lifetime access</strong> over "watch it once and it's gone"</span>
+                        </li>
+                        <li>
+                            <svg class="list-icon" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="11" fill="var(--teal-primary)" opacity="0.2"/>
+                                <path d="M7 12L10.5 15.5L17 9" stroke="var(--teal-dark)" stroke-width="2.5" stroke-linecap="round"/>
+                            </svg>
+                            <span>You're the type who <strong>shows up and does the work</strong> when you invest</span>
+                        </li>
+                        <li>
+                            <svg class="list-icon" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="11" fill="var(--teal-primary)" opacity="0.2"/>
+                                <path d="M7 12L10.5 15.5L17 9" stroke="var(--teal-dark)" stroke-width="2.5" stroke-linecap="round"/>
+                            </svg>
+                            <span>You want plug-and-play <strong>tools that save hours</strong> of guessing</span>
+                        </li>
+                        <li>
+                            <svg class="list-icon" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="11" fill="var(--teal-primary)" opacity="0.2"/>
+                                <path d="M7 12L10.5 15.5L17 9" stroke="var(--teal-dark)" stroke-width="2.5" stroke-linecap="round"/>
+                            </svg>
+                            <span>You're tired of courses that <strong>disappear after you buy them</strong></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Probably Not For You -->
+            <div class="filter-card not-for-you">
+                <div class="card-header">
+                    <svg class="header-icon" viewBox="0 0 20 20" fill="none">
+                        <path d="M6 6L14 14M6 14L14 6" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+                    </svg>
+                    <span class="header-text">Probably not for you if...</span>
+                </div>
+                <div class="card-body">
+                    <ul class="filter-list">
+                        <li>
+                            <svg class="list-icon" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="11" fill="var(--gray-light)"/>
+                                <path d="M8 8L16 16M8 16L16 8" stroke="var(--gray-medium)" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>You're just browsing and <strong>not ready to implement yet</strong></span>
+                        </li>
+                        <li>
+                            <svg class="list-icon" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="11" fill="var(--gray-light)"/>
+                                <path d="M8 8L16 16M8 16L16 8" stroke="var(--gray-medium)" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>You prefer to <strong>figure everything out solo</strong> (nothing wrong with that!)</span>
+                        </li>
+                        <li>
+                            <svg class="list-icon" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="11" fill="var(--gray-light)"/>
+                                <path d="M8 8L16 16M8 16L16 8" stroke="var(--gray-medium)" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>You want someone to <strong>"do it for you"</strong> (this is about teaching, not done-for-you)</span>
+                        </li>
+                        <li>
+                            <svg class="list-icon" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="11" fill="var(--gray-light)"/>
+                                <path d="M8 8L16 16M8 16L16 8" stroke="var(--gray-medium)" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>You're looking for <strong>"get rich quick"</strong> magic bullets</span>
+                        </li>
+                        <li>
+                            <svg class="list-icon" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="11" fill="var(--gray-light)"/>
+                                <path d="M8 8L16 16M8 16L16 8" stroke="var(--gray-medium)" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>The free challenge content <strong>is perfect for your needs</strong> (great choice!)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

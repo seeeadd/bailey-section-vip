@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Experience - Section</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,700,900&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: 'Ogg';
+            src: url('https://cdn.jsdelivr.net/gh/nicxvan/ogg-font@master/fonts/Ogg-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Ogg';
+            src: url('https://cdn.jsdelivr.net/gh/nicxvan/ogg-font@master/fonts/Ogg-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pink-primary: #FF6B9D;
+            --pink-dark: #C7254E;
+            --pink-light: #FFB3D1;
+            --teal-primary: #4ECDC4;
+            --teal-dark: #2F5F61;
+            --teal-light: #A8E6E3;
+            --gold: #FFD166;
+            --cream: #FAF7F2;
+            --navy: #2F5F61;
+            --gray-light: #E8E8E8;
+            --gray-medium: #999999;
+            --gray-dark: #555555;
+            --warm-white: #FFFCF7;
+        }
+
+        body {
+            font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 500;
+            -webkit-font-smoothing: antialiased;
+            color: #333;
+            background: #FFFFFF;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Ogg', Georgia, serif;
+            font-weight: 700;
+        }
+
+        .section {
+            padding: 100px 24px;
+            background: #FFFFFF;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-headline {
+            font-family: 'Ogg', Georgia, serif;
+            font-size: 52px;
+            font-weight: 700;
+            text-align: center;
+            color: var(--navy);
+            margin-bottom: 16px;
+            line-height: 1.15;
+        }
+
+        .headline-underline {
+            display: block;
+            width: 100px;
+            height: 6px;
+            margin: 0 auto 60px;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* FREE TICKET */
+        .ticket-card {
+            border-radius: 24px;
+            padding: 44px 36px;
+            position: relative;
+        }
+
+        .ticket-card.free-ticket {
+            background: #F8F8F8;
+            border: 1px solid var(--gray-light);
+        }
+
+        .ticket-title {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--gray-dark);
+            margin-bottom: 28px;
+        }
+
+        .ticket-price {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 36px;
+        }
+
+        .currency {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--gray-medium);
+        }
+
+        .price-amount {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 80px;
+            font-weight: 800;
+            color: var(--gray-medium);
+            line-height: 1;
+            letter-spacing: -3px;
+        }
+
+        .ticket-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .ticket-features li {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--gray-dark);
+        }
+
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .feature-missing {
+            opacity: 0.55;
+        }
+
+        /* VIP TICKET */
+        .ticket-card.vip-ticket {
+            background: linear-gradient(180deg, #FFFFFF 0%, var(--warm-white) 100%);
+            border: 3px solid var(--teal-primary);
+            box-shadow: 0 8px 40px rgba(78, 205, 196, 0.15),
+                        0 4px 20px rgba(0, 0, 0, 0.05);
+            padding: 52px 44px;
+        }
+
+        .vip-badge {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--teal-primary), var(--teal-dark));
+            color: #FFFFFF;
+            padding: 12px 28px;
+            border-radius: 24px;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 16px rgba(78, 205, 196, 0.4);
+        }
+
+        .vip-ticket .ticket-title {
+            font-family: 'Ogg', Georgia, serif;
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-top: 12px;
+        }
+
+        .vip-ticket .currency {
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--pink-primary), var(--pink-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .vip-ticket .price-amount {
+            font-size: 88px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--pink-primary), var(--pink-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -4px;
+        }
+
+        .vip-ticket .ticket-features li {
+            font-size: 17px;
+            color: #444;
+        }
+
+        .vip-ticket .ticket-features li strong {
+            color: var(--navy);
+            font-weight: 700;
+        }
+
+        .feature-detail {
+            font-family: 'Fira Mono', monospace;
+            font-size: 13px;
+            color: var(--gray-medium);
+            font-weight: 400;
+        }
+
+        .btn-vip {
+            display: block;
+            width: 100%;
+            padding: 22px 32px;
+            margin-top: 40px;
+            background: linear-gradient(135deg, var(--teal-primary), var(--teal-dark));
+            color: #FFFFFF;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(78, 205, 196, 0.35);
+        }
+
+        .btn-vip:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(78, 205, 196, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .ticket-card.vip-ticket {
+                order: -1;
+            }
+
+            .section-headline {
+                font-size: 38px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .section {
+                padding: 70px 16px;
+            }
+
+            .section-headline {
+                font-size: 32px;
+            }
+
+            .ticket-card {
+                padding: 32px 24px;
+            }
+
+            .ticket-card.vip-ticket {
+                padding: 40px 28px;
+            }
+
+            .price-amount {
+                font-size: 64px;
+            }
+
+            .vip-ticket .price-amount {
+                font-size: 72px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-headline">Choose Your Experience:</h2>
+
+        <!-- Hand-drawn underline -->
+        <svg class="headline-underline" viewBox="0 0 100 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 4 Q 25 1, 50 3 T 98 2" stroke="#FFB3D1" stroke-width="3" fill="none" stroke-linecap="round"/>
+        </svg>
+
+        <div class="comparison-grid">
+            <!-- FREE TICKET -->
+            <div class="ticket-card free-ticket">
+                <h3 class="ticket-title">Free Ticket</h3>
+                <div class="ticket-price">
+                    <span class="currency">$</span>
+                    <span class="price-amount">0</span>
+                </div>
+
+                <ul class="ticket-features">
+                    <li>
+                        <svg class="feature-icon" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="11" fill="#D4D4D4"/>
+                            <path d="M7 12L10.5 15.5L17 9" stroke="#777" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Live sessions</span>
+                    </li>
+                    <li>
+                        <svg class="feature-icon" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="11" fill="#D4D4D4"/>
+                            <path d="M7 12L10.5 15.5L17 9" stroke="#777" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Workbook</span>
+                    </li>
+                    <li class="feature-missing">
+                        <svg class="feature-icon" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="11" fill="#EBEBEB"/>
+                            <path d="M8 8L16 16M8 16L16 8" stroke="#AAAAAA" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                        <span>No recordings</span>
+                    </li>
+                    <li class="feature-missing">
+                        <svg class="feature-icon" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="11" fill="#EBEBEB"/>
+                            <path d="M8 8L16 16M8 16L16 8" stroke="#AAAAAA" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                        <span>No Bailey access</span>
+                    </li>
+                    <li class="feature-missing">
+                        <svg class="feature-icon" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="11" fill="#EBEBEB"/>
+                            <path d="M8 8L16 16M8 16L16 8" stroke="#AAAAAA" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                        <span>No toolkit</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- VIP TICKET -->
+            <div class="ticket-card vip-ticket">
+                <div class="vip-badge">
+                    <!-- Lightning bolt SVG -->
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M7.5 1L3 8H7L6.5 13L11 6H7L7.5 1Z" fill="#FFD166"/>
+                    </svg>
+                    <span>LAUNCH-READY VIP</span>
+                </div>
+
+                <h3 class="ticket-title">Complete VIP Experience</h3>
+
+                <div class="ticket-price">
+                    <span class="currency">$</span>
+                    <span class="price-amount">67</span>
+                </div>
+
+                <ul class="ticket-features">
+                    <li>
+                        <svg class="feature-icon" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="11" fill="#4ECDC4"/>
+                            <path d="M7 12L10.5 15.5L17 9" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Live sessions + <strong>lifetime HD recordings</strong></span>
+                    </li>
+                    <li>
+                        <svg class="feature-icon" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="11" fill="#4ECDC4"/>
+                            <path d="M7 12L10.5 15.5L17 9" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span><strong>"Come Prepared" Quick Start Kit</strong> <span class="feature-detail">(50 examples, shop walkthrough)</span></span>
+                    </li>
+                    <li>
+                        <svg class="feature-icon" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="11" fill="#4ECDC4"/>
+                            <path d="M7 12L10.5 15.5L17 9" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span><strong>7-day private WhatsApp</strong> with Bailey</span>
+                    </li>
+                    <li>
+                        <svg class="feature-icon" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="11" fill="#4ECDC4"/>
+                            <path d="M7 12L10.5 15.5L17 9" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span><strong>VIP-only Q&A sessions</strong> <span class="feature-detail">(Day 2 + Day 4)</span></span>
+                    </li>
+                    <li>
+                        <svg class="feature-icon" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="11" fill="#4ECDC4"/>
+                            <path d="M7 12L10.5 15.5L17 9" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span><strong>Fast Action Toolkit</strong> <span class="feature-detail">(AI prompts, calculator, templates, mockups)</span></span>
+                    </li>
+                </ul>
+
+                <button class="btn-vip">YES, I WANT THE VIP EXPERIENCE FOR $67</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

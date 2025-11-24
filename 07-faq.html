@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Section</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,700,900&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: 'Ogg';
+            src: url('https://cdn.jsdelivr.net/gh/nicxvan/ogg-font@master/fonts/Ogg-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Ogg';
+            src: url('https://cdn.jsdelivr.net/gh/nicxvan/ogg-font@master/fonts/Ogg-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pink-primary: #FF6B9D;
+            --pink-dark: #C7254E;
+            --pink-light: #FFB3D1;
+            --teal-primary: #4ECDC4;
+            --teal-dark: #2F5F61;
+            --teal-light: #A8E6E3;
+            --gold: #FFD166;
+            --gold-dark: #F4A261;
+            --cream: #FAF7F2;
+            --navy: #2F5F61;
+            --gray-light: #E8E8E8;
+            --gray-medium: #999999;
+            --gray-dark: #555555;
+        }
+
+        body {
+            font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 500;
+            -webkit-font-smoothing: antialiased;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Ogg', Georgia, serif;
+            font-weight: 700;
+        }
+
+        .section {
+            background: #FFFFFF;
+            padding: 100px 24px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-family: 'Ogg', Georgia, serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .headline-underline {
+            display: block;
+            width: 100px;
+            height: 6px;
+            margin: 0 auto;
+        }
+
+        /* FAQ Items */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .faq-item {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 32px 36px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--teal-light);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .faq-question {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .question-icon {
+            width: 28px;
+            height: 28px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .faq-answer {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--gray-dark);
+            line-height: 1.7;
+            padding-left: 42px;
+        }
+
+        .faq-answer strong {
+            color: var(--navy);
+            font-weight: 700;
+        }
+
+        /* Decorative element */
+        .question-deco {
+            font-family: 'Caveat', cursive;
+            font-size: 100px;
+            color: var(--teal-light);
+            opacity: 0.3;
+            position: absolute;
+            top: -30px;
+            right: 30px;
+            line-height: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+            .section-title {
+                font-size: 36px;
+            }
+
+            .section {
+                padding: 70px 16px;
+            }
+
+            .faq-item {
+                padding: 24px;
+            }
+
+            .faq-question {
+                font-size: 18px;
+            }
+
+            .faq-answer {
+                padding-left: 0;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .section-title {
+                font-size: 30px;
+            }
+
+            .faq-question {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .question-icon {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Questions Answered</h2>
+            <!-- Hand-drawn underline -->
+            <svg class="headline-underline" viewBox="0 0 100 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 4 Q 25 1, 50 3 T 98 2" stroke="#FFB3D1" stroke-width="3" fill="none" stroke-linecap="round"/>
+            </svg>
+        </div>
+
+        <div class="faq-list">
+            <!-- FAQ 1 -->
+            <div class="faq-item">
+                <h3 class="faq-question">
+                    <svg class="question-icon" viewBox="0 0 28 28" fill="none">
+                        <circle cx="14" cy="14" r="13" fill="var(--teal-primary)" opacity="0.2"/>
+                        <text x="14" y="19" text-anchor="middle" font-family="Caveat, cursive" font-size="16" font-weight="600" fill="var(--teal-dark)">?</text>
+                    </svg>
+                    What exactly do I get in VIP?
+                </h3>
+                <p class="faq-answer">
+                    You get <strong>lifetime HD recordings</strong> of all 3 challenge days + slides, the <strong>"Come Prepared" Quick Start Kit</strong> (prep video, shop walkthrough, decision matrix, 50 examples), <strong>7-day private WhatsApp access</strong> to Bailey, <strong>VIP-only live Q&A sessions</strong> (Day 2 + Day 4), and the <strong>Fast Action Toolkit</strong> (AI prompts, profit calculator, seasonal calendar, first sale templates, mockup bundle).
+                </p>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="faq-item">
+                <h3 class="faq-question">
+                    <svg class="question-icon" viewBox="0 0 28 28" fill="none">
+                        <circle cx="14" cy="14" r="13" fill="var(--pink-primary)" opacity="0.2"/>
+                        <text x="14" y="19" text-anchor="middle" font-family="Caveat, cursive" font-size="16" font-weight="600" fill="var(--pink-dark)">?</text>
+                    </svg>
+                    What if I can't attend live / I'm in a different time zone?
+                </h3>
+                <p class="faq-answer">
+                    That's exactly why VIP includes <strong>lifetime recordings</strong>. Watch on your schedule - at 11pm when kids are asleep, on weekends, during nap time, whenever works for you. The WhatsApp group and Q&A recordings mean you won't miss anything important.
+                </p>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="faq-item">
+                <h3 class="faq-question">
+                    <svg class="question-icon" viewBox="0 0 28 28" fill="none">
+                        <circle cx="14" cy="14" r="13" fill="var(--gold)" opacity="0.2"/>
+                        <text x="14" y="19" text-anchor="middle" font-family="Caveat, cursive" font-size="16" font-weight="600" fill="var(--gold-dark)">?</text>
+                    </svg>
+                    How does the 7-day WhatsApp group work?
+                </h3>
+                <p class="faq-answer">
+                    After you upgrade, you'll get a private WhatsApp invite link. The group is small (VIPs only) and Bailey checks in daily with voice notes and answers. You can ask specific questions, share your progress, and get quick feedback. It's active for <strong>7 days starting Day 1</strong> of the challenge.
+                </p>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="faq-item">
+                <h3 class="faq-question">
+                    <svg class="question-icon" viewBox="0 0 28 28" fill="none">
+                        <circle cx="14" cy="14" r="13" fill="var(--teal-primary)" opacity="0.2"/>
+                        <text x="14" y="19" text-anchor="middle" font-family="Caveat, cursive" font-size="16" font-weight="600" fill="var(--teal-dark)">?</text>
+                    </svg>
+                    Will my shop definitely get reviewed?
+                </h3>
+                <p class="faq-answer">
+                    Bailey reviews shops during the VIP Q&A sessions (Day 2 + Day 4). While she can't guarantee reviewing every single shop live, she prioritizes VIPs who show up and ask. Plus, you'll learn a ton from watching other VIP shop reviews - many "aha moments" come from seeing feedback on <strong>shops similar to yours</strong>.
+                </p>
+            </div>
+
+            <!-- FAQ 5 -->
+            <div class="faq-item">
+                <h3 class="faq-question">
+                    <svg class="question-icon" viewBox="0 0 28 28" fill="none">
+                        <circle cx="14" cy="14" r="13" fill="var(--pink-primary)" opacity="0.2"/>
+                        <text x="14" y="19" text-anchor="middle" font-family="Caveat, cursive" font-size="16" font-weight="600" fill="var(--pink-dark)">?</text>
+                    </svg>
+                    How long do I keep access to everything?
+                </h3>
+                <p class="faq-answer">
+                    <strong>Lifetime.</strong> The recordings, toolkit, and all materials stay in your account forever. Rewatch anytime, download the tools, keep the templates. The only time-limited parts are the live Q&A sessions and 7-day WhatsApp group (which happen during the challenge week).
+                </p>
+            </div>
+
+            <!-- FAQ 6 -->
+            <div class="faq-item">
+                <h3 class="faq-question">
+                    <svg class="question-icon" viewBox="0 0 28 28" fill="none">
+                        <circle cx="14" cy="14" r="13" fill="var(--gold)" opacity="0.2"/>
+                        <text x="14" y="19" text-anchor="middle" font-family="Caveat, cursive" font-size="16" font-weight="600" fill="var(--gold-dark)">?</text>
+                    </svg>
+                    Can I upgrade later?
+                </h3>
+                <p class="faq-answer">
+                    <strong>No.</strong> VIP upgrades close when registration closes (before the challenge starts). Once the challenge begins, VIP spots are gone and you can't add them later. This is your only chance to upgrade at this price.
+                </p>
+            </div>
+
+            <!-- FAQ 7 -->
+            <div class="faq-item">
+                <h3 class="faq-question">
+                    <svg class="question-icon" viewBox="0 0 28 28" fill="none">
+                        <circle cx="14" cy="14" r="13" fill="var(--teal-primary)" opacity="0.2"/>
+                        <text x="14" y="19" text-anchor="middle" font-family="Caveat, cursive" font-size="16" font-weight="600" fill="var(--teal-dark)">?</text>
+                    </svg>
+                    How does the money-back guarantee work?
+                </h3>
+                <p class="faq-answer">
+                    Simple: Join VIP, participate in the challenge, use all the materials. If within <strong>7 days after the challenge ends</strong> you don't feel more confident and clear about your Etsy shop, email us and we'll refund your $67. No awkward questions, no hoops, just email and we'll process it.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
