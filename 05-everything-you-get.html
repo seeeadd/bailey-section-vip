@@ -89,10 +89,114 @@
         }
 
         .price-highlight {
-            background: linear-gradient(135deg, var(--pink-primary), var(--teal-primary));
+            position: relative;
+            display: inline-block;
+        }
+
+        .price-amount {
+            position: relative;
+            font-family: 'Satoshi', sans-serif;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--pink-primary), var(--pink-dark));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            padding: 0 8px;
+            font-size: 1.15em;
+        }
+
+        .price-amount::before {
+            content: '';
+            position: absolute;
+            bottom: 8px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, var(--pink-primary), var(--pink-dark));
+            border-radius: 2px;
+            opacity: 0.4;
+        }
+
+        .vip-text {
+            position: relative;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .experience-text {
+            background: linear-gradient(135deg, var(--teal-primary), var(--teal-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header-enhanced {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .header-eyebrow {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--pink-light), var(--pink-primary));
+            color: white;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 10px 24px;
+            border-radius: 30px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+        }
+
+        .header-eyebrow svg {
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        .section-title-enhanced {
+            font-family: 'Ogg', Georgia, serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 20px;
+            line-height: 1.25;
+        }
+
+        .header-subtitle {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--gray-dark);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .header-subtitle strong {
+            color: var(--navy);
+        }
+
+        @media (max-width: 900px) {
+            .section-title-enhanced {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .section-title-enhanced {
+                font-size: 28px;
+            }
+            .header-eyebrow {
+                font-size: 12px;
+                padding: 8px 18px;
+            }
         }
 
         /* Component Number Badge */
@@ -843,8 +947,24 @@
 
 <section class="section">
     <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Here's Everything You Get Inside the <span class="price-highlight">$67 VIP Experience</span></h2>
+        <div class="section-header-enhanced">
+            <div class="header-eyebrow">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M8 1L9.5 5.5L14 6L10.5 9L11.5 14L8 12L4.5 14L5.5 9L2 6L6.5 5.5L8 1Z" fill="currentColor"/>
+                </svg>
+                VIP Access Unlocked
+            </div>
+            <h2 class="section-title-enhanced">
+                Here's Everything You Get Inside the<br>
+                <span class="price-highlight">
+                    <span class="price-amount">$67</span>
+                    <span class="vip-text">VIP</span>
+                    <span class="experience-text">Experience</span>
+                </span>
+            </h2>
+            <p class="header-subtitle">
+                Not fluff. Not filler. <strong>5 real components</strong> designed to get your shop optimized, your listings live, and your confidence locked in.
+            </p>
         </div>
 
         <!-- Component 1: Lifetime Recording Access -->
