@@ -46,10 +46,6 @@
         padding: 80px 0 100px;
         overflow-x: hidden;
         position: relative;
-        /* Full width for Framer */
-        width: 100vw;
-        margin-left: 50%;
-        transform: translateX(-50%);
         box-sizing: border-box;
     }
 
@@ -626,13 +622,10 @@
     /* Right Column - Images */
     .story-images-column {
         position: relative;
-        align-self: stretch;
     }
 
     .polaroid-stack {
-        position: -webkit-sticky;
-        position: sticky;
-        top: 30px;
+        position: relative;
         width: 100%;
         height: 520px;
         min-height: 520px;
@@ -860,8 +853,6 @@
             max-width: 400px;
             height: 380px;
             min-height: 380px;
-            /* Disable sticky on mobile */
-            position: relative !important;
         }
 
         .story-hero-header h1 {
