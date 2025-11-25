@@ -26,8 +26,8 @@
     .story-part1-section {
         --pink-primary: #FF6B9D;
         --pink-dark: #E91E63;
-        --pink-light: #FFF0F5;
-        --pink-soft: #FFD6E8;
+        --pink-light: #FFF8FA;
+        --pink-soft: #FFE8F0;
         --teal-primary: #4ECDC4;
         --teal-dark: #2F5F61;
         --teal-light: #E0F7F6;
@@ -42,10 +42,15 @@
         --gray-medium: #718096;
 
         font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
-        background: linear-gradient(180deg, #FFF5F8 0%, #FFF0F5 30%, #FFEEF5 60%, #FFF8FA 100%);
+        background: linear-gradient(180deg, #FFFCFD 0%, #FFF9FB 30%, #FFFAFB 60%, #FFFDFD 100%);
         padding: 80px 0 100px;
         overflow-x: hidden;
         position: relative;
+        /* Full width for Framer */
+        width: 100vw;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        box-sizing: border-box;
     }
 
     /* Floating decorative elements */
@@ -56,7 +61,7 @@
         left: 5%;
         width: 300px;
         height: 300px;
-        background: radial-gradient(circle, rgba(255, 107, 157, 0.1) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(255, 107, 157, 0.05) 0%, transparent 70%);
         border-radius: 50%;
         pointer-events: none;
     }
@@ -68,7 +73,7 @@
         right: 10%;
         width: 400px;
         height: 400px;
-        background: radial-gradient(circle, rgba(78, 205, 196, 0.08) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(78, 205, 196, 0.04) 0%, transparent 70%);
         border-radius: 50%;
         pointer-events: none;
     }
