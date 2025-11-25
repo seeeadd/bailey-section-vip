@@ -43,7 +43,7 @@
 
         font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
         background: linear-gradient(180deg, #FFFCFD 0%, #FFF9FB 30%, #FFFAFB 60%, #FFFDFD 100%);
-        padding: 80px 0 100px;
+        padding: 80px 0 0;
         overflow-x: hidden;
         position: relative;
         box-sizing: border-box;
@@ -227,17 +227,23 @@
         background-clip: text;
     }
 
-    /* Two Column Layout */
+    /* Single Column Layout - Images on top, text below */
     .story-content-grid {
-        display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 80px;
-        align-items: start;
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
+        max-width: 800px;
+        margin: 0 auto;
     }
 
-    /* Left Column - Text */
+    /* Text Column */
     .story-text-column {
-        padding-right: 20px;
+        order: 2;
+    }
+
+    /* Images Column */
+    .story-images-column {
+        order: 1;
     }
 
     .dear-fellow {
@@ -621,16 +627,13 @@
         margin-top: 20px;
     }
 
-    /* Right Column - Images */
-    .story-images-column {
-        position: relative;
-    }
-
     .polaroid-stack {
         position: relative;
         width: 100%;
-        height: 520px;
-        min-height: 520px;
+        height: 450px;
+        min-height: 450px;
+        display: flex;
+        justify-content: center;
     }
 
     .polaroid {
@@ -680,57 +683,61 @@
         border-radius: 2px;
     }
 
-    /* Compact polaroid arrangement - all visible at once */
+    /* Polaroid arrangement - centered layout */
     .polaroid-1 {
         top: 0;
-        right: 30px;
-        width: 180px;
+        left: 50%;
+        margin-left: 20px;
+        width: 220px;
         transform: rotate(5deg);
         z-index: 4;
     }
 
     .polaroid-1 .polaroid-inner {
-        width: 160px;
-        height: 160px;
+        width: 200px;
+        height: 200px;
     }
 
     .polaroid-2 {
-        top: 40px;
-        right: 200px;
-        width: 165px;
-        transform: rotate(-7deg);
+        top: 30px;
+        left: 50%;
+        margin-left: -220px;
+        width: 200px;
+        transform: rotate(-6deg);
         z-index: 3;
     }
 
     .polaroid-2 .polaroid-inner {
-        width: 145px;
-        height: 145px;
+        width: 180px;
+        height: 180px;
     }
 
     .polaroid-3 {
-        top: 220px;
-        right: 50px;
-        width: 190px;
+        top: 200px;
+        left: 50%;
+        margin-left: 50px;
+        width: 210px;
         transform: rotate(3deg);
         z-index: 2;
     }
 
     .polaroid-3 .polaroid-inner {
-        width: 170px;
-        height: 170px;
+        width: 190px;
+        height: 190px;
     }
 
     .polaroid-4 {
-        top: 280px;
-        right: 220px;
-        width: 160px;
+        top: 220px;
+        left: 50%;
+        margin-left: -200px;
+        width: 195px;
         transform: rotate(-4deg);
         z-index: 1;
     }
 
     .polaroid-4 .polaroid-inner {
-        width: 140px;
-        height: 140px;
+        width: 175px;
+        height: 175px;
     }
 
     /* Cute polaroid decorations */
@@ -794,67 +801,13 @@
     }
 
     /* Responsive */
-    @media (max-width: 1100px) {
-        .story-content-grid {
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-
-        .story-hero-header h1 .figure-text {
-            font-size: 90px;
-        }
-
-        .polaroid-stack {
-            height: 480px;
-            min-height: 480px;
-        }
-
-        .polaroid-1 { right: 10px; width: 160px; }
-        .polaroid-1 .polaroid-inner { width: 140px; height: 140px; }
-        .polaroid-2 { right: 160px; top: 30px; width: 150px; }
-        .polaroid-2 .polaroid-inner { width: 130px; height: 130px; }
-        .polaroid-3 { right: 20px; top: 200px; width: 170px; }
-        .polaroid-3 .polaroid-inner { width: 150px; height: 150px; }
-        .polaroid-4 { right: 170px; top: 250px; width: 145px; }
-        .polaroid-4 .polaroid-inner { width: 125px; height: 125px; }
-
-        .meet-coach-btn {
-            right: 0;
-        }
-    }
-
     @media (max-width: 900px) {
         .story-part1-section {
-            padding: 60px 0 80px;
+            padding: 60px 0 0;
         }
 
         .story-part1-section .container {
             padding: 0 24px;
-        }
-
-        .story-content-grid {
-            grid-template-columns: 1fr;
-            gap: 50px;
-        }
-
-        .story-text-column {
-            padding-right: 0;
-            order: 2;
-        }
-
-        .story-images-column {
-            order: 1;
-            display: flex;
-            justify-content: center;
-        }
-
-        .polaroid-stack {
-            position: relative;
-            top: 0;
-            width: 100%;
-            max-width: 400px;
-            height: 380px;
-            min-height: 380px;
         }
 
         .story-hero-header h1 {
@@ -874,41 +827,36 @@
             font-size: 32px;
         }
 
-        .polaroid-1 {
-            top: 10px;
-            left: 20px;
-            right: auto;
-            width: 160px;
-            transform: rotate(-5deg);
+        .polaroid-stack {
+            height: 380px;
+            min-height: 380px;
         }
-        .polaroid-1 .polaroid-inner { width: 140px; height: 140px; }
+
+        .polaroid-1 {
+            margin-left: 10px;
+            width: 180px;
+        }
+        .polaroid-1 .polaroid-inner { width: 160px; height: 160px; }
 
         .polaroid-2 {
-            top: 0;
-            right: 20px;
-            left: auto;
-            width: 150px;
-            transform: rotate(6deg);
+            margin-left: -180px;
+            width: 165px;
         }
-        .polaroid-2 .polaroid-inner { width: 130px; height: 130px; }
+        .polaroid-2 .polaroid-inner { width: 145px; height: 145px; }
 
         .polaroid-3 {
-            top: 190px;
-            left: 70px;
-            right: auto;
-            width: 155px;
-            transform: rotate(4deg);
+            top: 180px;
+            margin-left: 30px;
+            width: 175px;
         }
-        .polaroid-3 .polaroid-inner { width: 135px; height: 135px; }
+        .polaroid-3 .polaroid-inner { width: 155px; height: 155px; }
 
         .polaroid-4 {
-            top: 200px;
-            right: 40px;
-            left: auto;
-            width: 145px;
-            transform: rotate(-4deg);
+            top: 190px;
+            margin-left: -160px;
+            width: 160px;
         }
-        .polaroid-4 .polaroid-inner { width: 125px; height: 125px; }
+        .polaroid-4 .polaroid-inner { width: 140px; height: 140px; }
 
         .meet-coach-btn {
             position: relative;
