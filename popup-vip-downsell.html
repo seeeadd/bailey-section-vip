@@ -1,0 +1,509 @@
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,700,900&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: 'Ogg';
+            src: url('https://cdn.jsdelivr.net/gh/nicxvan/ogg-font@master/fonts/Ogg-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Ogg';
+            src: url('https://cdn.jsdelivr.net/gh/nicxvan/ogg-font@master/fonts/Ogg-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* Scoped reset */
+        .vip-popup-overlay,
+        .vip-popup-overlay *,
+        .vip-popup-overlay *::before,
+        .vip-popup-overlay *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .vip-popup-overlay {
+            --pink-primary: #FF6B9D;
+            --pink-dark: #C7254E;
+            --teal-primary: #4ECDC4;
+            --teal-dark: #2F5F61;
+            --gold: #FFD166;
+            --gold-dark: #F4A261;
+            --cream: #FAF7F2;
+            --navy: #2F5F61;
+
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.78);
+            backdrop-filter: blur(4px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .vip-popup-modal {
+            background: #FFFFFF;
+            border-radius: 24px;
+            max-width: 560px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            overflow: hidden;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Decorative top accent */
+        .popup-accent {
+            height: 6px;
+            background: linear-gradient(90deg, var(--pink-primary), var(--teal-primary), var(--gold));
+        }
+
+        .popup-content {
+            padding: 48px 40px 40px 40px;
+        }
+
+        /* Close button */
+        .popup-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.04);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            z-index: 1;
+        }
+
+        .popup-close:hover {
+            background: rgba(0, 0, 0, 0.08);
+            transform: scale(1.05);
+        }
+
+        .popup-close svg {
+            width: 16px;
+            height: 16px;
+            stroke: #333;
+        }
+
+        /* Headline */
+        .popup-headline {
+            font-family: 'Ogg', Georgia, serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.2;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        /* Body copy */
+        .popup-body {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 17px;
+            font-weight: 500;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .popup-body p {
+            margin-bottom: 16px;
+        }
+
+        .popup-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .popup-body strong {
+            color: var(--navy);
+            font-weight: 700;
+        }
+
+        .popup-highlight {
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.08), rgba(78, 205, 196, 0.08));
+            border-left: 3px solid var(--pink-primary);
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        /* Timer section */
+        .popup-timer {
+            background: linear-gradient(135deg, var(--cream), rgba(255, 209, 102, 0.1));
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 28px;
+            text-align: center;
+        }
+
+        .timer-text {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .timer-display {
+            font-family: 'Ogg', Georgia, serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+
+        .timer-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(0, 0, 0, 0.08);
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .timer-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+            border-radius: 2px;
+            transition: width 1s linear;
+            box-shadow: 0 0 8px rgba(255, 209, 102, 0.4);
+        }
+
+        /* Social proof */
+        .popup-social-proof {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .social-proof-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--teal-primary);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scale(1.2);
+            }
+        }
+
+        .social-proof-number {
+            font-weight: 700;
+            color: var(--teal-dark);
+        }
+
+        /* Buttons */
+        .popup-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .popup-btn-primary {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #FFFFFF;
+            background: linear-gradient(135deg, var(--pink-primary), var(--pink-dark));
+            border: none;
+            border-radius: 14px;
+            padding: 18px 32px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow:
+                0 8px 24px rgba(255, 107, 157, 0.3),
+                inset 0 -2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            text-decoration: none;
+            display: block;
+        }
+
+        .popup-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 12px 32px rgba(255, 107, 157, 0.4),
+                inset 0 -2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .popup-btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .popup-btn-secondary {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            color: #999;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            transition: color 0.2s ease;
+            padding: 8px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .popup-btn-secondary:hover {
+            color: #666;
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .vip-popup-overlay {
+                padding: 16px;
+            }
+
+            .popup-content {
+                padding: 36px 28px 32px 28px;
+            }
+
+            .popup-headline {
+                font-size: 26px;
+                margin-bottom: 20px;
+            }
+
+            .popup-body {
+                font-size: 16px;
+            }
+
+            .timer-display {
+                font-size: 24px;
+            }
+
+            .popup-btn-primary {
+                font-size: 17px;
+                padding: 16px 28px;
+            }
+        }
+    </style>
+
+<!-- Trigger this popup when user clicks "No, I'll keep my free ticket" -->
+<div class="vip-popup-overlay" id="vipPopup" style="display: none;">
+    <div class="vip-popup-modal">
+        <!-- Decorative accent -->
+        <div class="popup-accent"></div>
+
+        <!-- Close button -->
+        <button class="popup-close" onclick="closeVipPopup()" aria-label="Close">
+            <svg viewBox="0 0 16 16" fill="none">
+                <path d="M4 4L12 12M12 4L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </button>
+
+        <div class="popup-content">
+            <!-- Headline -->
+            <h2 class="popup-headline">Just so we're on the same page...</h2>
+
+            <!-- Body copy -->
+            <div class="popup-body">
+                <p>The free ticket gets you in the room. That's valuable.</p>
+
+                <div class="popup-highlight">
+                    <p><strong>But if we're being honest</strong> — most free attendees watch for 20 minutes, get distracted, and never implement.</p>
+                </div>
+
+                <p>VIP is for the person who's thinking: <strong>"I'm actually going to do this."</strong></p>
+
+                <p>If that's not you right now, totally fine. Grab your free ticket below.</p>
+
+                <p>But if you're already planning to show up and take action... you're leaving money on the table by not getting the recordings, templates, and Bailey's direct support in WhatsApp.</p>
+            </div>
+
+            <!-- Timer -->
+            <div class="popup-timer">
+                <div class="timer-text">This offer expires in</div>
+                <div class="timer-display" id="timerDisplay">2:47</div>
+                <div class="timer-bar">
+                    <div class="timer-bar-fill" id="timerBarFill" style="width: 100%"></div>
+                </div>
+            </div>
+
+            <!-- Social proof -->
+            <div class="popup-social-proof">
+                <div class="social-proof-dot"></div>
+                <span><span class="social-proof-number">312</span> people upgraded to VIP today</span>
+            </div>
+
+            <!-- Buttons -->
+            <div class="popup-buttons">
+                <a href="#vip-upgrade" class="popup-btn-primary" onclick="goBackToVip()">
+                    Go Back &amp; Claim VIP Access
+                </a>
+                <a href="#free-ticket" class="popup-btn-secondary" onclick="continueWithFree()">
+                    No thanks, I'll stick with free →
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Timer configuration
+    const TIMER_DURATION = 167; // 2:47 in seconds
+    let timeRemaining = TIMER_DURATION;
+    let timerInterval = null;
+
+    function showVipPopup() {
+        const popup = document.getElementById('vipPopup');
+        popup.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        startTimer();
+    }
+
+    function closeVipPopup() {
+        const popup = document.getElementById('vipPopup');
+        popup.style.display = 'none';
+        document.body.style.overflow = ''; // Restore scrolling
+        stopTimer();
+    }
+
+    function startTimer() {
+        // Reset timer
+        timeRemaining = TIMER_DURATION;
+        updateTimerDisplay();
+
+        // Clear any existing interval
+        if (timerInterval) {
+            clearInterval(timerInterval);
+        }
+
+        // Start countdown
+        timerInterval = setInterval(() => {
+            timeRemaining--;
+            updateTimerDisplay();
+
+            if (timeRemaining <= 0) {
+                stopTimer();
+                // Optional: Auto-close or show "Offer expired" message
+                // closeVipPopup();
+            }
+        }, 1000);
+    }
+
+    function stopTimer() {
+        if (timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
+    }
+
+    function updateTimerDisplay() {
+        const minutes = Math.floor(timeRemaining / 60);
+        const seconds = timeRemaining % 60;
+        const display = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+        document.getElementById('timerDisplay').textContent = display;
+
+        // Update progress bar
+        const percentage = (timeRemaining / TIMER_DURATION) * 100;
+        document.getElementById('timerBarFill').style.width = percentage + '%';
+    }
+
+    function goBackToVip() {
+        // Scroll to VIP section or trigger VIP purchase flow
+        closeVipPopup();
+
+        // Example: Scroll to VIP section
+        const vipSection = document.querySelector('[data-vip-section]');
+        if (vipSection) {
+            vipSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Or redirect to checkout
+        // window.location.href = '/checkout?tier=vip';
+
+        console.log('User chose to go back and get VIP');
+    }
+
+    function continueWithFree() {
+        // Continue with free ticket registration
+        closeVipPopup();
+
+        // Example: Scroll to free registration
+        const freeSection = document.querySelector('[data-free-section]');
+        if (freeSection) {
+            freeSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Or redirect to free registration
+        // window.location.href = '/register?tier=free';
+
+        console.log('User chose to continue with free ticket');
+    }
+
+    // Close popup when clicking outside the modal
+    document.getElementById('vipPopup')?.addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeVipPopup();
+        }
+    });
+
+    // Close popup with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const popup = document.getElementById('vipPopup');
+            if (popup && popup.style.display === 'flex') {
+                closeVipPopup();
+            }
+        }
+    });
+
+    // Usage: Call this function when user clicks "No, I'll keep my free ticket"
+    // showVipPopup();
+</script>
