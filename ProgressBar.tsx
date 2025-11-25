@@ -1,5 +1,6 @@
 import { addPropertyControls, ControlType } from "framer"
 import { motion } from "framer-motion"
+import { useRef } from "react"
 
 /**
  * @framerSupportedLayoutWidth any
@@ -7,8 +8,11 @@ import { motion } from "framer-motion"
  */
 
 export default function ProgressBar(props) {
-    // Force re-render in Framer canvas
-    const isCanvas = typeof window !== 'undefined' && window.location.pathname.includes('/canvas')
+    // Track if we should show initial animation (only once, not in canvas)
+    const showInitialAnimation = useRef(
+        typeof window !== 'undefined' && !window.location.pathname.includes('/canvas')
+    )
+
     const {
         progress = 85,
 
@@ -93,7 +97,7 @@ export default function ProgressBar(props) {
                 {/* Start Icon */}
                 {showStartIcon && (
                     <motion.div
-                        initial={isCanvas ? false : { scale: 0, opacity: 0 }}
+                        initial={showInitialAnimation.current ? { scale: 0, opacity: 0 } : false}
                         animate={{
                             scale: 1,
                             opacity: 1,
@@ -149,7 +153,7 @@ export default function ProgressBar(props) {
                                 stroke={startIconColor}
                                 strokeWidth="1.5"
                                 opacity="0.3"
-                                initial={isCanvas ? false : { pathLength: 0 }}
+                                initial={showInitialAnimation.current ? { pathLength: 0 } : false}
                                 animate={{ pathLength: 1 }}
                                 transition={{ duration: 0.5, delay: 0.3 }}
                             />
@@ -161,7 +165,7 @@ export default function ProgressBar(props) {
                                 stroke={startIconColor}
                                 strokeWidth="1.5"
                                 opacity="0.3"
-                                initial={isCanvas ? false : { pathLength: 0 }}
+                                initial={showInitialAnimation.current ? { pathLength: 0 } : false}
                                 animate={{ pathLength: 1 }}
                                 transition={{ duration: 0.5, delay: 0.5 }}
                             />
@@ -173,7 +177,7 @@ export default function ProgressBar(props) {
                                 stroke={startIconColor}
                                 strokeWidth="1.5"
                                 opacity="0.3"
-                                initial={isCanvas ? false : { pathLength: 0 }}
+                                initial={showInitialAnimation.current ? { pathLength: 0 } : false}
                                 animate={{ pathLength: 1 }}
                                 transition={{ duration: 0.5, delay: 0.7 }}
                             />
@@ -206,7 +210,7 @@ export default function ProgressBar(props) {
                     {/* Percentage Above Bar */}
                     {showPercentage && percentagePosition === "above" && (
                         <motion.div
-                            initial={isCanvas ? false : { y: 10, opacity: 0 }}
+                            initial={showInitialAnimation.current ? { y: 10, opacity: 0 } : false}
                             animate={{ y: 0, opacity: 1 }}
                             style={{
                                 position: "absolute",
@@ -242,7 +246,7 @@ export default function ProgressBar(props) {
                     >
                         {/* Fill */}
                         <motion.div
-                            initial={isCanvas ? false : { width: 0 }}
+                            initial={showInitialAnimation.current ? { width: 0 } : false}
                             animate={{ width: `${progressPercent}%` }}
                             transition={{
                                 duration: 0.8,
@@ -291,7 +295,7 @@ export default function ProgressBar(props) {
                         {/* Percentage Inside Bar */}
                         {showPercentage && percentagePosition === "inside" && (
                             <motion.div
-                                initial={isCanvas ? false : { opacity: 0, scale: 0.8 }}
+                                initial={showInitialAnimation.current ? { opacity: 0, scale: 0.8 } : false}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: 0.3 }}
                                 style={{
@@ -322,7 +326,7 @@ export default function ProgressBar(props) {
                     {/* Pencil Marker */}
                     {showMarker && (
                         <motion.div
-                            initial={isCanvas ? false : { scale: 0, rotate: -45 }}
+                            initial={showInitialAnimation.current ? { scale: 0, rotate: -45 } : false}
                             animate={{
                                 scale: 1,
                                 rotate: pencilBounce ? [-5, 5, -5] : 0,
@@ -414,7 +418,7 @@ export default function ProgressBar(props) {
                     {/* Percentage Below Bar */}
                     {showPercentage && percentagePosition === "below" && (
                         <motion.div
-                            initial={isCanvas ? false : { y: -10, opacity: 0 }}
+                            initial={showInitialAnimation.current ? { y: -10, opacity: 0 } : false}
                             animate={{ y: 0, opacity: 1 }}
                             style={{
                                 position: "absolute",
@@ -440,7 +444,7 @@ export default function ProgressBar(props) {
                 {/* End Icon */}
                 {showEndIcon && (
                     <motion.div
-                        initial={isCanvas ? false : { scale: 0, opacity: 0 }}
+                        initial={showInitialAnimation.current ? { scale: 0, opacity: 0 } : false}
                         animate={{
                             scale: progressPercent >= 100 ? [1, 1.15, 1] : 1,
                             opacity: 1,
@@ -504,7 +508,7 @@ export default function ProgressBar(props) {
                                 y2="8"
                                 stroke={endIconColor}
                                 strokeWidth="1.5"
-                                initial={isCanvas ? false : { pathLength: 0 }}
+                                initial={showInitialAnimation.current ? { pathLength: 0 } : false}
                                 animate={{ pathLength: 1 }}
                                 transition={{ duration: 0.4, delay: 0.4 }}
                             />
@@ -515,7 +519,7 @@ export default function ProgressBar(props) {
                                 y2="12"
                                 stroke={endIconColor}
                                 strokeWidth="1.5"
-                                initial={isCanvas ? false : { pathLength: 0 }}
+                                initial={showInitialAnimation.current ? { pathLength: 0 } : false}
                                 animate={{ pathLength: 1 }}
                                 transition={{ duration: 0.4, delay: 0.6 }}
                             />
@@ -526,7 +530,7 @@ export default function ProgressBar(props) {
                                 y2="16"
                                 stroke={endIconColor}
                                 strokeWidth="1.5"
-                                initial={isCanvas ? false : { pathLength: 0 }}
+                                initial={showInitialAnimation.current ? { pathLength: 0 } : false}
                                 animate={{ pathLength: 1 }}
                                 transition={{ duration: 0.4, delay: 0.8 }}
                             />
@@ -535,7 +539,7 @@ export default function ProgressBar(props) {
                                 cy="18"
                                 r="4"
                                 fill={endIconColor}
-                                initial={isCanvas ? false : { scale: 0 }}
+                                initial={showInitialAnimation.current ? { scale: 0 } : false}
                                 animate={{
                                     scale: progressPercent >= 100 ? 1 : 0,
                                 }}
@@ -551,7 +555,7 @@ export default function ProgressBar(props) {
                                 strokeWidth="1.5"
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
-                                initial={isCanvas ? false : { pathLength: 0 }}
+                                initial={showInitialAnimation.current ? { pathLength: 0 } : false}
                                 animate={{
                                     pathLength: progressPercent >= 100 ? 1 : 0,
                                 }}
@@ -582,7 +586,7 @@ export default function ProgressBar(props) {
             {/* Bottom Text */}
             {showBottomText && bottomText && (
                 <motion.div
-                    initial={isCanvas ? false : { opacity: 0, y: 5 }}
+                    initial={showInitialAnimation.current ? { opacity: 0, y: 5 } : false}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
                     style={{
