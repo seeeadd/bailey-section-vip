@@ -89,11 +89,11 @@
 
         /* Left visual section */
         .popup-visual {
-            background: linear-gradient(135deg, var(--pink-primary) 0%, var(--pink-dark) 100%);
-            padding: 60px 40px;
+            background: linear-gradient(135deg, #D32F2F 0%, #B71C1C 100%);
+            padding: 50px 40px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             text-align: center;
             position: relative;
@@ -105,47 +105,82 @@
             position: absolute;
             inset: 0;
             background: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-            opacity: 0.06;
+            opacity: 0.08;
         }
 
-        .visual-icon {
-            width: 120px;
-            height: 120px;
+        .visual-warning {
             background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 28px 24px;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .warning-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 32px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-            position: relative;
-            z-index: 1;
+            margin: 0 auto 20px;
+            animation: warningPulse 2s ease-in-out infinite;
         }
 
-        .visual-icon svg {
-            width: 60px;
-            height: 60px;
+        @keyframes warningPulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+            }
+        }
+
+        .warning-icon svg {
+            width: 44px;
+            height: 44px;
         }
 
         .visual-text {
             font-family: 'Ogg', Georgia, serif;
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 700;
             color: #FFFFFF;
             line-height: 1.2;
-            margin-bottom: 16px;
             position: relative;
             z-index: 1;
         }
 
-        .visual-subtext {
-            font-family: 'Satoshi', sans-serif;
-            font-size: 17px;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.5;
+        .visual-losses {
+            list-style: none;
+            padding: 0;
+            margin-top: 28px;
             position: relative;
             z-index: 1;
+        }
+
+        .visual-losses li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.95);
+            text-align: left;
+        }
+
+        .visual-losses li::before {
+            content: '✗';
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            flex-shrink: 0;
         }
 
         .popup-content {
@@ -186,11 +221,15 @@
         /* Headline */
         .popup-headline {
             font-family: 'Ogg', Georgia, serif;
-            font-size: 36px;
+            font-size: 38px;
             font-weight: 700;
-            color: var(--navy);
+            color: #D32F2F;
             line-height: 1.15;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+        }
+
+        .popup-headline-emphasis {
+            color: var(--navy);
         }
 
         /* Body copy */
@@ -211,15 +250,16 @@
         }
 
         .popup-callout {
-            background: linear-gradient(135deg, rgba(255, 107, 157, 0.1), rgba(78, 205, 196, 0.05));
-            border-left: 4px solid var(--pink-primary);
-            padding: 20px 24px;
+            background: linear-gradient(135deg, rgba(211, 47, 47, 0.12), rgba(183, 28, 28, 0.08));
+            border-left: 4px solid #D32F2F;
+            padding: 24px 28px;
             border-radius: 12px;
             margin: 24px 0;
-            font-size: 19px;
-            font-weight: 600;
-            color: var(--navy);
+            font-size: 20px;
+            font-weight: 700;
+            color: #D32F2F;
             line-height: 1.5;
+            box-shadow: 0 4px 16px rgba(211, 47, 47, 0.15);
         }
 
         .popup-vip-pitch {
@@ -236,30 +276,31 @@
 
         /* Timer section */
         .popup-timer {
-            background: linear-gradient(135deg, var(--cream), rgba(255, 209, 102, 0.15));
+            background: linear-gradient(135deg, rgba(211, 47, 47, 0.08), rgba(255, 209, 102, 0.12));
             border-radius: 16px;
-            padding: 20px 28px;
+            padding: 24px 32px;
             margin-bottom: 32px;
             text-align: center;
-            border: 2px solid rgba(255, 209, 102, 0.3);
+            border: 2px solid rgba(211, 47, 47, 0.2);
+            box-shadow: 0 4px 20px rgba(211, 47, 47, 0.12);
         }
 
         .timer-text {
             font-family: 'Satoshi', sans-serif;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 700;
-            color: #888;
+            color: #D32F2F;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
         }
 
         .timer-display {
             font-family: 'Ogg', Georgia, serif;
-            font-size: 42px;
+            font-size: 48px;
             font-weight: 700;
-            color: var(--navy);
-            margin-bottom: 14px;
+            color: #D32F2F;
+            margin-bottom: 16px;
             letter-spacing: -1px;
         }
 
@@ -274,10 +315,10 @@
 
         .timer-bar-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+            background: linear-gradient(90deg, #D32F2F, #B71C1C);
             border-radius: 2px;
             transition: width 1s linear;
-            box-shadow: 0 0 8px rgba(255, 209, 102, 0.4);
+            box-shadow: 0 0 12px rgba(211, 47, 47, 0.5);
         }
 
         /* Social proof */
@@ -360,21 +401,36 @@
 
         .popup-btn-secondary {
             font-family: 'Satoshi', sans-serif;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 500;
             color: #999;
             background: none;
             border: none;
             cursor: pointer;
             text-align: center;
-            transition: color 0.2s ease;
+            transition: all 0.2s ease;
             padding: 10px;
             text-decoration: none;
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 0 auto;
+        }
+
+        .popup-btn-secondary::before {
+            content: '⚠';
+            font-size: 16px;
+            opacity: 0;
+            transition: opacity 0.2s ease;
         }
 
         .popup-btn-secondary:hover {
-            color: #666;
+            color: #D32F2F;
+        }
+
+        .popup-btn-secondary:hover::before {
+            opacity: 1;
         }
 
         /* Responsive */
@@ -475,15 +531,22 @@
     <div class="vip-popup-modal">
         <!-- Left Visual Section -->
         <div class="popup-visual">
-            <div class="visual-icon">
-                <svg viewBox="0 0 60 60" fill="none">
-                    <!-- Trophy/Star icon -->
-                    <path d="M30 5L35 20L50 22L40 32L43 47L30 40L17 47L20 32L10 22L25 20L30 5Z" fill="white" opacity="0.9"/>
-                    <circle cx="30" cy="30" r="26" stroke="white" stroke-width="2" stroke-dasharray="4 4" opacity="0.5"/>
-                </svg>
+            <div class="visual-warning">
+                <div class="warning-icon">
+                    <svg viewBox="0 0 44 44" fill="none">
+                        <path d="M22 8L22 24M22 30L22 32" stroke="white" stroke-width="4" stroke-linecap="round"/>
+                        <circle cx="22" cy="22" r="18" stroke="white" stroke-width="3" opacity="0.5"/>
+                    </svg>
+                </div>
+                <div class="visual-text">You're About to<br/>Miss Out On:</div>
             </div>
-            <div class="visual-text">Not ready<br>to commit?</div>
-            <div class="visual-subtext">We get it. But here's what you should know before you go...</div>
+            <ul class="visual-losses">
+                <li>All session recordings</li>
+                <li>Bailey's private WhatsApp</li>
+                <li>VIP-only Q&A sessions</li>
+                <li>Quick Start Kit templates</li>
+                <li>This discounted price</li>
+            </ul>
         </div>
 
         <!-- Close button -->
@@ -496,30 +559,33 @@
         <!-- Right Content Section -->
         <div class="popup-content">
             <!-- Headline -->
-            <h2 class="popup-headline">Here's the reality...</h2>
+            <h2 class="popup-headline">Wait — <span class="popup-headline-emphasis">Are You Sure?</span></h2>
 
             <!-- Body copy -->
             <div class="popup-body">
                 <div class="popup-reality-check">
-                    The free ticket gets you in the room. That's valuable.
+                    Let's be honest about what happens next...
                 </div>
 
                 <div class="popup-callout">
-                    But 80% of free attendees watch for 20 minutes, get distracted, and never actually implement anything.
+                    You'll watch for 15-20 minutes, tell yourself you'll "come back to it later"... and never actually implement anything.
                 </div>
 
                 <div class="popup-vip-pitch">
-                    <strong>VIP is for people who are thinking:</strong> "I'm actually going to DO this."<br><br>
+                    <strong>This is your ONLY chance to get:</strong><br><br>
 
-                    If that's not you right now — no worries! Grab your free ticket below.<br><br>
+                    ✓ Every session recorded (so you never fall behind)<br>
+                    ✓ Bailey's direct support in WhatsApp for 7 days<br>
+                    ✓ The Quick Start Kit that cuts your setup time in half<br>
+                    ✓ 2 VIP-only Q&A sessions where Bailey reviews real shops<br><br>
 
-                    But if you're <strong>already planning to show up and take action...</strong> you're leaving money on the table by not getting the recordings, templates, and Bailey's direct support in WhatsApp.
+                    <strong>Once this popup closes, this price is gone.</strong> You'll either pay more later or miss the VIP upgrade completely.
                 </div>
             </div>
 
             <!-- Timer -->
             <div class="popup-timer">
-                <div class="timer-text">This offer expires in</div>
+                <div class="timer-text">⏰ VIP PRICE LOCKS IN:</div>
                 <div class="timer-display" id="timerDisplay">2:47</div>
                 <div class="timer-bar">
                     <div class="timer-bar-fill" id="timerBarFill" style="width: 100%"></div>
@@ -529,16 +595,16 @@
             <!-- Social proof -->
             <div class="popup-social-proof">
                 <div class="social-proof-dot"></div>
-                <span><span class="social-proof-number">312</span> people upgraded to VIP today</span>
+                <span><span class="social-proof-number">312</span> people grabbed VIP in the last 24 hours</span>
             </div>
 
             <!-- Buttons -->
             <div class="popup-buttons">
                 <a href="#vip-upgrade" class="popup-btn-primary" onclick="goBackToVip()">
-                    Yes, I Want VIP Access
+                    Yes — Lock In My VIP Spot Now
                 </a>
                 <a href="#free-ticket" class="popup-btn-secondary" onclick="continueWithFree()">
-                    No thanks, I'll stick with free
+                    No, I'll risk missing out on VIP
                 </a>
             </div>
         </div>
