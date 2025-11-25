@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { motion } from "framer-motion"
 import { addPropertyControls, ControlType } from "framer"
 
 export default function CompactTimer(props) {
@@ -41,24 +42,77 @@ export default function CompactTimer(props) {
                     boxShadow: props.showShadow ? `0 4px 20px ${props.shadowColor}` : "none",
                 }}
             >
-                {/* Timer Icon/Label */}
+                {/* Custom Clock Icon */}
                 {props.showIcon && (
-                    <div
+                    <motion.div
+                        animate={
+                            props.iconPulse
+                                ? {
+                                      scale: [1, 1.1, 1],
+                                  }
+                                : {}
+                        }
+                        transition={{
+                            duration: 1.5,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                        }}
                         style={{
-                            fontSize: props.iconSize,
-                            lineHeight: 1,
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
                         }}
                     >
-                        {props.icon}
-                    </div>
+                        <svg
+                            width={props.iconSize}
+                            height={props.iconSize}
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            style={{ display: "block" }}
+                        >
+                            {/* Clock circle */}
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="9"
+                                stroke={props.iconColor}
+                                strokeWidth={props.iconStrokeWidth}
+                                fill="none"
+                            />
+                            {/* Clock hands */}
+                            <motion.path
+                                d="M12 6.5V12L15 14"
+                                stroke={props.iconColor}
+                                strokeWidth={props.iconStrokeWidth}
+                                strokeLinecap="round"
+                                animate={
+                                    props.iconAnimate
+                                        ? {
+                                              rotate: [0, 360],
+                                          }
+                                        : {}
+                                }
+                                transition={{
+                                    duration: 2,
+                                    repeat: Infinity,
+                                    ease: "linear",
+                                }}
+                                style={{
+                                    originX: "50%",
+                                    originY: "50%",
+                                }}
+                            />
+                        </svg>
+                    </motion.div>
                 )}
 
                 {/* Timer Text */}
                 <div
                     style={{
                         display: "flex",
-                        alignItems: "baseline",
+                        alignItems: "center",
                         gap: props.textGap,
+                        flexWrap: props.wrapOnMobile ? "wrap" : "nowrap",
                     }}
                 >
                     {props.showLabel && (
@@ -69,23 +123,38 @@ export default function CompactTimer(props) {
                                 color: props.labelColor,
                                 textTransform: "uppercase",
                                 letterSpacing: props.labelLetterSpacing,
+                                whiteSpace: "nowrap",
                             }}
                         >
                             {props.labelText}
                         </span>
                     )}
 
-                    <span
+                    <motion.span
+                        animate={
+                            props.timePulse && timeRemaining <= 60
+                                ? {
+                                      scale: [1, 1.05, 1],
+                                      color: [props.timeColor, props.timeUrgentColor, props.timeColor],
+                                  }
+                                : {}
+                        }
+                        transition={{
+                            duration: 0.8,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                        }}
                         style={{
                             fontSize: props.timeSize,
                             fontWeight: props.timeWeight,
                             color: props.timeColor,
                             letterSpacing: "-0.5px",
                             fontVariantNumeric: "tabular-nums",
+                            whiteSpace: "nowrap",
                         }}
                     >
                         {minutes}:{seconds.toString().padStart(2, "0")}
-                    </span>
+                    </motion.span>
                 </div>
 
                 {/* Progress Bar */}
@@ -98,15 +167,21 @@ export default function CompactTimer(props) {
                             borderRadius: props.progressBarRadius,
                             overflow: "hidden",
                             position: "relative",
+                            flexShrink: 0,
                         }}
                     >
-                        <div
-                            style={{
+                        <motion.div
+                            animate={{
                                 width: `${percentage}%`,
+                            }}
+                            transition={{
+                                duration: 1,
+                                ease: "linear",
+                            }}
+                            style={{
                                 height: "100%",
                                 background: props.progressBarFill,
                                 borderRadius: props.progressBarRadius,
-                                transition: "width 1s linear",
                                 boxShadow: props.progressBarGlow ? `0 0 12px ${props.progressBarFill}80` : "none",
                             }}
                         />
@@ -126,25 +201,31 @@ CompactTimer.defaultProps = {
     borderRadius: 12,
     showBorder: true,
     borderWidth: 2,
-    borderColor: "rgba(211, 47, 47, 0.2)",
+    borderColor: "rgba(211, 47, 47, 0.25)",
     showShadow: true,
-    shadowColor: "rgba(211, 47, 47, 0.12)",
+    shadowColor: "rgba(211, 47, 47, 0.15)",
     showIcon: true,
-    icon: "⏰",
-    iconSize: 16,
+    iconSize: 20,
+    iconColor: "#D32F2F",
+    iconStrokeWidth: 2,
+    iconPulse: true,
+    iconAnimate: false,
     gap: 12,
     showLabel: true,
-    labelText: "Offer expires in",
+    labelText: "OFFER EXPIRES IN",
     labelSize: 11,
     labelWeight: 700,
     labelColor: "#D32F2F",
     labelLetterSpacing: "1px",
-    textGap: 8,
-    timeSize: 28,
+    textGap: 10,
+    timeSize: 32,
     timeWeight: 700,
     timeColor: "#D32F2F",
+    timeUrgentColor: "#B71C1C",
+    timePulse: true,
+    wrapOnMobile: false,
     showProgressBar: true,
-    progressBarWidth: 80,
+    progressBarWidth: 100,
     progressBarHeight: 4,
     progressBarBackground: "rgba(0, 0, 0, 0.08)",
     progressBarFill: "linear-gradient(90deg, #D32F2F, #B71C1C)",
@@ -208,7 +289,7 @@ addPropertyControls(CompactTimer, {
     borderColor: {
         type: ControlType.Color,
         title: "Border Color",
-        defaultValue: "rgba(211, 47, 47, 0.2)",
+        defaultValue: "rgba(211, 47, 47, 0.25)",
         hidden: (props) => !props.showBorder,
     },
     showShadow: {
@@ -219,7 +300,7 @@ addPropertyControls(CompactTimer, {
     shadowColor: {
         type: ControlType.Color,
         title: "Shadow Color",
-        defaultValue: "rgba(211, 47, 47, 0.12)",
+        defaultValue: "rgba(211, 47, 47, 0.15)",
         hidden: (props) => !props.showShadow,
     },
     showIcon: {
@@ -227,18 +308,38 @@ addPropertyControls(CompactTimer, {
         title: "Show Icon",
         defaultValue: true,
     },
-    icon: {
-        type: ControlType.String,
-        title: "Icon",
-        defaultValue: "⏰",
-        hidden: (props) => !props.showIcon,
-    },
     iconSize: {
         type: ControlType.Number,
         title: "Icon Size",
-        min: 8,
+        min: 12,
         max: 40,
-        defaultValue: 16,
+        defaultValue: 20,
+        hidden: (props) => !props.showIcon,
+    },
+    iconColor: {
+        type: ControlType.Color,
+        title: "Icon Color",
+        defaultValue: "#D32F2F",
+        hidden: (props) => !props.showIcon,
+    },
+    iconStrokeWidth: {
+        type: ControlType.Number,
+        title: "Icon Stroke",
+        min: 1,
+        max: 4,
+        defaultValue: 2,
+        hidden: (props) => !props.showIcon,
+    },
+    iconPulse: {
+        type: ControlType.Boolean,
+        title: "Icon Pulse",
+        defaultValue: true,
+        hidden: (props) => !props.showIcon,
+    },
+    iconAnimate: {
+        type: ControlType.Boolean,
+        title: "Icon Rotate",
+        defaultValue: false,
         hidden: (props) => !props.showIcon,
     },
     gap: {
@@ -256,7 +357,7 @@ addPropertyControls(CompactTimer, {
     labelText: {
         type: ControlType.String,
         title: "Label Text",
-        defaultValue: "Offer expires in",
+        defaultValue: "OFFER EXPIRES IN",
         hidden: (props) => !props.showLabel,
     },
     labelSize: {
@@ -293,14 +394,14 @@ addPropertyControls(CompactTimer, {
         title: "Label/Time Gap",
         min: 0,
         max: 30,
-        defaultValue: 8,
+        defaultValue: 10,
     },
     timeSize: {
         type: ControlType.Number,
         title: "Time Size",
-        min: 12,
-        max: 60,
-        defaultValue: 28,
+        min: 16,
+        max: 80,
+        defaultValue: 32,
     },
     timeWeight: {
         type: ControlType.Number,
@@ -315,6 +416,21 @@ addPropertyControls(CompactTimer, {
         title: "Time Color",
         defaultValue: "#D32F2F",
     },
+    timeUrgentColor: {
+        type: ControlType.Color,
+        title: "Time Urgent Color",
+        defaultValue: "#B71C1C",
+    },
+    timePulse: {
+        type: ControlType.Boolean,
+        title: "Time Pulse (<1min)",
+        defaultValue: true,
+    },
+    wrapOnMobile: {
+        type: ControlType.Boolean,
+        title: "Wrap on Mobile",
+        defaultValue: false,
+    },
     showProgressBar: {
         type: ControlType.Boolean,
         title: "Show Progress",
@@ -323,9 +439,9 @@ addPropertyControls(CompactTimer, {
     progressBarWidth: {
         type: ControlType.Number,
         title: "Progress Width",
-        min: 20,
-        max: 200,
-        defaultValue: 80,
+        min: 40,
+        max: 300,
+        defaultValue: 100,
         hidden: (props) => !props.showProgressBar,
     },
     progressBarHeight: {

@@ -13,18 +13,14 @@ export default function WarningIcon(props) {
             }}
         >
             <motion.div
-                animate={
-                    props.enableAnimation
-                        ? {
-                              scale: [1, 1.05, 1],
-                              boxShadow: [
-                                  `0 0 0 0 ${props.pulseColor}66`,
-                                  `0 0 0 ${props.pulseSize}px ${props.pulseColor}00`,
-                                  `0 0 0 0 ${props.pulseColor}66`,
-                              ],
-                          }
-                        : {}
-                }
+                animate={{
+                    scale: [1, 1.05, 1],
+                    boxShadow: [
+                        `0 0 0 0 ${props.pulseColor}66`,
+                        `0 0 0 ${props.pulseSize}px ${props.pulseColor}00`,
+                        `0 0 0 0 ${props.pulseColor}66`,
+                    ],
+                }}
                 transition={{
                     duration: props.pulseDuration,
                     repeat: Infinity,
@@ -51,39 +47,22 @@ export default function WarningIcon(props) {
                     }}
                 >
                     {/* Exclamation mark line */}
-                    <motion.path
+                    <path
                         d="M22 8L22 24"
                         stroke={props.iconColor}
                         strokeWidth={props.strokeWidth}
                         strokeLinecap="round"
-                        initial={props.enableLineAnimation ? { pathLength: 0 } : false}
-                        animate={props.enableLineAnimation ? { pathLength: 1 } : {}}
-                        transition={{
-                            duration: 0.4,
-                            ease: "easeOut",
-                            repeat: props.repeatLineAnimation ? Infinity : 0,
-                            repeatDelay: props.lineRepeatDelay,
-                        }}
                     />
                     {/* Exclamation mark dot */}
-                    <motion.path
+                    <path
                         d="M22 30L22 32"
                         stroke={props.iconColor}
                         strokeWidth={props.strokeWidth}
                         strokeLinecap="round"
-                        initial={props.enableLineAnimation ? { pathLength: 0 } : false}
-                        animate={props.enableLineAnimation ? { pathLength: 1 } : {}}
-                        transition={{
-                            duration: 0.2,
-                            delay: props.enableLineAnimation ? 0.4 : 0,
-                            ease: "easeOut",
-                            repeat: props.repeatLineAnimation ? Infinity : 0,
-                            repeatDelay: props.lineRepeatDelay,
-                        }}
                     />
                     {/* Circle */}
                     {props.showCircle && (
-                        <motion.circle
+                        <circle
                             cx="22"
                             cy="22"
                             r="18"
@@ -92,22 +71,6 @@ export default function WarningIcon(props) {
                             opacity={props.circleOpacity}
                             fill="none"
                             strokeDasharray={props.circleDashed ? "4 4" : "none"}
-                            initial={props.enableCircleAnimation ? { pathLength: 0, rotate: -90 } : false}
-                            animate={
-                                props.enableCircleAnimation
-                                    ? { pathLength: 1, rotate: props.circleRotate ? 270 : -90 }
-                                    : {}
-                            }
-                            transition={{
-                                duration: 0.8,
-                                ease: "easeOut",
-                                repeat: props.repeatCircleAnimation ? Infinity : 0,
-                                repeatDelay: props.circleRepeatDelay,
-                            }}
-                            style={{
-                                originX: "50%",
-                                originY: "50%",
-                            }}
                         />
                     )}
                 </svg>
@@ -125,21 +88,13 @@ WarningIcon.defaultProps = {
     borderColor: "rgba(255, 255, 255, 0.3)",
     iconColor: "#FFFFFF",
     strokeWidth: 4,
-    enableAnimation: true,
     pulseDuration: 2,
     pulseColor: "#FFFFFF",
     pulseSize: 10,
-    enableLineAnimation: false,
-    repeatLineAnimation: false,
-    lineRepeatDelay: 2,
     showCircle: true,
     circleStrokeWidth: 3,
     circleOpacity: 0.5,
     circleDashed: true,
-    enableCircleAnimation: false,
-    circleRotate: false,
-    repeatCircleAnimation: false,
-    circleRepeatDelay: 2,
 }
 
 addPropertyControls(WarningIcon, {
@@ -193,11 +148,6 @@ addPropertyControls(WarningIcon, {
         max: 8,
         defaultValue: 4,
     },
-    enableAnimation: {
-        type: ControlType.Boolean,
-        title: "Pulse Animation",
-        defaultValue: true,
-    },
     pulseDuration: {
         type: ControlType.Number,
         title: "Pulse Duration",
@@ -205,41 +155,18 @@ addPropertyControls(WarningIcon, {
         max: 5,
         step: 0.1,
         defaultValue: 2,
-        hidden: (props) => !props.enableAnimation,
     },
     pulseColor: {
         type: ControlType.Color,
         title: "Pulse Color",
         defaultValue: "#FFFFFF",
-        hidden: (props) => !props.enableAnimation,
     },
     pulseSize: {
         type: ControlType.Number,
-        title: "Pulse Size",
+        title: "Pulse Size (px)",
         min: 0,
         max: 30,
         defaultValue: 10,
-        hidden: (props) => !props.enableAnimation,
-    },
-    enableLineAnimation: {
-        type: ControlType.Boolean,
-        title: "Line Draw Animation",
-        defaultValue: false,
-    },
-    repeatLineAnimation: {
-        type: ControlType.Boolean,
-        title: "Repeat Line Animation",
-        defaultValue: false,
-        hidden: (props) => !props.enableLineAnimation,
-    },
-    lineRepeatDelay: {
-        type: ControlType.Number,
-        title: "Line Repeat Delay",
-        min: 0,
-        max: 5,
-        step: 0.1,
-        defaultValue: 2,
-        hidden: (props) => !props.enableLineAnimation || !props.repeatLineAnimation,
     },
     showCircle: {
         type: ControlType.Boolean,
@@ -268,32 +195,5 @@ addPropertyControls(WarningIcon, {
         title: "Circle Dashed",
         defaultValue: true,
         hidden: (props) => !props.showCircle,
-    },
-    enableCircleAnimation: {
-        type: ControlType.Boolean,
-        title: "Circle Draw Animation",
-        defaultValue: false,
-        hidden: (props) => !props.showCircle,
-    },
-    circleRotate: {
-        type: ControlType.Boolean,
-        title: "Circle Rotate",
-        defaultValue: false,
-        hidden: (props) => !props.showCircle || !props.enableCircleAnimation,
-    },
-    repeatCircleAnimation: {
-        type: ControlType.Boolean,
-        title: "Repeat Circle Animation",
-        defaultValue: false,
-        hidden: (props) => !props.showCircle || !props.enableCircleAnimation,
-    },
-    circleRepeatDelay: {
-        type: ControlType.Number,
-        title: "Circle Repeat Delay",
-        min: 0,
-        max: 5,
-        step: 0.1,
-        defaultValue: 2,
-        hidden: (props) => !props.showCircle || !props.enableCircleAnimation || !props.repeatCircleAnimation,
     },
 })
