@@ -296,6 +296,151 @@
                 font-size: 72px;
             }
         }
+
+        @media (max-width: 389px) {
+            .section {
+                padding: clamp(50px, 15vw, 70px) clamp(12px, 4vw, 16px);
+            }
+
+            .section-headline {
+                font-size: clamp(26px, 8vw, 32px);
+                margin-bottom: clamp(12px, 3.5vw, 16px);
+            }
+
+            .headline-underline {
+                width: clamp(70px, 20vw, 100px);
+                height: clamp(4px, 1.5vw, 6px);
+                margin: 0 auto clamp(40px, 12vw, 60px);
+            }
+
+            .ticket-card {
+                padding: clamp(24px, 7vw, 32px) clamp(18px, 5vw, 24px);
+            }
+
+            .ticket-card.vip-ticket {
+                padding: clamp(32px, 9vw, 40px) clamp(22px, 6vw, 28px);
+            }
+
+            .ticket-title {
+                font-size: clamp(17px, 5vw, 20px);
+                margin-bottom: clamp(20px, 6vw, 28px);
+            }
+
+            .vip-ticket .ticket-title {
+                font-size: clamp(24px, 7vw, 30px);
+            }
+
+            .currency {
+                font-size: clamp(26px, 7.5vw, 32px);
+            }
+
+            .vip-ticket .currency {
+                font-size: clamp(28px, 8.5vw, 36px);
+            }
+
+            .price-amount {
+                font-size: clamp(54px, 16vw, 64px);
+                letter-spacing: clamp(-2px, -0.5vw, -3px);
+            }
+
+            .vip-ticket .price-amount {
+                font-size: clamp(60px, 18vw, 72px);
+                letter-spacing: clamp(-2.5px, -0.7vw, -4px);
+            }
+
+            .ticket-features {
+                gap: clamp(14px, 4vw, 18px);
+            }
+
+            .ticket-features li {
+                font-size: clamp(14px, 4vw, 16px);
+                gap: clamp(10px, 3vw, 14px);
+            }
+
+            .vip-ticket .ticket-features li {
+                font-size: clamp(15px, 4.2vw, 17px);
+            }
+
+            .feature-icon {
+                width: clamp(20px, 6vw, 24px);
+                height: clamp(20px, 6vw, 24px);
+            }
+
+            .feature-detail {
+                font-size: clamp(11px, 3.2vw, 13px);
+            }
+
+            .btn-vip {
+                padding: clamp(18px, 5vw, 22px) clamp(24px, 7vw, 32px);
+                font-size: clamp(14px, 4vw, 16px);
+                margin-top: clamp(32px, 9vw, 40px);
+            }
+
+            .vip-badge {
+                padding: clamp(10px, 3vw, 12px) clamp(22px, 6.5vw, 28px);
+                font-size: clamp(10px, 3vw, 12px);
+            }
+        }
+
+        @media (max-width: 359px) {
+            .section {
+                padding: clamp(40px, 13vw, 50px) clamp(10px, 3.5vw, 12px);
+            }
+
+            .section-headline {
+                font-size: clamp(22px, 7vw, 26px);
+                margin-bottom: 10px;
+            }
+
+            .headline-underline {
+                width: clamp(60px, 18vw, 70px);
+                margin-bottom: clamp(30px, 10vw, 40px);
+            }
+
+            .ticket-card {
+                padding: clamp(20px, 6.5vw, 24px) clamp(16px, 4.5vw, 18px);
+                border-radius: 18px;
+            }
+
+            .ticket-card.vip-ticket {
+                padding: clamp(28px, 8vw, 32px) clamp(18px, 5.5vw, 22px);
+            }
+
+            .ticket-title {
+                font-size: clamp(16px, 4.5vw, 17px);
+            }
+
+            .vip-ticket .ticket-title {
+                font-size: clamp(22px, 6.5vw, 24px);
+            }
+
+            .price-amount {
+                font-size: clamp(48px, 15vw, 54px);
+            }
+
+            .vip-ticket .price-amount {
+                font-size: clamp(54px, 16.5vw, 60px);
+            }
+
+            .ticket-features li {
+                font-size: clamp(13px, 3.8vw, 14px);
+            }
+
+            .vip-ticket .ticket-features li {
+                font-size: clamp(14px, 4vw, 15px);
+            }
+
+            .btn-vip {
+                padding: clamp(16px, 4.5vw, 18px) clamp(20px, 6vw, 24px);
+                font-size: clamp(13px, 3.8vw, 14px);
+                border-radius: 12px;
+            }
+
+            .vip-badge {
+                font-size: clamp(9px, 2.8vw, 10px);
+                padding: clamp(8px, 2.5vw, 10px) clamp(18px, 5.5vw, 22px);
+            }
+        }
     </style>
 
 <section class="section">

@@ -189,6 +189,73 @@
                 font-size: 15px;
             }
         }
+
+        @media (max-width: 389px) {
+            .section-final-cta {
+                padding: clamp(50px, 15vw, 70px) clamp(12px, 4vw, 16px) 0 clamp(12px, 4vw, 16px);
+            }
+
+            .section-final-cta .cta-price-amount {
+                font-size: clamp(48px, 14vw, 56px);
+                margin-bottom: clamp(12px, 3.5vw, 16px);
+            }
+
+            .price-tagline {
+                font-size: clamp(15px, 4.2vw, 16px);
+            }
+
+            .price-hero {
+                margin-bottom: clamp(36px, 11vw, 48px);
+            }
+
+            .features-grid {
+                gap: clamp(14px, 4vw, 16px);
+            }
+
+            .features-column {
+                padding: clamp(20px, 6vw, 24px);
+                border-radius: 16px;
+            }
+
+            .feature-item {
+                font-size: clamp(14px, 4vw, 15px);
+                gap: clamp(10px, 3vw, 14px);
+                margin-bottom: clamp(16px, 4.5vw, 20px);
+            }
+
+            .feature-icon {
+                width: clamp(20px, 6vw, 24px);
+                height: clamp(20px, 6vw, 24px);
+            }
+        }
+
+        @media (max-width: 359px) {
+            .section-final-cta {
+                padding: clamp(40px, 13vw, 50px) clamp(10px, 3.5vw, 12px) 0 clamp(10px, 3.5vw, 12px);
+            }
+
+            .section-final-cta .cta-price-amount {
+                font-size: clamp(42px, 13vw, 48px);
+            }
+
+            .price-tagline {
+                font-size: clamp(14px, 4vw, 15px);
+            }
+
+            .features-column {
+                padding: clamp(18px, 5.5vw, 20px);
+            }
+
+            .feature-item {
+                font-size: clamp(13px, 3.8vw, 14px);
+                margin-bottom: clamp(14px, 4vw, 16px);
+            }
+
+            .feature-icon {
+                width: clamp(18px, 5.5vw, 20px);
+                height: clamp(18px, 5.5vw, 20px);
+            }
+        }
     </style>
 
 <section class="section-final-cta">
