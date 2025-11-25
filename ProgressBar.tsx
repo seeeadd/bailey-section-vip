@@ -242,6 +242,7 @@ export default function ProgressBar(props) {
                             position: "relative",
                             overflow: "hidden",
                             boxShadow: "inset 0 1px 3px rgba(0,0,0,0.08)",
+                            zIndex: 1,
                         }}
                     >
                         {/* Fill */}
@@ -363,7 +364,7 @@ export default function ProgressBar(props) {
                                 left: `${progressPercent}%`,
                                 top: "50%",
                                 transform: "translateY(-50%)",
-                                zIndex: 10,
+                                zIndex: 20,
                                 pointerEvents: "none",
                             }}
                         >
