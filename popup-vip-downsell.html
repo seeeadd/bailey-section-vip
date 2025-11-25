@@ -65,13 +65,15 @@
 
         .vip-popup-modal {
             background: #FFFFFF;
-            border-radius: 24px;
-            max-width: 560px;
+            border-radius: 32px;
+            max-width: 1000px;
             width: 100%;
             position: relative;
             box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
             animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             overflow: hidden;
+            display: grid;
+            grid-template-columns: 380px 1fr;
         }
 
         @keyframes slideUp {
@@ -85,14 +87,71 @@
             }
         }
 
-        /* Decorative top accent */
-        .popup-accent {
-            height: 6px;
-            background: linear-gradient(90deg, var(--pink-primary), var(--teal-primary), var(--gold));
+        /* Left visual section */
+        .popup-visual {
+            background: linear-gradient(135deg, var(--pink-primary) 0%, var(--pink-dark) 100%);
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .popup-visual::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            opacity: 0.06;
+        }
+
+        .visual-icon {
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 32px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            position: relative;
+            z-index: 1;
+        }
+
+        .visual-icon svg {
+            width: 60px;
+            height: 60px;
+        }
+
+        .visual-text {
+            font-family: 'Ogg', Georgia, serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #FFFFFF;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .visual-subtext {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 17px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
         }
 
         .popup-content {
-            padding: 48px 40px 40px 40px;
+            padding: 56px 50px 50px 50px;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Close button */
@@ -127,70 +186,81 @@
         /* Headline */
         .popup-headline {
             font-family: 'Ogg', Georgia, serif;
-            font-size: 32px;
+            font-size: 36px;
             font-weight: 700;
             color: var(--navy);
-            line-height: 1.2;
-            margin-bottom: 24px;
-            text-align: center;
+            line-height: 1.15;
+            margin-bottom: 20px;
         }
 
         /* Body copy */
         .popup-body {
             font-family: 'Satoshi', sans-serif;
-            font-size: 17px;
+            font-size: 18px;
             font-weight: 500;
             color: #555;
-            line-height: 1.7;
-            margin-bottom: 32px;
+            line-height: 1.6;
+            margin-bottom: 28px;
+            flex: 1;
         }
 
-        .popup-body p {
-            margin-bottom: 16px;
+        .popup-reality-check {
+            font-size: 17px;
+            color: #666;
+            margin-bottom: 20px;
         }
 
-        .popup-body p:last-child {
-            margin-bottom: 0;
+        .popup-callout {
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.1), rgba(78, 205, 196, 0.05));
+            border-left: 4px solid var(--pink-primary);
+            padding: 20px 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            font-size: 19px;
+            font-weight: 600;
+            color: var(--navy);
+            line-height: 1.5;
         }
 
-        .popup-body strong {
+        .popup-vip-pitch {
+            font-size: 17px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .popup-vip-pitch strong {
             color: var(--navy);
             font-weight: 700;
-        }
-
-        .popup-highlight {
-            background: linear-gradient(135deg, rgba(255, 107, 157, 0.08), rgba(78, 205, 196, 0.08));
-            border-left: 3px solid var(--pink-primary);
-            padding: 16px 20px;
-            border-radius: 8px;
-            margin: 20px 0;
         }
 
         /* Timer section */
         .popup-timer {
-            background: linear-gradient(135deg, var(--cream), rgba(255, 209, 102, 0.1));
-            border-radius: 12px;
-            padding: 16px 20px;
-            margin-bottom: 28px;
+            background: linear-gradient(135deg, var(--cream), rgba(255, 209, 102, 0.15));
+            border-radius: 16px;
+            padding: 20px 28px;
+            margin-bottom: 32px;
             text-align: center;
+            border: 2px solid rgba(255, 209, 102, 0.3);
         }
 
         .timer-text {
             font-family: 'Satoshi', sans-serif;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
-            color: #666;
+            color: #888;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 10px;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
         }
 
         .timer-display {
             font-family: 'Ogg', Georgia, serif;
-            font-size: 28px;
+            font-size: 42px;
             font-weight: 700;
             color: var(--navy);
-            margin-bottom: 12px;
+            margin-bottom: 14px;
+            letter-spacing: -1px;
         }
 
         .timer-bar {
@@ -214,20 +284,24 @@
         .popup-social-proof {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 24px;
+            justify-content: flex-start;
+            gap: 10px;
+            margin-bottom: 28px;
             font-family: 'Satoshi', sans-serif;
-            font-size: 14px;
+            font-size: 15px;
             color: #666;
+            padding: 14px 20px;
+            background: rgba(78, 205, 196, 0.08);
+            border-radius: 12px;
         }
 
         .social-proof-dot {
-            width: 6px;
-            height: 6px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             background: var(--teal-primary);
             animation: pulse 2s ease-in-out infinite;
+            flex-shrink: 0;
         }
 
         @keyframes pulse {
@@ -237,7 +311,7 @@
             }
             50% {
                 opacity: 0.6;
-                transform: scale(1.2);
+                transform: scale(1.3);
             }
         }
 
@@ -250,32 +324,33 @@
         .popup-buttons {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 14px;
         }
 
         .popup-btn-primary {
             font-family: 'Satoshi', sans-serif;
-            font-size: 18px;
+            font-size: 19px;
             font-weight: 700;
             color: #FFFFFF;
             background: linear-gradient(135deg, var(--pink-primary), var(--pink-dark));
             border: none;
-            border-radius: 14px;
-            padding: 18px 32px;
+            border-radius: 16px;
+            padding: 20px 40px;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow:
-                0 8px 24px rgba(255, 107, 157, 0.3),
+                0 8px 28px rgba(255, 107, 157, 0.35),
                 inset 0 -2px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
             text-decoration: none;
             display: block;
+            letter-spacing: 0.3px;
         }
 
         .popup-btn-primary:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             box-shadow:
-                0 12px 32px rgba(255, 107, 157, 0.4),
+                0 12px 36px rgba(255, 107, 157, 0.45),
                 inset 0 -2px 8px rgba(0, 0, 0, 0.1);
         }
 
@@ -285,7 +360,7 @@
 
         .popup-btn-secondary {
             font-family: 'Satoshi', sans-serif;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 500;
             color: #999;
             background: none;
@@ -293,37 +368,98 @@
             cursor: pointer;
             text-align: center;
             transition: color 0.2s ease;
-            padding: 8px;
+            padding: 10px;
             text-decoration: none;
             display: block;
         }
 
         .popup-btn-secondary:hover {
             color: #666;
-            text-decoration: underline;
         }
 
         /* Responsive */
-        @media (max-width: 600px) {
-            .vip-popup-overlay {
-                padding: 16px;
+        @media (max-width: 900px) {
+            .vip-popup-modal {
+                grid-template-columns: 1fr;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+
+            .popup-visual {
+                padding: 40px 32px;
+            }
+
+            .visual-icon {
+                width: 90px;
+                height: 90px;
+                margin-bottom: 24px;
+            }
+
+            .visual-icon svg {
+                width: 45px;
+                height: 45px;
+            }
+
+            .visual-text {
+                font-size: 26px;
+                margin-bottom: 12px;
+            }
+
+            .visual-subtext {
+                font-size: 16px;
             }
 
             .popup-content {
-                padding: 36px 28px 32px 28px;
+                padding: 40px 36px 36px 36px;
+            }
+
+            .popup-headline {
+                font-size: 30px;
+            }
+
+            .popup-body {
+                font-size: 17px;
+            }
+
+            .popup-callout {
+                font-size: 18px;
+                padding: 18px 20px;
+            }
+
+            .timer-display {
+                font-size: 36px;
+            }
+
+            .popup-btn-primary {
+                font-size: 18px;
+                padding: 18px 32px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .vip-popup-overlay {
+                padding: 12px;
+            }
+
+            .popup-content {
+                padding: 32px 24px 28px 24px;
             }
 
             .popup-headline {
                 font-size: 26px;
-                margin-bottom: 20px;
             }
 
             .popup-body {
                 font-size: 16px;
             }
 
+            .popup-callout {
+                font-size: 17px;
+                padding: 16px 18px;
+            }
+
             .timer-display {
-                font-size: 24px;
+                font-size: 32px;
             }
 
             .popup-btn-primary {
@@ -337,8 +473,18 @@
 <!-- NOTE: Change "display: flex" to "display: none" when integrating into your page -->
 <div class="vip-popup-overlay" id="vipPopup" style="display: flex;">
     <div class="vip-popup-modal">
-        <!-- Decorative accent -->
-        <div class="popup-accent"></div>
+        <!-- Left Visual Section -->
+        <div class="popup-visual">
+            <div class="visual-icon">
+                <svg viewBox="0 0 60 60" fill="none">
+                    <!-- Trophy/Star icon -->
+                    <path d="M30 5L35 20L50 22L40 32L43 47L30 40L17 47L20 32L10 22L25 20L30 5Z" fill="white" opacity="0.9"/>
+                    <circle cx="30" cy="30" r="26" stroke="white" stroke-width="2" stroke-dasharray="4 4" opacity="0.5"/>
+                </svg>
+            </div>
+            <div class="visual-text">Not ready<br>to commit?</div>
+            <div class="visual-subtext">We get it. But here's what you should know before you go...</div>
+        </div>
 
         <!-- Close button -->
         <button class="popup-close" onclick="closeVipPopup()" aria-label="Close">
@@ -347,23 +493,28 @@
             </svg>
         </button>
 
+        <!-- Right Content Section -->
         <div class="popup-content">
             <!-- Headline -->
-            <h2 class="popup-headline">Just so we're on the same page...</h2>
+            <h2 class="popup-headline">Here's the reality...</h2>
 
             <!-- Body copy -->
             <div class="popup-body">
-                <p>The free ticket gets you in the room. That's valuable.</p>
-
-                <div class="popup-highlight">
-                    <p><strong>But if we're being honest</strong> — most free attendees watch for 20 minutes, get distracted, and never implement.</p>
+                <div class="popup-reality-check">
+                    The free ticket gets you in the room. That's valuable.
                 </div>
 
-                <p>VIP is for the person who's thinking: <strong>"I'm actually going to do this."</strong></p>
+                <div class="popup-callout">
+                    But 80% of free attendees watch for 20 minutes, get distracted, and never actually implement anything.
+                </div>
 
-                <p>If that's not you right now, totally fine. Grab your free ticket below.</p>
+                <div class="popup-vip-pitch">
+                    <strong>VIP is for people who are thinking:</strong> "I'm actually going to DO this."<br><br>
 
-                <p>But if you're already planning to show up and take action... you're leaving money on the table by not getting the recordings, templates, and Bailey's direct support in WhatsApp.</p>
+                    If that's not you right now — no worries! Grab your free ticket below.<br><br>
+
+                    But if you're <strong>already planning to show up and take action...</strong> you're leaving money on the table by not getting the recordings, templates, and Bailey's direct support in WhatsApp.
+                </div>
             </div>
 
             <!-- Timer -->
@@ -384,10 +535,10 @@
             <!-- Buttons -->
             <div class="popup-buttons">
                 <a href="#vip-upgrade" class="popup-btn-primary" onclick="goBackToVip()">
-                    Go Back &amp; Claim VIP Access
+                    Yes, I Want VIP Access
                 </a>
                 <a href="#free-ticket" class="popup-btn-secondary" onclick="continueWithFree()">
-                    No thanks, I'll stick with free →
+                    No thanks, I'll stick with free
                 </a>
             </div>
         </div>
