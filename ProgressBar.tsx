@@ -94,11 +94,28 @@ export default function ProgressBar(props) {
                 {showStartIcon && (
                     <motion.div
                         initial={isCanvas ? false : { scale: 0, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
+                        animate={{
+                            scale: 1,
+                            opacity: 1,
+                            y: [0, -3, 0]
+                        }}
                         transition={{
-                            type: "spring",
-                            stiffness: 200,
-                            damping: 15,
+                            scale: {
+                                type: "spring",
+                                stiffness: 200,
+                                damping: 15,
+                            },
+                            opacity: {
+                                type: "spring",
+                                stiffness: 200,
+                                damping: 15,
+                            },
+                            y: {
+                                duration: 2,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                                delay: 0.5,
+                            }
                         }}
                         style={{
                             display: "flex",
@@ -124,7 +141,7 @@ export default function ProgressBar(props) {
                                 strokeWidth="2"
                                 fill="none"
                             />
-                            <line
+                            <motion.line
                                 x1="8"
                                 y1="8"
                                 x2="16"
@@ -132,8 +149,11 @@ export default function ProgressBar(props) {
                                 stroke={startIconColor}
                                 strokeWidth="1.5"
                                 opacity="0.3"
+                                initial={isCanvas ? false : { pathLength: 0 }}
+                                animate={{ pathLength: 1 }}
+                                transition={{ duration: 0.5, delay: 0.3 }}
                             />
-                            <line
+                            <motion.line
                                 x1="8"
                                 y1="12"
                                 x2="13"
@@ -141,8 +161,11 @@ export default function ProgressBar(props) {
                                 stroke={startIconColor}
                                 strokeWidth="1.5"
                                 opacity="0.3"
+                                initial={isCanvas ? false : { pathLength: 0 }}
+                                animate={{ pathLength: 1 }}
+                                transition={{ duration: 0.5, delay: 0.5 }}
                             />
-                            <line
+                            <motion.line
                                 x1="8"
                                 y1="16"
                                 x2="14"
@@ -150,6 +173,9 @@ export default function ProgressBar(props) {
                                 stroke={startIconColor}
                                 strokeWidth="1.5"
                                 opacity="0.3"
+                                initial={isCanvas ? false : { pathLength: 0 }}
+                                animate={{ pathLength: 1 }}
+                                transition={{ duration: 0.5, delay: 0.7 }}
                             />
                         </svg>
                         {startIconLabel && (
@@ -300,7 +326,8 @@ export default function ProgressBar(props) {
                             animate={{
                                 scale: 1,
                                 rotate: pencilBounce ? [-5, 5, -5] : 0,
-                                y: pencilBounce ? [0, -2, 0] : 0,
+                                x: "-50%",
+                                y: pencilBounce ? ["-50%", "calc(-50% - 2px)", "-50%"] : "-50%",
                             }}
                             transition={{
                                 scale: {
@@ -323,12 +350,14 @@ export default function ProgressBar(props) {
                                           ease: "easeInOut",
                                       }
                                     : {},
+                                x: {
+                                    duration: 0,
+                                }
                             }}
                             style={{
                                 position: "absolute",
                                 left: `${progressPercent}%`,
                                 top: "50%",
-                                transform: "translate(-50%, -50%)",
                                 zIndex: 10,
                                 transition: "left 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)",
                                 pointerEvents: "none",
@@ -413,14 +442,23 @@ export default function ProgressBar(props) {
                     <motion.div
                         initial={isCanvas ? false : { scale: 0, opacity: 0 }}
                         animate={{
-                            scale: progressPercent >= 100 ? [1, 1.1, 1] : 1,
+                            scale: progressPercent >= 100 ? [1, 1.15, 1] : 1,
                             opacity: 1,
+                            y: [0, -4, 0],
+                            rotate: progressPercent >= 100 ? [0, 5, -5, 0] : 0,
                         }}
                         transition={{
                             scale: {
-                                duration: 0.5,
+                                duration: 0.6,
                                 repeat: progressPercent >= 100 ? Infinity : 0,
-                                repeatDelay: 0.3,
+                                repeatDelay: 0.5,
+                                ease: "easeInOut",
+                            },
+                            rotate: {
+                                duration: 0.6,
+                                repeat: progressPercent >= 100 ? Infinity : 0,
+                                repeatDelay: 0.5,
+                                ease: "easeInOut",
                             },
                             opacity: {
                                 type: "spring",
@@ -428,6 +466,12 @@ export default function ProgressBar(props) {
                                 damping: 15,
                                 delay: 0.1,
                             },
+                            y: {
+                                duration: 2.5,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                                delay: 1,
+                            }
                         }}
                         style={{
                             display: "flex",
@@ -453,29 +497,38 @@ export default function ProgressBar(props) {
                                 strokeWidth="2"
                                 fill="none"
                             />
-                            <line
+                            <motion.line
                                 x1="8"
                                 y1="8"
                                 x2="16"
                                 y2="8"
                                 stroke={endIconColor}
                                 strokeWidth="1.5"
+                                initial={isCanvas ? false : { pathLength: 0 }}
+                                animate={{ pathLength: 1 }}
+                                transition={{ duration: 0.4, delay: 0.4 }}
                             />
-                            <line
+                            <motion.line
                                 x1="8"
                                 y1="12"
                                 x2="16"
                                 y2="12"
                                 stroke={endIconColor}
                                 strokeWidth="1.5"
+                                initial={isCanvas ? false : { pathLength: 0 }}
+                                animate={{ pathLength: 1 }}
+                                transition={{ duration: 0.4, delay: 0.6 }}
                             />
-                            <line
+                            <motion.line
                                 x1="8"
                                 y1="16"
                                 x2="14"
                                 y2="16"
                                 stroke={endIconColor}
                                 strokeWidth="1.5"
+                                initial={isCanvas ? false : { pathLength: 0 }}
+                                animate={{ pathLength: 1 }}
+                                transition={{ duration: 0.4, delay: 0.8 }}
                             />
                             <motion.circle
                                 cx="17"
