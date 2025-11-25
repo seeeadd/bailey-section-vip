@@ -40,7 +40,7 @@
 
         font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
         background: linear-gradient(180deg, #FFFFFF 0%, var(--cream) 100%);
-        padding: 80px 24px;
+        padding: 0;
         overflow-x: hidden;
     }
 
@@ -691,8 +691,9 @@
     /* Final imagine section */
     .imagine-section {
         margin-top: 56px;
-        padding-top: 48px;
+        padding: 48px 24px 60px;
         border-top: 2px dashed var(--cream-dark);
+        text-align: center;
     }
 
     .imagine-intro {
@@ -701,12 +702,77 @@
         line-height: 1.5;
         color: var(--navy);
         text-align: center;
-        margin-bottom: 8px;
+        margin-bottom: 32px;
     }
 
-    .imagine-timeframe {
-        text-align: center;
-        margin-bottom: 32px;
+    .timeframe-inline {
+        display: inline-block;
+        background: linear-gradient(135deg, var(--pink-primary), var(--pink-dark));
+        color: white;
+        font-family: 'Satoshi', sans-serif;
+        font-weight: 700;
+        padding: 4px 16px;
+        border-radius: 20px;
+        font-size: 0.85em;
+    }
+
+    .imagine-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        max-width: 400px;
+        margin: 0 auto 40px;
+    }
+
+    .imagine-item {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        background: white;
+        padding: 16px 20px;
+        border-radius: 12px;
+        border: 2px solid var(--cream-dark);
+        transition: all 0.3s ease;
+    }
+
+    .imagine-item:hover {
+        border-color: var(--teal-primary);
+        transform: translateX(8px);
+        box-shadow: 0 4px 16px rgba(78, 205, 196, 0.2);
+    }
+
+    .imagine-check {
+        width: 36px;
+        height: 36px;
+        background: linear-gradient(135deg, var(--teal-primary), var(--teal-dark));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        flex-shrink: 0;
+    }
+
+    .imagine-item p {
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--navy);
+        text-align: left;
+    }
+
+    .arrow-down {
+        display: flex;
+        justify-content: center;
+        animation: bounce 2s ease-in-out infinite;
+    }
+
+    .arrow-down svg {
+        color: var(--pink-primary);
+    }
+
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(12px); }
     }
 
     .timeframe-badge {
@@ -723,8 +789,8 @@
 
     /* Responsive */
     @media (max-width: 768px) {
-        .story-section {
-            padding: 60px 20px;
+        .story-section .container {
+            padding: 0 20px;
         }
 
         .story-opener::before {
@@ -798,11 +864,20 @@
         .imagine-intro {
             font-size: 22px;
         }
+
+        .imagine-item p {
+            font-size: 15px;
+        }
+
+        .arrow-down svg {
+            width: 40px;
+            height: 40px;
+        }
     }
 
     @media (max-width: 480px) {
-        .story-section {
-            padding: 48px 16px;
+        .story-section .container {
+            padding: 0 16px;
         }
 
         .story-opener p {
@@ -845,11 +920,43 @@
             flex-direction: column;
             align-items: center;
         }
+
+        .imagine-section {
+            padding: 36px 16px 48px;
+        }
+
+        .imagine-intro {
+            font-size: 20px;
+        }
+
+        .timeframe-inline {
+            padding: 3px 12px;
+            font-size: 0.8em;
+        }
+
+        .imagine-item {
+            padding: 14px 16px;
+            gap: 12px;
+        }
+
+        .imagine-check {
+            width: 32px;
+            height: 32px;
+        }
+
+        .imagine-item p {
+            font-size: 14px;
+        }
+
+        .arrow-down svg {
+            width: 36px;
+            height: 36px;
+        }
     }
 
     @media (max-width: 350px) {
-        .story-section {
-            padding: 40px 12px;
+        .story-section .container {
+            padding: 0 12px;
         }
 
         .story-opener::before {
@@ -882,6 +989,39 @@
 
         .imagine-intro {
             font-size: 18px;
+        }
+
+        .imagine-section {
+            padding: 28px 12px 40px;
+        }
+
+        .timeframe-inline {
+            padding: 2px 10px;
+            font-size: 0.75em;
+        }
+
+        .imagine-item {
+            padding: 12px 14px;
+            gap: 10px;
+        }
+
+        .imagine-check {
+            width: 28px;
+            height: 28px;
+        }
+
+        .imagine-check svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .imagine-item p {
+            font-size: 13px;
+        }
+
+        .arrow-down svg {
+            width: 32px;
+            height: 32px;
         }
 
         .timeframe-badge {
@@ -1075,9 +1215,47 @@
 
         <!-- Imagine section -->
         <div class="imagine-section">
-            <p class="imagine-intro">Just imagine waking up as the owner of a strategic Etsy business that:</p>
-            <div class="imagine-timeframe">
-                <span class="timeframe-badge">6 months from now</span>
+            <p class="imagine-intro">Just imagine waking up <span class="timeframe-inline">6 months from now</span> as the owner of a strategic Etsy business that:</p>
+
+            <div class="imagine-list">
+                <div class="imagine-item">
+                    <div class="imagine-check">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10L8 14L16 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <p>Generates sales while you sleep</p>
+                </div>
+                <div class="imagine-item">
+                    <div class="imagine-check">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10L8 14L16 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <p>Doesn't require inventory or shipping</p>
+                </div>
+                <div class="imagine-item">
+                    <div class="imagine-check">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10L8 14L16 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <p>Gives you actual time freedom</p>
+                </div>
+                <div class="imagine-item">
+                    <div class="imagine-check">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10L8 14L16 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <p>Grows and compounds over time</p>
+                </div>
+            </div>
+
+            <div class="arrow-down">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                    <path d="M24 8V40M24 40L12 28M24 40L36 28" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </div>
         </div>
 
