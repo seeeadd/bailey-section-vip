@@ -239,6 +239,7 @@
     /* Text Column */
     .story-text-column {
         order: 2;
+        text-align: center;
     }
 
     /* Images Column */
@@ -251,36 +252,17 @@
         font-size: 38px;
         color: var(--teal-dark);
         margin-bottom: 32px;
-        position: relative;
-        display: inline-block;
+        display: block;
     }
 
-    .dear-fellow::after {
-        content: '';
-        position: absolute;
-        bottom: -8px;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        background: linear-gradient(90deg, var(--teal-primary), transparent);
-        border-radius: 2px;
-    }
-
-    /* Story cards for key moments */
+    /* Unified card style - clean and consistent */
     .story-card {
         background: white;
-        border-radius: 20px;
+        border-radius: 16px;
         padding: 28px 32px;
-        margin-bottom: 28px;
-        box-shadow: 0 4px 20px rgba(255, 107, 157, 0.08);
-        border: 1px solid rgba(255, 107, 157, 0.1);
-        position: relative;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .story-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 30px rgba(255, 107, 157, 0.12);
+        margin-bottom: 24px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        text-align: left;
     }
 
     .story-card p {
@@ -289,81 +271,37 @@
         color: var(--gray-dark);
     }
 
-    /* Intro card special styling */
-    .intro-card {
-        background: linear-gradient(135deg, #FFF 0%, #FFF5F8 100%);
-        border-left: 4px solid var(--pink-primary);
-    }
-
-    .intro-card .guru-text {
-        color: var(--gray-dark);
+    /* Remove all the varied card styles - keep it simple */
+    .intro-card,
+    .working-card,
+    .drowning-card,
+    .worst-part-card,
+    .second-job-card,
+    .right-place-card {
+        background: white;
+        border: none;
+        border-left: none;
     }
 
     .intro-card .highlight-box {
-        display: inline;
-        background: linear-gradient(180deg, transparent 50%, rgba(78, 205, 196, 0.3) 50%);
         font-weight: 600;
-        color: var(--teal-dark);
+        color: var(--pink-dark);
         font-style: italic;
-    }
-
-    /* Simple text */
-    .simple-text {
-        font-size: 18px;
-        line-height: 1.8;
-        color: var(--gray-dark);
-        margin-bottom: 24px;
-        padding-left: 20px;
-        border-left: 3px solid var(--pink-soft);
-    }
-
-    .simple-text.centered {
-        text-align: center;
-        border-left: none;
-        padding-left: 0;
-        font-weight: 500;
-    }
-
-    /* Working card */
-    .working-card {
-        background: linear-gradient(135deg, #FFF 0%, var(--teal-light) 100%);
-        border: 2px dashed var(--teal-primary);
+        background: none;
     }
 
     .working-card .metric-badge {
-        display: inline-block;
-        background: var(--teal-primary);
-        color: white;
-        font-size: 12px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        padding: 6px 14px;
-        border-radius: 20px;
-        margin-bottom: 16px;
+        display: none;
     }
 
     .working-card .underline-text {
-        text-decoration: underline;
-        text-decoration-color: var(--teal-primary);
-        text-underline-offset: 3px;
-    }
-
-    /* Drowning card - dramatic styling */
-    .drowning-card {
-        background: linear-gradient(135deg, var(--pink-light) 0%, #FFF 100%);
-        border: none;
-        position: relative;
-        overflow: hidden;
+        font-weight: 600;
+        color: var(--navy);
+        text-decoration: none;
     }
 
     .drowning-card::before {
-        content: '😰';
-        position: absolute;
-        top: 15px;
-        right: 20px;
-        font-size: 32px;
-        opacity: 0.3;
+        display: none;
     }
 
     .drowning-card .drowning-text {
@@ -372,13 +310,14 @@
         font-size: 20px;
     }
 
-    /* Struggle list */
+    /* Struggle list - simplified */
     .struggle-list {
         background: white;
-        border-radius: 20px;
+        border-radius: 16px;
         padding: 28px 32px;
-        margin-bottom: 28px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        margin-bottom: 24px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        text-align: left;
     }
 
     .struggle-item {
@@ -386,7 +325,7 @@
         align-items: flex-start;
         gap: 16px;
         padding: 12px 0;
-        border-bottom: 1px dashed rgba(255, 107, 157, 0.2);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
 
     .struggle-item:last-child {
@@ -395,14 +334,13 @@
 
     .struggle-icon {
         flex-shrink: 0;
-        width: 36px;
-        height: 36px;
-        background: var(--pink-light);
-        border-radius: 50%;
+        width: 32px;
+        height: 32px;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 18px;
+        background: none;
     }
 
     .struggle-item p {
@@ -411,32 +349,21 @@
         color: var(--gray-dark);
     }
 
-    .struggle-item .pink-text { color: var(--pink-dark); font-weight: 500; }
-    .struggle-item .gold-text { color: var(--gold-warm); font-weight: 500; }
-    .struggle-item .teal-text { color: var(--teal-primary); font-weight: 500; }
+    .struggle-item .pink-text,
+    .struggle-item .gold-text,
+    .struggle-item .teal-text {
+        color: var(--gray-dark);
+        font-weight: 400;
+    }
 
-    /* Worst part card */
+    /* Worst part card - simplified */
     .worst-part-card {
-        background: linear-gradient(135deg, #FFF8E7 0%, #FFF 100%);
-        border-left: 4px solid var(--gold-warm);
-        position: relative;
+        border-left: none;
+        background: white;
     }
 
     .worst-part-card::before {
-        content: '"';
-        position: absolute;
-        top: -10px;
-        left: 20px;
-        font-family: 'Ogg', Georgia, serif;
-        font-size: 80px;
-        color: var(--gold);
-        opacity: 0.3;
-        line-height: 1;
-    }
-
-    .worst-part-card p {
-        position: relative;
-        z-index: 1;
+        display: none;
     }
 
     .worst-part-card em {
@@ -447,184 +374,143 @@
 
     .worst-part-card .freedom-text {
         color: var(--pink-dark);
-        font-weight: 700;
+        font-weight: 600;
     }
 
-    /* Prison quote - big dramatic */
+    /* Simple centered text between cards */
+    .simple-text {
+        font-size: 18px;
+        line-height: 1.8;
+        color: var(--gray-dark);
+        margin-bottom: 24px;
+        padding: 0;
+        border: none;
+    }
+
+    .simple-text.centered {
+        text-align: center;
+        font-weight: 500;
+    }
+
+    /* Prison quote - clean */
     .prison-quote {
         text-align: center;
-        padding: 40px 30px;
-        margin: 36px 0;
-        position: relative;
+        padding: 32px 20px;
+        margin: 24px 0;
     }
 
     .prison-quote::before,
     .prison-quote::after {
-        content: '';
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 4px;
-        background: linear-gradient(90deg, var(--pink-primary), var(--teal-primary));
-        border-radius: 2px;
+        display: none;
     }
-
-    .prison-quote::before { top: 0; }
-    .prison-quote::after { bottom: 0; }
 
     .prison-quote p {
         font-family: 'Ogg', Georgia, serif;
-        font-size: 28px;
+        font-size: 26px;
         line-height: 1.4;
         color: var(--navy);
     }
 
-    .prison-quote .prison-word {
-        background: linear-gradient(180deg, transparent 60%, var(--pink-soft) 60%);
-        font-weight: 500;
-    }
-
+    .prison-quote .prison-word,
     .prison-quote .business-word {
-        color: var(--gold-warm);
-        text-decoration: underline;
-        text-decoration-color: var(--gold);
-        text-underline-offset: 4px;
+        background: none;
+        text-decoration: none;
+        color: var(--navy);
     }
 
-    /* Breaking point card */
+    /* Breaking point card - simplified */
     .breaking-point-card {
-        background: linear-gradient(135deg, var(--navy) 0%, var(--teal-dark) 100%);
-        color: white;
-        border-radius: 24px;
-        padding: 32px;
-        margin-bottom: 28px;
-        position: relative;
-        overflow: hidden;
+        background: white;
+        border-radius: 16px;
+        padding: 28px 32px;
+        margin-bottom: 24px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
     }
 
     .breaking-point-card::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        right: -20%;
-        width: 200px;
-        height: 200px;
-        background: radial-gradient(circle, rgba(255, 107, 157, 0.2) 0%, transparent 70%);
-        pointer-events: none;
+        display: none;
     }
 
     .breaking-point-card .break-label {
-        display: inline-block;
-        background: var(--pink-primary);
-        color: white;
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        padding: 6px 14px;
-        border-radius: 20px;
-        margin-bottom: 16px;
+        display: none;
     }
 
     .breaking-point-card p {
-        font-size: 18px;
-        line-height: 1.7;
-        color: rgba(255, 255, 255, 0.95);
-    }
-
-    .breaking-point-card .highlight-moment {
-        color: var(--teal-primary);
-        font-style: italic;
-    }
-
-    /* Second job styling */
-    .second-job-card {
-        background: white;
-        border-radius: 20px;
-        padding: 28px 32px;
-        margin-bottom: 28px;
-        border: 2px solid var(--lavender);
-        position: relative;
-    }
-
-    .second-job-card p {
         font-size: 18px;
         line-height: 1.8;
         color: var(--gray-dark);
     }
 
-    .second-job-card .underline-job {
-        text-decoration: underline;
-        text-decoration-color: var(--pink-primary);
-        text-decoration-thickness: 2px;
-        text-underline-offset: 3px;
-        font-weight: 600;
+    .breaking-point-card .highlight-moment {
+        color: var(--pink-dark);
+        font-style: italic;
+        font-weight: 500;
     }
 
-    /* Realization card - the key moment */
+    /* Second job card - simplified */
+    .second-job-card {
+        border: none;
+    }
+
+    .second-job-card .underline-job {
+        text-decoration: none;
+        font-weight: 600;
+        color: var(--navy);
+    }
+
+    /* Realization card - simplified but still a highlight */
     .realization-card {
-        background: linear-gradient(135deg, var(--pink-light) 0%, var(--teal-light) 100%);
-        border-radius: 24px;
-        padding: 36px;
-        margin: 36px 0;
+        background: white;
+        border-radius: 16px;
+        padding: 32px;
+        margin: 24px 0;
         text-align: center;
-        border: 2px solid var(--pink-primary);
-        position: relative;
+        border: none;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
     }
 
     .realization-card::before {
-        content: '💡';
-        position: absolute;
-        top: -20px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 40px;
-        background: white;
-        padding: 0 15px;
+        display: none;
     }
 
     .realization-card .knew-text {
         font-family: 'Caveat', cursive;
-        font-size: 28px;
+        font-size: 26px;
         color: var(--pink-dark);
         margin-bottom: 12px;
     }
 
     .realization-card .main-realization {
-        font-family: 'Ogg', Georgia, serif;
-        font-size: 24px;
-        line-height: 1.5;
+        font-family: 'Satoshi', sans-serif;
+        font-size: 20px;
+        line-height: 1.6;
         color: var(--navy);
+        font-weight: 500;
     }
 
     .realization-card .work-differently {
-        background: linear-gradient(180deg, transparent 50%, var(--gold) 50%);
-        font-weight: 600;
+        background: none;
+        font-weight: 700;
+        color: var(--pink-dark);
     }
 
-    /* CTA card - right place */
+    /* Right place card - simplified */
     .right-place-card {
         background: white;
-        border-radius: 20px;
+        border-radius: 16px;
         padding: 28px 32px;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 20px rgba(78, 205, 196, 0.1);
-        border-left: 4px solid var(--teal-primary);
-    }
-
-    .right-place-card p {
-        font-size: 18px;
-        line-height: 1.8;
-        color: var(--gray-dark);
+        margin-bottom: 24px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        border: none;
     }
 
     .closing-text {
         font-family: 'Caveat', cursive;
-        font-size: 26px;
+        font-size: 28px;
         color: var(--teal-dark);
         text-align: center;
-        margin-top: 20px;
+        margin-top: 24px;
+        margin-bottom: 40px;
     }
 
     .polaroid-stack {
