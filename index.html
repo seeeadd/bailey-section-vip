@@ -3,82 +3,405 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>You're In! Welcome to VIP 🎉 | Bailey's Etsy Challenge</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>You're In! Welcome to VIP 🎉</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,700,900&display=swap" rel="stylesheet">
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @font-face {
+            font-family: 'Ogg';
+            src: url('https://cdn.jsdelivr.net/gh/nicxvan/ogg-font@master/fonts/Ogg-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Ogg';
+            src: url('https://cdn.jsdelivr.net/gh/nicxvan/ogg-font@master/fonts/Ogg-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
 
         * {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pink-primary: #FF6B9D;
+            --pink-dark: #C7254E;
+            --pink-light: #FFB3D1;
+            --teal-primary: #4ECDC4;
+            --teal-dark: #2F5F61;
+            --teal-light: #A8E6E3;
+            --gold: #FFD166;
+            --gold-dark: #F4A261;
+            --cream: #FAF7F2;
+            --navy: #2F5F61;
+            --warm-white: #FFFCF7;
         }
 
         body {
-            background: linear-gradient(135deg, #FFF5F7 0%, #FFF9F5 50%, #FFFBF5 100%);
+            font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 500;
+            -webkit-font-smoothing: antialiased;
+            color: #333;
+            background: linear-gradient(180deg, #FFF9F0 0%, #FFFBF6 50%, var(--warm-white) 100%);
+            line-height: 1.6;
             min-height: 100vh;
         }
 
-        .vip-badge {
-            background: linear-gradient(135deg, #FFB6C1 0%, #FFC0CB 100%);
-            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.2);
+        h1, h2, h3, h4 {
+            font-family: 'Ogg', Georgia, serif;
+            font-weight: 700;
         }
 
-        .primary-cta {
-            background: linear-gradient(135deg, #FF6B9D 0%, #FF8FB3 100%);
-            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.3);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
         }
 
-        .primary-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(255, 107, 157, 0.4);
+        /* Floating VIP Badge */
+        .vip-badge-top {
+            text-align: center;
+            padding: 80px 24px 40px;
+            position: relative;
         }
 
-        .primary-cta:active {
-            transform: translateY(0);
+        .vip-badge-float {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--teal-primary), var(--teal-dark));
+            color: #FFFFFF;
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            box-shadow: 0 6px 24px rgba(78, 205, 196, 0.35);
+            animation: floatBadge 3s ease-in-out infinite;
+        }
+
+        @keyframes floatBadge {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* Hero Section - 2 Columns */
+        .hero-section {
+            padding: 60px 0 80px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-left h1 {
+            font-family: 'Ogg', Georgia, serif;
+            font-size: 56px;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.15;
+            margin-bottom: 24px;
+        }
+
+        .hero-left p {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 20px;
+            font-weight: 500;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        .hero-right {
+            position: relative;
+        }
+
+        .video-container {
+            background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+            position: relative;
+            aspect-ratio: 16 / 9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border: 3px solid var(--teal-light);
+        }
+
+        .video-container:hover {
+            transform: scale(1.02);
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--pink-primary), var(--pink-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 30px rgba(255, 107, 157, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .video-container:hover .play-button {
+            transform: scale(1.1);
+        }
+
+        .video-label {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            text-align: center;
+            font-family: 'Caveat', cursive;
+            font-size: 22px;
+            font-weight: 600;
+            color: #666;
+        }
+
+        /* WhatsApp CTA Section */
+        .whatsapp-section {
+            padding: 80px 0;
+        }
+
+        .whatsapp-card {
+            background: linear-gradient(135deg, #FFFFFF, var(--cream));
+            border-radius: 28px;
+            padding: 60px;
+            text-align: center;
+            border: 3px solid var(--teal-primary);
+            box-shadow: 0 12px 48px rgba(78, 205, 196, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .whatsapp-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(78, 205, 196, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .whatsapp-card h2 {
+            font-family: 'Ogg', Georgia, serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .whatsapp-card p {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 19px;
+            font-weight: 500;
+            color: #555;
+            line-height: 1.7;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--teal-primary), var(--teal-dark));
+            color: #FFFFFF;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 19px;
+            font-weight: 700;
+            padding: 24px 48px;
+            border-radius: 16px;
+            text-decoration: none;
+            box-shadow: 0 8px 32px rgba(78, 205, 196, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(78, 205, 196, 0.5);
+        }
+
+        .whatsapp-note {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 15px;
+            color: #888;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-family: 'Ogg', Georgia, serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--navy);
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 120px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--pink-light), var(--teal-light));
+            border-radius: 3px;
+            margin: 20px auto 0;
+        }
+
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
         }
 
         .timeline-card {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #FFFFFF;
+            border-radius: 24px;
+            padding: 44px 36px;
+            border: 2px dashed var(--teal-light);
+            transition: all 0.4s ease;
+            position: relative;
         }
 
         .timeline-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+            border-color: var(--teal-primary);
         }
 
-        .checkbox-container {
+        .timeline-icon {
+            width: 90px;
+            height: 90px;
+            margin-bottom: 24px;
+        }
+
+        .timeline-card h3 {
+            font-family: 'Ogg', Georgia, serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--teal-dark);
+            margin-bottom: 16px;
+        }
+
+        .timeline-card p {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 17px;
+            font-weight: 500;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .timeline-card strong {
+            color: var(--navy);
+            font-weight: 700;
+        }
+
+        /* Checklist Section */
+        .checklist-section {
+            padding: 80px 0;
+        }
+
+        .checklist-card {
+            background: linear-gradient(180deg, #FFFFFF, var(--cream));
+            border-radius: 28px;
+            padding: 56px 48px;
+            border: 3px solid var(--pink-light);
+            box-shadow: 0 8px 40px rgba(255, 107, 157, 0.15);
+        }
+
+        .checklist-card h2 {
+            font-family: 'Ogg', Georgia, serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--navy);
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .checklist-items {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: start;
+            gap: 20px;
+            padding: 28px 32px;
+            background: #FFFFFF;
+            border-radius: 16px;
             cursor: pointer;
-            user-select: none;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
         }
 
-        .checkbox-container:hover {
-            transform: translateX(4px);
+        .checklist-item:hover {
+            transform: translateX(8px);
+            border-color: var(--pink-light);
+            box-shadow: 0 4px 20px rgba(255, 107, 157, 0.15);
         }
 
         .custom-checkbox {
             appearance: none;
-            width: 24px;
-            height: 24px;
-            border: 2px solid #FFB6C1;
-            border-radius: 6px;
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--pink-light);
+            border-radius: 8px;
             cursor: pointer;
             position: relative;
-            transition: all 0.2s ease;
             flex-shrink: 0;
+            transition: all 0.2s ease;
+            margin-top: 2px;
         }
 
         .custom-checkbox:hover {
-            border-color: #FF6B9D;
-            background: #FFF5F7;
+            border-color: var(--pink-primary);
+            background: var(--warm-white);
         }
 
         .custom-checkbox:checked {
-            background: linear-gradient(135deg, #FF6B9D 0%, #FF8FB3 100%);
-            border-color: #FF6B9D;
+            background: linear-gradient(135deg, var(--teal-primary), var(--teal-dark));
+            border-color: var(--teal-primary);
         }
 
         .custom-checkbox:checked::after {
@@ -88,288 +411,449 @@
             left: 50%;
             transform: translate(-50%, -50%);
             color: white;
-            font-size: 16px;
+            font-size: 20px;
             font-weight: bold;
         }
 
-        .video-placeholder {
-            background: linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%);
-            border-radius: 20px;
+        .checklist-text {
+            flex: 1;
+        }
+
+        .checklist-text span {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 18px;
+            font-weight: 500;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .checklist-text strong {
+            color: var(--navy);
+            font-weight: 700;
+        }
+
+        .checklist-note {
+            text-align: center;
+            margin-top: 32px;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 16px;
+            color: #777;
+        }
+
+        /* Closing Section */
+        .closing-section {
+            padding: 80px 0 100px;
+        }
+
+        .closing-card {
+            background: linear-gradient(135deg, var(--navy), var(--teal-dark));
+            border-radius: 28px;
+            padding: 70px 60px;
+            text-align: center;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 12px 48px rgba(47, 95, 97, 0.3);
         }
 
-        .video-placeholder::before {
+        .closing-card::before {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 107, 157, 0.9);
-            border-radius: 50%;
-            box-shadow: 0 4px 20px rgba(255, 107, 157, 0.3);
+            top: -50%;
+            left: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+            pointer-events: none;
         }
 
-        .video-placeholder::after {
-            content: '▶';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-45%, -50%);
-            color: white;
-            font-size: 32px;
+        .closing-card h2 {
+            font-family: 'Ogg', Georgia, serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 32px;
+            position: relative;
             z-index: 1;
         }
 
-        .section-container {
-            background: white;
-            border-radius: 24px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        .closing-text {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
-        .emoji-icon {
-            font-size: 2.5rem;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        .closing-text p {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 19px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.8;
+            margin-bottom: 24px;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
+        .closing-signature {
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 2px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .closing-signature p:first-child {
+            font-family: 'Caveat', cursive;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .closing-signature p:last-child {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--pink-light);
+        }
+
+        /* Mobile Floating Button */
+        .mobile-whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            left: 16px;
+            right: 16px;
+            z-index: 1000;
+            display: none;
+        }
+
+        .mobile-whatsapp-float .btn-whatsapp {
+            width: 100%;
+            justify-content: center;
+            font-size: 17px;
+            padding: 20px 32px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+
+            .hero-left h1 {
+                font-size: 42px;
+            }
+
+            .timeline-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mobile-whatsapp-float {
+                display: block;
             }
         }
 
-        .fade-in-up {
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
+        @media (max-width: 600px) {
+            .vip-badge-top {
+                padding: 60px 16px 30px;
+            }
 
-        .stagger-1 { animation-delay: 0.1s; opacity: 0; }
-        .stagger-2 { animation-delay: 0.2s; opacity: 0; }
-        .stagger-3 { animation-delay: 0.3s; opacity: 0; }
-        .stagger-4 { animation-delay: 0.4s; opacity: 0; }
+            .hero-section {
+                padding: 40px 0 60px;
+            }
 
-        /* Responsive adjustments */
-        @media (max-width: 640px) {
-            .emoji-icon {
-                font-size: 2rem;
+            .hero-left h1 {
+                font-size: 36px;
+            }
+
+            .hero-left p {
+                font-size: 18px;
+            }
+
+            .whatsapp-card,
+            .checklist-card,
+            .closing-card {
+                padding: 40px 28px;
+            }
+
+            .whatsapp-card h2,
+            .checklist-card h2 {
+                font-size: 32px;
+            }
+
+            .closing-card h2 {
+                font-size: 36px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .timeline-card {
+                padding: 32px 24px;
+            }
+
+            .checklist-item {
+                padding: 20px 24px;
             }
         }
     </style>
 </head>
-<body class="antialiased">
-    <!-- Main Container -->
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+<body>
 
-        <!-- VIP Badge -->
-        <div class="flex justify-center mb-6 fade-in-up">
-            <div class="vip-badge inline-flex items-center px-6 py-2 rounded-full">
-                <span class="text-white font-semibold text-sm tracking-wider">✨ VIP ACCESS</span>
-            </div>
+    <!-- VIP Badge -->
+    <div class="vip-badge-top">
+        <div class="vip-badge-float">
+            <!-- Crown SVG -->
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M2 15L4 8L7 11L10 4L13 11L16 8L18 15H2Z" fill="#FFD166"/>
+                <rect x="2" y="15" width="16" height="3" rx="1" fill="#FFD166"/>
+                <circle cx="4" cy="8" r="1.5" fill="#FFFFFF"/>
+                <circle cx="10" cy="4" r="1.5" fill="#FFFFFF"/>
+                <circle cx="16" cy="8" r="1.5" fill="#FFFFFF"/>
+            </svg>
+            <span>VIP ACCESS UNLOCKED</span>
         </div>
+    </div>
 
-        <!-- Section 1: Hero/Welcome -->
-        <div class="text-center mb-12 sm:mb-16 fade-in-up stagger-1">
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
-                You're In! Welcome to VIP 🎉
-            </h1>
-            <p class="text-lg sm:text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed px-4">
-                You just did the thing most people talk themselves out of. That already tells me a lot about you.
-            </p>
-        </div>
-
-        <!-- Video Section -->
-        <div class="mb-12 sm:mb-16 fade-in-up stagger-2">
-            <div class="video-placeholder aspect-video w-full cursor-pointer hover:opacity-95 transition-opacity">
-                <!-- Video embed will go here -->
-                <div class="w-full h-full flex items-center justify-center">
-                    <p class="text-gray-500 text-sm absolute bottom-4 left-4 right-4 text-center z-10">
-                        Video: Thank You Message from Bailey
-                    </p>
+    <!-- Hero Section (2 Columns) -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-left">
+                    <h1>You're In! Welcome to VIP 🎉</h1>
+                    <p>You just did the thing most people talk themselves out of. That already tells me a lot about you.</p>
+                </div>
+                <div class="hero-right">
+                    <div class="video-container">
+                        <!-- Play Button -->
+                        <div class="play-button">
+                            <svg width="32" height="38" viewBox="0 0 32 38" fill="none">
+                                <path d="M2 2L30 19L2 36V2Z" fill="#FFFFFF"/>
+                            </svg>
+                        </div>
+                        <p class="video-label">Thank You Video from Bailey</p>
+                    </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Section 2: Primary CTA - WhatsApp -->
-        <div class="section-container p-8 sm:p-10 lg:p-12 mb-12 sm:mb-16 text-center fade-in-up stagger-3">
-            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">
-                First Things First: Get in the WhatsApp
-            </h2>
-            <p class="text-base sm:text-lg text-gray-700 mb-8 max-w-2xl mx-auto leading-relaxed">
-                This is where the magic happens. Real questions, real answers, me actually in there with you.
-                Don't wait on this one — get in now so you don't miss anything before Day 1.
-            </p>
-            <a href="#" class="primary-cta inline-block text-white font-semibold text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 rounded-full no-underline">
-                → Join the VIP WhatsApp Now
-            </a>
-            <p class="text-sm text-gray-500 mt-4">
-                (Takes like 10 seconds. You'll get a welcome message from me right away.)
-            </p>
+    <!-- WhatsApp CTA Section -->
+    <section class="whatsapp-section">
+        <div class="container">
+            <div class="whatsapp-card">
+                <h2>First Things First: Get in the WhatsApp</h2>
+                <p>This is where the magic happens. Real questions, real answers, me actually in there with you. Don't wait on this one — get in now so you don't miss anything before Day 1.</p>
+
+                <a href="#" class="btn-whatsapp">
+                    <!-- WhatsApp Icon -->
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                        <circle cx="14" cy="14" r="13" fill="#FFFFFF" fill-opacity="0.2"/>
+                        <path d="M14 2C7.373 2 2 7.373 2 14C2 16.251 2.654 18.346 3.764 20.118L2.34 25.66L8.084 24.262C9.79 25.273 11.821 25.846 14 25.846C20.627 25.846 26 20.473 26 13.846C26 7.219 20.627 2 14 2ZM18.5 17.5C18.25 18.125 17.125 18.625 16.5 18.75C16 18.875 15.375 18.875 14.75 18.625C14.375 18.5 13.875 18.25 13.25 17.875C11.375 16.875 10.125 15 10 14.75C9.875 14.625 9.125 13.5 9.125 12.375C9.125 11.25 9.75 10.75 9.875 10.5C10.125 10.25 10.375 10.25 10.5 10.25H11C11.125 10.25 11.375 10.125 11.5 10.625L12.125 12.25C12.25 12.5 12.25 12.75 12.125 12.875C12 13.125 11.875 13.25 11.75 13.375L11.375 13.875C11.25 14 11.125 14.125 11.25 14.375C11.375 14.625 11.875 15.5 12.625 16.125C13.5 16.875 14.375 17.125 14.625 17.25C14.875 17.375 15 17.375 15.125 17.125L15.75 16.375C15.875 16.125 16.125 16.125 16.375 16.25L17.875 17.125C18.125 17.25 18.375 17.375 18.5 17.5Z" fill="#FFFFFF"/>
+                    </svg>
+                    Join the VIP WhatsApp Now
+                </a>
+
+                <p class="whatsapp-note">(Takes like 10 seconds. You'll get a welcome message from me right away.)</p>
+            </div>
         </div>
+    </section>
 
-        <!-- Section 3: What's Coming - Visual Timeline -->
-        <div class="mb-12 sm:mb-16 fade-in-up stagger-4">
-            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-8 sm:mb-12 text-center">
-                Here's What's Coming Your Way
-            </h2>
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+        <div class="container">
+            <h2 class="section-title">Here's What's Coming Your Way</h2>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
-                <!-- Before Day 1 -->
-                <div class="timeline-card p-6 sm:p-8">
-                    <div class="emoji-icon mb-4">📦</div>
-                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-3">Before Day 1</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        <strong>Quick Start Kit</strong> hits your inbox. My $1M shop walkthrough,
-                        50 product examples, and a framework for figuring out what in your shop needs to go.
-                        Start poking around before we even kick off.
-                    </p>
+            <div class="timeline-grid">
+                <!-- Card 1: Before Day 1 -->
+                <div class="timeline-card">
+                    <svg class="timeline-icon" viewBox="0 0 90 90" fill="none">
+                        <!-- Gift box -->
+                        <rect x="20" y="40" width="50" height="40" rx="4" fill="#FFB3D1" opacity="0.2"/>
+                        <rect x="20" y="40" width="50" height="40" rx="4" stroke="#FF6B9D" stroke-width="2.5"/>
+                        <!-- Ribbon vertical -->
+                        <rect x="42" y="30" width="6" height="50" fill="#FF6B9D"/>
+                        <!-- Ribbon horizontal -->
+                        <rect x="20" y="47" width="50" height="6" fill="#FF6B9D"/>
+                        <!-- Bow -->
+                        <path d="M45 30C45 25 40 20 35 22C32 23 30 26 30 30C30 26 28 23 25 22C20 20 15 25 15 30C15 32 16 33 18 33C20 33 22 32 23 30C24 32 26 35 30 35C28 35 25 36 25 40C25 42 27 44 30 44C32 44 34 42 34 40C34 36 31 35 29 35C33 35 35 32 36 30C37 32 39 33 41 33C43 33 44 32 44 30" fill="#C7254E"/>
+                        <circle cx="30" cy="30" r="4" fill="#C7254E"/>
+                        <circle cx="42" cy="30" r="3" fill="#C7254E"/>
+                        <circle cx="36" cy="24" r="5" fill="#FFD166"/>
+                        <!-- Sparkles -->
+                        <circle cx="75" cy="35" r="2.5" fill="#FFD166"/>
+                        <circle cx="12" cy="60" r="2" fill="#4ECDC4"/>
+                        <circle cx="72" cy="70" r="2.5" fill="#FF6B9D"/>
+                        <path d="M75 35L76 38L79 39L76 40L75 43L74 40L71 39L74 38Z" fill="#FFD166"/>
+                    </svg>
+                    <h3>Before Day 1</h3>
+                    <p><strong>Quick Start Kit</strong> hits your inbox. My $1M shop walkthrough, 50 product examples, and a framework for figuring out what in your shop needs to go. Start poking around before we even kick off.</p>
                 </div>
 
-                <!-- Day 1 -->
-                <div class="timeline-card p-6 sm:p-8">
-                    <div class="emoji-icon mb-4">🎬</div>
-                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-3">Day 1</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        <strong>Challenge starts!</strong> And you've got recordings of everything —
-                        so when your kid gets sick on Day 2 (because of course they will), you're not screwed.
-                    </p>
+                <!-- Card 2: Day 1 -->
+                <div class="timeline-card">
+                    <svg class="timeline-icon" viewBox="0 0 90 90" fill="none">
+                        <!-- Film camera -->
+                        <rect x="15" y="30" width="60" height="40" rx="6" fill="#A8E6E3" opacity="0.2"/>
+                        <rect x="15" y="30" width="60" height="40" rx="6" stroke="#4ECDC4" stroke-width="2.5"/>
+                        <!-- Lens -->
+                        <circle cx="45" cy="50" r="14" fill="#4ECDC4" opacity="0.3"/>
+                        <circle cx="45" cy="50" r="14" stroke="#4ECDC4" stroke-width="2.5"/>
+                        <circle cx="45" cy="50" r="9" fill="#4ECDC4" opacity="0.5"/>
+                        <circle cx="45" cy="50" r="4" fill="#2F5F61"/>
+                        <!-- Viewfinder -->
+                        <rect x="62" y="36" width="8" height="6" rx="2" fill="#2F5F61"/>
+                        <!-- Recording light -->
+                        <circle cx="22" cy="36" r="3" fill="#FF6B6B"/>
+                        <circle cx="22" cy="36" r="5" stroke="#FF6B6B" stroke-width="1" opacity="0.3"/>
+                        <!-- Film reels on top -->
+                        <circle cx="25" cy="22" r="8" fill="#F4A261" opacity="0.3"/>
+                        <circle cx="25" cy="22" r="8" stroke="#F4A261" stroke-width="2"/>
+                        <circle cx="65" cy="22" r="8" fill="#F4A261" opacity="0.3"/>
+                        <circle cx="65" cy="22" r="8" stroke="#F4A261" stroke-width="2"/>
+                        <!-- Play symbol -->
+                        <path d="M40 45L52 50L40 55V45Z" fill="#FFFFFF"/>
+                    </svg>
+                    <h3>Day 1</h3>
+                    <p><strong>Challenge starts!</strong> And you've got recordings of everything — so when your kid gets sick on Day 2 (because of course they will), you're not screwed.</p>
                 </div>
 
-                <!-- After Day 2 -->
-                <div class="timeline-card p-6 sm:p-8">
-                    <div class="emoji-icon mb-4">🎤</div>
-                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-3">After Day 2</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        <strong>VIP-Only Q&A.</strong> This is YOUR time. Bring questions about YOUR actual shop.
-                        Not theory. Your real listings, your real stuck points. I'll answer.
-                    </p>
+                <!-- Card 3: After Day 2 -->
+                <div class="timeline-card">
+                    <svg class="timeline-icon" viewBox="0 0 90 90" fill="none">
+                        <!-- Microphone stand -->
+                        <rect x="41" y="55" width="8" height="25" rx="2" fill="#2F5F61"/>
+                        <ellipse cx="45" cy="80" rx="18" ry="4" fill="#2F5F61" opacity="0.3"/>
+                        <!-- Microphone head -->
+                        <ellipse cx="45" cy="30" rx="16" ry="20" fill="#FFB3D1" opacity="0.2"/>
+                        <ellipse cx="45" cy="30" rx="16" ry="20" stroke="#FF6B9D" stroke-width="2.5"/>
+                        <ellipse cx="45" cy="30" rx="12" ry="16" fill="#FF6B9D" opacity="0.3"/>
+                        <!-- Mic grill lines -->
+                        <line x1="35" y1="25" x2="55" y2="25" stroke="#C7254E" stroke-width="1.5" opacity="0.4"/>
+                        <line x1="33" y1="30" x2="57" y2="30" stroke="#C7254E" stroke-width="1.5" opacity="0.4"/>
+                        <line x1="35" y1="35" x2="55" y2="35" stroke="#C7254E" stroke-width="1.5" opacity="0.4"/>
+                        <!-- Sound waves -->
+                        <path d="M65 25C65 25 68 28 68 32C68 36 65 39 65 39" stroke="#4ECDC4" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                        <path d="M25 25C25 25 22 28 22 32C22 36 25 39 25 39" stroke="#4ECDC4" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                        <path d="M70 20C70 20 75 25 75 32C75 39 70 44 70 44" stroke="#4ECDC4" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.6"/>
+                        <path d="M20 20C20 20 15 25 15 32C15 39 20 44 20 44" stroke="#4ECDC4" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.6"/>
+                    </svg>
+                    <h3>After Day 2</h3>
+                    <p><strong>VIP-Only Q&A.</strong> This is YOUR time. Bring questions about YOUR actual shop. Not theory. Your real listings, your real stuck points. I'll answer.</p>
                 </div>
 
-                <!-- Day 4 -->
-                <div class="timeline-card p-6 sm:p-8">
-                    <div class="emoji-icon mb-4">🔧</div>
-                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-3">Day 4</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        <strong>Implementation Call.</strong> Okay this one's my favorite.
-                        This is where I help you actually DO the thing. Not learn. DO.
-                        We're getting stuff done together.
-                    </p>
+                <!-- Card 4: Day 4 -->
+                <div class="timeline-card">
+                    <svg class="timeline-icon" viewBox="0 0 90 90" fill="none">
+                        <!-- Toolbox -->
+                        <rect x="15" y="40" width="60" height="35" rx="5" fill="#A8E6E3" opacity="0.2"/>
+                        <rect x="15" y="40" width="60" height="35" rx="5" stroke="#4ECDC4" stroke-width="2.5"/>
+                        <rect x="15" y="40" width="60" height="12" fill="#4ECDC4" opacity="0.4"/>
+                        <!-- Handle -->
+                        <path d="M35 40C35 35 38 30 45 30C52 30 55 35 55 40" stroke="#2F5F61" stroke-width="3" stroke-linecap="round" fill="none"/>
+                        <rect x="38" y="30" width="14" height="6" rx="3" fill="#2F5F61"/>
+                        <!-- Tools -->
+                        <!-- Wrench -->
+                        <rect x="25" y="55" width="6" height="16" rx="2" fill="#F4A261"/>
+                        <circle cx="28" cy="53" r="4" fill="#F4A261"/>
+                        <!-- Hammer -->
+                        <rect x="40" y="58" width="4" height="14" rx="1" fill="#FF6B9D"/>
+                        <rect x="35" y="54" width="14" height="6" rx="2" fill="#FF6B9D"/>
+                        <!-- Screwdriver -->
+                        <rect x="55" y="56" width="4" height="16" rx="1" fill="#FFD166"/>
+                        <polygon points="57,54 57,56 61,56 61,54" fill="#FFD166"/>
+                        <!-- Sparkles -->
+                        <circle cx="70" cy="30" r="2.5" fill="#FFD166"/>
+                        <path d="M70 26L71 30L75 31L71 32L70 36L69 32L65 31L69 30Z" fill="#FFD166"/>
+                        <circle cx="18" cy="32" r="2" fill="#FF6B9D"/>
+                    </svg>
+                    <h3>Day 4</h3>
+                    <p><strong>Implementation Call.</strong> Okay this one's my favorite. This is where I help you actually DO the thing. Not learn. DO. We're getting stuff done together.</p>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Section 4: VIP Prep Checklist -->
-        <div class="section-container p-8 sm:p-10 lg:p-12 mb-12 sm:mb-16">
-            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-8 text-center">
-                Your Little VIP Checklist
-            </h2>
+    <!-- Checklist Section -->
+    <section class="checklist-section">
+        <div class="container">
+            <div class="checklist-card">
+                <h2>Your Little VIP Checklist</h2>
 
-            <div class="space-y-5 max-w-2xl mx-auto">
-                <!-- Checklist Item 1 -->
-                <label class="checkbox-container flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50">
-                    <input type="checkbox" class="custom-checkbox mt-1">
-                    <span class="text-base sm:text-lg text-gray-800 leading-relaxed">
-                        <strong>Join the VIP WhatsApp</strong> — Seriously, do this right now. Button's up there ☝️
-                    </span>
-                </label>
+                <div class="checklist-items">
+                    <label class="checklist-item">
+                        <input type="checkbox" class="custom-checkbox">
+                        <div class="checklist-text">
+                            <span><strong>Join the VIP WhatsApp</strong> — Seriously, do this right now. Button's up there ☝️</span>
+                        </div>
+                    </label>
 
-                <!-- Checklist Item 2 -->
-                <label class="checkbox-container flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50">
-                    <input type="checkbox" class="custom-checkbox mt-1">
-                    <span class="text-base sm:text-lg text-gray-800 leading-relaxed">
-                        <strong>Watch for the Quick Start Kit</strong> — It's landing in your inbox before Day 1.
-                        Don't let it sit there unopened!
-                    </span>
-                </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="custom-checkbox">
+                        <div class="checklist-text">
+                            <span><strong>Watch for the Quick Start Kit</strong> — It's landing in your inbox before Day 1. Don't let it sit there unopened!</span>
+                        </div>
+                    </label>
 
-                <!-- Checklist Item 3 -->
-                <label class="checkbox-container flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50">
-                    <input type="checkbox" class="custom-checkbox mt-1">
-                    <span class="text-base sm:text-lg text-gray-800 leading-relaxed">
-                        <strong>Block time for your VIP Q&A</strong> — Happening right after Day 2.
-                        Put it in your calendar so life doesn't bulldoze it.
-                    </span>
-                </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="custom-checkbox">
+                        <div class="checklist-text">
+                            <span><strong>Block time for your VIP Q&A</strong> — Happening right after Day 2. Put it in your calendar so life doesn't bulldoze it.</span>
+                        </div>
+                    </label>
 
-                <!-- Checklist Item 4 -->
-                <label class="checkbox-container flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50">
-                    <input type="checkbox" class="custom-checkbox mt-1">
-                    <span class="text-base sm:text-lg text-gray-800 leading-relaxed">
-                        <strong>Block time for your Implementation Call</strong> — Day 4.
-                        This is the one where everything clicks. Protect this time like it's a doctor's appointment.
-                    </span>
-                </label>
-            </div>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="custom-checkbox">
+                        <div class="checklist-text">
+                            <span><strong>Block time for your Implementation Call</strong> — Day 4. This is the one where everything clicks. Protect this time like it's a doctor's appointment.</span>
+                        </div>
+                    </label>
+                </div>
 
-            <p class="text-sm text-gray-600 text-center mt-8">
-                You already did the hardest part — you said yes. These are the easy ones.
-            </p>
-        </div>
-
-        <!-- Section 5: Closing Section -->
-        <div class="section-container p-8 sm:p-10 lg:p-12 text-center">
-            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
-                You're Not Just Here to Watch.
-            </h2>
-            <div class="max-w-2xl mx-auto space-y-6 text-base sm:text-lg text-gray-700 leading-relaxed">
-                <p>
-                    Real talk — VIPs don't just sit through the challenge and take pretty notes.
-                    They walk out of this with a cleaned-up shop, an actual plan, and real listings ready to go.
-                </p>
-                <p>
-                    That's why you're here. And that's exactly what we're gonna make happen together.
-                </p>
-                <p>
-                    I don't take this lightly. You invested in yourself and I'm gonna make sure it's worth it.
-                </p>
-            </div>
-
-            <!-- Sign-off -->
-            <div class="mt-10 pt-8 border-t border-gray-200">
-                <p class="text-xl sm:text-2xl font-semibold text-gray-900 mb-2">
-                    See you in the WhatsApp!
-                </p>
-                <p class="text-lg sm:text-xl text-pink-500 font-medium">
-                    — Bailey ❤️
-                </p>
+                <p class="checklist-note">You already did the hardest part — you said yes. These are the easy ones.</p>
             </div>
         </div>
+    </section>
 
-        <!-- Floating WhatsApp CTA (Mobile) -->
-        <div class="fixed bottom-6 left-4 right-4 sm:hidden z-50">
-            <a href="#" class="primary-cta block text-center text-white font-semibold text-base px-6 py-4 rounded-full no-underline shadow-2xl">
-                Join VIP WhatsApp →
-            </a>
+    <!-- Closing Section -->
+    <section class="closing-section">
+        <div class="container">
+            <div class="closing-card">
+                <h2>You're Not Just Here to Watch.</h2>
+
+                <div class="closing-text">
+                    <p>Real talk — VIPs don't just sit through the challenge and take pretty notes. They walk out of this with a cleaned-up shop, an actual plan, and real listings ready to go.</p>
+
+                    <p>That's why you're here. And that's exactly what we're gonna make happen together.</p>
+
+                    <p>I don't take this lightly. You invested in yourself and I'm gonna make sure it's worth it.</p>
+                </div>
+
+                <div class="closing-signature">
+                    <p>See you in the WhatsApp!</p>
+                    <p>— Bailey ❤️</p>
+                </div>
+            </div>
         </div>
+    </section>
 
+    <!-- Mobile Floating WhatsApp Button -->
+    <div class="mobile-whatsapp-float">
+        <a href="#" class="btn-whatsapp">
+            <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+                <circle cx="14" cy="14" r="13" fill="#FFFFFF" fill-opacity="0.2"/>
+                <path d="M14 2C7.373 2 2 7.373 2 14C2 16.251 2.654 18.346 3.764 20.118L2.34 25.66L8.084 24.262C9.79 25.273 11.821 25.846 14 25.846C20.627 25.846 26 20.473 26 13.846C26 7.219 20.627 2 14 2ZM18.5 17.5C18.25 18.125 17.125 18.625 16.5 18.75C16 18.875 15.375 18.875 14.75 18.625C14.375 18.5 13.875 18.25 13.25 17.875C11.375 16.875 10.125 15 10 14.75C9.875 14.625 9.125 13.5 9.125 12.375C9.125 11.25 9.75 10.75 9.875 10.5C10.125 10.25 10.375 10.25 10.5 10.25H11C11.125 10.25 11.375 10.125 11.5 10.625L12.125 12.25C12.25 12.5 12.25 12.75 12.125 12.875C12 13.125 11.875 13.25 11.75 13.375L11.375 13.875C11.25 14 11.125 14.125 11.25 14.375C11.375 14.625 11.875 15.5 12.625 16.125C13.5 16.875 14.375 17.125 14.625 17.25C14.875 17.375 15 17.375 15.125 17.125L15.75 16.375C15.875 16.125 16.125 16.125 16.375 16.25L17.875 17.125C18.125 17.25 18.375 17.375 18.5 17.5Z" fill="#FFFFFF"/>
+            </svg>
+            Join VIP WhatsApp
+        </a>
     </div>
 
     <script>
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Save checkbox states to localStorage
+        // Checkbox persistence
         const checkboxes = document.querySelectorAll('.custom-checkbox');
 
-        // Load saved states
         checkboxes.forEach((checkbox, index) => {
+            // Load saved state
             const savedState = localStorage.getItem(`vip-checkbox-${index}`);
             if (savedState === 'true') {
                 checkbox.checked = true;
@@ -381,24 +865,23 @@
             });
         });
 
-        // Add intersection observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                 }
             });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in-up').forEach(el => {
-            observer.observe(el);
         });
     </script>
+
 </body>
 </html>
