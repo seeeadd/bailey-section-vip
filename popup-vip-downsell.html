@@ -437,83 +437,199 @@
 
         /* Responsive */
         @media (max-width: 900px) {
+            .vip-popup-overlay {
+                align-items: flex-end;
+                padding: 0;
+            }
+
             .vip-popup-modal {
                 grid-template-columns: 1fr;
-                max-height: 90vh;
-                overflow-y: auto;
+                max-height: 92vh;
+                max-width: 100%;
+                border-radius: 24px 24px 0 0;
+                animation: slideUpDrawer 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            }
+
+            @keyframes slideUpDrawer {
+                from {
+                    transform: translateY(100%);
+                }
+                to {
+                    transform: translateY(0);
+                }
+            }
+
+            /* Drawer handle */
+            .vip-popup-modal::before {
+                content: '';
+                position: absolute;
+                top: 12px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 40px;
+                height: 4px;
+                background: rgba(0, 0, 0, 0.2);
+                border-radius: 2px;
+                z-index: 100;
             }
 
             .popup-visual {
-                padding: 40px 32px;
+                padding: 32px 24px 24px 24px;
+                border-radius: 24px 24px 0 0;
             }
 
-            .visual-icon {
-                width: 90px;
-                height: 90px;
-                margin-bottom: 24px;
+            .visual-warning {
+                padding: 16px 20px;
+                margin-bottom: 16px;
             }
 
-            .visual-icon svg {
-                width: 45px;
-                height: 45px;
+            .warning-icon {
+                width: 70px;
+                height: 70px;
+                margin-bottom: 14px;
+            }
+
+            .warning-icon svg {
+                width: 36px;
+                height: 36px;
             }
 
             .visual-text {
-                font-size: 26px;
-                margin-bottom: 12px;
+                font-size: 24px;
             }
 
-            .visual-subtext {
-                font-size: 16px;
+            .visual-losses {
+                margin-top: 16px;
+            }
+
+            .visual-losses li {
+                font-size: 15px;
+                margin-bottom: 10px;
             }
 
             .popup-content {
-                padding: 40px 36px 36px 36px;
+                padding: 24px 24px 28px 24px;
+                overflow-y: auto;
+                max-height: calc(92vh - 320px);
             }
 
             .popup-headline {
-                font-size: 30px;
+                font-size: 26px;
+                margin-bottom: 16px;
             }
 
             .popup-body {
-                font-size: 17px;
+                font-size: 16px;
+                margin-bottom: 20px;
+            }
+
+            .popup-reality-check {
+                font-size: 15px;
+                margin-bottom: 12px;
             }
 
             .popup-callout {
-                font-size: 18px;
-                padding: 18px 20px;
+                font-size: 17px;
+                padding: 16px 20px;
+                margin: 14px 0;
+            }
+
+            .popup-vip-pitch {
+                font-size: 15px;
+            }
+
+            .popup-timer {
+                padding: 16px 20px;
+                margin-bottom: 16px;
+            }
+
+            .timer-text {
+                font-size: 11px;
+                margin-bottom: 6px;
             }
 
             .timer-display {
                 font-size: 36px;
+                margin-bottom: 10px;
+            }
+
+            .popup-social-proof {
+                font-size: 14px;
+                padding: 12px 18px;
+                margin-bottom: 20px;
+            }
+
+            .popup-buttons {
+                gap: 14px;
+                position: sticky;
+                bottom: 0;
+                background: white;
+                padding-top: 16px;
+                margin-top: auto;
             }
 
             .popup-btn-primary {
-                font-size: 18px;
-                padding: 18px 32px;
+                font-size: 17px;
+                padding: 16px 28px;
+            }
+
+            .popup-btn-secondary {
+                font-size: 15px;
+                padding: 10px;
+            }
+
+            .popup-close {
+                top: 24px;
+                right: 20px;
             }
         }
 
         @media (max-width: 600px) {
-            .vip-popup-overlay {
-                padding: 12px;
+            .vip-popup-modal {
+                max-height: 94vh;
+            }
+
+            .popup-visual {
+                padding: 28px 20px 20px 20px;
+            }
+
+            .visual-warning {
+                padding: 14px 16px;
+            }
+
+            .warning-icon {
+                width: 60px;
+                height: 60px;
+            }
+
+            .visual-text {
+                font-size: 22px;
+            }
+
+            .visual-losses li {
+                font-size: 14px;
             }
 
             .popup-content {
-                padding: 32px 24px 28px 24px;
+                padding: 20px 20px 24px 20px;
+                max-height: calc(94vh - 280px);
             }
 
             .popup-headline {
-                font-size: 26px;
+                font-size: 24px;
             }
 
             .popup-body {
-                font-size: 16px;
+                font-size: 15px;
             }
 
             .popup-callout {
-                font-size: 17px;
-                padding: 16px 18px;
+                font-size: 16px;
+                padding: 14px 18px;
+            }
+
+            .popup-vip-pitch {
+                font-size: 14px;
             }
 
             .timer-display {
@@ -521,8 +637,12 @@
             }
 
             .popup-btn-primary {
-                font-size: 17px;
-                padding: 16px 28px;
+                font-size: 16px;
+                padding: 15px 24px;
+            }
+
+            .popup-btn-secondary {
+                font-size: 14px;
             }
         }
     </style>
