@@ -331,7 +331,7 @@ export default function ProgressBar(props) {
                                 scale: 1,
                                 rotate: pencilBounce ? [-5, 5, -5] : 0,
                                 x: "-50%",
-                                y: pencilBounce ? ["-50%", "calc(-50% - 2px)", "-50%"] : "-50%",
+                                y: pencilBounce ? [0, -3, 0] : 0,
                             }}
                             transition={{
                                 scale: {
@@ -362,8 +362,8 @@ export default function ProgressBar(props) {
                                 position: "absolute",
                                 left: `${progressPercent}%`,
                                 top: "50%",
+                                transform: "translateY(-50%)",
                                 zIndex: 10,
-                                transition: "left 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)",
                                 pointerEvents: "none",
                             }}
                         >
