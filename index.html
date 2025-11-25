@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,700,900&display=swap" rel="stylesheet">
 
     <style>
@@ -27,21 +28,22 @@
         }
 
         :root {
-            --pink: #FF6B9D;
-            --pink-dark: #C7254E;
-            --pink-light: #FFB3D1;
+            --rose-gold: #D4AF87;
+            --rose-gold-dark: #B8956A;
+            --champagne: #F7E7CE;
+            --deep-teal: #1F4F4D;
             --teal: #4ECDC4;
-            --teal-dark: #2F5F61;
-            --gold: #FFD166;
-            --cream: #FAF7F2;
-            --warm-white: #FFFCF9;
+            --soft-pink: #FFD1DC;
+            --peach: #FFE5D4;
+            --ivory: #FFFFF0;
+            --gold-shimmer: #E6C89C;
         }
 
         body {
             font-family: 'Satoshi', -apple-system, sans-serif;
             font-weight: 500;
+            background: linear-gradient(180deg, var(--champagne) 0%, var(--ivory) 50%, #FFFEF7 100%);
             color: #333;
-            background: var(--warm-white);
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -51,545 +53,630 @@
             font-weight: 700;
         }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 32px;
+        /* VIP Wax Seal Badge */
+        .wax-seal-container {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 1000;
+            animation: sealPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            animation-delay: 0.5s;
+            opacity: 0;
         }
 
-        /* Animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
+        @keyframes sealPop {
+            0% {
+                transform: scale(0) rotate(-180deg);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        @keyframes wobble {
-            0%, 100% { transform: rotate(-8deg); }
-            50% { transform: rotate(8deg); }
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(0.8); }
-        }
-
-        /* VIP Badge - BIGGER & GLOWING */
-        .vip-badge-section {
-            text-align: center;
-            padding: 50px 20px 30px;
-            position: relative;
-        }
-
-        .vip-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: linear-gradient(135deg, var(--teal), var(--teal-dark));
-            color: white;
-            padding: 16px 40px;
-            border-radius: 30px;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            box-shadow: 0 8px 30px rgba(78, 205, 196, 0.4);
-            animation: pulse 3s ease-in-out infinite;
-            position: relative;
-        }
-
-        .vip-badge::before {
-            content: '';
-            position: absolute;
-            inset: -3px;
-            background: linear-gradient(135deg, var(--teal), var(--teal-dark));
-            border-radius: 30px;
-            opacity: 0.3;
-            filter: blur(10px);
-            z-index: -1;
-        }
-
-        /* HERO SECTION - HUGE & IMPACTFUL */
-        .hero {
-            min-height: 85vh;
-            display: flex;
-            align-items: center;
-            padding: 60px 0;
-            position: relative;
-            background:
-                radial-gradient(circle at 20% 80%, rgba(255, 179, 209, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(78, 205, 196, 0.08) 0%, transparent 50%);
-        }
-
-        /* Subtle dot pattern */
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image:
-                radial-gradient(circle, rgba(78, 205, 196, 0.15) 1px, transparent 1px),
-                radial-gradient(circle, rgba(255, 107, 157, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px, 30px 30px;
-            background-position: 0 0, 25px 25px;
-            opacity: 0.4;
-            pointer-events: none;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 80px;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-left {
-            position: relative;
-        }
-
-        /* Decorative stars */
-        .hero-left::before {
-            content: '★';
-            position: absolute;
-            top: -40px;
-            left: -30px;
-            font-size: 40px;
-            color: var(--gold);
-            opacity: 0.6;
-            animation: twinkle 3s ease-in-out infinite;
-        }
-
-        .hero-left::after {
-            content: '✦';
-            position: absolute;
-            bottom: 40px;
-            right: -20px;
-            font-size: 30px;
-            color: var(--pink);
-            opacity: 0.5;
-            animation: twinkle 2.5s ease-in-out infinite 0.5s;
-        }
-
-        .hero h1 {
-            font-size: 62px;
-            color: var(--teal-dark);
-            line-height: 1.1;
-            margin-bottom: 28px;
-            position: relative;
-            display: inline-block;
-        }
-
-        /* Hand-drawn underline */
-        .hero h1::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 0;
-            right: 0;
-            height: 8px;
-            background: url("data:image/svg+xml,%3Csvg width='100%25' height='8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 4 Q 25 1, 50 4 T 100 4' stroke='%23FFB3D1' stroke-width='3' fill='none'/%3E%3C/svg%3E");
-            background-repeat: repeat-x;
-            background-size: 100px 8px;
-            opacity: 0.6;
-        }
-
-        .party-emoji {
-            display: inline-block;
-            font-size: 64px;
-            margin-left: 10px;
-            animation: wobble 2.5s ease-in-out infinite;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
-        }
-
-        .hero p {
-            font-size: 22px;
-            color: #555;
-            line-height: 1.7;
-            max-width: 500px;
-        }
-
-        /* Floating hearts */
-        .deco-heart {
-            position: absolute;
-            font-size: 24px;
-            animation: float 4s ease-in-out infinite;
-            opacity: 0.3;
-            pointer-events: none;
-        }
-
-        .heart-1 { top: 10%; right: 10%; animation-delay: 0s; }
-        .heart-2 { bottom: 20%; left: 5%; animation-delay: 1s; }
-        .heart-3 { top: 60%; right: 15%; animation-delay: 2s; font-size: 18px; }
-
-        /* Polaroid-style video */
-        .hero-right {
-            position: relative;
-        }
-
-        .polaroid-frame {
-            background: white;
-            padding: 20px 20px 80px 20px;
-            border-radius: 4px;
-            box-shadow:
-                0 10px 40px rgba(0,0,0,0.15),
-                0 0 0 1px rgba(0,0,0,0.05);
-            transform: rotate(3deg);
-            transition: transform 0.4s ease;
-        }
-
-        .polaroid-frame:hover {
-            transform: rotate(0deg) scale(1.02);
-        }
-
-        .video-container {
-            background: linear-gradient(135deg, #f0f0f0, #e5e5e5);
-            border-radius: 8px;
-            aspect-ratio: 4/3;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            cursor: pointer;
-            overflow: hidden;
-        }
-
-        .play-button {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+        .wax-seal {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, var(--rose-gold) 0%, var(--rose-gold-dark) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 8px 30px rgba(255,107,157,0.4);
-            transition: transform 0.3s ease;
+            box-shadow:
+                0 4px 20px rgba(212, 175, 135, 0.4),
+                inset 0 2px 4px rgba(255,255,255,0.3),
+                inset 0 -2px 4px rgba(0,0,0,0.2);
+            position: relative;
         }
 
-        .video-container:hover .play-button {
-            transform: scale(1.1);
-        }
-
-        .polaroid-text {
+        .wax-seal::before {
+            content: '';
             position: absolute;
-            bottom: 15px;
-            left: 20px;
-            right: 20px;
+            inset: 8px;
+            border-radius: 50%;
+            border: 2px dashed rgba(255,255,255,0.3);
+        }
+
+        .wax-seal-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--deep-teal);
             text-align: center;
-            font-family: 'Caveat', cursive;
-            font-size: 24px;
-            color: #555;
-            font-weight: 600;
+            letter-spacing: 1px;
+            line-height: 1.3;
         }
 
-        /* WhatsApp Section - PREMIUM */
-        .whatsapp-section {
-            padding: 100px 0;
+        /* Gift Box Container */
+        .gift-box-top {
             position: relative;
-            background: var(--cream);
+            padding: 80px 0 0;
+            overflow: hidden;
         }
 
-        .whatsapp-wrapper {
-            position: relative;
-        }
-
-        /* Hand-drawn arrow */
-        .hand-arrow {
+        /* Ribbon across top */
+        .ribbon-horizontal {
             position: absolute;
-            top: -80px;
-            right: 120px;
-            width: 120px;
-            height: 100px;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(180deg, var(--rose-gold) 0%, var(--rose-gold-dark) 100%);
+            box-shadow:
+                0 4px 12px rgba(212, 175, 135, 0.3),
+                inset 0 1px 0 rgba(255,255,255,0.4),
+                inset 0 -1px 0 rgba(0,0,0,0.1);
+        }
+
+        .ribbon-horizontal::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, var(--gold-shimmer), var(--rose-gold));
+            border-radius: 50%;
+            box-shadow:
+                0 0 0 8px var(--rose-gold-dark),
+                0 4px 20px rgba(212, 175, 135, 0.5);
+        }
+
+        /* Hero Section - Unboxing */
+        .hero {
+            position: relative;
+            padding: 40px 32px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Tissue paper effect */
+        .tissue-paper {
+            position: absolute;
+            top: -20px;
+            left: 10%;
+            right: 10%;
+            height: 200px;
+            background:
+                linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.6) 50%, transparent 70%),
+                linear-gradient(-45deg, transparent 30%, rgba(255,228,225,0.4) 50%, transparent 70%);
+            filter: blur(1px);
+            opacity: 0.7;
+            pointer-events: none;
+            animation: tissueFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes tissueFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+
+        .hero-content {
+            background: white;
+            border-radius: 24px;
+            padding: 60px;
+            box-shadow:
+                0 20px 60px rgba(31, 79, 77, 0.15),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+            border: 1px solid rgba(212, 175, 135, 0.2);
+            position: relative;
+        }
+
+        /* Corner flourishes */
+        .hero-content::before,
+        .hero-content::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--rose-gold);
+            opacity: 0.3;
+        }
+
+        .hero-content::before {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .hero-content::after {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            color: var(--deep-teal);
+            line-height: 1.1;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .hero h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--rose-gold), transparent);
+        }
+
+        .hero-subtitle {
+            font-size: 19px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Video in ornate frame */
+        .video-frame {
+            position: relative;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--champagne), var(--gold-shimmer));
+            border-radius: 16px;
+            box-shadow:
+                0 10px 40px rgba(0,0,0,0.15),
+                inset 0 2px 4px rgba(255,255,255,0.5);
+        }
+
+        .video-frame::before {
+            content: '';
+            position: absolute;
+            inset: 8px;
+            border: 2px solid rgba(212, 175, 135, 0.5);
+            border-radius: 12px;
             pointer-events: none;
         }
 
-        .arrow-text {
-            position: absolute;
-            top: -100px;
-            right: 100px;
-            font-family: 'Caveat', cursive;
-            font-size: 28px;
-            color: var(--pink);
-            font-weight: 700;
-            transform: rotate(-12deg);
-        }
-
-        .whatsapp-card {
-            background: white;
-            border-radius: 32px;
-            padding: 70px 60px;
-            text-align: center;
-            border: 4px solid var(--pink-light);
-            box-shadow:
-                0 20px 60px rgba(255,107,157,0.15),
-                inset 0 0 0 1px rgba(255,255,255,0.5);
+        .video-inner {
+            background: linear-gradient(135deg, #e8e8e8, #f5f5f5);
+            border-radius: 8px;
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
             overflow: hidden;
         }
 
-        /* Decorative background pattern */
-        .whatsapp-card::before {
+        .play-btn {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--teal), var(--deep-teal));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 25px rgba(78, 205, 196, 0.4);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .video-caption {
+            text-align: center;
+            margin-top: 12px;
+            font-family: 'Caveat', cursive;
+            font-size: 20px;
+            color: var(--deep-teal);
+        }
+
+        /* WhatsApp Invitation Card */
+        .whatsapp-section {
+            padding: 80px 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Envelope */
+        .envelope-wrapper {
+            position: relative;
+            perspective: 1000px;
+            margin-bottom: -100px;
+        }
+
+        .envelope {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            height: 100px;
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 400px solid transparent;
+            border-right: 400px solid transparent;
+            border-top: 100px solid var(--rose-gold);
+            filter: drop-shadow(0 4px 12px rgba(212, 175, 135, 0.3));
+            transform-origin: bottom;
+            animation: flapOpen 1s ease-out 0.5s forwards;
+        }
+
+        @keyframes flapOpen {
+            to {
+                transform: translateX(-50%) rotateX(-120deg);
+            }
+        }
+
+        /* Invitation Card */
+        .invitation-card {
+            background: white;
+            border-radius: 20px;
+            padding: 60px 50px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow:
+                0 20px 60px rgba(31, 79, 77, 0.2),
+                inset 0 0 0 1px rgba(212, 175, 135, 0.3);
+            border: 3px solid var(--soft-pink);
+            position: relative;
+            z-index: 2;
+            animation: slideUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Decorative pattern */
+        .invitation-card::before {
             content: '';
             position: absolute;
             inset: 0;
             background-image:
-                radial-gradient(circle, rgba(255, 179, 209, 0.08) 1px, transparent 1px);
-            background-size: 24px 24px;
+                radial-gradient(circle at 20px 20px, var(--champagne) 2px, transparent 2px),
+                radial-gradient(circle at 60px 60px, var(--soft-pink) 1px, transparent 1px);
+            background-size: 80px 80px, 80px 80px;
+            background-position: 0 0, 40px 40px;
+            border-radius: 20px;
+            opacity: 0.15;
             pointer-events: none;
         }
 
-        .whatsapp-card h2 {
-            font-size: 48px;
-            color: var(--teal-dark);
-            margin-bottom: 24px;
+        .invitation-header {
+            text-align: center;
             position: relative;
-            z-index: 1;
+            margin-bottom: 32px;
         }
 
-        /* Decorative underline */
-        .whatsapp-card h2::after {
+        .invitation-header::before {
+            content: '✦';
+            position: absolute;
+            left: 50%;
+            top: -30px;
+            transform: translateX(-50%);
+            font-size: 24px;
+            color: var(--rose-gold);
+        }
+
+        .invitation-card h2 {
+            font-size: 42px;
+            color: var(--deep-teal);
+            margin-bottom: 16px;
+        }
+
+        .invitation-card h2::after {
             content: '';
             display: block;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--pink), var(--teal));
+            width: 60px;
+            height: 3px;
+            background: var(--rose-gold);
             margin: 16px auto 0;
-            border-radius: 2px;
         }
 
-        .whatsapp-card p {
-            font-size: 19px;
+        .invitation-card p {
+            font-size: 18px;
             color: #555;
-            max-width: 700px;
-            margin: 0 auto 40px;
             line-height: 1.8;
-            position: relative;
-            z-index: 1;
+            text-align: center;
+            margin-bottom: 36px;
         }
 
-        .btn-whatsapp {
+        .btn-vip {
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+            background: linear-gradient(135deg, var(--teal), var(--deep-teal));
             color: white;
-            font-size: 19px;
+            font-size: 18px;
             font-weight: 700;
-            padding: 22px 50px;
-            border-radius: 16px;
+            padding: 20px 44px;
+            border-radius: 50px;
             text-decoration: none;
             box-shadow:
-                0 10px 40px rgba(78,205,196,0.35),
+                0 8px 30px rgba(78, 205, 196, 0.35),
                 inset 0 1px 0 rgba(255,255,255,0.2);
             transition: all 0.3s ease;
             position: relative;
-            z-index: 1;
+            overflow: hidden;
         }
 
-        .btn-whatsapp:hover {
-            transform: translateY(-4px) scale(1.03);
-            box-shadow: 0 15px 50px rgba(78,205,196,0.45);
-        }
-
-        .whatsapp-note {
-            font-size: 15px;
-            color: #888;
-            margin-top: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Timeline Section */
-        .timeline-section {
-            padding: 100px 0;
-            background: var(--warm-white);
-            position: relative;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 70px;
-        }
-
-        .section-header h2 {
-            font-size: 52px;
-            color: var(--teal-dark);
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-        }
-
-        /* Decorative stars around title */
-        .section-header h2::before,
-        .section-header h2::after {
-            content: '✦';
+        .btn-vip::before {
+            content: '';
             position: absolute;
-            font-size: 32px;
-            color: var(--gold);
-            top: -10px;
-            opacity: 0.6;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
         }
 
-        .section-header h2::before {
-            left: -50px;
+        .btn-vip:hover::before {
+            transform: translateX(100%);
         }
 
-        .section-header h2::after {
-            right: -50px;
+        .btn-vip:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(78, 205, 196, 0.45);
         }
 
-        .timeline-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-            max-width: 1000px;
+        .btn-note {
+            display: block;
+            text-align: center;
+            margin-top: 16px;
+            font-size: 14px;
+            color: #888;
+            font-style: italic;
+        }
+
+        /* Timeline - Gift Boxes */
+        .timeline-section {
+            padding: 100px 32px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        .timeline-card {
-            background: white;
-            border-radius: 24px;
-            padding: 40px 36px;
-            border: 3px dashed var(--teal);
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 60px;
             position: relative;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
         }
 
-        .timeline-card::before {
+        .timeline-header h2 {
+            font-size: 48px;
+            color: var(--deep-teal);
+            position: relative;
+            display: inline-block;
+        }
+
+        .timeline-header h2::before {
+            content: '⟡';
+            position: absolute;
+            left: -60px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 32px;
+            color: var(--rose-gold);
+        }
+
+        .timeline-header h2::after {
+            content: '⟡';
+            position: absolute;
+            right: -60px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 32px;
+            color: var(--rose-gold);
+        }
+
+        .gift-boxes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        /* Individual Gift Box */
+        .gift-box {
+            background: white;
+            border-radius: 20px;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .gift-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        /* Box lid with ribbon */
+        .box-lid {
+            height: 12px;
+            position: relative;
+        }
+
+        .box-lid::before {
             content: '';
             position: absolute;
-            inset: -2px;
-            background: linear-gradient(135deg, var(--pink-light), var(--teal));
-            border-radius: 24px;
-            opacity: 0;
-            z-index: -1;
-            transition: opacity 0.3s ease;
+            inset: 0;
+            background: linear-gradient(180deg, var(--rose-gold), var(--rose-gold-dark));
         }
 
-        .timeline-card:hover::before {
-            opacity: 0.1;
+        .box-lid::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: var(--gold-shimmer);
+            box-shadow: 0 2px 8px rgba(212, 175, 135, 0.5);
         }
 
-        .timeline-card:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-            border-style: solid;
+        .box-content {
+            padding: 32px 28px;
         }
 
-        /* Different colors for each card */
-        .timeline-card:nth-child(1) {
-            background: linear-gradient(135deg, #fff 0%, #FFF5F8 100%);
-            border-color: var(--pink-light);
-        }
-
-        .timeline-card:nth-child(2) {
-            background: linear-gradient(135deg, #fff 0%, #F0FFF4 100%);
-            border-color: #C8E6C9;
-        }
-
-        .timeline-card:nth-child(3) {
-            background: linear-gradient(135deg, #fff 0%, #FFF8F0 100%);
-            border-color: #FFCCBC;
-        }
-
-        .timeline-card:nth-child(4) {
-            background: linear-gradient(135deg, #fff 0%, #FAF5FF 100%);
-            border-color: #E1BEE7;
-        }
-
-        /* Day badge */
-        .day-badge {
+        .day-tag {
             display: inline-block;
-            background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+            background: linear-gradient(135deg, var(--deep-teal), var(--teal));
             color: white;
-            font-family: 'Satoshi', sans-serif;
-            font-size: 13px;
+            font-size: 11px;
             font-weight: 700;
-            padding: 8px 20px;
+            padding: 6px 16px;
             border-radius: 20px;
-            margin-bottom: 16px;
             letter-spacing: 1px;
             text-transform: uppercase;
-        }
-
-        .timeline-card h3 {
-            font-size: 28px;
-            color: var(--teal-dark);
             margin-bottom: 16px;
         }
 
-        .timeline-card p {
-            font-size: 17px;
+        .gift-box h3 {
+            font-size: 26px;
+            color: var(--deep-teal);
+            margin-bottom: 12px;
+        }
+
+        .gift-box p {
+            font-size: 16px;
             color: #555;
             line-height: 1.7;
         }
 
-        .timeline-card strong {
-            color: var(--teal-dark);
-            font-weight: 700;
+        .gift-box strong {
+            color: var(--deep-teal);
         }
 
-        /* Checklist Section */
+        /* Different box colors */
+        .gift-box:nth-child(1) {
+            border-top: 3px solid var(--soft-pink);
+        }
+
+        .gift-box:nth-child(2) {
+            border-top: 3px solid var(--teal);
+        }
+
+        .gift-box:nth-child(3) {
+            border-top: 3px solid var(--peach);
+        }
+
+        .gift-box:nth-child(4) {
+            border-top: 3px solid var(--champagne);
+        }
+
+        /* Checklist - Premium Stationery */
         .checklist-section {
-            padding: 100px 0;
-            background: linear-gradient(135deg, #FFF9F5 0%, #FFF5F8 100%);
-            position: relative;
-        }
-
-        .checklist-card {
-            background: white;
-            border-radius: 32px;
-            padding: 60px 50px;
-            max-width: 800px;
+            padding: 100px 32px;
+            max-width: 900px;
             margin: 0 auto;
-            border: 4px solid var(--pink-light);
+        }
+
+        .stationery {
+            background: white;
+            border-radius: 16px;
+            padding: 50px 45px;
             box-shadow:
-                0 20px 60px rgba(255,107,157,0.15),
-                inset 0 0 0 1px rgba(255,255,255,0.5);
+                0 15px 50px rgba(31, 79, 77, 0.15),
+                inset 0 0 0 1px rgba(212, 175, 135, 0.2);
+            border-left: 6px solid var(--rose-gold);
             position: relative;
         }
 
-        .checklist-card h2 {
-            font-size: 48px;
-            color: var(--teal-dark);
-            text-align: center;
-            margin-bottom: 16px;
-        }
-
-        .progress-wrapper {
-            margin: 32px 0 40px;
-            padding: 20px;
-            background: linear-gradient(135deg, var(--cream), #FFF);
-            border-radius: 16px;
-            border: 2px solid var(--gold);
-        }
-
-        .progress-text {
-            text-align: center;
-            font-size: 17px;
+        /* Wax seal on stationery */
+        .stationery-seal {
+            position: absolute;
+            top: -25px;
+            right: 40px;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, var(--rose-gold), var(--rose-gold-dark));
+            border-radius: 50%;
+            box-shadow:
+                0 4px 15px rgba(212, 175, 135, 0.4),
+                inset 0 1px 2px rgba(255,255,255,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
             font-weight: 700;
-            color: var(--teal-dark);
+            color: var(--deep-teal);
+            letter-spacing: 0.5px;
+        }
+
+        .checklist-title {
+            font-size: 40px;
+            color: var(--deep-teal);
+            text-align: center;
             margin-bottom: 12px;
         }
 
-        .progress-bar-bg {
-            width: 100%;
-            height: 12px;
-            background: #F0F0F0;
+        .progress-bar-wrapper {
+            background: linear-gradient(135deg, var(--champagne), var(--ivory));
             border-radius: 12px;
-            overflow: hidden;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+            padding: 16px;
+            margin: 28px 0 36px;
+            border: 2px solid var(--rose-gold);
         }
 
-        .progress-bar-fill {
+        .progress-label {
+            text-align: center;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--deep-teal);
+            margin-bottom: 10px;
+        }
+
+        .progress-track {
+            height: 10px;
+            background: rgba(31, 79, 77, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--teal), var(--pink));
-            border-radius: 12px;
+            background: linear-gradient(90deg, var(--teal), var(--rose-gold));
+            border-radius: 10px;
             width: 0%;
             transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
             box-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
@@ -598,91 +685,89 @@
         .checklist-items {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 16px;
         }
 
-        .checklist-item {
+        .check-item {
             display: flex;
             align-items: flex-start;
-            gap: 18px;
-            padding: 24px 28px;
-            background: #FAFAFA;
-            border-radius: 16px;
+            gap: 16px;
+            padding: 20px 24px;
+            background: linear-gradient(135deg, #FAFAFA, white);
+            border-radius: 12px;
+            border: 2px solid transparent;
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 2px solid transparent;
         }
 
-        .checklist-item:hover {
-            transform: translateX(8px) scale(1.01);
-            border-color: var(--pink-light);
+        .check-item:hover {
+            border-color: var(--soft-pink);
+            transform: translateX(6px);
             background: white;
-            box-shadow: 0 6px 25px rgba(255,107,157,0.12);
+            box-shadow: 0 4px 20px rgba(255, 209, 220, 0.15);
         }
 
-        .check-circle {
-            width: 32px;
-            height: 32px;
-            border: 3px solid var(--pink-light);
+        .check-box {
+            width: 28px;
+            height: 28px;
+            border: 3px solid var(--soft-pink);
             border-radius: 50%;
             flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            cursor: pointer;
             margin-top: 2px;
         }
 
-        .check-circle.checked {
-            background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+        .check-box.checked {
+            background: linear-gradient(135deg, var(--teal), var(--deep-teal));
             border-color: var(--teal);
-            transform: scale(1.15);
+            transform: scale(1.1);
         }
 
-        .check-circle.checked::after {
+        .check-box.checked::after {
             content: '✓';
             color: white;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
         }
 
-        .checklist-text {
+        .check-text {
             flex: 1;
-            font-size: 18px;
+            font-size: 17px;
             color: #444;
             line-height: 1.6;
         }
 
-        .checklist-text strong {
-            color: var(--teal-dark);
+        .check-text strong {
+            color: var(--deep-teal);
             font-weight: 700;
         }
 
-        .checklist-item.completed .checklist-text {
+        .check-item.completed .check-text {
             opacity: 0.6;
         }
 
         .completion-badge {
             text-align: center;
-            margin-top: 32px;
-            padding: 24px;
-            background: linear-gradient(135deg, #FFF9F5, #F0FFF4);
-            border-radius: 16px;
-            border: 3px solid var(--gold);
-            font-size: 20px;
+            margin-top: 28px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--champagne), var(--peach));
+            border-radius: 12px;
+            border: 2px solid var(--rose-gold);
+            font-size: 18px;
             font-weight: 700;
-            color: var(--teal-dark);
+            color: var(--deep-teal);
             display: none;
-            animation: slideIn 0.5s ease;
-            box-shadow: 0 8px 30px rgba(255, 209, 102, 0.3);
+            animation: slideDown 0.5s ease;
         }
 
         .completion-badge.show {
             display: block;
         }
 
-        @keyframes slideIn {
+        @keyframes slideDown {
             from {
                 opacity: 0;
                 transform: translateY(-15px);
@@ -695,99 +780,107 @@
 
         .checklist-note {
             text-align: center;
-            margin-top: 28px;
-            font-size: 16px;
+            margin-top: 24px;
+            font-size: 15px;
             color: #777;
             font-style: italic;
         }
 
-        /* Closing Section */
+        /* Closing - Personal Note */
         .closing-section {
-            padding: 100px 0 120px;
-            background: var(--warm-white);
+            padding: 100px 32px 120px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
-        .closing-card {
-            background: linear-gradient(135deg, var(--teal-dark) 0%, #1a4d4a 100%);
-            border-radius: 32px;
-            padding: 80px 70px;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(47,95,97,0.3);
+        .personal-note {
+            background: linear-gradient(135deg, var(--deep-teal), #1a3f3d);
+            border-radius: 24px;
+            padding: 70px 60px;
+            box-shadow: 0 20px 60px rgba(31, 79, 77, 0.3);
             position: relative;
             overflow: hidden;
         }
 
-        .closing-card::before {
+        .personal-note::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--rose-gold), var(--gold-shimmer), var(--rose-gold));
+        }
+
+        .personal-note::after {
             content: '';
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(circle at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 50%),
-                radial-gradient(circle at 70% 50%, rgba(255,255,255,0.05) 0%, transparent 50%);
+                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.05), transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(212,175,135,0.08), transparent 50%);
             pointer-events: none;
         }
 
-        .closing-card h2 {
-            font-size: 52px;
+        .note-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .personal-note h2 {
+            font-size: 46px;
             color: white;
-            margin-bottom: 32px;
-            position: relative;
-            z-index: 1;
+            margin-bottom: 28px;
         }
 
-        .closing-text {
-            max-width: 700px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .closing-text p {
-            font-size: 20px;
+        .personal-note p {
+            font-size: 19px;
             color: rgba(255,255,255,0.95);
             line-height: 1.8;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .signature-box {
-            margin-top: 50px;
-            padding-top: 40px;
-            border-top: 2px solid rgba(255,255,255,0.2);
-            position: relative;
-            z-index: 1;
+        .signature-block {
+            margin-top: 48px;
+            padding-top: 36px;
+            border-top: 2px solid rgba(212, 175, 135, 0.3);
         }
 
-        .signature-box p:first-child {
+        .signature-text {
             font-family: 'Caveat', cursive;
-            font-size: 42px;
-            color: var(--gold);
-            margin-bottom: 10px;
+            font-size: 38px;
+            color: var(--gold-shimmer);
             font-weight: 700;
+            margin-bottom: 8px;
         }
 
-        .signature-box p:last-child {
-            font-size: 19px;
-            color: var(--pink-light);
+        .signature-name {
+            font-size: 18px;
+            color: var(--soft-pink);
             font-weight: 600;
         }
 
-        /* Mobile Floating Button */
-        .mobile-float {
+        /* Mobile Float */
+        .mobile-cta {
             position: fixed;
-            bottom: 24px;
-            left: 20px;
-            right: 20px;
-            z-index: 1000;
+            bottom: 20px;
+            left: 16px;
+            right: 16px;
+            z-index: 999;
             display: none;
         }
 
-        .mobile-float .btn-whatsapp {
+        .mobile-cta .btn-vip {
             width: 100%;
             justify-content: center;
         }
 
         /* Confetti */
-        .confetti-piece {
+        .confetti {
             position: fixed;
             width: 10px;
             height: 10px;
@@ -795,7 +888,7 @@
             z-index: 9999;
         }
 
-        @keyframes confetti-fall {
+        @keyframes confettiFall {
             to {
                 transform: translateY(100vh) rotate(360deg);
                 opacity: 0;
@@ -815,190 +908,166 @@
 
         /* Responsive */
         @media (max-width: 900px) {
-            .hero {
-                min-height: auto;
-                padding: 40px 0;
-            }
-
             .hero-grid {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
 
-            .hero h1 {
-                font-size: 42px;
-            }
-
-            .party-emoji {
-                font-size: 48px;
-            }
-
-            .timeline-grid {
+            .gift-boxes {
                 grid-template-columns: 1fr;
             }
 
-            .mobile-float {
+            .mobile-cta {
                 display: block;
             }
 
-            .arrow-text,
-            .hand-arrow {
+            .timeline-header h2::before,
+            .timeline-header h2::after {
                 display: none;
             }
 
-            .section-header h2::before,
-            .section-header h2::after {
-                display: none;
+            .envelope-flap {
+                border-left-width: 50vw;
+                border-right-width: 50vw;
             }
         }
 
         @media (max-width: 600px) {
-            .container {
-                padding: 0 20px;
-            }
-
-            .hero h1 {
-                font-size: 36px;
-            }
-
-            .hero p {
-                font-size: 18px;
-            }
-
-            .whatsapp-card h2,
-            .checklist-card h2,
-            .closing-card h2 {
-                font-size: 36px;
-            }
-
-            .section-header h2 {
-                font-size: 38px;
-            }
-
-            .whatsapp-card,
-            .checklist-card {
+            .hero-content {
                 padding: 40px 28px;
             }
 
-            .closing-card {
-                padding: 60px 32px;
+            .hero h1 {
+                font-size: 38px;
             }
 
-            .timeline-card {
-                padding: 32px 24px;
+            .invitation-card {
+                padding: 40px 28px;
+            }
+
+            .invitation-card h2 {
+                font-size: 32px;
+            }
+
+            .timeline-header h2 {
+                font-size: 36px;
+            }
+
+            .personal-note {
+                padding: 50px 32px;
+            }
+
+            .personal-note h2 {
+                font-size: 34px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- VIP Badge -->
-    <div class="vip-badge-section">
-        <div class="vip-badge">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M2 15L4 8L7 11L10 4L13 11L16 8L18 15H2Z" fill="#FFD166"/>
-                <rect x="2" y="15" width="16" height="3" rx="1" fill="#FFD166"/>
-                <circle cx="4" cy="8" r="1.5" fill="white"/>
-                <circle cx="10" cy="4" r="1.5" fill="white"/>
-                <circle cx="16" cy="8" r="1.5" fill="white"/>
-            </svg>
-            VIP ACCESS UNLOCKED
+    <!-- VIP Wax Seal Badge -->
+    <div class="wax-seal-container">
+        <div class="wax-seal">
+            <div class="wax-seal-text">VIP<br>ACCESS</div>
         </div>
     </div>
 
-    <!-- HERO SECTION - HUGE -->
-    <section class="hero">
-        <!-- Decorative hearts -->
-        <div class="deco-heart heart-1">💖</div>
-        <div class="deco-heart heart-2">💫</div>
-        <div class="deco-heart heart-3">✨</div>
+    <!-- Ribbon Across Top -->
+    <div class="ribbon-horizontal"></div>
 
-        <div class="container">
-            <div class="hero-grid">
-                <div class="hero-left">
-                    <h1>
-                        You're In! Welcome to VIP
-                        <span class="party-emoji">🎉</span>
-                    </h1>
-                    <p>You just did the thing most people talk themselves out of. That already tells me a lot about you.</p>
-                </div>
-                <div class="hero-right">
-                    <div class="polaroid-frame">
-                        <div class="video-container">
-                            <div class="play-button">
-                                <svg width="28" height="32" viewBox="0 0 28 32" fill="none">
-                                    <path d="M2 2L26 16L2 30V2Z" fill="white"/>
-                                </svg>
+    <!-- Gift Box Opening -->
+    <div class="gift-box-top">
+        <div class="tissue-paper"></div>
+
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-grid">
+                    <div>
+                        <h1>You're In!<br>Welcome to VIP 🎉</h1>
+                        <p class="hero-subtitle">You just did the thing most people talk themselves out of. That already tells me a lot about you.</p>
+                    </div>
+                    <div>
+                        <div class="video-frame">
+                            <div class="video-inner">
+                                <div class="play-btn">
+                                    <svg width="26" height="30" viewBox="0 0 26 30" fill="none">
+                                        <path d="M2 2L24 15L2 28V2Z" fill="white"/>
+                                    </svg>
+                                </div>
                             </div>
                         </div>
-                        <p class="polaroid-text">Thank You Video from Bailey</p>
+                        <p class="video-caption">Thank You Video from Bailey</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <!-- WhatsApp Section -->
+    <!-- WhatsApp Invitation -->
     <section class="whatsapp-section">
-        <div class="container">
-            <div class="whatsapp-wrapper">
-                <!-- Hand-drawn arrow -->
-                <svg class="hand-arrow" viewBox="0 0 120 100" fill="none">
-                    <path d="M10 90 Q 40 20, 100 10" stroke="#FF6B9D" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-                    <path d="M88 5 L 105 10 L 95 25" stroke="#FF6B9D" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <div class="arrow-text">Do this first!</div>
+        <div class="envelope-wrapper">
+            <div class="envelope">
+                <div class="envelope-flap"></div>
+            </div>
+        </div>
 
-                <div class="whatsapp-card">
-                    <h2>First Things First: Get in the WhatsApp</h2>
-                    <p>This is where the magic happens. Real questions, real answers, me actually in there with you. Don't wait on this one — get in now so you don't miss anything before Day 1.</p>
+        <div class="invitation-card">
+            <div class="invitation-header">
+                <h2>First Things First:<br>Get in the WhatsApp</h2>
+            </div>
 
-                    <a href="#" class="btn-whatsapp">
-                        <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-                            <circle cx="13" cy="13" r="12" fill="white" opacity="0.2"/>
-                            <path d="M13 2C6.9 2 2 6.9 2 13c0 1.9.5 3.7 1.4 5.3L2 24l5.7-1.4c1.6 1 3.5 1.5 5.3 1.5 6.1 0 11-4.9 11-11S19.1 2 13 2zm5.5 14.8c-.2.7-1.3 1.1-1.8 1.2-.5.1-1.1.1-1.6-.1-.3-.1-.9-.3-1.4-.7-1.8-.9-2.8-2.7-2.9-2.8-.1-.1-.8-1.1-.8-2.2s.6-1.5.7-1.7c.2-.2.4-.2.6-.2h.4c.1 0 .3-.1.5.3l.6 1.5c.1.2.1.4 0 .7-.1.2-.2.4-.3.5l-.4.4c-.1.1-.2.2-.1.5.1.2.6 1 1.2 1.6.9.8 1.6 1 1.9 1.1.2.1.4.1.5-.1l.6-.7c.2-.2.3-.2.6-.1l1.4.9c.3.1.4.2.5.3z" fill="white"/>
-                        </svg>
-                        Join the VIP WhatsApp Now
-                    </a>
+            <p>This is where the magic happens. Real questions, real answers, me actually in there with you. Don't wait on this one — get in now so you don't miss anything before Day 1.</p>
 
-                    <p class="whatsapp-note">(Takes like 10 seconds. You'll get a welcome message from me right away.)</p>
-                </div>
+            <div style="text-align: center;">
+                <a href="#" class="btn-vip">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5l-1.4 5 5.2-1.3c1.5.9 3.2 1.4 5 1.4 5.5 0 10-4.5 10-10S17.5 2 12 2zm5 13.5c-.2.6-1.2 1-1.7 1.1-.5.1-1 .1-1.5-.1-.3-.1-.8-.3-1.3-.6-1.6-.8-2.6-2.5-2.7-2.6-.1-.1-.7-1-.7-2s.5-1.4.7-1.6c.2-.2.4-.2.5-.2h.4c.1 0 .3-.1.4.3l.5 1.4c.1.2.1.4 0 .6-.1.2-.2.3-.3.5l-.3.4c-.1.1-.2.2-.1.4.1.2.5.9 1.1 1.5.8.7 1.5.9 1.7 1 .2.1.3.1.4-.1l.6-.7c.1-.2.3-.2.5-.1l1.3.8c.2.1.4.2.5.3z" fill="white"/>
+                    </svg>
+                    Join the VIP WhatsApp Now
+                </a>
+                <span class="btn-note">(Takes like 10 seconds. You'll get a welcome message from me right away.)</span>
             </div>
         </div>
     </section>
 
-    <!-- Timeline Section -->
+    <!-- Timeline Gift Boxes -->
     <section class="timeline-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Here's What's Coming Your Way</h2>
-            </div>
+        <div class="timeline-header">
+            <h2>Here's What's Coming Your Way</h2>
+        </div>
 
-            <div class="timeline-grid">
-                <!-- Card 1 -->
-                <div class="timeline-card">
-                    <span class="day-badge">Before Day 1</span>
+        <div class="gift-boxes">
+            <div class="gift-box">
+                <div class="box-lid"></div>
+                <div class="box-content">
+                    <span class="day-tag">Before Day 1</span>
                     <h3>📦 Quick Start Kit</h3>
                     <p><strong>Quick Start Kit</strong> hits your inbox. My $1M shop walkthrough, 50 product examples, and a framework for figuring out what in your shop needs to go. Start poking around before we even kick off.</p>
                 </div>
+            </div>
 
-                <!-- Card 2 -->
-                <div class="timeline-card">
-                    <span class="day-badge">Day 1</span>
+            <div class="gift-box">
+                <div class="box-lid"></div>
+                <div class="box-content">
+                    <span class="day-tag">Day 1</span>
                     <h3>🎬 Challenge Starts!</h3>
                     <p><strong>Challenge starts!</strong> And you've got recordings of everything — so when your kid gets sick on Day 2 (because of course they will), you're not screwed.</p>
                 </div>
+            </div>
 
-                <!-- Card 3 -->
-                <div class="timeline-card">
-                    <span class="day-badge">After Day 2</span>
+            <div class="gift-box">
+                <div class="box-lid"></div>
+                <div class="box-content">
+                    <span class="day-tag">After Day 2</span>
                     <h3>🎤 VIP-Only Q&A</h3>
                     <p><strong>VIP-Only Q&A.</strong> This is YOUR time. Bring questions about YOUR actual shop. Not theory. Your real listings, your real stuck points. I'll answer.</p>
                 </div>
+            </div>
 
-                <!-- Card 4 -->
-                <div class="timeline-card">
-                    <span class="day-badge">Day 4</span>
+            <div class="gift-box">
+                <div class="box-lid"></div>
+                <div class="box-content">
+                    <span class="day-tag">Day 4</span>
                     <h3>🔧 Implementation Call</h3>
                     <p><strong>Implementation Call.</strong> Okay this one's my favorite. This is where I help you actually DO the thing. Not learn. DO. We're getting stuff done together.</p>
                 </div>
@@ -1006,123 +1075,119 @@
         </div>
     </section>
 
-    <!-- Checklist Section -->
+    <!-- Checklist Stationery -->
     <section class="checklist-section">
-        <div class="container">
-            <div class="checklist-card">
-                <h2>Your Little VIP Checklist</h2>
+        <div class="stationery">
+            <div class="stationery-seal">VIP</div>
 
-                <div class="progress-wrapper">
-                    <div class="progress-text" id="progressText">✨ 0 of 4 tasks complete</div>
-                    <div class="progress-bar-bg">
-                        <div class="progress-bar-fill" id="progressBar"></div>
-                    </div>
+            <h2 class="checklist-title">Your Little VIP Checklist</h2>
+
+            <div class="progress-bar-wrapper">
+                <div class="progress-label" id="progressLabel">✨ 0 of 4 tasks complete</div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressFill"></div>
                 </div>
-
-                <div class="checklist-items">
-                    <div class="checklist-item" data-index="0">
-                        <div class="check-circle"></div>
-                        <div class="checklist-text">
-                            <strong>Join the VIP WhatsApp</strong> — Seriously, do this right now. Button's up there ☝️
-                        </div>
-                    </div>
-
-                    <div class="checklist-item" data-index="1">
-                        <div class="check-circle"></div>
-                        <div class="checklist-text">
-                            <strong>Watch for the Quick Start Kit</strong> — It's landing in your inbox before Day 1. Don't let it sit there unopened!
-                        </div>
-                    </div>
-
-                    <div class="checklist-item" data-index="2">
-                        <div class="check-circle"></div>
-                        <div class="checklist-text">
-                            <strong>Block time for your VIP Q&A</strong> — Happening right after Day 2. Put it in your calendar so life doesn't bulldoze it.
-                        </div>
-                    </div>
-
-                    <div class="checklist-item" data-index="3">
-                        <div class="check-circle"></div>
-                        <div class="checklist-text">
-                            <strong>Block time for your Implementation Call</strong> — Day 4. This is the one where everything clicks. Protect this time like it's a doctor's appointment.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="completion-badge" id="completionBadge">
-                    🎉 You're all set! You're going to absolutely crush this challenge!
-                </div>
-
-                <p class="checklist-note">You already did the hardest part — you said yes. These are the easy ones.</p>
             </div>
+
+            <div class="checklist-items">
+                <div class="check-item" data-index="0">
+                    <div class="check-box"></div>
+                    <div class="check-text">
+                        <strong>Join the VIP WhatsApp</strong> — Seriously, do this right now. Button's up there ☝️
+                    </div>
+                </div>
+
+                <div class="check-item" data-index="1">
+                    <div class="check-box"></div>
+                    <div class="check-text">
+                        <strong>Watch for the Quick Start Kit</strong> — It's landing in your inbox before Day 1. Don't let it sit there unopened!
+                    </div>
+                </div>
+
+                <div class="check-item" data-index="2">
+                    <div class="check-box"></div>
+                    <div class="check-text">
+                        <strong>Block time for your VIP Q&A</strong> — Happening right after Day 2. Put it in your calendar so life doesn't bulldoze it.
+                    </div>
+                </div>
+
+                <div class="check-item" data-index="3">
+                    <div class="check-box"></div>
+                    <div class="check-text">
+                        <strong>Block time for your Implementation Call</strong> — Day 4. This is the one where everything clicks. Protect this time like it's a doctor's appointment.
+                    </div>
+                </div>
+            </div>
+
+            <div class="completion-badge" id="completionBadge">
+                🎉 You're all set! You're going to absolutely crush this challenge!
+            </div>
+
+            <p class="checklist-note">You already did the hardest part — you said yes. These are the easy ones.</p>
         </div>
     </section>
 
-    <!-- Closing Section -->
+    <!-- Personal Note -->
     <section class="closing-section">
-        <div class="container">
-            <div class="closing-card">
+        <div class="personal-note">
+            <div class="note-content">
                 <h2>You're Not Just Here to Watch.</h2>
 
-                <div class="closing-text">
-                    <p>Real talk — VIPs don't just sit through the challenge and take pretty notes. They walk out of this with a cleaned-up shop, an actual plan, and real listings ready to go.</p>
+                <p>Real talk — VIPs don't just sit through the challenge and take pretty notes. They walk out of this with a cleaned-up shop, an actual plan, and real listings ready to go.</p>
 
-                    <p>That's why you're here. And that's exactly what we're gonna make happen together.</p>
+                <p>That's why you're here. And that's exactly what we're gonna make happen together.</p>
 
-                    <p>I don't take this lightly. You invested in yourself and I'm gonna make sure it's worth it.</p>
-                </div>
+                <p>I don't take this lightly. You invested in yourself and I'm gonna make sure it's worth it.</p>
 
-                <div class="signature-box">
-                    <p>See you in the WhatsApp!</p>
-                    <p>— Bailey ❤️</p>
+                <div class="signature-block">
+                    <p class="signature-text">See you in the WhatsApp!</p>
+                    <p class="signature-name">— Bailey ❤️</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Mobile Floating Button -->
-    <div class="mobile-float">
-        <a href="#" class="btn-whatsapp">
-            <svg width="22" height="22" viewBox="0 0 26 26" fill="none">
-                <path d="M13 2C6.9 2 2 6.9 2 13c0 1.9.5 3.7 1.4 5.3L2 24l5.7-1.4c1.6 1 3.5 1.5 5.3 1.5 6.1 0 11-4.9 11-11S19.1 2 13 2zm5.5 14.8c-.2.7-1.3 1.1-1.8 1.2-.5.1-1.1.1-1.6-.1-.3-.1-.9-.3-1.4-.7-1.8-.9-2.8-2.7-2.9-2.8-.1-.1-.8-1.1-.8-2.2s.6-1.5.7-1.7c.2-.2.4-.2.6-.2h.4c.1 0 .3-.1.5.3l.6 1.5c.1.2.1.4 0 .7-.1.2-.2.4-.3.5l-.4.4c-.1.1-.2.2-.1.5.1.2.6 1 1.2 1.6.9.8 1.6 1 1.9 1.1.2.1.4.1.5-.1l.6-.7c.2-.2.3-.2.6-.1l1.4.9c.3.1.4.2.5.3z" fill="white"/>
+    <!-- Mobile CTA -->
+    <div class="mobile-cta">
+        <a href="#" class="btn-vip">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5l-1.4 5 5.2-1.3c1.5.9 3.2 1.4 5 1.4 5.5 0 10-4.5 10-10S17.5 2 12 2zm5 13.5c-.2.6-1.2 1-1.7 1.1-.5.1-1 .1-1.5-.1-.3-.1-.8-.3-1.3-.6-1.6-.8-2.6-2.5-2.7-2.6-.1-.1-.7-1-.7-2s.5-1.4.7-1.6c.2-.2.4-.2.5-.2h.4c.1 0 .3-.1.4.3l.5 1.4c.1.2.1.4 0 .6-.1.2-.2.3-.3.5l-.3.4c-.1.1-.2.2-.1.4.1.2.5.9 1.1 1.5.8.7 1.5.9 1.7 1 .2.1.3.1.4-.1l.6-.7c.1-.2.3-.2.5-.1l1.3.8c.2.1.4.2.5.3z" fill="white"/>
             </svg>
             Join VIP WhatsApp
         </a>
     </div>
 
     <script>
-        // Checklist Gamification
-        const items = document.querySelectorAll('.checklist-item');
-        const progressBar = document.getElementById('progressBar');
-        const progressText = document.getElementById('progressText');
+        // Checklist functionality
+        const items = document.querySelectorAll('.check-item');
+        const progressFill = document.getElementById('progressFill');
+        const progressLabel = document.getElementById('progressLabel');
         const completionBadge = document.getElementById('completionBadge');
         let checkedCount = 0;
         const totalItems = items.length;
 
-        // Load saved state
         const savedState = JSON.parse(localStorage.getItem('vipChecklist') || '{}');
 
         items.forEach((item, index) => {
-            const circle = item.querySelector('.check-circle');
+            const box = item.querySelector('.check-box');
 
-            // Restore saved state
             if (savedState[index]) {
-                circle.classList.add('checked');
+                box.classList.add('checked');
                 item.classList.add('completed');
                 checkedCount++;
             }
 
             item.addEventListener('click', function() {
-                const isChecked = circle.classList.contains('checked');
+                const isChecked = box.classList.contains('checked');
 
                 if (!isChecked) {
-                    circle.classList.add('checked');
+                    box.classList.add('checked');
                     item.classList.add('completed');
                     checkedCount++;
-                    createConfettiBurst(circle);
+                    createConfetti(box);
                     savedState[index] = true;
                 } else {
-                    circle.classList.remove('checked');
+                    box.classList.remove('checked');
                     item.classList.remove('completed');
                     checkedCount--;
                     savedState[index] = false;
@@ -1135,8 +1200,8 @@
 
         function updateProgress() {
             const percentage = (checkedCount / totalItems) * 100;
-            progressBar.style.width = percentage + '%';
-            progressText.textContent = `✨ ${checkedCount} of ${totalItems} tasks complete`;
+            progressFill.style.width = percentage + '%';
+            progressLabel.textContent = `✨ ${checkedCount} of ${totalItems} tasks complete`;
 
             if (checkedCount === totalItems) {
                 completionBadge.classList.add('show');
@@ -1146,15 +1211,15 @@
             }
         }
 
-        function createConfettiBurst(element) {
+        function createConfetti(element) {
             const rect = element.getBoundingClientRect();
             const x = rect.left + rect.width / 2;
             const y = rect.top + rect.height / 2;
-            const colors = ['#FF6B9D', '#4ECDC4', '#FFD166', '#FFB3D1'];
+            const colors = ['#FF6B9D', '#4ECDC4', '#D4AF87', '#FFD1DC'];
 
             for (let i = 0; i < 12; i++) {
                 const confetti = document.createElement('div');
-                confetti.className = 'confetti-piece';
+                confetti.className = 'confetti';
                 confetti.style.left = x + 'px';
                 confetti.style.top = y + 'px';
                 confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
@@ -1171,10 +1236,10 @@
         }
 
         function createBigConfetti() {
-            const colors = ['#FF6B9D', '#4ECDC4', '#FFD166', '#FFB3D1'];
+            const colors = ['#FF6B9D', '#4ECDC4', '#D4AF87', '#FFD1DC'];
             for (let i = 0; i < 40; i++) {
                 const confetti = document.createElement('div');
-                confetti.className = 'confetti-piece';
+                confetti.className = 'confetti';
                 confetti.style.left = (window.innerWidth / 2) + 'px';
                 confetti.style.top = (window.innerHeight / 2) + 'px';
                 confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
@@ -1190,25 +1255,24 @@
             }
         }
 
-        // Initial progress update
         updateProgress();
 
         // Welcome confetti
         setTimeout(() => {
-            const colors = ['#FF6B9D', '#4ECDC4', '#FFD166', '#FFB3D1'];
+            const colors = ['#FF6B9D', '#4ECDC4', '#D4AF87', '#FFD1DC'];
             for (let i = 0; i < 25; i++) {
                 setTimeout(() => {
                     const confetti = document.createElement('div');
-                    confetti.className = 'confetti-piece';
+                    confetti.className = 'confetti';
                     confetti.style.left = Math.random() * window.innerWidth + 'px';
                     confetti.style.top = '-20px';
                     confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.animation = `confetti-fall ${3 + Math.random() * 2}s linear forwards`;
+                    confetti.style.animation = `confettiFall ${3 + Math.random() * 2}s linear forwards`;
                     document.body.appendChild(confetti);
                     setTimeout(() => confetti.remove(), 6000);
                 }, i * 150);
             }
-        }, 500);
+        }, 800);
     </script>
 
 </body>
