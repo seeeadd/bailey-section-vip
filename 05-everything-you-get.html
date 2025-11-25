@@ -60,6 +60,9 @@
             line-height: 1.6;
             background: #FFFFFF;
             padding: 100px 24px 0 24px;
+            overflow-x: hidden;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .section-everything h1,
@@ -73,6 +76,8 @@
         .section-everything .container {
             max-width: 1100px;
             margin: 0 auto;
+            width: 100%;
+            overflow-x: hidden;
         }
 
         .section-everything .section-header {
@@ -1261,6 +1266,307 @@
 
             .toolkit-value-note p {
                 font-size: 13px;
+            }
+        }
+
+        /* Extra extra small mobile devices (320px and below) */
+        @media (max-width: 320px) {
+            .section-everything {
+                padding: 30px 6px 0 6px;
+                overflow-x: hidden;
+            }
+
+            .section-everything .container {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+
+            .section-header-enhanced {
+                margin-bottom: 30px;
+                padding: 0 2px;
+            }
+
+            .header-eyebrow {
+                font-size: 9px;
+                padding: 5px 10px;
+                letter-spacing: 1px;
+            }
+
+            .section-title-enhanced {
+                font-size: 17px;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                hyphens: auto;
+            }
+
+            .price-amount {
+                font-size: 0.95em;
+                padding: 0 2px;
+            }
+
+            .price-amount::before {
+                bottom: 4px;
+                height: 3px;
+            }
+
+            .vip-text,
+            .experience-text {
+                letter-spacing: 0;
+            }
+
+            .header-subtitle {
+                font-size: 13px;
+                padding: 0 2px;
+                word-wrap: break-word;
+            }
+
+            /* Component cards */
+            .component-card-simple,
+            .component-card-medium,
+            .component-card-expanded,
+            .component-card-feature {
+                padding: 16px 10px;
+                margin-bottom: 16px;
+                border-radius: 12px;
+            }
+
+            .component-number {
+                width: 36px;
+                height: 36px;
+                font-size: 18px;
+            }
+
+            .component-title {
+                font-size: 16px;
+                word-wrap: break-word;
+            }
+
+            .component-list {
+                gap: 8px;
+            }
+
+            .component-list li,
+            .component-list-detailed li {
+                font-size: 12px;
+                line-height: 1.4;
+                word-wrap: break-word;
+            }
+
+            .component-badge {
+                font-size: 10px;
+                padding: 5px 10px;
+            }
+
+            .component-intro,
+            .component-description {
+                font-size: 13px;
+            }
+
+            .mockup-box {
+                padding: 10px;
+            }
+
+            .mockup-header {
+                font-size: 13px;
+                padding: 10px;
+            }
+
+            .mockup-item {
+                font-size: 11px;
+                padding: 8px 10px;
+            }
+
+            .mockup-items {
+                gap: 8px;
+            }
+
+            .whatsapp-mockup {
+                margin: 0;
+                border-radius: 12px;
+            }
+
+            .whatsapp-header {
+                padding: 12px;
+                gap: 10px;
+            }
+
+            .whatsapp-avatar {
+                width: 40px;
+                height: 40px;
+                font-size: 14px;
+            }
+
+            .whatsapp-name {
+                font-size: 14px;
+            }
+
+            .whatsapp-status {
+                font-size: 11px;
+            }
+
+            .whatsapp-messages {
+                padding: 16px 12px;
+            }
+
+            .message-text {
+                font-size: 12px;
+            }
+
+            .message-bubble {
+                padding: 10px 12px;
+            }
+
+            .qa-sessions {
+                gap: 12px;
+            }
+
+            .qa-session-card {
+                padding: 12px;
+            }
+
+            .qa-day {
+                font-size: 11px;
+            }
+
+            .qa-duration {
+                font-size: 11px;
+            }
+
+            .qa-session-card p {
+                font-size: 12px;
+            }
+
+            .qa-visual-mockup {
+                padding: 12px;
+                border-radius: 12px;
+            }
+
+            .qa-screen-header {
+                font-size: 13px;
+                padding: 12px;
+            }
+
+            .qa-participants {
+                padding: 14px;
+                gap: 8px;
+            }
+
+            .participant-avatar {
+                width: 32px;
+                height: 32px;
+                font-size: 12px;
+            }
+
+            .participant-avatar.main {
+                width: 38px;
+                height: 38px;
+                font-size: 14px;
+            }
+
+            .participant span {
+                font-size: 9px;
+            }
+
+            .participant-more {
+                width: 32px;
+                height: 32px;
+                font-size: 10px;
+            }
+
+            .qa-chat {
+                padding: 14px;
+                gap: 10px;
+            }
+
+            .qa-chat-message {
+                font-size: 12px;
+            }
+
+            .component-card-hero {
+                padding: 24px 10px;
+                border-radius: 14px;
+            }
+
+            .component-hero-badge {
+                font-size: 10px;
+                padding: 5px 10px;
+                margin-bottom: 16px;
+            }
+
+            .component-number-large {
+                width: 46px;
+                height: 46px;
+                font-size: 22px;
+                margin-bottom: 16px;
+            }
+
+            .component-title-hero {
+                font-size: 18px;
+                margin-bottom: 12px;
+                word-wrap: break-word;
+            }
+
+            .component-subtitle-hero {
+                font-size: 13px;
+                margin-bottom: 24px;
+                line-height: 1.5;
+            }
+
+            .toolkit-showcase {
+                gap: 16px;
+                margin-bottom: 24px;
+            }
+
+            .toolkit-row {
+                gap: 16px;
+            }
+
+            .tool-card {
+                padding: 20px 12px 16px;
+            }
+
+            .tool-card h4 {
+                font-size: 13px;
+            }
+
+            .tool-card p {
+                font-size: 11px;
+                line-height: 1.45;
+            }
+
+            .tool-icon {
+                width: 48px;
+                height: 48px;
+                margin-bottom: 14px;
+                border-radius: 14px;
+            }
+
+            .tool-icon svg {
+                width: 32px;
+                height: 32px;
+            }
+
+            .tool-day-tag {
+                font-size: 7px;
+                padding: 3px 6px;
+                top: 10px;
+                right: 10px;
+            }
+
+            .toolkit-value-note {
+                padding: 14px 10px;
+                border-radius: 10px;
+            }
+
+            .toolkit-value-note p {
+                font-size: 12px;
+                gap: 10px;
+            }
+
+            .toolkit-value-note svg {
+                width: 20px;
+                height: 20px;
             }
         }
     </style>
