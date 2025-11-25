@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>You're In! Welcome to VIP 🎉</title>
+    <title>You're In! Welcome to VIP</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,14 +28,11 @@
 
         :root {
             --rose-gold: #C9A87C;
-            --rose-gold-light: #D4B896;
-            --champagne: #F5EBE0;
             --deep-teal: #1F4F4D;
             --teal: #4ECDC4;
             --soft-pink: #FFD1DC;
             --cream: #FFFEF9;
             --warm-gray: #6B6B6B;
-            --light-gray: #F8F6F3;
         }
 
         body {
@@ -47,16 +44,16 @@
             overflow-x: hidden;
         }
 
-        /* Paper grain texture overlay */
+        /* Paper texture */
         body::before {
             content: '';
             position: fixed;
             inset: 0;
             background-image:
-                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.01) 2px, rgba(0,0,0,0.01) 4px),
-                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.01) 2px, rgba(0,0,0,0.01) 4px);
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.008) 2px, rgba(0,0,0,0.008) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.008) 2px, rgba(0,0,0,0.008) 4px);
             pointer-events: none;
-            opacity: 0.4;
+            opacity: 0.5;
             z-index: 9999;
         }
 
@@ -66,130 +63,135 @@
             line-height: 1.1;
         }
 
-        /* Delicate top accent bar */
-        .top-accent {
+        /* Small VIP badge */
+        .vip-badge {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--rose-gold) 30%, var(--rose-gold) 70%, transparent);
+            top: 20px;
+            right: 20px;
+            width: 48px;
+            height: 48px;
             z-index: 1000;
+            animation: fadeIn 0.6s ease 0.3s both;
         }
 
-        /* Small wax seal badge */
-        .wax-seal-badge {
-            position: fixed;
-            top: 24px;
-            right: 24px;
-            width: 52px;
-            height: 52px;
-            background: radial-gradient(circle at 30% 30%, var(--rose-gold-light), var(--rose-gold));
-            border-radius: 50%;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* HERO SECTION - LARGE & IMPACTFUL */
+        .hero {
+            min-height: 85vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 8px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            color: var(--deep-teal);
-            box-shadow:
-                0 2px 8px rgba(201, 168, 124, 0.25),
-                inset 0 1px 2px rgba(255,255,255,0.3),
-                inset 0 -1px 2px rgba(0,0,0,0.15);
-            z-index: 999;
-            animation: subtlePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
+            position: relative;
+            padding: 60px 24px;
+            overflow: hidden;
         }
 
-        @keyframes subtlePop {
-            0% {
-                transform: scale(0.8);
-                opacity: 0;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .wax-seal-badge::before {
+        /* Decorative organic shapes in background */
+        .hero::before {
             content: '';
             position: absolute;
-            inset: 6px;
-            border-radius: 50%;
-            border: 1px dashed rgba(31, 79, 77, 0.2);
+            top: -200px;
+            right: -100px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 209, 220, 0.15), transparent 70%);
+            border-radius: 40% 60% 70% 30% / 50% 60% 40% 50%;
+            animation: float 20s ease-in-out infinite;
         }
 
-        /* Main container */
-        .container {
-            max-width: 880px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 80px 0 100px;
-        }
-
-        .hero-inner {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 56px;
-            align-items: start;
-        }
-
-        .hero h1 {
-            font-size: 64px;
-            color: var(--deep-teal);
-            margin-bottom: 20px;
-            letter-spacing: -0.5px;
-        }
-
-        /* Delicate underline */
-        .hero h1::after {
+        .hero::after {
             content: '';
-            display: block;
-            width: 68px;
-            height: 1px;
-            background: linear-gradient(90deg, var(--rose-gold), transparent);
-            margin-top: 16px;
+            position: absolute;
+            bottom: -150px;
+            left: -150px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(201, 168, 124, 0.1), transparent 70%);
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation: float 25s ease-in-out infinite reverse;
         }
 
-        .hero-subtitle {
-            font-size: 17px;
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(30px, -30px) rotate(5deg); }
+        }
+
+        .hero-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 78px;
+            color: var(--deep-teal);
+            margin-bottom: 28px;
+            letter-spacing: -1px;
+            position: relative;
+        }
+
+        /* Hand-drawn underline */
+        .hero-content h1::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 180px;
+            height: 4px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 4"><path d="M 0 2 Q 45 0, 90 2 T 180 2" stroke="%23C9A87C" stroke-width="2" fill="none" stroke-linecap="round"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .hero-content p {
+            font-size: 20px;
             color: var(--warm-gray);
             line-height: 1.7;
-            font-weight: 400;
+            max-width: 500px;
         }
 
-        /* Video frame - refined */
-        .video-container {
+        /* Custom gift box illustration */
+        .gift-illustration {
             position: relative;
+            animation: giftReveal 1s ease-out 0.5s both;
         }
 
-        .video-frame {
-            position: relative;
-            background: linear-gradient(135deg, #e8e4de, #f0ebe5);
-            padding: 6px;
-            border-radius: 4px;
+        @keyframes giftReveal {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .video-frame-custom {
+            background: white;
+            padding: 8px;
+            border-radius: 8px;
             box-shadow:
-                0 1px 3px rgba(0,0,0,0.08),
-                0 8px 24px rgba(0,0,0,0.06);
-        }
-
-        .video-frame::before {
-            content: '';
-            position: absolute;
-            inset: 3px;
-            border: 1px solid rgba(201, 168, 124, 0.15);
-            border-radius: 2px;
-            pointer-events: none;
+                0 4px 16px rgba(0,0,0,0.08),
+                0 12px 40px rgba(0,0,0,0.06);
+            position: relative;
         }
 
         .video-inner {
-            background: linear-gradient(135deg, #d8d8d8, #e5e5e5);
-            border-radius: 2px;
+            background: linear-gradient(135deg, #e0e0e0, #f0f0f0);
+            border-radius: 4px;
             aspect-ratio: 16/9;
             display: flex;
             align-items: center;
@@ -199,340 +201,274 @@
         }
 
         .play-btn {
-            width: 56px;
-            height: 56px;
+            width: 64px;
+            height: 64px;
             background: var(--deep-teal);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 16px rgba(31, 79, 77, 0.3);
+            box-shadow: 0 6px 20px rgba(31, 79, 77, 0.3);
             cursor: pointer;
-            transition: transform 0.25s ease;
+            transition: all 0.3s ease;
         }
 
         .play-btn:hover {
-            transform: scale(1.05);
+            transform: scale(1.08);
+            box-shadow: 0 8px 28px rgba(31, 79, 77, 0.4);
         }
 
-        .video-caption {
-            margin-top: 12px;
+        .video-note {
+            margin-top: 16px;
             font-family: 'Caveat', cursive;
-            font-size: 16px;
+            font-size: 19px;
             color: var(--warm-gray);
-            text-align: right;
+            text-align: center;
         }
 
-        /* WhatsApp Section */
+        /* Illustrated ribbon accent */
+        .ribbon-accent {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 80px;
+            height: 80px;
+            opacity: 0.6;
+        }
+
+        /* WHATSAPP SECTION */
         .whatsapp-section {
-            padding: 60px 0 80px;
-        }
-
-        .section-label {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--rose-gold);
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .section-label::before,
-        .section-label::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--rose-gold), transparent);
-        }
-
-        .invitation-card {
-            background: white;
-            padding: 48px 52px;
-            border-radius: 8px;
-            border: 1px solid rgba(201, 168, 124, 0.15);
-            box-shadow:
-                0 2px 8px rgba(0,0,0,0.04),
-                0 12px 32px rgba(0,0,0,0.06);
+            padding: 120px 24px;
+            max-width: 1000px;
+            margin: 0 auto;
             position: relative;
         }
 
-        /* Subtle corner detail */
-        .invitation-card::before {
-            content: '';
-            position: absolute;
-            top: 16px;
-            left: 16px;
-            width: 24px;
-            height: 24px;
-            border-top: 1px solid var(--rose-gold);
-            border-left: 1px solid var(--rose-gold);
-            opacity: 0.3;
+        /* Custom phone illustration */
+        .phone-illustration-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 60px;
         }
 
-        .invitation-card::after {
-            content: '';
-            position: absolute;
-            bottom: 16px;
-            right: 16px;
-            width: 24px;
-            height: 24px;
-            border-bottom: 1px solid var(--rose-gold);
-            border-right: 1px solid var(--rose-gold);
-            opacity: 0.3;
+        .invitation-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
-        .invitation-card h2 {
-            font-size: 38px;
+        .invitation-content h2 {
+            font-size: 52px;
             color: var(--deep-teal);
-            margin-bottom: 20px;
-            text-align: center;
+            margin-bottom: 24px;
+            line-height: 1.15;
         }
 
-        .invitation-card p {
-            font-size: 16px;
+        .invitation-content p {
+            font-size: 18px;
             color: var(--warm-gray);
-            line-height: 1.7;
-            text-align: center;
-            margin-bottom: 32px;
-        }
-
-        .btn-wrapper {
-            text-align: center;
+            line-height: 1.8;
+            margin-bottom: 40px;
         }
 
         .btn-vip {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             background: var(--deep-teal);
             color: white;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 500;
-            padding: 16px 36px;
-            border-radius: 4px;
+            padding: 18px 40px;
+            border-radius: 6px;
             text-decoration: none;
             box-shadow:
-                0 2px 8px rgba(31, 79, 77, 0.2),
-                0 6px 20px rgba(31, 79, 77, 0.15);
-            transition: all 0.25s ease;
-            letter-spacing: 0.2px;
+                0 4px 12px rgba(31, 79, 77, 0.25),
+                0 8px 28px rgba(31, 79, 77, 0.15);
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
         }
 
         .btn-vip:hover {
-            transform: translateY(-1px);
+            transform: translateY(-2px);
             box-shadow:
-                0 4px 12px rgba(31, 79, 77, 0.25),
-                0 8px 24px rgba(31, 79, 77, 0.2);
+                0 6px 16px rgba(31, 79, 77, 0.3),
+                0 12px 36px rgba(31, 79, 77, 0.2);
         }
 
         .btn-note {
             display: block;
-            margin-top: 12px;
-            font-size: 13px;
+            margin-top: 16px;
+            font-size: 14px;
             color: #999;
             font-style: italic;
         }
 
-        /* Timeline Section */
+        /* TIMELINE SECTION */
         .timeline-section {
-            padding: 80px 0;
+            padding: 120px 24px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .timeline-header {
             text-align: center;
-            margin-bottom: 56px;
+            margin-bottom: 80px;
         }
 
         .timeline-header h2 {
-            font-size: 46px;
+            font-size: 56px;
+            color: var(--deep-teal);
+            margin-bottom: 16px;
+        }
+
+        /* Visual timeline with custom illustrations */
+        .timeline-visual {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 48px 40px;
+        }
+
+        .timeline-card {
+            position: relative;
+            padding-top: 100px;
+        }
+
+        /* Custom icon container */
+        .timeline-icon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 80px;
+            height: 80px;
+        }
+
+        .timeline-card h3 {
+            font-size: 26px;
             color: var(--deep-teal);
             margin-bottom: 12px;
         }
 
-        /* Timeline as a journey - vertical path */
-        .timeline-path {
-            position: relative;
-            padding-left: 64px;
-        }
-
-        /* Connecting line */
-        .timeline-path::before {
-            content: '';
-            position: absolute;
-            left: 20px;
-            top: 32px;
-            bottom: 32px;
-            width: 1px;
-            background: linear-gradient(180deg, var(--rose-gold), var(--soft-pink));
-            opacity: 0.3;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 40px;
-            padding-left: 24px;
-        }
-
-        .timeline-item:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Timeline dot */
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -44px;
-            top: 8px;
-            width: 8px;
-            height: 8px;
-            background: var(--rose-gold);
-            border-radius: 50%;
-            box-shadow: 0 0 0 4px rgba(201, 168, 124, 0.15);
-        }
-
-        .day-label {
-            font-size: 10px;
+        .timeline-label {
+            font-size: 11px;
             font-weight: 700;
-            letter-spacing: 1.2px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             color: var(--rose-gold);
             margin-bottom: 8px;
+            display: block;
         }
 
-        .timeline-item h3 {
-            font-size: 22px;
-            color: var(--deep-teal);
-            margin-bottom: 8px;
-        }
-
-        .timeline-item p {
-            font-size: 15px;
+        .timeline-card p {
+            font-size: 16px;
             color: var(--warm-gray);
             line-height: 1.7;
         }
 
-        .timeline-item strong {
+        .timeline-card strong {
             color: #2c2c2c;
             font-weight: 500;
         }
 
-        /* Checklist Section */
+        /* CHECKLIST SECTION */
         .checklist-section {
-            padding: 80px 0;
+            padding: 120px 24px;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .checklist-header {
             text-align: center;
-            margin-bottom: 48px;
+            margin-bottom: 60px;
         }
 
         .checklist-header h2 {
-            font-size: 42px;
+            font-size: 50px;
             color: var(--deep-teal);
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
 
         .checklist-subtitle {
-            font-size: 15px;
+            font-size: 17px;
             color: var(--warm-gray);
         }
 
         .checklist-card {
             background: white;
-            padding: 44px 48px;
-            border-radius: 8px;
-            border: 1px solid rgba(201, 168, 124, 0.12);
+            padding: 52px 48px;
+            border-radius: 12px;
             box-shadow:
-                0 2px 8px rgba(0,0,0,0.04),
-                0 12px 32px rgba(0,0,0,0.05);
-            border-left: 3px solid var(--rose-gold);
+                0 4px 16px rgba(0,0,0,0.06),
+                0 12px 40px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--rose-gold);
         }
 
-        /* Progress bar */
         .progress-wrapper {
-            margin-bottom: 36px;
-            padding-bottom: 28px;
-            border-bottom: 1px solid rgba(201, 168, 124, 0.1);
+            margin-bottom: 40px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid rgba(201, 168, 124, 0.15);
         }
 
         .progress-label {
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 500;
             color: var(--deep-teal);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             text-align: center;
         }
 
         .progress-track {
-            height: 6px;
-            background: var(--light-gray);
-            border-radius: 3px;
+            height: 8px;
+            background: #f5f5f5;
+            border-radius: 4px;
             overflow: hidden;
+            position: relative;
         }
 
         .progress-fill {
             height: 100%;
             background: linear-gradient(90deg, var(--teal), var(--rose-gold));
-            border-radius: 3px;
+            border-radius: 4px;
             width: 0%;
-            transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .checklist-items {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 16px;
         }
 
         .check-item {
             display: flex;
             align-items: flex-start;
-            gap: 14px;
-            padding: 16px 20px;
-            background: var(--light-gray);
-            border-radius: 6px;
+            gap: 16px;
+            padding: 20px 24px;
+            background: #fafafa;
+            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.2s ease;
-            border: 1px solid transparent;
+            transition: all 0.25s ease;
+            border: 2px solid transparent;
         }
 
         .check-item:hover {
             background: white;
             border-color: rgba(255, 209, 220, 0.4);
-            transform: translateX(4px);
+            transform: translateX(6px);
         }
 
+        /* Custom checkbox illustration */
         .check-box {
-            width: 20px;
-            height: 20px;
-            border: 2px solid #ddd;
-            border-radius: 50%;
+            width: 24px;
+            height: 24px;
             flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
             margin-top: 2px;
-        }
-
-        .check-box.checked {
-            background: var(--deep-teal);
-            border-color: var(--deep-teal);
-        }
-
-        .check-box.checked::after {
-            content: '✓';
-            color: white;
-            font-size: 12px;
-            font-weight: bold;
+            position: relative;
         }
 
         .check-text {
             flex: 1;
-            font-size: 15px;
+            font-size: 16px;
             color: #2c2c2c;
             line-height: 1.6;
         }
@@ -547,27 +483,27 @@
         }
 
         .completion-message {
-            margin-top: 24px;
-            padding: 20px;
-            background: linear-gradient(135deg, var(--champagne), var(--light-gray));
-            border-radius: 6px;
+            margin-top: 28px;
+            padding: 24px;
+            background: linear-gradient(135deg, #FFF9F5, #FFF5F0);
+            border-radius: 8px;
             text-align: center;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 500;
             color: var(--deep-teal);
-            border: 1px solid rgba(201, 168, 124, 0.2);
+            border: 2px solid rgba(201, 168, 124, 0.2);
             display: none;
         }
 
         .completion-message.show {
             display: block;
-            animation: slideDown 0.4s ease;
+            animation: slideDown 0.5s ease;
         }
 
         @keyframes slideDown {
             from {
                 opacity: 0;
-                transform: translateY(-10px);
+                transform: translateY(-12px);
             }
             to {
                 opacity: 1;
@@ -575,40 +511,32 @@
             }
         }
 
-        /* Closing Section */
+        /* CLOSING SECTION */
         .closing-section {
-            padding: 80px 0 120px;
+            padding: 120px 24px 140px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .closing-card {
             background: var(--deep-teal);
-            padding: 64px 56px;
-            border-radius: 8px;
+            padding: 72px 64px;
+            border-radius: 12px;
             box-shadow:
-                0 4px 16px rgba(31, 79, 77, 0.2),
-                0 16px 48px rgba(31, 79, 77, 0.15);
+                0 6px 20px rgba(31, 79, 77, 0.25),
+                0 20px 56px rgba(31, 79, 77, 0.2);
             position: relative;
             overflow: hidden;
         }
 
-        /* Top accent line */
         .closing-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--rose-gold), var(--rose-gold-light));
-        }
-
-        /* Subtle texture overlay */
-        .closing-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.03), transparent 50%);
-            pointer-events: none;
+            height: 4px;
+            background: linear-gradient(90deg, var(--rose-gold), var(--soft-pink), var(--rose-gold));
         }
 
         .closing-content {
@@ -618,37 +546,37 @@
         }
 
         .closing-card h2 {
-            font-size: 44px;
+            font-size: 52px;
             color: white;
-            margin-bottom: 28px;
+            margin-bottom: 32px;
         }
 
         .closing-card p {
-            font-size: 17px;
-            color: rgba(255,255,255,0.9);
+            font-size: 19px;
+            color: rgba(255,255,255,0.92);
             line-height: 1.8;
-            margin-bottom: 20px;
-            max-width: 620px;
+            margin-bottom: 24px;
+            max-width: 680px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .signature {
-            margin-top: 48px;
-            padding-top: 32px;
-            border-top: 1px solid rgba(201, 168, 124, 0.2);
+            margin-top: 56px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(201, 168, 124, 0.25);
         }
 
         .signature-text {
             font-family: 'Caveat', cursive;
-            font-size: 28px;
-            color: var(--rose-gold-light);
+            font-size: 32px;
+            color: var(--rose-gold);
             font-weight: 600;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
 
         .signature-name {
-            font-size: 15px;
+            font-size: 16px;
             color: var(--soft-pink);
             font-weight: 400;
         }
@@ -656,9 +584,9 @@
         /* Mobile CTA */
         .mobile-cta {
             position: fixed;
-            bottom: 16px;
-            left: 16px;
-            right: 16px;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
             z-index: 998;
             display: none;
         }
@@ -666,16 +594,13 @@
         .mobile-cta .btn-vip {
             width: 100%;
             justify-content: center;
-            box-shadow:
-                0 4px 16px rgba(31, 79, 77, 0.3),
-                0 8px 32px rgba(0,0,0,0.15);
         }
 
         /* Confetti */
         .confetti {
             position: fixed;
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             pointer-events: none;
             z-index: 9998;
         }
@@ -692,222 +617,335 @@
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 20px;
-            }
-
+        @media (max-width: 900px) {
             .hero {
-                padding: 60px 0 80px;
+                min-height: auto;
+                padding: 80px 24px;
             }
 
-            .hero-inner {
+            .hero-grid {
                 grid-template-columns: 1fr;
-                gap: 36px;
+                gap: 48px;
             }
 
-            .hero h1 {
-                font-size: 48px;
+            .hero-content h1 {
+                font-size: 56px;
+            }
+
+            .timeline-visual {
+                grid-template-columns: 1fr;
+                gap: 56px;
+            }
+
+            .invitation-content h2 {
+                font-size: 42px;
             }
 
             .timeline-header h2 {
-                font-size: 38px;
-            }
-
-            .timeline-path {
-                padding-left: 48px;
-            }
-
-            .invitation-card {
-                padding: 36px 28px;
-            }
-
-            .invitation-card h2 {
-                font-size: 32px;
-            }
-
-            .checklist-card {
-                padding: 32px 24px;
+                font-size: 44px;
             }
 
             .checklist-header h2 {
-                font-size: 36px;
-            }
-
-            .closing-card {
-                padding: 48px 32px;
+                font-size: 42px;
             }
 
             .closing-card h2 {
-                font-size: 36px;
+                font-size: 42px;
+            }
+
+            .closing-card {
+                padding: 56px 36px;
+            }
+
+            .checklist-card {
+                padding: 40px 28px;
             }
 
             .mobile-cta {
                 display: block;
             }
         }
+
+        @media (max-width: 600px) {
+            .hero-content h1 {
+                font-size: 44px;
+            }
+
+            .invitation-content h2,
+            .timeline-header h2,
+            .checklist-header h2,
+            .closing-card h2 {
+                font-size: 36px;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Delicate top accent -->
-    <div class="top-accent"></div>
-
-    <!-- Small wax seal badge -->
-    <div class="wax-seal-badge">
-        VIP
+    <!-- VIP Badge -->
+    <div class="vip-badge">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="24" cy="24" r="23" fill="url(#badge-gradient)" stroke="#C9A87C" stroke-width="1"/>
+            <circle cx="24" cy="24" r="18" stroke="#1F4F4D" stroke-width="0.5" stroke-dasharray="2 2" opacity="0.3"/>
+            <text x="24" y="21" font-family="Satoshi, sans-serif" font-size="7" font-weight="700" fill="#1F4F4D" text-anchor="middle" letter-spacing="0.5">VIP</text>
+            <text x="24" y="28" font-family="Satoshi, sans-serif" font-size="5" font-weight="500" fill="#1F4F4D" text-anchor="middle" opacity="0.7">ACCESS</text>
+            <defs>
+                <radialGradient id="badge-gradient" cx="0.3" cy="0.3" r="1">
+                    <stop offset="0%" stop-color="#D4B896"/>
+                    <stop offset="100%" stop-color="#C9A87C"/>
+                </radialGradient>
+            </defs>
+        </svg>
     </div>
 
-    <div class="container">
-
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-inner">
-                <div>
-                    <h1>You're In!<br>Welcome to VIP 🎉</h1>
-                    <p class="hero-subtitle">You just did the thing most people talk themselves out of. That already tells me a lot about you.</p>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1>You're In!<br>Welcome to VIP</h1>
+                    <p>You just did the thing most people talk themselves out of. That already tells me a lot about you.</p>
                 </div>
-                <div class="video-container">
-                    <div class="video-frame">
+                <div class="gift-illustration">
+                    <div class="video-frame-custom">
                         <div class="video-inner">
                             <div class="play-btn">
-                                <svg width="20" height="24" viewBox="0 0 20 24" fill="none">
-                                    <path d="M2 2L18 12L2 22V2Z" fill="white"/>
+                                <svg width="24" height="28" viewBox="0 0 24 28" fill="none">
+                                    <path d="M2 2L22 14L2 26V2Z" fill="white"/>
                                 </svg>
                             </div>
                         </div>
                     </div>
-                    <p class="video-caption">Thank You Video from Bailey</p>
+                    <p class="video-note">A quick thank you from Bailey</p>
+
+                    <!-- Decorative ribbon -->
+                    <svg class="ribbon-accent" viewBox="0 0 80 80" fill="none">
+                        <path d="M20 40 Q40 20, 60 40 T 60 60" stroke="#C9A87C" stroke-width="2" fill="none" opacity="0.4"/>
+                        <circle cx="40" cy="40" r="8" fill="#FFD1DC" opacity="0.3"/>
+                    </svg>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- WhatsApp Section -->
-        <section class="whatsapp-section">
-            <div class="section-label">Your First Step</div>
+    <!-- WHATSAPP SECTION -->
+    <section class="whatsapp-section">
+        <!-- Custom phone illustration -->
+        <div class="phone-illustration-wrapper">
+            <svg width="200" height="200" viewBox="0 0 200 200" fill="none">
+                <!-- Phone outline -->
+                <rect x="40" y="20" width="120" height="160" rx="16" fill="white" stroke="#C9A87C" stroke-width="2"/>
+                <rect x="48" y="32" width="104" height="128" rx="8" fill="#F5F5F5"/>
 
-            <div class="invitation-card">
-                <h2>First Things First:<br>Get in the WhatsApp</h2>
+                <!-- Chat bubbles -->
+                <rect x="60" y="50" width="70" height="24" rx="12" fill="#4ECDC4"/>
+                <rect x="70" y="82" width="60" height="24" rx="12" fill="#FFD1DC"/>
+                <rect x="60" y="114" width="75" height="24" rx="12" fill="#4ECDC4"/>
 
-                <p>This is where the magic happens. Real questions, real answers, me actually in there with you. Don't wait on this one — get in now so you don't miss anything before Day 1.</p>
+                <!-- Decorative hearts -->
+                <path d="M150 60 L152 58 L154 60 L152 62 Z" fill="#FF6B9D" opacity="0.6"/>
+                <path d="M145 100 L147 98 L149 100 L147 102 Z" fill="#FF6B9D" opacity="0.4"/>
 
-                <div class="btn-wrapper">
-                    <a href="#" class="btn-vip">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                            <path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5l-1.4 5 5.2-1.3c1.5.9 3.2 1.4 5 1.4 5.5 0 10-4.5 10-10S17.5 2 12 2zm5 13.5c-.2.6-1.2 1-1.7 1.1-.5.1-1 .1-1.5-.1-.3-.1-.8-.3-1.3-.6-1.6-.8-2.6-2.5-2.7-2.6-.1-.1-.7-1-.7-2s.5-1.4.7-1.6c.2-.2.4-.2.5-.2h.4c.1 0 .3-.1.4.3l.5 1.4c.1.2.1.4 0 .6-.1.2-.2.3-.3.5l-.3.4c-.1.1-.2.2-.1.4.1.2.5.9 1.1 1.5.8.7 1.5.9 1.7 1 .2.1.3.1.4-.1l.6-.7c.1-.2.3-.2.5-.1l1.3.8c.2.1.4.2.5.3z" fill="white"/>
+                <!-- Sparkles -->
+                <circle cx="55" cy="45" r="2" fill="#C9A87C" opacity="0.5"/>
+                <circle cx="148" cy="75" r="2" fill="#C9A87C" opacity="0.5"/>
+                <circle cx="58" cy="130" r="2" fill="#C9A87C" opacity="0.5"/>
+            </svg>
+        </div>
+
+        <div class="invitation-content">
+            <h2>First Things First:<br>Get in the WhatsApp</h2>
+            <p>This is where the magic happens. Real questions, real answers, me actually in there with you. Don't wait on this one — get in now so you don't miss anything before Day 1.</p>
+
+            <div>
+                <a href="#" class="btn-vip">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5l-1.4 5 5.2-1.3c1.5.9 3.2 1.4 5 1.4 5.5 0 10-4.5 10-10S17.5 2 12 2zm5 13.5c-.2.6-1.2 1-1.7 1.1-.5.1-1 .1-1.5-.1-.3-.1-.8-.3-1.3-.6-1.6-.8-2.6-2.5-2.7-2.6-.1-.1-.7-1-.7-2s.5-1.4.7-1.6c.2-.2.4-.2.5-.2h.4c.1 0 .3-.1.4.3l.5 1.4c.1.2.1.4 0 .6-.1.2-.2.3-.3.5l-.3.4c-.1.1-.2.2-.1.4.1.2.5.9 1.1 1.5.8.7 1.5.9 1.7 1 .2.1.3.1.4-.1l.6-.7c.1-.2.3-.2.5-.1l1.3.8c.2.1.4.2.5.3z" fill="white"/>
+                    </svg>
+                    Join the VIP WhatsApp Now
+                </a>
+                <span class="btn-note">(Takes like 10 seconds. You'll get a welcome message from me right away.)</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIMELINE SECTION -->
+    <section class="timeline-section">
+        <div class="timeline-header">
+            <h2>Here's What's Coming Your Way</h2>
+        </div>
+
+        <div class="timeline-visual">
+            <!-- Day 1: Package Box -->
+            <div class="timeline-card">
+                <div class="timeline-icon">
+                    <svg viewBox="0 0 80 80" fill="none">
+                        <rect x="15" y="25" width="50" height="40" rx="2" stroke="#C9A87C" stroke-width="2.5" fill="#FFF5F0"/>
+                        <line x1="40" y1="25" x2="40" y2="65" stroke="#C9A87C" stroke-width="2.5"/>
+                        <line x1="15" y1="45" x2="65" y2="45" stroke="#C9A87C" stroke-width="2.5"/>
+                        <path d="M30 25 L40 15 L50 25" stroke="#C9A87C" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="40" cy="45" r="6" fill="#FFD1DC" opacity="0.4"/>
+                    </svg>
+                </div>
+                <span class="timeline-label">Before Day 1</span>
+                <h3>Quick Start Kit</h3>
+                <p><strong>Quick Start Kit</strong> hits your inbox. My $1M shop walkthrough, 50 product examples, and a framework for figuring out what in your shop needs to go. Start poking around before we even kick off.</p>
+            </div>
+
+            <!-- Day 2: Film Strip -->
+            <div class="timeline-card">
+                <div class="timeline-icon">
+                    <svg viewBox="0 0 80 80" fill="none">
+                        <rect x="20" y="25" width="40" height="30" rx="2" stroke="#C9A87C" stroke-width="2.5" fill="#FFF5F0"/>
+                        <rect x="22" y="28" width="8" height="6" fill="#4ECDC4" opacity="0.3"/>
+                        <rect x="22" y="46" width="8" height="6" fill="#4ECDC4" opacity="0.3"/>
+                        <rect x="50" y="28" width="8" height="6" fill="#4ECDC4" opacity="0.3"/>
+                        <rect x="50" y="46" width="8" height="6" fill="#4ECDC4" opacity="0.3"/>
+                        <circle cx="40" cy="40" r="8" stroke="#C9A87C" stroke-width="2"/>
+                        <polygon points="38,36 38,44 44,40" fill="#C9A87C"/>
+                    </svg>
+                </div>
+                <span class="timeline-label">Day 1</span>
+                <h3>Challenge Starts!</h3>
+                <p><strong>Challenge starts!</strong> And you've got recordings of everything — so when your kid gets sick on Day 2 (because of course they will), you're not screwed.</p>
+            </div>
+
+            <!-- Day 3: Microphone -->
+            <div class="timeline-card">
+                <div class="timeline-icon">
+                    <svg viewBox="0 0 80 80" fill="none">
+                        <rect x="35" y="20" width="10" height="20" rx="5" stroke="#C9A87C" stroke-width="2.5" fill="#FFF5F0"/>
+                        <path d="M28 35 Q28 48, 40 48 Q52 48, 52 35" stroke="#C9A87C" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                        <line x1="40" y1="48" x2="40" y2="58" stroke="#C9A87C" stroke-width="2.5" stroke-linecap="round"/>
+                        <line x1="32" y1="58" x2="48" y2="58" stroke="#C9A87C" stroke-width="2.5" stroke-linecap="round"/>
+                        <circle cx="40" cy="28" r="3" fill="#FFD1DC"/>
+                    </svg>
+                </div>
+                <span class="timeline-label">After Day 2</span>
+                <h3>VIP-Only Q&A</h3>
+                <p><strong>VIP-Only Q&A.</strong> This is YOUR time. Bring questions about YOUR actual shop. Not theory. Your real listings, your real stuck points. I'll answer.</p>
+            </div>
+
+            <!-- Day 4: Tools -->
+            <div class="timeline-card">
+                <div class="timeline-icon">
+                    <svg viewBox="0 0 80 80" fill="none">
+                        <path d="M25 35 L35 25 L45 35 L35 45 Z" stroke="#C9A87C" stroke-width="2.5" fill="#FFF5F0"/>
+                        <circle cx="52" cy="28" r="8" stroke="#C9A87C" stroke-width="2.5" fill="none"/>
+                        <line x1="57" y1="33" x2="63" y2="39" stroke="#C9A87C" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M35 45 L30 55" stroke="#C9A87C" stroke-width="2.5" stroke-linecap="round"/>
+                        <circle cx="40" cy="35" r="4" fill="#4ECDC4" opacity="0.3"/>
+                    </svg>
+                </div>
+                <span class="timeline-label">Day 4</span>
+                <h3>Implementation Call</h3>
+                <p><strong>Implementation Call.</strong> Okay this one's my favorite. This is where I help you actually DO the thing. Not learn. DO. We're getting stuff done together.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHECKLIST SECTION -->
+    <section class="checklist-section">
+        <div class="checklist-header">
+            <h2>Your Little VIP Checklist</h2>
+            <p class="checklist-subtitle">You already did the hardest part — you said yes. These are the easy ones.</p>
+        </div>
+
+        <div class="checklist-card">
+            <div class="progress-wrapper">
+                <div class="progress-label" id="progressLabel">0 of 4 tasks complete</div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+
+            <div class="checklist-items">
+                <div class="check-item" data-index="0">
+                    <div class="check-box">
+                        <svg class="check-empty" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="#ddd" stroke-width="2"/>
                         </svg>
-                        Join the VIP WhatsApp Now
-                    </a>
-                    <span class="btn-note">(Takes like 10 seconds. You'll get a welcome message from me right away.)</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Timeline Section -->
-        <section class="timeline-section">
-            <div class="timeline-header">
-                <h2>Here's What's Coming Your Way</h2>
-            </div>
-
-            <div class="timeline-path">
-                <div class="timeline-item">
-                    <div class="day-label">Before Day 1</div>
-                    <h3>📦 Quick Start Kit</h3>
-                    <p><strong>Quick Start Kit</strong> hits your inbox. My $1M shop walkthrough, 50 product examples, and a framework for figuring out what in your shop needs to go. Start poking around before we even kick off.</p>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="day-label">Day 1</div>
-                    <h3>🎬 Challenge Starts!</h3>
-                    <p><strong>Challenge starts!</strong> And you've got recordings of everything — so when your kid gets sick on Day 2 (because of course they will), you're not screwed.</p>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="day-label">After Day 2</div>
-                    <h3>🎤 VIP-Only Q&A</h3>
-                    <p><strong>VIP-Only Q&A.</strong> This is YOUR time. Bring questions about YOUR actual shop. Not theory. Your real listings, your real stuck points. I'll answer.</p>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="day-label">Day 4</div>
-                    <h3>🔧 Implementation Call</h3>
-                    <p><strong>Implementation Call.</strong> Okay this one's my favorite. This is where I help you actually DO the thing. Not learn. DO. We're getting stuff done together.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Checklist Section -->
-        <section class="checklist-section">
-            <div class="checklist-header">
-                <h2>Your Little VIP Checklist</h2>
-                <p class="checklist-subtitle">You already did the hardest part — you said yes. These are the easy ones.</p>
-            </div>
-
-            <div class="checklist-card">
-                <div class="progress-wrapper">
-                    <div class="progress-label" id="progressLabel">0 of 4 tasks complete</div>
-                    <div class="progress-track">
-                        <div class="progress-fill" id="progressFill"></div>
+                        <svg class="check-filled" viewBox="0 0 24 24" fill="none" style="display: none;">
+                            <circle cx="12" cy="12" r="11" fill="#1F4F4D"/>
+                            <path d="M7 12 L10 15 L17 8" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="check-text">
+                        <strong>Join the VIP WhatsApp</strong> — Seriously, do this right now. Button's up there ☝️
                     </div>
                 </div>
 
-                <div class="checklist-items">
-                    <div class="check-item" data-index="0">
-                        <div class="check-box"></div>
-                        <div class="check-text">
-                            <strong>Join the VIP WhatsApp</strong> — Seriously, do this right now. Button's up there ☝️
-                        </div>
+                <div class="check-item" data-index="1">
+                    <div class="check-box">
+                        <svg class="check-empty" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="#ddd" stroke-width="2"/>
+                        </svg>
+                        <svg class="check-filled" viewBox="0 0 24 24" fill="none" style="display: none;">
+                            <circle cx="12" cy="12" r="11" fill="#1F4F4D"/>
+                            <path d="M7 12 L10 15 L17 8" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </div>
-
-                    <div class="check-item" data-index="1">
-                        <div class="check-box"></div>
-                        <div class="check-text">
-                            <strong>Watch for the Quick Start Kit</strong> — It's landing in your inbox before Day 1. Don't let it sit there unopened!
-                        </div>
-                    </div>
-
-                    <div class="check-item" data-index="2">
-                        <div class="check-box"></div>
-                        <div class="check-text">
-                            <strong>Block time for your VIP Q&A</strong> — Happening right after Day 2. Put it in your calendar so life doesn't bulldoze it.
-                        </div>
-                    </div>
-
-                    <div class="check-item" data-index="3">
-                        <div class="check-box"></div>
-                        <div class="check-text">
-                            <strong>Block time for your Implementation Call</strong> — Day 4. This is the one where everything clicks. Protect this time like it's a doctor's appointment.
-                        </div>
+                    <div class="check-text">
+                        <strong>Watch for the Quick Start Kit</strong> — It's landing in your inbox before Day 1. Don't let it sit there unopened!
                     </div>
                 </div>
 
-                <div class="completion-message" id="completionMessage">
-                    🎉 You're all set! You're going to absolutely crush this challenge!
+                <div class="check-item" data-index="2">
+                    <div class="check-box">
+                        <svg class="check-empty" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="#ddd" stroke-width="2"/>
+                        </svg>
+                        <svg class="check-filled" viewBox="0 0 24 24" fill="none" style="display: none;">
+                            <circle cx="12" cy="12" r="11" fill="#1F4F4D"/>
+                            <path d="M7 12 L10 15 L17 8" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="check-text">
+                        <strong>Block time for your VIP Q&A</strong> — Happening right after Day 2. Put it in your calendar so life doesn't bulldoze it.
+                    </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Closing Section -->
-        <section class="closing-section">
-            <div class="closing-card">
-                <div class="closing-content">
-                    <h2>You're Not Just Here to Watch.</h2>
-
-                    <p>Real talk — VIPs don't just sit through the challenge and take pretty notes. They walk out of this with a cleaned-up shop, an actual plan, and real listings ready to go.</p>
-
-                    <p>That's why you're here. And that's exactly what we're gonna make happen together.</p>
-
-                    <p>I don't take this lightly. You invested in yourself and I'm gonna make sure it's worth it.</p>
-
-                    <div class="signature">
-                        <p class="signature-text">See you in the WhatsApp!</p>
-                        <p class="signature-name">— Bailey ❤️</p>
+                <div class="check-item" data-index="3">
+                    <div class="check-box">
+                        <svg class="check-empty" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="#ddd" stroke-width="2"/>
+                        </svg>
+                        <svg class="check-filled" viewBox="0 0 24 24" fill="none" style="display: none;">
+                            <circle cx="12" cy="12" r="11" fill="#1F4F4D"/>
+                            <path d="M7 12 L10 15 L17 8" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="check-text">
+                        <strong>Block time for your Implementation Call</strong> — Day 4. This is the one where everything clicks. Protect this time like it's a doctor's appointment.
                     </div>
                 </div>
             </div>
-        </section>
 
-    </div>
+            <div class="completion-message" id="completionMessage">
+                You're all set! You're going to absolutely crush this challenge!
+            </div>
+        </div>
+    </section>
+
+    <!-- CLOSING SECTION -->
+    <section class="closing-section">
+        <div class="closing-card">
+            <div class="closing-content">
+                <h2>You're Not Just Here to Watch.</h2>
+
+                <p>Real talk — VIPs don't just sit through the challenge and take pretty notes. They walk out of this with a cleaned-up shop, an actual plan, and real listings ready to go.</p>
+
+                <p>That's why you're here. And that's exactly what we're gonna make happen together.</p>
+
+                <p>I don't take this lightly. You invested in yourself and I'm gonna make sure it's worth it.</p>
+
+                <div class="signature">
+                    <p class="signature-text">See you in the WhatsApp!</p>
+                    <p class="signature-name">— Bailey</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Mobile CTA -->
     <div class="mobile-cta">
@@ -920,7 +958,7 @@
     </div>
 
     <script>
-        // Checklist functionality
+        // Checklist functionality with custom SVG checkboxes
         const items = document.querySelectorAll('.check-item');
         const progressFill = document.getElementById('progressFill');
         const progressLabel = document.getElementById('progressLabel');
@@ -931,25 +969,29 @@
         const savedState = JSON.parse(localStorage.getItem('vipChecklist') || '{}');
 
         items.forEach((item, index) => {
-            const box = item.querySelector('.check-box');
+            const emptyCheck = item.querySelector('.check-empty');
+            const filledCheck = item.querySelector('.check-filled');
 
             if (savedState[index]) {
-                box.classList.add('checked');
+                emptyCheck.style.display = 'none';
+                filledCheck.style.display = 'block';
                 item.classList.add('completed');
                 checkedCount++;
             }
 
             item.addEventListener('click', function() {
-                const isChecked = box.classList.contains('checked');
+                const isChecked = item.classList.contains('completed');
 
                 if (!isChecked) {
-                    box.classList.add('checked');
+                    emptyCheck.style.display = 'none';
+                    filledCheck.style.display = 'block';
                     item.classList.add('completed');
                     checkedCount++;
-                    createConfetti(box);
+                    createConfetti(item);
                     savedState[index] = true;
                 } else {
-                    box.classList.remove('checked');
+                    emptyCheck.style.display = 'block';
+                    filledCheck.style.display = 'none';
                     item.classList.remove('completed');
                     checkedCount--;
                     savedState[index] = false;
@@ -979,41 +1021,41 @@
             const y = rect.top + rect.height / 2;
             const colors = ['#FF6B9D', '#4ECDC4', '#C9A87C', '#FFD1DC'];
 
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < 12; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
                 confetti.style.left = x + 'px';
                 confetti.style.top = y + 'px';
                 confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.animation = 'burst 0.6s ease-out forwards';
+                confetti.style.animation = 'burst 0.7s ease-out forwards';
 
-                const angle = (i / 10) * Math.PI * 2;
-                const distance = 40 + Math.random() * 30;
+                const angle = (i / 12) * Math.PI * 2;
+                const distance = 50 + Math.random() * 40;
                 confetti.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
                 confetti.style.setProperty('--ty', Math.sin(angle) * distance + 'px');
 
                 document.body.appendChild(confetti);
-                setTimeout(() => confetti.remove(), 600);
+                setTimeout(() => confetti.remove(), 700);
             }
         }
 
         function createBigConfetti() {
             const colors = ['#FF6B9D', '#4ECDC4', '#C9A87C', '#FFD1DC'];
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < 35; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
                 confetti.style.left = (window.innerWidth / 2) + 'px';
                 confetti.style.top = (window.innerHeight / 2) + 'px';
                 confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.animation = 'burst 0.8s ease-out forwards';
+                confetti.style.animation = 'burst 0.9s ease-out forwards';
 
-                const angle = (i / 30) * Math.PI * 2;
-                const distance = 80 + Math.random() * 100;
+                const angle = (i / 35) * Math.PI * 2;
+                const distance = 90 + Math.random() * 120;
                 confetti.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
                 confetti.style.setProperty('--ty', Math.sin(angle) * distance + 'px');
 
                 document.body.appendChild(confetti);
-                setTimeout(() => confetti.remove(), 800);
+                setTimeout(() => confetti.remove(), 900);
             }
         }
 
