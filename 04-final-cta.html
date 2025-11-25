@@ -8,7 +8,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,700,900&display=swap" rel="stylesheet">
 
     <style>
@@ -28,53 +28,62 @@
             font-display: swap;
         }
 
-        * {
+        /* Scoped reset - only affects this section */
+        .section-final-cta,
+        .section-final-cta *,
+        .section-final-cta *::before,
+        .section-final-cta *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
+        .section-final-cta {
             --pink-primary: #FF6B9D;
             --pink-dark: #C7254E;
+            --pink-light: #FFB3D1;
             --teal-primary: #4ECDC4;
             --teal-dark: #2F5F61;
+            --teal-light: #A8E6E3;
             --gold: #FFD166;
             --gold-dark: #F4A261;
+            --cream: #FAF7F2;
             --navy: #2F5F61;
-        }
-
-        body {
             font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
             font-weight: 500;
             -webkit-font-smoothing: antialiased;
             color: #333;
             line-height: 1.6;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Ogg', Georgia, serif;
-            font-weight: 700;
-        }
-
-        .section {
             background: linear-gradient(135deg, var(--navy) 0%, var(--teal-dark) 100%);
-            padding: 100px 24px;
+            padding: 100px 24px 0 24px;
             position: relative;
             overflow: hidden;
         }
 
-        /* Texture */
-        .section::before {
+        /* Subtle texture */
+        .section-final-cta::before {
             content: '';
             position: absolute;
             inset: 0;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-            opacity: 0.06;
+            opacity: 0.04;
             pointer-events: none;
         }
 
-        .container {
+        /* Decorative glow */
+        .section-final-cta::after {
+            content: '';
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(78, 205, 196, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .section-final-cta .container {
             max-width: 900px;
             margin: 0 auto;
             text-align: center;
@@ -82,313 +91,179 @@
             z-index: 2;
         }
 
-        /* Scrolling text */
-        .scroll-text {
-            font-family: 'Satoshi', sans-serif;
-            font-size: 12px;
+        /* Price Hero */
+        .price-hero {
+            margin-bottom: 48px;
+        }
+
+        .section-final-cta .cta-price-amount {
+            font-family: 'Ogg', Georgia, serif;
+            font-size: 100px;
             font-weight: 700;
-            letter-spacing: 3px;
-            color: rgba(255, 255, 255, 0.5);
-            text-transform: uppercase;
-            margin-bottom: 32px;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        /* Early Bird Badge */
-        .early-bird-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 2px solid var(--gold-dark);
-            border-radius: 30px;
-            padding: 14px 28px;
-            margin-bottom: 40px;
-        }
-
-        .flame-icon {
-            width: 20px;
-            height: 20px;
-        }
-
-        .early-bird-text {
-            font-family: 'Satoshi', sans-serif;
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--gold);
-        }
-
-        /* Price Display */
-        .price-display {
-            margin-bottom: 40px;
-        }
-
-        .price-row {
-            display: flex;
-            align-items: baseline;
-            justify-content: center;
-        }
-
-        .price-currency {
-            font-family: 'Caveat', cursive;
-            font-size: 48px;
-            font-weight: 600;
-            color: #FFFFFF;
-        }
-
-        .price-amount {
-            font-family: 'Caveat', cursive;
-            font-size: 120px;
-            font-weight: 700;
-            color: #FFFFFF;
+            color: #FFFFFF !important;
             line-height: 1;
+            margin-bottom: 16px;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
         }
 
-        .price-note {
-            font-family: 'Fira Mono', monospace;
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.6);
-            margin-top: 12px;
+        .price-tagline {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 20px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
 
-        /* Features Summary */
-        .features-box {
-            background: rgba(255, 255, 255, 0.08);
-            border: 2px solid rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
-            padding: 32px 40px;
-            margin-bottom: 40px;
-            text-align: left;
+        .price-tagline strong {
+            color: var(--gold);
+            font-weight: 700;
         }
 
-        .features-list {
+        /* Features Grid */
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px 32px;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 0;
+        }
+
+        .features-column {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 32px;
+            text-align: left;
         }
 
         .feature-item {
             display: flex;
-            align-items: center;
-            gap: 12px;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 20px;
             font-family: 'Satoshi', sans-serif;
             font-size: 16px;
             font-weight: 500;
             color: rgba(255, 255, 255, 0.9);
-        }
-
-        .check-icon {
-            width: 20px;
-            height: 20px;
-            flex-shrink: 0;
-        }
-
-        /* CTA Button */
-        .btn-cta {
-            display: inline-block;
-            padding: 24px 64px;
-            background: linear-gradient(135deg, var(--pink-primary), var(--pink-dark));
-            color: #FFFFFF;
-            font-family: 'Satoshi', sans-serif;
-            font-size: 18px;
-            font-weight: 700;
-            text-decoration: none;
-            border: none;
-            border-radius: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 28px rgba(255, 107, 157, 0.4);
-            margin-bottom: 20px;
-        }
-
-        .btn-cta:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 8px 36px rgba(255, 107, 157, 0.55);
-        }
-
-        .secure-note {
-            font-family: 'Satoshi', sans-serif;
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .lock-icon {
-            width: 14px;
-            height: 14px;
-        }
-
-        /* Bailey Quote */
-        .bailey-quote {
-            margin-top: 60px;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        .quote-text {
-            font-family: 'Caveat', cursive;
-            font-size: 26px;
-            color: rgba(255, 255, 255, 0.9);
             line-height: 1.5;
-            max-width: 600px;
-            margin: 0 auto 16px;
         }
 
-        .quote-author {
-            font-family: 'Satoshi', sans-serif;
-            font-size: 16px;
-            color: rgba(255, 255, 255, 0.6);
+        .feature-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            margin-top: 2px;
         }
 
         /* Responsive */
         @media (max-width: 700px) {
-            .features-list {
+            .features-grid {
                 grid-template-columns: 1fr;
+                gap: 16px;
             }
 
-            .price-amount {
-                font-size: 90px;
+            .section-final-cta .cta-price-amount {
+                font-size: 72px;
             }
 
-            .price-currency {
-                font-size: 36px;
+            .price-tagline {
+                font-size: 17px;
             }
 
-            .btn-cta {
-                width: 100%;
-                padding: 20px 32px;
-            }
-
-            .features-box {
+            .features-column {
                 padding: 24px;
             }
         }
 
         @media (max-width: 500px) {
-            .section {
-                padding: 70px 16px;
+            .section-final-cta {
+                padding: 70px 16px 0 16px;
             }
 
-            .price-amount {
-                font-size: 72px;
+            .section-final-cta .cta-price-amount {
+                font-size: 56px;
             }
 
-            .early-bird-badge {
-                padding: 12px 20px;
+            .price-tagline {
+                font-size: 16px;
             }
 
-            .early-bird-text {
-                font-size: 14px;
+            .feature-item {
+                font-size: 15px;
             }
         }
     </style>
 </head>
 <body>
 
-<section class="section">
+<section class="section-final-cta">
     <div class="container">
-        <!-- Scrolling keywords -->
-        <div class="scroll-text">
-            VIP ACCESS · LIFETIME RECORDINGS · PERSONAL SUPPORT · FAST ACTION TOOLKIT · VIP ACCESS · LIFETIME RECORDINGS
-        </div>
-
-        <!-- Early Bird Badge -->
-        <div class="early-bird-badge">
-            <!-- Flame icon -->
-            <svg class="flame-icon" viewBox="0 0 20 20" fill="none">
-                <path d="M10 2C10 2 12 5 12 8C12 10 11 11 10 11C9 11 8 10 8 8C8 6 7 4 5 3C5 3 6 7 6 10C6 15 8 18 10 18C14 18 17 14 17 10C17 5 14 3 10 2Z" fill="url(#flameG)"/>
-                <path d="M10 6C10 6 11 8 11 10C11 12 10 13 10 13C10 13 9 12 9 10C9 8 10 6 10 6Z" fill="#FFD166"/>
-                <defs>
-                    <linearGradient id="flameG" x1="10" y1="2" x2="10" y2="18" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#FFD166"/>
-                        <stop offset="0.5" stop-color="#F4A261"/>
-                        <stop offset="1" stop-color="#E76F51"/>
-                    </linearGradient>
-                </defs>
-            </svg>
-            <span class="early-bird-text">Early Bird Pricing Ends When Webinar Ends</span>
-        </div>
-
-        <!-- Price -->
-        <div class="price-display">
-            <div class="price-row">
-                <span class="price-currency">$</span>
-                <span class="price-amount">67</span>
-            </div>
-            <p class="price-note">One-time payment · Lifetime access · 7-day guarantee</p>
-        </div>
-
-        <!-- Features Box -->
-        <div class="features-box">
-            <div class="features-list">
-                <div class="feature-item">
-                    <svg class="check-icon" viewBox="0 0 20 20" fill="none">
-                        <circle cx="10" cy="10" r="9" fill="#4ECDC4"/>
-                        <path d="M6 10L9 13L14 7" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                    All 3 days recorded (lifetime access)
-                </div>
-                <div class="feature-item">
-                    <svg class="check-icon" viewBox="0 0 20 20" fill="none">
-                        <circle cx="10" cy="10" r="9" fill="#4ECDC4"/>
-                        <path d="M6 10L9 13L14 7" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                    Quick Start Kit sent early
-                </div>
-                <div class="feature-item">
-                    <svg class="check-icon" viewBox="0 0 20 20" fill="none">
-                        <circle cx="10" cy="10" r="9" fill="#4ECDC4"/>
-                        <path d="M6 10L9 13L14 7" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                    7-day WhatsApp with Bailey
-                </div>
-                <div class="feature-item">
-                    <svg class="check-icon" viewBox="0 0 20 20" fill="none">
-                        <circle cx="10" cy="10" r="9" fill="#4ECDC4"/>
-                        <path d="M6 10L9 13L14 7" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                    2 VIP-only Q&A sessions
-                </div>
-                <div class="feature-item">
-                    <svg class="check-icon" viewBox="0 0 20 20" fill="none">
-                        <circle cx="10" cy="10" r="9" fill="#4ECDC4"/>
-                        <path d="M6 10L9 13L14 7" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                    Fast Action Toolkit ($197 value)
-                </div>
-                <div class="feature-item">
-                    <svg class="check-icon" viewBox="0 0 20 20" fill="none">
-                        <circle cx="10" cy="10" r="9" fill="#4ECDC4"/>
-                        <path d="M6 10L9 13L14 7" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                    7-day money-back guarantee
-                </div>
-            </div>
-        </div>
-
-        <!-- CTA Button -->
-        <a href="#upgrade" class="btn-cta">CLAIM YOUR VIP SPOT FOR $67</a>
-
-        <!-- Secure Note -->
-        <p class="secure-note">
-            <svg class="lock-icon" viewBox="0 0 14 14" fill="none">
-                <rect x="3" y="6" width="8" height="6" rx="1" fill="rgba(255,255,255,0.6)"/>
-                <path d="M5 6V4C5 2.9 5.9 2 7 2C8.1 2 9 2.9 9 4V6" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" fill="none"/>
-            </svg>
-            Secure checkout · Instant access to Quick Start Kit
-        </p>
-
-        <!-- Bailey Quote -->
-        <div class="bailey-quote">
-            <p class="quote-text">
-                "I built this VIP experience for people who are done waiting for 'someday.' If that's you—let's go."
+        <!-- Price Hero -->
+        <div class="price-hero">
+            <div class="cta-price-amount">$67</div>
+            <p class="price-tagline">
+                That's it. <strong>Lifetime access.</strong> And if it doesn't feel worth it, you get it back.
             </p>
-            <p class="quote-author">— Bailey</p>
         </div>
+
+        <!-- Features Grid -->
+        <div class="features-grid">
+            <!-- Left Column -->
+            <div class="features-column">
+                <div class="feature-item">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" fill="var(--teal-primary)" opacity="0.3"/>
+                        <path d="M8 12L11 15L16 9" stroke="var(--teal-light)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Every session recorded in HD so you never fall behind</span>
+                </div>
+                <div class="feature-item">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" fill="var(--teal-primary)" opacity="0.3"/>
+                        <path d="M8 12L11 15L16 9" stroke="var(--teal-light)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Bailey in your pocket for 7 days via private WhatsApp</span>
+                </div>
+                <div class="feature-item">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" fill="var(--teal-primary)" opacity="0.3"/>
+                        <path d="M8 12L11 15L16 9" stroke="var(--teal-light)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Actual tools you'll use, not just more stuff to "review later"</span>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="features-column">
+                <div class="feature-item">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" fill="var(--gold)" opacity="0.3"/>
+                        <path d="M8 12L11 15L16 9" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Quick Start Kit hits your inbox the moment you join</span>
+                </div>
+                <div class="feature-item">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" fill="var(--gold)" opacity="0.3"/>
+                        <path d="M8 12L11 15L16 9" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Two VIP-only Q&A sessions where Bailey looks at real shops</span>
+                </div>
+                <div class="feature-item">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" fill="var(--gold)" opacity="0.3"/>
+                        <path d="M8 12L11 15L16 9" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Don't love it? Email us within 7 days and get your $67 back</span>
+                </div>
+            </div>
+        </div>
+
     </div>
 </section>
 
