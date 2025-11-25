@@ -205,6 +205,9 @@ export default function ProgressBar(props) {
                         flex: 1,
                         position: "relative",
                         minWidth: 100,
+                        height: `${barHeight}px`,
+                        display: "flex",
+                        alignItems: "center",
                     }}
                 >
                     {/* Percentage Above Bar */}
