@@ -25,90 +25,210 @@
 
     .story-part1-section {
         --pink-primary: #FF6B9D;
-        --pink-dark: #C7254E;
-        --pink-light: #FFE4ED;
+        --pink-dark: #E91E63;
+        --pink-light: #FFF0F5;
+        --pink-soft: #FFD6E8;
         --teal-primary: #4ECDC4;
         --teal-dark: #2F5F61;
-        --teal-light: #E8F8F7;
-        --gold: #D4A853;
-        --gold-dark: #F4A261;
-        --cream: #FDF5E8;
-        --cream-dark: #F5EFE7;
-        --peach: #FFECD9;
-        --navy: #2F5F61;
-        --gray-dark: #444444;
-        --gray-medium: #666666;
+        --teal-light: #E0F7F6;
+        --coral: #FF7F7F;
+        --gold: #FFD700;
+        --gold-warm: #F4A261;
+        --lavender: #E8E0F0;
+        --mint: #98D7C2;
+        --cream: #FFFAF5;
+        --navy: #2D3748;
+        --gray-dark: #4A5568;
+        --gray-medium: #718096;
 
         font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
-        background: linear-gradient(180deg, var(--peach) 0%, var(--cream) 100%);
-        padding: 80px 0;
+        background: linear-gradient(180deg, #FFF5F8 0%, #FFF0F5 30%, #FFEEF5 60%, #FFF8FA 100%);
+        padding: 80px 0 100px;
         overflow-x: hidden;
+        position: relative;
+    }
+
+    /* Floating decorative elements */
+    .story-part1-section::before {
+        content: '';
+        position: absolute;
+        top: 100px;
+        left: 5%;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(255, 107, 157, 0.1) 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+    }
+
+    .story-part1-section::after {
+        content: '';
+        position: absolute;
+        bottom: 200px;
+        right: 10%;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(78, 205, 196, 0.08) 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+    }
+
+    /* Floating decorations */
+    .floating-decor {
+        position: absolute;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .decor-heart-1 {
+        top: 120px;
+        left: 8%;
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .decor-heart-2 {
+        top: 400px;
+        right: 5%;
+        animation: float 8s ease-in-out infinite reverse;
+    }
+
+    .decor-sparkle-1 {
+        top: 200px;
+        right: 15%;
+        animation: sparkle 3s ease-in-out infinite;
+    }
+
+    .decor-sparkle-2 {
+        top: 600px;
+        left: 3%;
+        animation: sparkle 4s ease-in-out infinite 1s;
+    }
+
+    .decor-star-1 {
+        top: 350px;
+        left: 2%;
+        animation: twinkle 4s ease-in-out infinite;
+    }
+
+    .decor-flower-1 {
+        bottom: 300px;
+        right: 3%;
+        animation: sway 5s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(5deg); }
+    }
+
+    @keyframes sparkle {
+        0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+        50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+    }
+
+    @keyframes twinkle {
+        0%, 100% { transform: scale(1); opacity: 0.7; }
+        50% { transform: scale(1.3); opacity: 1; }
+    }
+
+    @keyframes sway {
+        0%, 100% { transform: rotate(-5deg); }
+        50% { transform: rotate(5deg); }
     }
 
     .story-part1-section .container {
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 40px;
+        position: relative;
+        z-index: 2;
     }
 
     /* Hero Header */
     .story-hero-header {
         text-align: center;
-        margin-bottom: 60px;
+        margin-bottom: 70px;
+        position: relative;
     }
+
+    .header-decoration {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+
+    .header-decoration span {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+    }
+
+    .header-decoration span:nth-child(1) { background: var(--pink-primary); }
+    .header-decoration span:nth-child(2) { background: var(--teal-primary); }
+    .header-decoration span:nth-child(3) { background: var(--gold); }
+    .header-decoration span:nth-child(4) { background: var(--coral); }
+    .header-decoration span:nth-child(5) { background: var(--mint); }
 
     .story-hero-header .subtitle {
         font-family: 'Caveat', cursive;
-        font-size: 28px;
+        font-size: 32px;
         color: var(--pink-dark);
-        margin-bottom: 8px;
+        margin-bottom: 10px;
+        position: relative;
+        display: inline-block;
     }
 
     .story-hero-header h1 {
         font-family: 'Ogg', Georgia, serif;
-        font-size: 72px;
-        line-height: 1.1;
-        color: var(--gold);
-        margin-bottom: 0;
+        font-size: 80px;
+        line-height: 0.95;
+        margin-bottom: 5px;
+        position: relative;
     }
 
     .story-hero-header h1 .figure-text {
         font-family: 'Satoshi', sans-serif;
         font-weight: 900;
-        font-size: 100px;
-        background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+        font-size: 110px;
+        background: linear-gradient(135deg, #FFB347 0%, #FF6B9D 50%, #FF6B9D 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         display: inline-block;
         line-height: 1;
+        filter: drop-shadow(2px 2px 0px rgba(255, 107, 157, 0.2));
     }
 
     .story-hero-header .etsy-line {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 20px;
-        margin-top: -10px;
+        gap: 24px;
+        margin-top: 5px;
     }
 
     .story-hero-header .etsy-text {
         font-family: 'Ogg', Georgia, serif;
-        font-size: 42px;
+        font-size: 48px;
         color: var(--teal-primary);
+        position: relative;
     }
 
     .story-hero-header .shop-owner {
         font-family: 'Ogg', Georgia, serif;
-        font-size: 42px;
-        color: var(--gold);
+        font-size: 48px;
+        background: linear-gradient(135deg, #FFB347 0%, #F4A261 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
     }
 
     /* Two Column Layout */
     .story-content-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 60px;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 80px;
         align-items: start;
     }
 
@@ -119,87 +239,421 @@
 
     .dear-fellow {
         font-family: 'Caveat', cursive;
-        font-size: 32px;
+        font-size: 38px;
         color: var(--teal-dark);
-        margin-bottom: 24px;
+        margin-bottom: 32px;
+        position: relative;
+        display: inline-block;
     }
 
-    .story-para {
-        font-size: 17px;
+    .dear-fellow::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, var(--teal-primary), transparent);
+        border-radius: 2px;
+    }
+
+    /* Story cards for key moments */
+    .story-card {
+        background: white;
+        border-radius: 20px;
+        padding: 28px 32px;
+        margin-bottom: 28px;
+        box-shadow: 0 4px 20px rgba(255, 107, 157, 0.08);
+        border: 1px solid rgba(255, 107, 157, 0.1);
+        position: relative;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .story-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(255, 107, 157, 0.12);
+    }
+
+    .story-card p {
+        font-size: 18px;
+        line-height: 1.8;
+        color: var(--gray-dark);
+    }
+
+    /* Intro card special styling */
+    .intro-card {
+        background: linear-gradient(135deg, #FFF 0%, #FFF5F8 100%);
+        border-left: 4px solid var(--pink-primary);
+    }
+
+    .intro-card .guru-text {
+        color: var(--gray-dark);
+    }
+
+    .intro-card .highlight-box {
+        display: inline;
+        background: linear-gradient(180deg, transparent 50%, rgba(78, 205, 196, 0.3) 50%);
+        font-weight: 600;
+        color: var(--teal-dark);
+        font-style: italic;
+    }
+
+    /* Simple text */
+    .simple-text {
+        font-size: 18px;
         line-height: 1.8;
         color: var(--gray-dark);
         margin-bottom: 24px;
+        padding-left: 20px;
+        border-left: 3px solid var(--pink-soft);
     }
 
-    .story-para .highlight-teal {
+    .simple-text.centered {
+        text-align: center;
+        border-left: none;
+        padding-left: 0;
+        font-weight: 500;
+    }
+
+    /* Working card */
+    .working-card {
+        background: linear-gradient(135deg, #FFF 0%, var(--teal-light) 100%);
+        border: 2px dashed var(--teal-primary);
+    }
+
+    .working-card .metric-badge {
+        display: inline-block;
+        background: var(--teal-primary);
+        color: white;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 6px 14px;
+        border-radius: 20px;
+        margin-bottom: 16px;
+    }
+
+    .working-card .underline-text {
+        text-decoration: underline;
+        text-decoration-color: var(--teal-primary);
+        text-underline-offset: 3px;
+    }
+
+    /* Drowning card - dramatic styling */
+    .drowning-card {
+        background: linear-gradient(135deg, var(--pink-light) 0%, #FFF 100%);
+        border: none;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .drowning-card::before {
+        content: '😰';
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 32px;
+        opacity: 0.3;
+    }
+
+    .drowning-card .drowning-text {
+        font-weight: 700;
+        color: var(--pink-dark);
+        font-size: 20px;
+    }
+
+    /* Struggle list */
+    .struggle-list {
+        background: white;
+        border-radius: 20px;
+        padding: 28px 32px;
+        margin-bottom: 28px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .struggle-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 12px 0;
+        border-bottom: 1px dashed rgba(255, 107, 157, 0.2);
+    }
+
+    .struggle-item:last-child {
+        border-bottom: none;
+    }
+
+    .struggle-icon {
+        flex-shrink: 0;
+        width: 36px;
+        height: 36px;
+        background: var(--pink-light);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+    }
+
+    .struggle-item p {
+        font-size: 17px;
+        line-height: 1.6;
+        color: var(--gray-dark);
+    }
+
+    .struggle-item .pink-text { color: var(--pink-dark); font-weight: 500; }
+    .struggle-item .gold-text { color: var(--gold-warm); font-weight: 500; }
+    .struggle-item .teal-text { color: var(--teal-primary); font-weight: 500; }
+
+    /* Worst part card */
+    .worst-part-card {
+        background: linear-gradient(135deg, #FFF8E7 0%, #FFF 100%);
+        border-left: 4px solid var(--gold-warm);
+        position: relative;
+    }
+
+    .worst-part-card::before {
+        content: '"';
+        position: absolute;
+        top: -10px;
+        left: 20px;
+        font-family: 'Ogg', Georgia, serif;
+        font-size: 80px;
+        color: var(--gold);
+        opacity: 0.3;
+        line-height: 1;
+    }
+
+    .worst-part-card p {
+        position: relative;
+        z-index: 1;
+    }
+
+    .worst-part-card em {
+        font-style: italic;
+        color: var(--navy);
+        font-weight: 500;
+    }
+
+    .worst-part-card .freedom-text {
+        color: var(--pink-dark);
+        font-weight: 700;
+    }
+
+    /* Prison quote - big dramatic */
+    .prison-quote {
+        text-align: center;
+        padding: 40px 30px;
+        margin: 36px 0;
+        position: relative;
+    }
+
+    .prison-quote::before,
+    .prison-quote::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--pink-primary), var(--teal-primary));
+        border-radius: 2px;
+    }
+
+    .prison-quote::before { top: 0; }
+    .prison-quote::after { bottom: 0; }
+
+    .prison-quote p {
+        font-family: 'Ogg', Georgia, serif;
+        font-size: 28px;
+        line-height: 1.4;
+        color: var(--navy);
+    }
+
+    .prison-quote .prison-word {
+        background: linear-gradient(180deg, transparent 60%, var(--pink-soft) 60%);
+        font-weight: 500;
+    }
+
+    .prison-quote .business-word {
+        color: var(--gold-warm);
+        text-decoration: underline;
+        text-decoration-color: var(--gold);
+        text-underline-offset: 4px;
+    }
+
+    /* Breaking point card */
+    .breaking-point-card {
+        background: linear-gradient(135deg, var(--navy) 0%, var(--teal-dark) 100%);
+        color: white;
+        border-radius: 24px;
+        padding: 32px;
+        margin-bottom: 28px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .breaking-point-card::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -20%;
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(circle, rgba(255, 107, 157, 0.2) 0%, transparent 70%);
+        pointer-events: none;
+    }
+
+    .breaking-point-card .break-label {
+        display: inline-block;
+        background: var(--pink-primary);
+        color: white;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        padding: 6px 14px;
+        border-radius: 20px;
+        margin-bottom: 16px;
+    }
+
+    .breaking-point-card p {
+        font-size: 18px;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.95);
+    }
+
+    .breaking-point-card .highlight-moment {
         color: var(--teal-primary);
         font-style: italic;
     }
 
-    .story-para .highlight-pink {
-        color: var(--pink-dark);
+    /* Second job styling */
+    .second-job-card {
+        background: white;
+        border-radius: 20px;
+        padding: 28px 32px;
+        margin-bottom: 28px;
+        border: 2px solid var(--lavender);
+        position: relative;
     }
 
-    .story-para .highlight-gold {
-        color: var(--gold-dark);
+    .second-job-card p {
+        font-size: 18px;
+        line-height: 1.8;
+        color: var(--gray-dark);
     }
 
-    .story-para .underline {
+    .second-job-card .underline-job {
         text-decoration: underline;
-        text-decoration-color: var(--gray-dark);
+        text-decoration-color: var(--pink-primary);
+        text-decoration-thickness: 2px;
+        text-underline-offset: 3px;
+        font-weight: 600;
     }
 
-    .story-para strong {
-        font-weight: 700;
+    /* Realization card - the key moment */
+    .realization-card {
+        background: linear-gradient(135deg, var(--pink-light) 0%, var(--teal-light) 100%);
+        border-radius: 24px;
+        padding: 36px;
+        margin: 36px 0;
+        text-align: center;
+        border: 2px solid var(--pink-primary);
+        position: relative;
+    }
+
+    .realization-card::before {
+        content: '💡';
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 40px;
+        background: white;
+        padding: 0 15px;
+    }
+
+    .realization-card .knew-text {
+        font-family: 'Caveat', cursive;
+        font-size: 28px;
+        color: var(--pink-dark);
+        margin-bottom: 12px;
+    }
+
+    .realization-card .main-realization {
+        font-family: 'Ogg', Georgia, serif;
+        font-size: 24px;
+        line-height: 1.5;
         color: var(--navy);
     }
 
-    .story-para em {
-        font-style: italic;
+    .realization-card .work-differently {
+        background: linear-gradient(180deg, transparent 50%, var(--gold) 50%);
+        font-weight: 600;
     }
 
-    .struggle-text {
-        color: var(--pink-dark);
+    /* CTA card - right place */
+    .right-place-card {
+        background: white;
+        border-radius: 20px;
+        padding: 28px 32px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 20px rgba(78, 205, 196, 0.1);
+        border-left: 4px solid var(--teal-primary);
     }
 
-    .realization-text {
-        font-weight: 700;
-        color: var(--navy);
+    .right-place-card p {
+        font-size: 18px;
+        line-height: 1.8;
+        color: var(--gray-dark);
     }
 
-    .that-knew {
-        color: var(--pink-dark);
-        font-weight: 700;
-    }
-
-    .italic-emphasis {
-        font-style: italic;
+    .closing-text {
+        font-family: 'Caveat', cursive;
+        font-size: 26px;
         color: var(--teal-dark);
+        text-align: center;
+        margin-top: 20px;
     }
 
     /* Right Column - Images */
     .story-images-column {
         position: relative;
-        min-height: 700px;
+        min-height: 900px;
     }
 
     .polaroid-stack {
-        position: relative;
+        position: sticky;
+        top: 40px;
         width: 100%;
-        height: 100%;
+        height: 800px;
     }
 
     .polaroid {
         position: absolute;
         background: white;
-        padding: 12px 12px 40px 12px;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        padding: 12px 12px 45px 12px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+        border-radius: 4px;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .polaroid::after {
+        content: '';
+        position: absolute;
+        bottom: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, rgba(255, 107, 157, 0.3), transparent);
     }
 
     .polaroid:hover {
-        transform: scale(1.02);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        transform: scale(1.05) rotate(0deg) !important;
+        box-shadow: 0 20px 60px rgba(255, 107, 157, 0.2);
         z-index: 10;
     }
 
@@ -208,67 +662,63 @@
         height: 100%;
         object-fit: cover;
         display: block;
+        border-radius: 2px;
     }
 
     .polaroid-placeholder {
         width: 100%;
         height: 100%;
-        background: repeating-linear-gradient(
-            45deg,
-            #f0f0f0,
-            #f0f0f0 10px,
-            #e8e8e8 10px,
-            #e8e8e8 20px
-        );
+        background: linear-gradient(135deg, var(--pink-light) 0%, var(--teal-light) 100%);
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #999;
+        color: var(--gray-medium);
         font-size: 14px;
         text-align: center;
+        border-radius: 2px;
     }
 
     .polaroid-1 {
         top: 0;
-        right: 20px;
-        width: 220px;
-        transform: rotate(3deg);
+        right: 40px;
+        width: 200px;
+        transform: rotate(4deg);
     }
 
     .polaroid-1 .polaroid-inner {
-        width: 196px;
-        height: 196px;
-    }
-
-    .polaroid-2 {
-        top: 200px;
-        right: 180px;
-        width: 200px;
-        transform: rotate(-5deg);
-    }
-
-    .polaroid-2 .polaroid-inner {
         width: 176px;
         height: 176px;
     }
 
+    .polaroid-2 {
+        top: 220px;
+        right: 180px;
+        width: 180px;
+        transform: rotate(-6deg);
+    }
+
+    .polaroid-2 .polaroid-inner {
+        width: 156px;
+        height: 156px;
+    }
+
     .polaroid-3 {
-        top: 380px;
-        right: 60px;
-        width: 220px;
-        transform: rotate(4deg);
+        top: 400px;
+        right: 50px;
+        width: 210px;
+        transform: rotate(3deg);
     }
 
     .polaroid-3 .polaroid-inner {
-        width: 196px;
-        height: 196px;
+        width: 186px;
+        height: 186px;
     }
 
     .polaroid-4 {
-        top: 560px;
-        right: 200px;
+        top: 620px;
+        right: 160px;
         width: 190px;
-        transform: rotate(-3deg);
+        transform: rotate(-4deg);
     }
 
     .polaroid-4 .polaroid-inner {
@@ -276,112 +726,94 @@
         height: 166px;
     }
 
+    /* Cute polaroid decorations */
+    .polaroid-decor {
+        position: absolute;
+        pointer-events: none;
+    }
+
+    .tape {
+        width: 60px;
+        height: 20px;
+        background: rgba(255, 215, 0, 0.6);
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%) rotate(-2deg);
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .heart-sticker {
+        position: absolute;
+        bottom: -15px;
+        right: -10px;
+        font-size: 24px;
+    }
+
+    .star-sticker {
+        position: absolute;
+        top: -10px;
+        right: -5px;
+        font-size: 20px;
+    }
+
     /* Meet Your Coach Button */
     .meet-coach-btn {
         position: absolute;
-        top: 120px;
-        right: -20px;
-        background: white;
-        border: 2px solid var(--pink-primary);
-        color: var(--pink-dark);
+        top: 150px;
+        right: 0;
+        background: linear-gradient(135deg, var(--pink-primary) 0%, var(--coral) 100%);
+        border: none;
+        color: white;
         font-size: 12px;
         font-weight: 700;
         letter-spacing: 1.5px;
         text-transform: uppercase;
-        padding: 12px 20px;
+        padding: 14px 24px;
+        border-radius: 30px;
         cursor: pointer;
         transition: all 0.3s ease;
         z-index: 20;
+        box-shadow: 0 4px 20px rgba(255, 107, 157, 0.3);
     }
 
     .meet-coach-btn:hover {
-        background: var(--pink-primary);
-        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(255, 107, 157, 0.4);
+    }
+
+    .meet-coach-btn::before {
+        content: '👋 ';
     }
 
     /* Responsive */
-    @media (max-width: 1024px) {
-        .story-part1-section .container {
-            padding: 0 30px;
-        }
-
+    @media (max-width: 1100px) {
         .story-content-grid {
-            gap: 40px;
-        }
-
-        .story-hero-header h1 {
-            font-size: 56px;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
         }
 
         .story-hero-header h1 .figure-text {
-            font-size: 80px;
+            font-size: 90px;
         }
 
-        .story-hero-header .etsy-text,
-        .story-hero-header .shop-owner {
-            font-size: 36px;
-        }
-
-        .polaroid-1 {
-            width: 180px;
-            right: 10px;
-        }
-
-        .polaroid-1 .polaroid-inner {
-            width: 156px;
-            height: 156px;
-        }
-
-        .polaroid-2 {
-            width: 160px;
-            right: 140px;
-            top: 170px;
-        }
-
-        .polaroid-2 .polaroid-inner {
-            width: 136px;
-            height: 136px;
-        }
-
-        .polaroid-3 {
-            width: 180px;
-            right: 30px;
-            top: 320px;
-        }
-
-        .polaroid-3 .polaroid-inner {
-            width: 156px;
-            height: 156px;
-        }
-
-        .polaroid-4 {
-            width: 160px;
-            right: 160px;
-            top: 470px;
-        }
-
-        .polaroid-4 .polaroid-inner {
-            width: 136px;
-            height: 136px;
-        }
-
-        .story-images-column {
-            min-height: 580px;
-        }
-
-        .meet-coach-btn {
-            top: 90px;
-            right: 0;
-        }
+        .polaroid-1 { right: 20px; width: 180px; }
+        .polaroid-1 .polaroid-inner { width: 156px; height: 156px; }
+        .polaroid-2 { right: 140px; width: 160px; }
+        .polaroid-2 .polaroid-inner { width: 136px; height: 136px; }
+        .polaroid-3 { right: 20px; width: 180px; }
+        .polaroid-3 .polaroid-inner { width: 156px; height: 156px; }
+        .polaroid-4 { right: 120px; width: 160px; }
+        .polaroid-4 .polaroid-inner { width: 136px; height: 136px; }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
         .story-part1-section {
-            padding: 60px 0;
+            padding: 60px 0 80px;
         }
 
         .story-part1-section .container {
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
         .story-content-grid {
@@ -396,101 +828,71 @@
 
         .story-images-column {
             order: 1;
-            min-height: 400px;
+            min-height: auto;
             display: flex;
             justify-content: center;
         }
 
         .polaroid-stack {
-            width: 350px;
-            height: 400px;
-        }
-
-        .story-hero-header {
-            margin-bottom: 40px;
-        }
-
-        .story-hero-header .subtitle {
-            font-size: 22px;
+            position: relative;
+            top: 0;
+            width: 100%;
+            max-width: 400px;
+            height: 380px;
         }
 
         .story-hero-header h1 {
-            font-size: 42px;
+            font-size: 60px;
         }
 
         .story-hero-header h1 .figure-text {
-            font-size: 64px;
-        }
-
-        .story-hero-header .etsy-line {
-            flex-wrap: wrap;
-            gap: 10px;
+            font-size: 75px;
         }
 
         .story-hero-header .etsy-text,
         .story-hero-header .shop-owner {
-            font-size: 28px;
+            font-size: 36px;
         }
 
         .dear-fellow {
-            font-size: 28px;
-        }
-
-        .story-para {
-            font-size: 16px;
+            font-size: 32px;
         }
 
         .polaroid-1 {
             top: 10px;
-            left: 10px;
+            left: 20px;
             right: auto;
             width: 160px;
-            transform: rotate(-4deg);
+            transform: rotate(-5deg);
         }
-
-        .polaroid-1 .polaroid-inner {
-            width: 136px;
-            height: 136px;
-        }
+        .polaroid-1 .polaroid-inner { width: 136px; height: 136px; }
 
         .polaroid-2 {
             top: 0;
-            right: 10px;
+            right: 20px;
             left: auto;
             width: 150px;
-            transform: rotate(5deg);
+            transform: rotate(6deg);
         }
-
-        .polaroid-2 .polaroid-inner {
-            width: 126px;
-            height: 126px;
-        }
+        .polaroid-2 .polaroid-inner { width: 126px; height: 126px; }
 
         .polaroid-3 {
-            top: 180px;
-            left: 50px;
+            top: 190px;
+            left: 70px;
             right: auto;
             width: 150px;
-            transform: rotate(3deg);
+            transform: rotate(4deg);
         }
-
-        .polaroid-3 .polaroid-inner {
-            width: 126px;
-            height: 126px;
-        }
+        .polaroid-3 .polaroid-inner { width: 126px; height: 126px; }
 
         .polaroid-4 {
             top: 200px;
-            right: 30px;
+            right: 40px;
             left: auto;
             width: 140px;
-            transform: rotate(-5deg);
+            transform: rotate(-4deg);
         }
-
-        .polaroid-4 .polaroid-inner {
-            width: 116px;
-            height: 116px;
-        }
+        .polaroid-4 .polaroid-inner { width: 116px; height: 116px; }
 
         .meet-coach-btn {
             position: relative;
@@ -498,189 +900,172 @@
             right: auto;
             display: block;
             width: fit-content;
-            margin: 40px auto 0;
+            margin: 30px auto 0;
+        }
+
+        .floating-decor {
+            display: none;
         }
     }
 
-    @media (max-width: 480px) {
-        .story-part1-section {
-            padding: 40px 0;
+    @media (max-width: 600px) {
+        .story-hero-header .subtitle {
+            font-size: 26px;
         }
 
+        .story-hero-header h1 {
+            font-size: 48px;
+        }
+
+        .story-hero-header h1 .figure-text {
+            font-size: 60px;
+        }
+
+        .story-hero-header .etsy-line {
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .story-hero-header .etsy-text,
+        .story-hero-header .shop-owner {
+            font-size: 32px;
+        }
+
+        .story-card {
+            padding: 24px;
+            border-radius: 16px;
+        }
+
+        .story-card p {
+            font-size: 16px;
+        }
+
+        .prison-quote p {
+            font-size: 22px;
+        }
+
+        .realization-card {
+            padding: 30px 24px;
+        }
+
+        .realization-card .knew-text {
+            font-size: 24px;
+        }
+
+        .realization-card .main-realization {
+            font-size: 20px;
+        }
+
+        .polaroid-stack {
+            height: 340px;
+        }
+
+        .polaroid-1 { width: 140px; }
+        .polaroid-1 .polaroid-inner { width: 116px; height: 116px; }
+        .polaroid-2 { width: 130px; }
+        .polaroid-2 .polaroid-inner { width: 106px; height: 106px; }
+        .polaroid-3 { width: 130px; top: 170px; }
+        .polaroid-3 .polaroid-inner { width: 106px; height: 106px; }
+        .polaroid-4 { width: 120px; top: 180px; }
+        .polaroid-4 .polaroid-inner { width: 96px; height: 96px; }
+    }
+
+    @media (max-width: 400px) {
         .story-part1-section .container {
             padding: 0 16px;
         }
 
         .story-hero-header .subtitle {
-            font-size: 20px;
-        }
-
-        .story-hero-header h1 {
-            font-size: 32px;
-        }
-
-        .story-hero-header h1 .figure-text {
-            font-size: 52px;
-        }
-
-        .story-hero-header .etsy-text,
-        .story-hero-header .shop-owner {
-            font-size: 24px;
-        }
-
-        .dear-fellow {
-            font-size: 24px;
-        }
-
-        .story-para {
-            font-size: 15px;
-            margin-bottom: 20px;
-        }
-
-        .polaroid-stack {
-            width: 300px;
-            height: 350px;
-        }
-
-        .polaroid-1 {
-            width: 140px;
-            top: 5px;
-            left: 5px;
-        }
-
-        .polaroid-1 .polaroid-inner {
-            width: 116px;
-            height: 116px;
-        }
-
-        .polaroid-2 {
-            width: 130px;
-            top: 0;
-            right: 5px;
-        }
-
-        .polaroid-2 .polaroid-inner {
-            width: 106px;
-            height: 106px;
-        }
-
-        .polaroid-3 {
-            width: 130px;
-            top: 160px;
-            left: 40px;
-        }
-
-        .polaroid-3 .polaroid-inner {
-            width: 106px;
-            height: 106px;
-        }
-
-        .polaroid-4 {
-            width: 120px;
-            top: 175px;
-            right: 20px;
-        }
-
-        .polaroid-4 .polaroid-inner {
-            width: 96px;
-            height: 96px;
-        }
-
-        .story-images-column {
-            min-height: 350px;
-        }
-
-        .meet-coach-btn {
-            font-size: 11px;
-            padding: 10px 16px;
-            margin-top: 30px;
-        }
-    }
-
-    @media (max-width: 350px) {
-        .story-part1-section .container {
-            padding: 0 12px;
-        }
-
-        .story-hero-header .subtitle {
-            font-size: 18px;
-        }
-
-        .story-hero-header h1 {
-            font-size: 26px;
-        }
-
-        .story-hero-header h1 .figure-text {
-            font-size: 42px;
-        }
-
-        .story-hero-header .etsy-text,
-        .story-hero-header .shop-owner {
-            font-size: 20px;
-        }
-
-        .dear-fellow {
             font-size: 22px;
         }
 
-        .story-para {
-            font-size: 14px;
+        .story-hero-header h1 .figure-text {
+            font-size: 48px;
+        }
+
+        .story-hero-header .etsy-text,
+        .story-hero-header .shop-owner {
+            font-size: 26px;
+        }
+
+        .dear-fellow {
+            font-size: 26px;
+        }
+
+        .story-card {
+            padding: 20px;
+        }
+
+        .story-card p,
+        .simple-text {
+            font-size: 15px;
+        }
+
+        .prison-quote p {
+            font-size: 20px;
+        }
+
+        .breaking-point-card {
+            padding: 24px;
+        }
+
+        .struggle-list {
+            padding: 20px;
         }
 
         .polaroid-stack {
-            width: 260px;
+            max-width: 300px;
             height: 300px;
         }
 
-        .polaroid-1 {
-            width: 120px;
-        }
-
-        .polaroid-1 .polaroid-inner {
-            width: 96px;
-            height: 96px;
-        }
-
-        .polaroid-2 {
-            width: 110px;
-        }
-
-        .polaroid-2 .polaroid-inner {
-            width: 86px;
-            height: 86px;
-        }
-
-        .polaroid-3 {
-            width: 110px;
-            top: 140px;
-        }
-
-        .polaroid-3 .polaroid-inner {
-            width: 86px;
-            height: 86px;
-        }
-
-        .polaroid-4 {
-            width: 100px;
-            top: 150px;
-        }
-
-        .polaroid-4 .polaroid-inner {
-            width: 76px;
-            height: 76px;
-        }
-
-        .story-images-column {
-            min-height: 280px;
-        }
+        .polaroid-1 { width: 120px; left: 10px; }
+        .polaroid-1 .polaroid-inner { width: 96px; height: 96px; }
+        .polaroid-2 { width: 110px; right: 10px; }
+        .polaroid-2 .polaroid-inner { width: 86px; height: 86px; }
+        .polaroid-3 { width: 110px; top: 150px; left: 50px; }
+        .polaroid-3 .polaroid-inner { width: 86px; height: 86px; }
+        .polaroid-4 { width: 100px; top: 155px; right: 25px; }
+        .polaroid-4 .polaroid-inner { width: 76px; height: 76px; }
     }
 </style>
 
 <section class="story-part1-section">
+    <!-- Floating decorations -->
+    <svg class="floating-decor decor-heart-1" width="40" height="36" viewBox="0 0 40 36" fill="none">
+        <path d="M20 36L17.1 33.3C6.8 24 0 18 0 10.6C0 4.8 4.8 0 10.6 0C13.9 0 17 1.5 20 4.1C23 1.5 26.1 0 29.4 0C35.2 0 40 4.8 40 10.6C40 18 33.2 24 22.9 33.3L20 36Z" fill="#FFD6E8"/>
+    </svg>
+
+    <svg class="floating-decor decor-heart-2" width="32" height="29" viewBox="0 0 40 36" fill="none">
+        <path d="M20 36L17.1 33.3C6.8 24 0 18 0 10.6C0 4.8 4.8 0 10.6 0C13.9 0 17 1.5 20 4.1C23 1.5 26.1 0 29.4 0C35.2 0 40 4.8 40 10.6C40 18 33.2 24 22.9 33.3L20 36Z" fill="#E0F7F6"/>
+    </svg>
+
+    <svg class="floating-decor decor-sparkle-1" width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <path d="M16 0L18.5 13.5L32 16L18.5 18.5L16 32L13.5 18.5L0 16L13.5 13.5L16 0Z" fill="#FFD700" fill-opacity="0.6"/>
+    </svg>
+
+    <svg class="floating-decor decor-sparkle-2" width="24" height="24" viewBox="0 0 32 32" fill="none">
+        <path d="M16 0L18.5 13.5L32 16L18.5 18.5L16 32L13.5 18.5L0 16L13.5 13.5L16 0Z" fill="#FF6B9D" fill-opacity="0.4"/>
+    </svg>
+
+    <svg class="floating-decor decor-star-1" width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <path d="M18 0L22.1 13.9L36 18L22.1 22.1L18 36L13.9 22.1L0 18L13.9 13.9L18 0Z" fill="#4ECDC4" fill-opacity="0.3"/>
+    </svg>
+
+    <svg class="floating-decor decor-flower-1" width="40" height="40" viewBox="0 0 40 40" fill="none">
+        <circle cx="20" cy="12" r="8" fill="#FFD6E8"/>
+        <circle cx="28" cy="20" r="8" fill="#FFD6E8"/>
+        <circle cx="20" cy="28" r="8" fill="#FFD6E8"/>
+        <circle cx="12" cy="20" r="8" fill="#FFD6E8"/>
+        <circle cx="20" cy="20" r="6" fill="#FF6B9D"/>
+    </svg>
+
     <div class="container">
 
         <!-- Hero Header -->
         <div class="story-hero-header">
+            <div class="header-decoration">
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
             <div class="subtitle">From Stay-at-Home Mom to</div>
             <h1><span class="figure-text">7-Figure</span></h1>
             <div class="etsy-line">
@@ -696,29 +1081,73 @@
             <div class="story-text-column">
                 <h2 class="dear-fellow">Dear Fellow Etsy Business Owner:</h2>
 
-                <p class="story-para">Here's something most gurus won't tell you: <span class="highlight-teal">Success without freedom isn't success at all.</span></p>
+                <!-- Intro card -->
+                <div class="story-card intro-card">
+                    <p><span class="guru-text">Here's something most gurus won't tell you:</span> <span class="highlight-box">Success without freedom isn't success at all.</span></p>
+                </div>
 
-                <p class="story-para">I learned that the hard way.</p>
+                <p class="simple-text centered">I learned that the hard way.</p>
 
-                <p class="story-para">My handmade Etsy shop was "<span class="underline">working</span>" by every traditional metric. Orders coming in daily. Steady revenue. Growing customer base.</p>
+                <!-- Working metrics card -->
+                <div class="story-card working-card">
+                    <div class="metric-badge">By the Numbers</div>
+                    <p>My handmade Etsy shop was "<span class="underline-text">working</span>" by every traditional metric. Orders coming in daily. Steady revenue. Growing customer base.</p>
+                </div>
 
-                <p class="story-para">But behind the scenes? <span class="underline">I was drowning.</span></p>
+                <!-- Drowning card -->
+                <div class="story-card drowning-card">
+                    <p>But behind the scenes? <span class="drowning-text">I was drowning.</span></p>
+                </div>
 
-                <p class="story-para"><span class="struggle-text">Long nights fulfilling orders after my three kids went to bed.</span> <span class="highlight-gold">A garage overflowing with inventory.</span> <span class="highlight-teal">Constant shipping drama.</span></p>
+                <!-- Struggle list -->
+                <div class="struggle-list">
+                    <div class="struggle-item">
+                        <div class="struggle-icon">🌙</div>
+                        <p><span class="pink-text">Long nights fulfilling orders after my three kids went to bed.</span></p>
+                    </div>
+                    <div class="struggle-item">
+                        <div class="struggle-icon">📦</div>
+                        <p><span class="gold-text">A garage overflowing with inventory.</span></p>
+                    </div>
+                    <div class="struggle-item">
+                        <div class="struggle-icon">🚚</div>
+                        <p><span class="teal-text">Constant shipping drama.</span></p>
+                    </div>
+                </div>
 
-                <p class="story-para">And the worst part - <em>I was pregnant with my fourth child</em>, still packaging orders at midnight, wondering if this was really the "<span class="highlight-pink">freedom</span>" I'd been chasing.</p>
+                <!-- Worst part card -->
+                <div class="story-card worst-part-card">
+                    <p>And the worst part - <em>I was pregnant with my fourth child</em>, still packaging orders at midnight, wondering if this was really the "<span class="freedom-text">freedom</span>" I'd been chasing.</p>
+                </div>
 
-                <p class="story-para">I'd built a prison and called it a <span class="highlight-gold underline">business</span>.</p>
+                <!-- Prison quote -->
+                <div class="prison-quote">
+                    <p>I'd built a <span class="prison-word">prison</span> and called it a <span class="business-word">business</span>.</p>
+                </div>
 
-                <p class="story-para">The breaking point came when I realized my "successful" shop <span class="highlight-teal italic-emphasis">meant I was trading every spare moment for money.</span></p>
+                <!-- Breaking point card -->
+                <div class="breaking-point-card">
+                    <div class="break-label">The Breaking Point</div>
+                    <p>The breaking point came when I realized my "successful" shop <span class="highlight-moment">meant I was trading every spare moment for money.</span></p>
+                </div>
 
-                <p class="story-para">My hobby had become a <span class="underline">second job</span> - except this one followed me home, invaded my weekends, and stole time from my kids.</p>
+                <!-- Second job card -->
+                <div class="story-card second-job-card">
+                    <p>My hobby had become a <span class="underline-job">second job</span> - except this one followed me home, invaded my weekends, and stole time from my kids.</p>
+                </div>
 
-                <p class="story-para"><span class="that-knew">That's when I knew:</span> <strong>I didn't need to work harder. I needed to work completely differently.</strong></p>
+                <!-- Realization card -->
+                <div class="realization-card">
+                    <div class="knew-text">That's when I knew:</div>
+                    <p class="main-realization">I didn't need to work harder. I needed to <span class="work-differently">work completely differently.</span></p>
+                </div>
 
-                <p class="story-para">If you want to build a real Etsy business that grows while you sleep - without the handmade hustle, shipping drama, or sacrificing your actual life for "success"...</p>
+                <!-- Right place card -->
+                <div class="story-card right-place-card">
+                    <p>If you want to build a real Etsy business that grows while you sleep - without the handmade hustle, shipping drama, or sacrificing your actual life for "success"...</p>
+                </div>
 
-                <p class="story-para"><span class="italic-emphasis">... then you're in the right place.</span></p>
+                <p class="closing-text">... then you're in the right place. ✨</p>
             </div>
 
             <!-- Right Column - Images -->
@@ -726,25 +1155,29 @@
                 <div class="polaroid-stack">
                     <!-- Polaroid 1 -->
                     <div class="polaroid polaroid-1">
+                        <div class="tape"></div>
                         <div class="polaroid-inner">
                             <!-- Replace with: <img src="YOUR_IMAGE_URL" alt="Description" class="polaroid-image"> -->
-                            <div class="polaroid-placeholder">Image 1<br>Placeholder</div>
+                            <div class="polaroid-placeholder">Image 1</div>
                         </div>
+                        <span class="heart-sticker">💕</span>
                     </div>
 
                     <!-- Polaroid 2 -->
                     <div class="polaroid polaroid-2">
                         <div class="polaroid-inner">
                             <!-- Replace with: <img src="YOUR_IMAGE_URL" alt="Description" class="polaroid-image"> -->
-                            <div class="polaroid-placeholder">Image 2<br>Placeholder</div>
+                            <div class="polaroid-placeholder">Image 2</div>
                         </div>
+                        <span class="star-sticker">⭐</span>
                     </div>
 
                     <!-- Polaroid 3 -->
                     <div class="polaroid polaroid-3">
+                        <div class="tape"></div>
                         <div class="polaroid-inner">
                             <!-- Replace with: <img src="YOUR_IMAGE_URL" alt="Description" class="polaroid-image"> -->
-                            <div class="polaroid-placeholder">Image 3<br>Placeholder</div>
+                            <div class="polaroid-placeholder">Image 3</div>
                         </div>
                     </div>
 
@@ -752,8 +1185,9 @@
                     <div class="polaroid polaroid-4">
                         <div class="polaroid-inner">
                             <!-- Replace with: <img src="YOUR_IMAGE_URL" alt="Description" class="polaroid-image"> -->
-                            <div class="polaroid-placeholder">Image 4<br>Placeholder</div>
+                            <div class="polaroid-placeholder">Image 4</div>
                         </div>
+                        <span class="heart-sticker">🌸</span>
                     </div>
 
                     <!-- Meet Your Coach Button -->
