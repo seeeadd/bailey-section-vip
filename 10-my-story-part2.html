@@ -1,0 +1,1263 @@
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+
+<style>
+    @font-face {
+        font-family: 'Ogg';
+        src: url('https://cdn.jsdelivr.net/gh/nicxvan/ogg-font@master/fonts/Ogg-Medium.woff2') format('woff2');
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    /* Scoped reset */
+    .story-section,
+    .story-section *,
+    .story-section *::before,
+    .story-section *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .story-section {
+        --pink-primary: #FF6B9D;
+        --pink-dark: #C7254E;
+        --pink-light: #FFE4ED;
+        --teal-primary: #4ECDC4;
+        --teal-dark: #2F5F61;
+        --teal-light: #E8F8F7;
+        --gold: #FFD166;
+        --gold-dark: #F4A261;
+        --cream: #FAF7F2;
+        --cream-dark: #F5EFE7;
+        --navy: #2F5F61;
+        --gray-dark: #444444;
+        --gray-medium: #666666;
+
+        font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: linear-gradient(180deg, #FFFFFF 0%, var(--cream) 100%);
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    .story-section .container {
+        max-width: 720px;
+        margin: 0 auto;
+    }
+
+    /* Opening hook */
+    .story-opener {
+        position: relative;
+        margin-bottom: 48px;
+    }
+
+    .story-opener::before {
+        content: '"';
+        position: absolute;
+        top: -40px;
+        left: -20px;
+        font-family: 'Ogg', Georgia, serif;
+        font-size: 120px;
+        color: var(--pink-light);
+        line-height: 1;
+        pointer-events: none;
+    }
+
+    .story-time {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--navy);
+        color: white;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        padding: 8px 16px;
+        border-radius: 20px;
+        margin-bottom: 20px;
+    }
+
+    .story-opener p {
+        font-family: 'Ogg', Georgia, serif;
+        font-size: 26px;
+        line-height: 1.5;
+        color: var(--navy);
+    }
+
+    /* Regular paragraphs */
+    .story-text {
+        font-size: 18px;
+        line-height: 1.8;
+        color: var(--gray-dark);
+        margin-bottom: 28px;
+        font-weight: 400;
+    }
+
+    .story-text strong {
+        color: var(--navy);
+        font-weight: 700;
+    }
+
+    .story-text em {
+        font-style: italic;
+        color: var(--pink-dark);
+    }
+
+    /* Discovery moment card */
+    .discovery-card {
+        background: linear-gradient(135deg, var(--teal-light) 0%, #FFFFFF 100%);
+        border-left: 4px solid var(--teal-primary);
+        border-radius: 0 16px 16px 0;
+        padding: 32px;
+        margin: 40px 0;
+        position: relative;
+    }
+
+    .discovery-card::before {
+        content: '!';
+        position: absolute;
+        top: -12px;
+        left: -12px;
+        width: 32px;
+        height: 32px;
+        background: var(--teal-primary);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 18px;
+    }
+
+    .discovery-card p {
+        font-size: 18px;
+        line-height: 1.7;
+        color: var(--teal-dark);
+        font-weight: 500;
+    }
+
+    .discovery-card .highlight-stat {
+        display: inline;
+        background: linear-gradient(180deg, transparent 60%, var(--gold) 60%);
+        font-weight: 700;
+    }
+
+    /* Pull quote */
+    .pull-quote {
+        position: relative;
+        padding: 40px 0;
+        margin: 48px 0;
+        text-align: center;
+    }
+
+    .pull-quote::before,
+    .pull-quote::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--pink-primary), var(--gold));
+        border-radius: 2px;
+    }
+
+    .pull-quote::before { top: 0; }
+    .pull-quote::after { bottom: 0; }
+
+    .pull-quote p {
+        font-family: 'Ogg', Georgia, serif;
+        font-size: 28px;
+        line-height: 1.4;
+        color: var(--navy);
+        font-weight: 500;
+    }
+
+    .pull-quote .emphasis {
+        color: var(--pink-dark);
+    }
+
+    /* Contrast moment */
+    .contrast-block {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin: 40px 0;
+    }
+
+    .contrast-item {
+        padding: 24px;
+        border-radius: 16px;
+        text-align: center;
+    }
+
+    .contrast-item.before {
+        background: var(--cream-dark);
+        border: 2px dashed #ccc;
+    }
+
+    .contrast-item.after {
+        background: linear-gradient(135deg, var(--teal-light), #fff);
+        border: 2px solid var(--teal-primary);
+    }
+
+    .contrast-label {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+    }
+
+    .contrast-item.before .contrast-label { color: var(--gray-medium); }
+    .contrast-item.after .contrast-label { color: var(--teal-primary); }
+
+    .contrast-item p {
+        font-size: 15px;
+        line-height: 1.5;
+        color: var(--gray-dark);
+    }
+
+    /* Brutal truth section */
+    .brutal-truth {
+        background: var(--navy);
+        color: white;
+        padding: 40px 32px;
+        border-radius: 20px;
+        margin: 48px 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .brutal-truth::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -30%;
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(circle, rgba(78, 205, 196, 0.2) 0%, transparent 70%);
+        pointer-events: none;
+    }
+
+    .brutal-label {
+        display: inline-block;
+        background: var(--pink-primary);
+        color: white;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        padding: 6px 14px;
+        border-radius: 20px;
+        margin-bottom: 16px;
+    }
+
+    .brutal-truth p {
+        font-size: 17px;
+        line-height: 1.7;
+        color: rgba(255,255,255,0.95);
+        position: relative;
+        z-index: 1;
+    }
+
+    .brutal-truth .year-callout {
+        display: inline-block;
+        background: var(--gold);
+        color: var(--navy);
+        padding: 2px 10px;
+        border-radius: 4px;
+        font-weight: 700;
+    }
+
+    /* Viral moment */
+    .viral-moment {
+        text-align: center;
+        padding: 48px 24px;
+        margin: 48px 0;
+        background: linear-gradient(180deg, var(--pink-light) 0%, #fff 100%);
+        border-radius: 24px;
+        position: relative;
+    }
+
+    .viral-moment::before {
+        content: '500';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: 'Satoshi', sans-serif;
+        font-size: 180px;
+        font-weight: 900;
+        color: var(--pink-primary);
+        opacity: 0.08;
+        pointer-events: none;
+    }
+
+    .viral-emoji {
+        font-size: 48px;
+        margin-bottom: 16px;
+    }
+
+    .viral-moment h3 {
+        font-family: 'Ogg', Georgia, serif;
+        font-size: 32px;
+        color: var(--navy);
+        margin-bottom: 8px;
+    }
+
+    .viral-moment .sales-number {
+        font-family: 'Satoshi', sans-serif;
+        font-size: 56px;
+        font-weight: 900;
+        background: linear-gradient(135deg, var(--pink-primary), var(--pink-dark));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1.2;
+    }
+
+    .viral-moment .sales-label {
+        font-size: 18px;
+        color: var(--gray-medium);
+        margin-bottom: 20px;
+    }
+
+    .viral-moment .thought-bubble {
+        font-family: 'Caveat', cursive;
+        font-size: 24px;
+        color: var(--pink-dark);
+        transform: rotate(-2deg);
+    }
+
+    /* Reality check */
+    .reality-check {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 32px;
+        background: #fff;
+        border: 2px solid var(--cream-dark);
+        border-radius: 16px;
+        margin: 40px 0;
+    }
+
+    .reality-emoji {
+        font-size: 48px;
+        flex-shrink: 0;
+    }
+
+    .reality-check p {
+        font-size: 18px;
+        line-height: 1.6;
+        color: var(--gray-dark);
+    }
+
+    /* Lesson learned */
+    .lesson-block {
+        background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+        padding: 40px 32px;
+        border-radius: 20px;
+        margin: 48px 0;
+        text-align: center;
+    }
+
+    .lesson-block .lesson-label {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.8);
+        margin-bottom: 12px;
+    }
+
+    .lesson-block p {
+        font-family: 'Ogg', Georgia, serif;
+        font-size: 24px;
+        line-height: 1.5;
+        color: #fff;
+    }
+
+    /* System routine */
+    .system-section {
+        margin: 56px 0;
+    }
+
+    .system-intro {
+        font-size: 18px;
+        line-height: 1.7;
+        color: var(--gray-dark);
+        margin-bottom: 24px;
+    }
+
+    .system-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .system-step {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 16px 20px;
+        background: #fff;
+        border-radius: 12px;
+        border: 1px solid var(--cream-dark);
+        transition: all 0.3s ease;
+    }
+
+    .system-step:hover {
+        border-color: var(--teal-primary);
+        transform: translateX(8px);
+        box-shadow: 0 4px 20px rgba(78, 205, 196, 0.15);
+    }
+
+    .step-number {
+        width: 32px;
+        height: 32px;
+        background: var(--teal-primary);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 14px;
+        flex-shrink: 0;
+    }
+
+    .system-step p {
+        font-size: 16px;
+        color: var(--gray-dark);
+        line-height: 1.5;
+    }
+
+    .system-mantra {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 24px;
+        flex-wrap: wrap;
+    }
+
+    .mantra-word {
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .mantra-word:nth-child(1) { background: var(--cream-dark); color: var(--gray-medium); }
+    .mantra-word:nth-child(2) { background: var(--teal-light); color: var(--teal-dark); }
+    .mantra-word:nth-child(3) { background: var(--pink-light); color: var(--pink-dark); }
+    .mantra-word:nth-child(4) { background: var(--gold); color: var(--navy); font-weight: 800; }
+
+    /* Big result */
+    .big-result {
+        text-align: center;
+        padding: 56px 32px;
+        margin: 56px 0;
+        background: linear-gradient(135deg, var(--navy) 0%, var(--teal-dark) 100%);
+        border-radius: 28px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .big-result::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        pointer-events: none;
+    }
+
+    .result-label {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--teal-primary);
+        margin-bottom: 16px;
+    }
+
+    .result-amount {
+        font-family: 'Satoshi', sans-serif;
+        font-size: 72px;
+        font-weight: 900;
+        color: white;
+        line-height: 1;
+        margin-bottom: 8px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .result-context {
+        font-size: 18px;
+        color: rgba(255,255,255,0.8);
+        margin-bottom: 32px;
+    }
+
+    .result-note {
+        font-size: 16px;
+        color: rgba(255,255,255,0.7);
+        font-style: italic;
+        max-width: 500px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    /* Life now stats */
+    .life-now {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin: 48px 0;
+    }
+
+    .life-stat {
+        text-align: center;
+        padding: 24px 16px;
+        background: #fff;
+        border-radius: 16px;
+        border: 2px solid var(--cream-dark);
+    }
+
+    .life-stat .stat-icon {
+        font-size: 32px;
+        margin-bottom: 12px;
+    }
+
+    .life-stat .stat-value {
+        font-family: 'Satoshi', sans-serif;
+        font-size: 28px;
+        font-weight: 900;
+        color: var(--navy);
+        margin-bottom: 4px;
+    }
+
+    .life-stat .stat-label {
+        font-size: 13px;
+        color: var(--gray-medium);
+        line-height: 1.4;
+    }
+
+    /* AI advantage */
+    .ai-advantage {
+        background: linear-gradient(135deg, var(--pink-light) 0%, #fff 50%, var(--teal-light) 100%);
+        padding: 48px 32px;
+        border-radius: 24px;
+        margin: 56px 0;
+        text-align: center;
+        border: 2px solid var(--pink-primary);
+    }
+
+    .ai-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--pink-primary);
+        color: white;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        padding: 10px 20px;
+        border-radius: 24px;
+        margin-bottom: 20px;
+    }
+
+    .ai-advantage h3 {
+        font-family: 'Ogg', Georgia, serif;
+        font-size: 32px;
+        color: var(--navy);
+        margin-bottom: 8px;
+    }
+
+    .ai-advantage .multiplier {
+        font-family: 'Satoshi', sans-serif;
+        font-weight: 900;
+        font-size: 48px;
+        background: linear-gradient(135deg, var(--pink-primary), var(--teal-primary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .ai-advantage .subtext {
+        font-size: 18px;
+        color: var(--gray-dark);
+        margin-bottom: 24px;
+    }
+
+    .ai-tools {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .ai-tool {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        background: white;
+        border-radius: 24px;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--navy);
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    /* Hard way callout */
+    .hard-way {
+        text-align: center;
+        padding: 32px;
+        margin: 40px 0;
+    }
+
+    .hard-way p {
+        font-size: 20px;
+        line-height: 1.6;
+        color: var(--gray-dark);
+    }
+
+    .hard-way .crossed {
+        text-decoration: line-through;
+        color: var(--gray-medium);
+    }
+
+    .hard-way .highlight {
+        background: linear-gradient(180deg, transparent 50%, var(--gold) 50%);
+        font-weight: 700;
+        color: var(--navy);
+    }
+
+    /* Mindset section */
+    .mindset-block {
+        background: var(--cream);
+        padding: 40px 32px;
+        border-radius: 20px;
+        margin: 48px 0;
+    }
+
+    .mindset-block p {
+        font-size: 18px;
+        line-height: 1.7;
+        color: var(--gray-dark);
+        margin-bottom: 20px;
+    }
+
+    .mindset-block p:last-child {
+        margin-bottom: 0;
+    }
+
+    .mindset-block .key-insight {
+        font-weight: 700;
+        color: var(--pink-dark);
+    }
+
+    /* Winners vs quitters */
+    .winners-block {
+        background: linear-gradient(135deg, var(--teal-dark), var(--navy));
+        padding: 40px 32px;
+        border-radius: 20px;
+        margin: 48px 0;
+        color: white;
+    }
+
+    .winners-block p {
+        font-size: 18px;
+        line-height: 1.7;
+        margin-bottom: 16px;
+    }
+
+    .winners-block .quitters {
+        color: rgba(255,255,255,0.6);
+    }
+
+    .winners-block .winners {
+        color: var(--gold);
+        font-weight: 700;
+    }
+
+    /* Final imagine section */
+    .imagine-section {
+        margin-top: 56px;
+        padding: 48px 24px 60px;
+        border-top: 2px dashed var(--cream-dark);
+        text-align: center;
+    }
+
+    .imagine-intro {
+        font-family: 'Ogg', Georgia, serif;
+        font-size: 26px;
+        line-height: 1.5;
+        color: var(--navy);
+        text-align: center;
+        margin-bottom: 32px;
+    }
+
+    .timeframe-inline {
+        display: inline-block;
+        background: linear-gradient(135deg, var(--pink-primary), var(--pink-dark));
+        color: white;
+        font-family: 'Satoshi', sans-serif;
+        font-weight: 700;
+        padding: 4px 16px;
+        border-radius: 20px;
+        font-size: 0.85em;
+    }
+
+    .imagine-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        max-width: 400px;
+        margin: 0 auto 40px;
+    }
+
+    .imagine-item {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        background: white;
+        padding: 16px 20px;
+        border-radius: 12px;
+        border: 2px solid var(--cream-dark);
+        transition: all 0.3s ease;
+    }
+
+    .imagine-item:hover {
+        border-color: var(--teal-primary);
+        transform: translateX(8px);
+        box-shadow: 0 4px 16px rgba(78, 205, 196, 0.2);
+    }
+
+    .imagine-check {
+        width: 36px;
+        height: 36px;
+        background: linear-gradient(135deg, var(--teal-primary), var(--teal-dark));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        flex-shrink: 0;
+    }
+
+    .imagine-item p {
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--navy);
+        text-align: left;
+    }
+
+    .arrow-down {
+        display: flex;
+        justify-content: center;
+        animation: bounce 2s ease-in-out infinite;
+    }
+
+    .arrow-down svg {
+        color: var(--pink-primary);
+    }
+
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(12px); }
+    }
+
+    .timeframe-badge {
+        display: inline-block;
+        background: linear-gradient(135deg, var(--pink-primary), var(--pink-dark));
+        color: white;
+        font-family: 'Satoshi', sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        padding: 12px 28px;
+        border-radius: 30px;
+        box-shadow: 0 4px 20px rgba(255, 107, 157, 0.3);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .story-section .container {
+            padding: 0 20px;
+        }
+
+        .story-opener::before {
+            font-size: 80px;
+            top: -25px;
+            left: -10px;
+        }
+
+        .story-opener p {
+            font-size: 22px;
+        }
+
+        .story-text {
+            font-size: 16px;
+        }
+
+        .pull-quote p {
+            font-size: 22px;
+        }
+
+        .contrast-block {
+            grid-template-columns: 1fr;
+        }
+
+        .viral-moment h3 {
+            font-size: 26px;
+        }
+
+        .viral-moment .sales-number {
+            font-size: 42px;
+        }
+
+        .viral-moment::before {
+            font-size: 120px;
+        }
+
+        .big-result .result-amount {
+            font-size: 48px;
+        }
+
+        .life-now {
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .life-stat {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-align: left;
+            padding: 20px;
+        }
+
+        .life-stat .stat-icon {
+            margin-bottom: 0;
+        }
+
+        .ai-advantage h3 {
+            font-size: 26px;
+        }
+
+        .ai-advantage .multiplier {
+            font-size: 36px;
+        }
+
+        .reality-check {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .imagine-intro {
+            font-size: 22px;
+        }
+
+        .imagine-item p {
+            font-size: 15px;
+        }
+
+        .arrow-down svg {
+            width: 40px;
+            height: 40px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .story-section .container {
+            padding: 0 16px;
+        }
+
+        .story-opener p {
+            font-size: 20px;
+        }
+
+        .pull-quote p {
+            font-size: 20px;
+        }
+
+        .discovery-card,
+        .brutal-truth,
+        .lesson-block,
+        .mindset-block,
+        .winners-block {
+            padding: 28px 20px;
+        }
+
+        .viral-moment {
+            padding: 40px 20px;
+        }
+
+        .system-step {
+            padding: 14px 16px;
+        }
+
+        .big-result {
+            padding: 40px 20px;
+        }
+
+        .big-result .result-amount {
+            font-size: 40px;
+        }
+
+        .ai-advantage {
+            padding: 36px 20px;
+        }
+
+        .ai-tools {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .imagine-section {
+            padding: 36px 16px 48px;
+        }
+
+        .imagine-intro {
+            font-size: 20px;
+        }
+
+        .timeframe-inline {
+            padding: 3px 12px;
+            font-size: 0.8em;
+        }
+
+        .imagine-item {
+            padding: 14px 16px;
+            gap: 12px;
+        }
+
+        .imagine-check {
+            width: 32px;
+            height: 32px;
+        }
+
+        .imagine-item p {
+            font-size: 14px;
+        }
+
+        .arrow-down svg {
+            width: 36px;
+            height: 36px;
+        }
+    }
+
+    @media (max-width: 350px) {
+        .story-section .container {
+            padding: 0 12px;
+        }
+
+        .story-opener::before {
+            display: none;
+        }
+
+        .story-opener p {
+            font-size: 18px;
+        }
+
+        .story-text {
+            font-size: 15px;
+        }
+
+        .pull-quote p {
+            font-size: 18px;
+        }
+
+        .viral-moment .sales-number {
+            font-size: 36px;
+        }
+
+        .big-result .result-amount {
+            font-size: 32px;
+        }
+
+        .ai-advantage .multiplier {
+            font-size: 28px;
+        }
+
+        .imagine-intro {
+            font-size: 18px;
+        }
+
+        .imagine-section {
+            padding: 28px 12px 40px;
+        }
+
+        .timeframe-inline {
+            padding: 2px 10px;
+            font-size: 0.75em;
+        }
+
+        .imagine-item {
+            padding: 12px 14px;
+            gap: 10px;
+        }
+
+        .imagine-check {
+            width: 28px;
+            height: 28px;
+        }
+
+        .imagine-check svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .imagine-item p {
+            font-size: 13px;
+        }
+
+        .arrow-down svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .timeframe-badge {
+            font-size: 16px;
+            padding: 10px 20px;
+        }
+    }
+</style>
+
+<section class="story-section">
+    <div class="container">
+
+        <!-- Opening hook -->
+        <div class="story-opener">
+            <div class="story-time">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M8 5V8L10 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                11 PM, YouTube Rabbit Hole
+            </div>
+            <p>So like anyone desperate for a change, I went searching for "digital products," "passive income," anything that didn't require shipping packages.</p>
+        </div>
+
+        <p class="story-text">That's when I stumbled on a random video about creating designs for sublimation tumblers.</p>
+
+        <p class="story-text">I'd never heard of sublimation. Had no idea what a PNG file even was. But something made me pause.</p>
+
+        <!-- Discovery card -->
+        <div class="discovery-card">
+            <p>I checked Etsy to see if people were actually buying these. What I found shocked me: Sellers with over <span class="highlight-stat">100,000 sales</span>. Just from digital files. No inventory. No shipping. <strong>Just upload once, sell forever.</strong></p>
+        </div>
+
+        <!-- Contrast block -->
+        <div class="contrast-block">
+            <div class="contrast-item before">
+                <div class="contrast-label">What I saw</div>
+                <p>Professional, polished shops that looked like they had years of design training</p>
+            </div>
+            <div class="contrast-item after">
+                <div class="contrast-label">My reality</div>
+                <p>I literally hated Photoshop and had zero graphic design experience</p>
+            </div>
+        </div>
+
+        <!-- Pull quote -->
+        <div class="pull-quote">
+            <p>These sellers weren't trading time for money anymore. While I was up at midnight packaging orders, their designs were <span class="emphasis">selling automatically</span>.</p>
+        </div>
+
+        <p class="story-text" style="text-align: center; font-weight: 600; color: var(--navy);">That was enough to make me try.</p>
+
+        <!-- Brutal truth section -->
+        <div class="brutal-truth">
+            <div class="brutal-label">Let me be clear</div>
+            <p>It was brutal at first. This was <span class="year-callout">early 2022</span>, before I was using any AI design tools. I did everything the slow way with Canva and commercial graphics. Writing every title, description, and tag by hand. Taking hours to create what now takes minutes.</p>
+            <p style="margin-top: 16px; font-style: italic; opacity: 0.9;">My learning curve wasn't just steep. It was vertical.</p>
+        </div>
+
+        <!-- Viral moment -->
+        <div class="viral-moment">
+            <div class="viral-emoji">🎉</div>
+            <h3>Then something funny happened</h3>
+            <div class="sales-number">500 sales</div>
+            <div class="sales-label">in a few days</div>
+            <div class="thought-bubble">"I thought I'd cracked the code. I was a genius."</div>
+        </div>
+
+        <!-- Reality check -->
+        <div class="reality-check">
+            <div class="reality-emoji">😏</div>
+            <p>My next 10 designs? <strong>Complete crickets.</strong></p>
+        </div>
+
+        <!-- Lesson learned -->
+        <div class="lesson-block">
+            <div class="lesson-label">The humbling truth</div>
+            <p>Success wasn't about one lucky viral moment. It was about having a boring, systematic approach that compounds over time.</p>
+        </div>
+
+        <!-- System section -->
+        <div class="system-section">
+            <p class="system-intro">So I stopped chasing viral wins and started following a simple weekly routine:</p>
+
+            <div class="system-steps">
+                <div class="system-step">
+                    <div class="step-number">1</div>
+                    <p>Research what's actually selling (not what I think looks good)</p>
+                </div>
+                <div class="system-step">
+                    <div class="step-number">2</div>
+                    <p>Create multiple variations to test</p>
+                </div>
+                <div class="system-step">
+                    <div class="step-number">3</div>
+                    <p>List consistently, even when nothing's working</p>
+                </div>
+                <div class="system-step">
+                    <div class="step-number">4</div>
+                    <p>Learn from the data, not my emotions</p>
+                </div>
+                <div class="system-step">
+                    <div class="step-number">5</div>
+                    <p>Repeat.</p>
+                </div>
+            </div>
+
+            <div class="system-mantra">
+                <span class="mantra-word">Boring.</span>
+                <span class="mantra-word">Systematic.</span>
+                <span class="mantra-word">Effective.</span>
+            </div>
+        </div>
+
+        <!-- Big result -->
+        <div class="big-result">
+            <div class="result-label">Fast forward to today</div>
+            <div class="result-amount">$1,000,000+</div>
+            <div class="result-context">in sales on Etsy alone</div>
+            <p class="result-note">Not because I'm special or talented - but because I followed the system even when individual listings flopped.</p>
+        </div>
+
+        <!-- Life now stats -->
+        <div class="life-now">
+            <div class="life-stat">
+                <div class="stat-icon">💰</div>
+                <div>
+                    <div class="stat-value">$65-75K</div>
+                    <div class="stat-label">per month across 5 businesses</div>
+                </div>
+            </div>
+            <div class="life-stat">
+                <div class="stat-icon">⏰</div>
+                <div>
+                    <div class="stat-value">3 hours</div>
+                    <div class="stat-label">per week on my Etsy shop</div>
+                </div>
+            </div>
+            <div class="life-stat">
+                <div class="stat-icon">✈️</div>
+                <div>
+                    <div class="stat-value">Freedom</div>
+                    <div class="stat-label">Travel while business runs</div>
+                </div>
+            </div>
+        </div>
+
+        <p class="story-text" style="text-align: center;">I'm actually present with my kids instead of packaging orders during bedtime stories.</p>
+
+        <!-- AI advantage -->
+        <div class="ai-advantage">
+            <div class="ai-badge">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M9 2L11 6L15 6.5L12 9.5L13 14L9 12L5 14L6 9.5L3 6.5L7 6L9 2Z" fill="currentColor"/>
+                </svg>
+                Here's the kicker
+            </div>
+            <h3>You can do this</h3>
+            <div class="multiplier">100X faster</div>
+            <p class="subtext">than I did. Because now you have AI.</p>
+
+            <div class="ai-tools">
+                <div class="ai-tool">
+                    <span>🎨</span> Midjourney
+                </div>
+                <div class="ai-tool">
+                    <span>✏️</span> Kittl
+                </div>
+                <div class="ai-tool">
+                    <span>💬</span> ChatGPT
+                </div>
+            </div>
+        </div>
+
+        <!-- Hard way callout -->
+        <div class="hard-way">
+            <p>I built my seven-figure shop <span class="crossed">the hard way</span>. <span class="highlight">You don't have to.</span></p>
+        </div>
+
+        <!-- Mindset section -->
+        <div class="mindset-block">
+            <p>Even today, with $1M+ in sales, I still have listings that completely flop.</p>
+            <p>The difference? <span class="key-insight">I don't make it mean anything.</span> It's just data. Learn and move on.</p>
+        </div>
+
+        <!-- Winners vs quitters -->
+        <div class="winners-block">
+            <p><span class="quitters">A lot of Etsy sellers quit after a few weeks because they expect instant success.</span></p>
+            <p><span class="winners">The ones who win? They expect it to take years and are pleasantly surprised when the boring system starts working in months.</span></p>
+        </div>
+
+        <!-- Imagine section -->
+        <div class="imagine-section">
+            <p class="imagine-intro">Just imagine waking up <span class="timeframe-inline">6 months from now</span> as the owner of a strategic Etsy business that:</p>
+
+            <div class="imagine-list">
+                <div class="imagine-item">
+                    <div class="imagine-check">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10L8 14L16 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <p>Generates sales while you sleep</p>
+                </div>
+                <div class="imagine-item">
+                    <div class="imagine-check">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10L8 14L16 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <p>Doesn't require inventory or shipping</p>
+                </div>
+                <div class="imagine-item">
+                    <div class="imagine-check">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10L8 14L16 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <p>Gives you actual time freedom</p>
+                </div>
+                <div class="imagine-item">
+                    <div class="imagine-check">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10L8 14L16 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <p>Grows and compounds over time</p>
+                </div>
+            </div>
+
+            <div class="arrow-down">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                    <path d="M24 8V40M24 40L12 28M24 40L36 28" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </div>
+
+    </div>
+</section>
