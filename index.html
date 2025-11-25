@@ -9,8 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,700,900&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
 
     <style>
         @font-face {
@@ -28,241 +27,169 @@
         }
 
         :root {
-            --rose-gold: #D4AF87;
-            --rose-gold-dark: #B8956A;
-            --champagne: #F7E7CE;
+            --rose-gold: #C9A87C;
+            --rose-gold-light: #D4B896;
+            --champagne: #F5EBE0;
             --deep-teal: #1F4F4D;
             --teal: #4ECDC4;
             --soft-pink: #FFD1DC;
-            --peach: #FFE5D4;
-            --ivory: #FFFFF0;
-            --gold-shimmer: #E6C89C;
+            --cream: #FFFEF9;
+            --warm-gray: #6B6B6B;
+            --light-gray: #F8F6F3;
         }
 
         body {
             font-family: 'Satoshi', -apple-system, sans-serif;
-            font-weight: 500;
-            background: linear-gradient(180deg, var(--champagne) 0%, var(--ivory) 50%, #FFFEF7 100%);
-            color: #333;
+            font-weight: 400;
+            background: var(--cream);
+            color: #2c2c2c;
             line-height: 1.6;
             overflow-x: hidden;
+        }
+
+        /* Paper grain texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.01) 2px, rgba(0,0,0,0.01) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.01) 2px, rgba(0,0,0,0.01) 4px);
+            pointer-events: none;
+            opacity: 0.4;
+            z-index: 9999;
         }
 
         h1, h2, h3 {
             font-family: 'Ogg', Georgia, serif;
             font-weight: 700;
+            line-height: 1.1;
         }
 
-        /* VIP Wax Seal Badge */
-        .wax-seal-container {
+        /* Delicate top accent bar */
+        .top-accent {
             position: fixed;
-            top: 30px;
-            right: 30px;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--rose-gold) 30%, var(--rose-gold) 70%, transparent);
             z-index: 1000;
-            animation: sealPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-            animation-delay: 0.5s;
-            opacity: 0;
         }
 
-        @keyframes sealPop {
-            0% {
-                transform: scale(0) rotate(-180deg);
-                opacity: 0;
-            }
-            100% {
-                transform: scale(1) rotate(0deg);
-                opacity: 1;
-            }
-        }
-
-        .wax-seal {
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, var(--rose-gold) 0%, var(--rose-gold-dark) 100%);
+        /* Small wax seal badge */
+        .wax-seal-badge {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            width: 52px;
+            height: 52px;
+            background: radial-gradient(circle at 30% 30%, var(--rose-gold-light), var(--rose-gold));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow:
-                0 4px 20px rgba(212, 175, 135, 0.4),
-                inset 0 2px 4px rgba(255,255,255,0.3),
-                inset 0 -2px 4px rgba(0,0,0,0.2);
-            position: relative;
-        }
-
-        .wax-seal::before {
-            content: '';
-            position: absolute;
-            inset: 8px;
-            border-radius: 50%;
-            border: 2px dashed rgba(255,255,255,0.3);
-        }
-
-        .wax-seal-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 11px;
+            font-size: 8px;
             font-weight: 700;
+            letter-spacing: 0.5px;
             color: var(--deep-teal);
-            text-align: center;
-            letter-spacing: 1px;
-            line-height: 1.3;
-        }
-
-        /* Gift Box Container */
-        .gift-box-top {
-            position: relative;
-            padding: 80px 0 0;
-            overflow: hidden;
-        }
-
-        /* Ribbon across top */
-        .ribbon-horizontal {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 60px;
-            background: linear-gradient(180deg, var(--rose-gold) 0%, var(--rose-gold-dark) 100%);
             box-shadow:
-                0 4px 12px rgba(212, 175, 135, 0.3),
-                inset 0 1px 0 rgba(255,255,255,0.4),
-                inset 0 -1px 0 rgba(0,0,0,0.1);
+                0 2px 8px rgba(201, 168, 124, 0.25),
+                inset 0 1px 2px rgba(255,255,255,0.3),
+                inset 0 -1px 2px rgba(0,0,0,0.15);
+            z-index: 999;
+            animation: subtlePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
         }
 
-        .ribbon-horizontal::after {
+        @keyframes subtlePop {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .wax-seal-badge::before {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            background: radial-gradient(circle, var(--gold-shimmer), var(--rose-gold));
+            inset: 6px;
             border-radius: 50%;
-            box-shadow:
-                0 0 0 8px var(--rose-gold-dark),
-                0 4px 20px rgba(212, 175, 135, 0.5);
+            border: 1px dashed rgba(31, 79, 77, 0.2);
         }
 
-        /* Hero Section - Unboxing */
-        .hero {
-            position: relative;
-            padding: 40px 32px 80px;
-            max-width: 1200px;
+        /* Main container */
+        .container {
+            max-width: 880px;
             margin: 0 auto;
+            padding: 0 24px;
         }
 
-        /* Tissue paper effect */
-        .tissue-paper {
-            position: absolute;
-            top: -20px;
-            left: 10%;
-            right: 10%;
-            height: 200px;
-            background:
-                linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.6) 50%, transparent 70%),
-                linear-gradient(-45deg, transparent 30%, rgba(255,228,225,0.4) 50%, transparent 70%);
-            filter: blur(1px);
-            opacity: 0.7;
-            pointer-events: none;
-            animation: tissueFloat 6s ease-in-out infinite;
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 100px;
         }
 
-        @keyframes tissueFloat {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(2deg); }
-        }
-
-        .hero-content {
-            background: white;
-            border-radius: 24px;
-            padding: 60px;
-            box-shadow:
-                0 20px 60px rgba(31, 79, 77, 0.15),
-                inset 0 1px 0 rgba(255,255,255,0.8);
-            border: 1px solid rgba(212, 175, 135, 0.2);
-            position: relative;
-        }
-
-        /* Corner flourishes */
-        .hero-content::before,
-        .hero-content::after {
-            content: '';
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            border: 2px solid var(--rose-gold);
-            opacity: 0.3;
-        }
-
-        .hero-content::before {
-            top: 20px;
-            left: 20px;
-            border-right: none;
-            border-bottom: none;
-        }
-
-        .hero-content::after {
-            bottom: 20px;
-            right: 20px;
-            border-left: none;
-            border-top: none;
-        }
-
-        .hero-grid {
+        .hero-inner {
             display: grid;
-            grid-template-columns: 1.3fr 0.7fr;
-            gap: 60px;
-            align-items: center;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 56px;
+            align-items: start;
         }
 
         .hero h1 {
-            font-size: 56px;
+            font-size: 64px;
             color: var(--deep-teal);
-            line-height: 1.1;
-            margin-bottom: 24px;
-            position: relative;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
         }
 
+        /* Delicate underline */
         .hero h1::after {
             content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100px;
-            height: 3px;
+            display: block;
+            width: 68px;
+            height: 1px;
             background: linear-gradient(90deg, var(--rose-gold), transparent);
+            margin-top: 16px;
         }
 
         .hero-subtitle {
-            font-size: 19px;
-            color: #666;
+            font-size: 17px;
+            color: var(--warm-gray);
             line-height: 1.7;
+            font-weight: 400;
         }
 
-        /* Video in ornate frame */
+        /* Video frame - refined */
+        .video-container {
+            position: relative;
+        }
+
         .video-frame {
             position: relative;
-            padding: 16px;
-            background: linear-gradient(135deg, var(--champagne), var(--gold-shimmer));
-            border-radius: 16px;
+            background: linear-gradient(135deg, #e8e4de, #f0ebe5);
+            padding: 6px;
+            border-radius: 4px;
             box-shadow:
-                0 10px 40px rgba(0,0,0,0.15),
-                inset 0 2px 4px rgba(255,255,255,0.5);
+                0 1px 3px rgba(0,0,0,0.08),
+                0 8px 24px rgba(0,0,0,0.06);
         }
 
         .video-frame::before {
             content: '';
             position: absolute;
-            inset: 8px;
-            border: 2px solid rgba(212, 175, 135, 0.5);
-            border-radius: 12px;
+            inset: 3px;
+            border: 1px solid rgba(201, 168, 124, 0.15);
+            border-radius: 2px;
             pointer-events: none;
         }
 
         .video-inner {
-            background: linear-gradient(135deg, #e8e8e8, #f5f5f5);
-            border-radius: 8px;
+            background: linear-gradient(135deg, #d8d8d8, #e5e5e5);
+            border-radius: 2px;
             aspect-ratio: 16/9;
             display: flex;
             align-items: center;
@@ -272,505 +199,375 @@
         }
 
         .play-btn {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--teal), var(--deep-teal));
+            width: 56px;
+            height: 56px;
+            background: var(--deep-teal);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 6px 25px rgba(78, 205, 196, 0.4);
+            box-shadow: 0 4px 16px rgba(31, 79, 77, 0.3);
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: transform 0.25s ease;
         }
 
         .play-btn:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .video-caption {
-            text-align: center;
             margin-top: 12px;
             font-family: 'Caveat', cursive;
-            font-size: 20px;
-            color: var(--deep-teal);
+            font-size: 16px;
+            color: var(--warm-gray);
+            text-align: right;
         }
 
-        /* WhatsApp Invitation Card */
+        /* WhatsApp Section */
         .whatsapp-section {
-            padding: 80px 32px;
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
+            padding: 60px 0 80px;
         }
 
-        /* Envelope */
-        .envelope-wrapper {
-            position: relative;
-            perspective: 1000px;
-            margin-bottom: -100px;
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--rose-gold);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .envelope {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            height: 100px;
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--rose-gold), transparent);
         }
 
-        .envelope-flap {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 400px solid transparent;
-            border-right: 400px solid transparent;
-            border-top: 100px solid var(--rose-gold);
-            filter: drop-shadow(0 4px 12px rgba(212, 175, 135, 0.3));
-            transform-origin: bottom;
-            animation: flapOpen 1s ease-out 0.5s forwards;
-        }
-
-        @keyframes flapOpen {
-            to {
-                transform: translateX(-50%) rotateX(-120deg);
-            }
-        }
-
-        /* Invitation Card */
         .invitation-card {
             background: white;
-            border-radius: 20px;
-            padding: 60px 50px;
-            max-width: 800px;
-            margin: 0 auto;
+            padding: 48px 52px;
+            border-radius: 8px;
+            border: 1px solid rgba(201, 168, 124, 0.15);
             box-shadow:
-                0 20px 60px rgba(31, 79, 77, 0.2),
-                inset 0 0 0 1px rgba(212, 175, 135, 0.3);
-            border: 3px solid var(--soft-pink);
+                0 2px 8px rgba(0,0,0,0.04),
+                0 12px 32px rgba(0,0,0,0.06);
             position: relative;
-            z-index: 2;
-            animation: slideUp 1s ease-out 0.3s both;
         }
 
-        @keyframes slideUp {
-            from {
-                transform: translateY(50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        /* Decorative pattern */
+        /* Subtle corner detail */
         .invitation-card::before {
             content: '';
             position: absolute;
-            inset: 0;
-            background-image:
-                radial-gradient(circle at 20px 20px, var(--champagne) 2px, transparent 2px),
-                radial-gradient(circle at 60px 60px, var(--soft-pink) 1px, transparent 1px);
-            background-size: 80px 80px, 80px 80px;
-            background-position: 0 0, 40px 40px;
-            border-radius: 20px;
-            opacity: 0.15;
-            pointer-events: none;
+            top: 16px;
+            left: 16px;
+            width: 24px;
+            height: 24px;
+            border-top: 1px solid var(--rose-gold);
+            border-left: 1px solid var(--rose-gold);
+            opacity: 0.3;
         }
 
-        .invitation-header {
-            text-align: center;
-            position: relative;
-            margin-bottom: 32px;
-        }
-
-        .invitation-header::before {
-            content: '✦';
+        .invitation-card::after {
+            content: '';
             position: absolute;
-            left: 50%;
-            top: -30px;
-            transform: translateX(-50%);
-            font-size: 24px;
-            color: var(--rose-gold);
+            bottom: 16px;
+            right: 16px;
+            width: 24px;
+            height: 24px;
+            border-bottom: 1px solid var(--rose-gold);
+            border-right: 1px solid var(--rose-gold);
+            opacity: 0.3;
         }
 
         .invitation-card h2 {
-            font-size: 42px;
+            font-size: 38px;
             color: var(--deep-teal);
-            margin-bottom: 16px;
-        }
-
-        .invitation-card h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: var(--rose-gold);
-            margin: 16px auto 0;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
         .invitation-card p {
-            font-size: 18px;
-            color: #555;
-            line-height: 1.8;
+            font-size: 16px;
+            color: var(--warm-gray);
+            line-height: 1.7;
             text-align: center;
-            margin-bottom: 36px;
+            margin-bottom: 32px;
+        }
+
+        .btn-wrapper {
+            text-align: center;
         }
 
         .btn-vip {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            background: linear-gradient(135deg, var(--teal), var(--deep-teal));
+            gap: 10px;
+            background: var(--deep-teal);
             color: white;
-            font-size: 18px;
-            font-weight: 700;
-            padding: 20px 44px;
-            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 16px 36px;
+            border-radius: 4px;
             text-decoration: none;
             box-shadow:
-                0 8px 30px rgba(78, 205, 196, 0.35),
-                inset 0 1px 0 rgba(255,255,255,0.2);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-vip::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.5s ease;
-        }
-
-        .btn-vip:hover::before {
-            transform: translateX(100%);
+                0 2px 8px rgba(31, 79, 77, 0.2),
+                0 6px 20px rgba(31, 79, 77, 0.15);
+            transition: all 0.25s ease;
+            letter-spacing: 0.2px;
         }
 
         .btn-vip:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(78, 205, 196, 0.45);
+            transform: translateY(-1px);
+            box-shadow:
+                0 4px 12px rgba(31, 79, 77, 0.25),
+                0 8px 24px rgba(31, 79, 77, 0.2);
         }
 
         .btn-note {
             display: block;
-            text-align: center;
-            margin-top: 16px;
-            font-size: 14px;
-            color: #888;
+            margin-top: 12px;
+            font-size: 13px;
+            color: #999;
             font-style: italic;
         }
 
-        /* Timeline - Gift Boxes */
+        /* Timeline Section */
         .timeline-section {
-            padding: 100px 32px;
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 80px 0;
         }
 
         .timeline-header {
             text-align: center;
-            margin-bottom: 60px;
-            position: relative;
+            margin-bottom: 56px;
         }
 
         .timeline-header h2 {
-            font-size: 48px;
-            color: var(--deep-teal);
-            position: relative;
-            display: inline-block;
-        }
-
-        .timeline-header h2::before {
-            content: '⟡';
-            position: absolute;
-            left: -60px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 32px;
-            color: var(--rose-gold);
-        }
-
-        .timeline-header h2::after {
-            content: '⟡';
-            position: absolute;
-            right: -60px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 32px;
-            color: var(--rose-gold);
-        }
-
-        .gift-boxes {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-        }
-
-        /* Individual Gift Box */
-        .gift-box {
-            background: white;
-            border-radius: 20px;
-            padding: 0;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .gift-box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-        }
-
-        /* Box lid with ribbon */
-        .box-lid {
-            height: 12px;
-            position: relative;
-        }
-
-        .box-lid::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, var(--rose-gold), var(--rose-gold-dark));
-        }
-
-        .box-lid::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 100%;
-            background: var(--gold-shimmer);
-            box-shadow: 0 2px 8px rgba(212, 175, 135, 0.5);
-        }
-
-        .box-content {
-            padding: 32px 28px;
-        }
-
-        .day-tag {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--deep-teal), var(--teal));
-            color: white;
-            font-size: 11px;
-            font-weight: 700;
-            padding: 6px 16px;
-            border-radius: 20px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 16px;
-        }
-
-        .gift-box h3 {
-            font-size: 26px;
+            font-size: 46px;
             color: var(--deep-teal);
             margin-bottom: 12px;
         }
 
-        .gift-box p {
-            font-size: 16px;
-            color: #555;
+        /* Timeline as a journey - vertical path */
+        .timeline-path {
+            position: relative;
+            padding-left: 64px;
+        }
+
+        /* Connecting line */
+        .timeline-path::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 32px;
+            bottom: 32px;
+            width: 1px;
+            background: linear-gradient(180deg, var(--rose-gold), var(--soft-pink));
+            opacity: 0.3;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 24px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Timeline dot */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -44px;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            background: var(--rose-gold);
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(201, 168, 124, 0.15);
+        }
+
+        .day-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: var(--rose-gold);
+            margin-bottom: 8px;
+        }
+
+        .timeline-item h3 {
+            font-size: 22px;
+            color: var(--deep-teal);
+            margin-bottom: 8px;
+        }
+
+        .timeline-item p {
+            font-size: 15px;
+            color: var(--warm-gray);
             line-height: 1.7;
         }
 
-        .gift-box strong {
-            color: var(--deep-teal);
+        .timeline-item strong {
+            color: #2c2c2c;
+            font-weight: 500;
         }
 
-        /* Different box colors */
-        .gift-box:nth-child(1) {
-            border-top: 3px solid var(--soft-pink);
-        }
-
-        .gift-box:nth-child(2) {
-            border-top: 3px solid var(--teal);
-        }
-
-        .gift-box:nth-child(3) {
-            border-top: 3px solid var(--peach);
-        }
-
-        .gift-box:nth-child(4) {
-            border-top: 3px solid var(--champagne);
-        }
-
-        /* Checklist - Premium Stationery */
+        /* Checklist Section */
         .checklist-section {
-            padding: 100px 32px;
-            max-width: 900px;
-            margin: 0 auto;
+            padding: 80px 0;
         }
 
-        .stationery {
-            background: white;
-            border-radius: 16px;
-            padding: 50px 45px;
-            box-shadow:
-                0 15px 50px rgba(31, 79, 77, 0.15),
-                inset 0 0 0 1px rgba(212, 175, 135, 0.2);
-            border-left: 6px solid var(--rose-gold);
-            position: relative;
-        }
-
-        /* Wax seal on stationery */
-        .stationery-seal {
-            position: absolute;
-            top: -25px;
-            right: 40px;
-            width: 60px;
-            height: 60px;
-            background: radial-gradient(circle, var(--rose-gold), var(--rose-gold-dark));
-            border-radius: 50%;
-            box-shadow:
-                0 4px 15px rgba(212, 175, 135, 0.4),
-                inset 0 1px 2px rgba(255,255,255,0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            font-weight: 700;
-            color: var(--deep-teal);
-            letter-spacing: 0.5px;
-        }
-
-        .checklist-title {
-            font-size: 40px;
-            color: var(--deep-teal);
+        .checklist-header {
             text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .checklist-header h2 {
+            font-size: 42px;
+            color: var(--deep-teal);
             margin-bottom: 12px;
         }
 
-        .progress-bar-wrapper {
-            background: linear-gradient(135deg, var(--champagne), var(--ivory));
-            border-radius: 12px;
-            padding: 16px;
-            margin: 28px 0 36px;
-            border: 2px solid var(--rose-gold);
+        .checklist-subtitle {
+            font-size: 15px;
+            color: var(--warm-gray);
+        }
+
+        .checklist-card {
+            background: white;
+            padding: 44px 48px;
+            border-radius: 8px;
+            border: 1px solid rgba(201, 168, 124, 0.12);
+            box-shadow:
+                0 2px 8px rgba(0,0,0,0.04),
+                0 12px 32px rgba(0,0,0,0.05);
+            border-left: 3px solid var(--rose-gold);
+        }
+
+        /* Progress bar */
+        .progress-wrapper {
+            margin-bottom: 36px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid rgba(201, 168, 124, 0.1);
         }
 
         .progress-label {
-            text-align: center;
-            font-size: 15px;
-            font-weight: 700;
+            font-size: 13px;
+            font-weight: 500;
             color: var(--deep-teal);
             margin-bottom: 10px;
+            text-align: center;
         }
 
         .progress-track {
-            height: 10px;
-            background: rgba(31, 79, 77, 0.1);
-            border-radius: 10px;
+            height: 6px;
+            background: var(--light-gray);
+            border-radius: 3px;
             overflow: hidden;
         }
 
         .progress-fill {
             height: 100%;
             background: linear-gradient(90deg, var(--teal), var(--rose-gold));
-            border-radius: 10px;
+            border-radius: 3px;
             width: 0%;
-            transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
+            transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .checklist-items {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 12px;
         }
 
         .check-item {
             display: flex;
             align-items: flex-start;
-            gap: 16px;
-            padding: 20px 24px;
-            background: linear-gradient(135deg, #FAFAFA, white);
-            border-radius: 12px;
-            border: 2px solid transparent;
+            gap: 14px;
+            padding: 16px 20px;
+            background: var(--light-gray);
+            border-radius: 6px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
         }
 
         .check-item:hover {
-            border-color: var(--soft-pink);
-            transform: translateX(6px);
             background: white;
-            box-shadow: 0 4px 20px rgba(255, 209, 220, 0.15);
+            border-color: rgba(255, 209, 220, 0.4);
+            transform: translateX(4px);
         }
 
         .check-box {
-            width: 28px;
-            height: 28px;
-            border: 3px solid var(--soft-pink);
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ddd;
             border-radius: 50%;
             flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.2s ease;
             margin-top: 2px;
         }
 
         .check-box.checked {
-            background: linear-gradient(135deg, var(--teal), var(--deep-teal));
-            border-color: var(--teal);
-            transform: scale(1.1);
+            background: var(--deep-teal);
+            border-color: var(--deep-teal);
         }
 
         .check-box.checked::after {
             content: '✓';
             color: white;
-            font-size: 16px;
+            font-size: 12px;
             font-weight: bold;
         }
 
         .check-text {
             flex: 1;
-            font-size: 17px;
-            color: #444;
+            font-size: 15px;
+            color: #2c2c2c;
             line-height: 1.6;
         }
 
         .check-text strong {
+            font-weight: 500;
             color: var(--deep-teal);
-            font-weight: 700;
         }
 
         .check-item.completed .check-text {
-            opacity: 0.6;
+            opacity: 0.5;
         }
 
-        .completion-badge {
-            text-align: center;
-            margin-top: 28px;
+        .completion-message {
+            margin-top: 24px;
             padding: 20px;
-            background: linear-gradient(135deg, var(--champagne), var(--peach));
-            border-radius: 12px;
-            border: 2px solid var(--rose-gold);
-            font-size: 18px;
-            font-weight: 700;
+            background: linear-gradient(135deg, var(--champagne), var(--light-gray));
+            border-radius: 6px;
+            text-align: center;
+            font-size: 15px;
+            font-weight: 500;
             color: var(--deep-teal);
+            border: 1px solid rgba(201, 168, 124, 0.2);
             display: none;
-            animation: slideDown 0.5s ease;
         }
 
-        .completion-badge.show {
+        .completion-message.show {
             display: block;
+            animation: slideDown 0.4s ease;
         }
 
         @keyframes slideDown {
             from {
                 opacity: 0;
-                transform: translateY(-15px);
+                transform: translateY(-10px);
             }
             to {
                 opacity: 1;
@@ -778,121 +575,109 @@
             }
         }
 
-        .checklist-note {
-            text-align: center;
-            margin-top: 24px;
-            font-size: 15px;
-            color: #777;
-            font-style: italic;
-        }
-
-        /* Closing - Personal Note */
+        /* Closing Section */
         .closing-section {
-            padding: 100px 32px 120px;
-            max-width: 1000px;
-            margin: 0 auto;
+            padding: 80px 0 120px;
         }
 
-        .personal-note {
-            background: linear-gradient(135deg, var(--deep-teal), #1a3f3d);
-            border-radius: 24px;
-            padding: 70px 60px;
-            box-shadow: 0 20px 60px rgba(31, 79, 77, 0.3);
+        .closing-card {
+            background: var(--deep-teal);
+            padding: 64px 56px;
+            border-radius: 8px;
+            box-shadow:
+                0 4px 16px rgba(31, 79, 77, 0.2),
+                0 16px 48px rgba(31, 79, 77, 0.15);
             position: relative;
             overflow: hidden;
         }
 
-        .personal-note::before {
+        /* Top accent line */
+        .closing-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 8px;
-            background: linear-gradient(90deg, var(--rose-gold), var(--gold-shimmer), var(--rose-gold));
+            height: 3px;
+            background: linear-gradient(90deg, var(--rose-gold), var(--rose-gold-light));
         }
 
-        .personal-note::after {
+        /* Subtle texture overlay */
+        .closing-card::after {
             content: '';
             position: absolute;
             inset: 0;
-            background:
-                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.05), transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(212,175,135,0.08), transparent 50%);
+            background: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.03), transparent 50%);
             pointer-events: none;
         }
 
-        .note-content {
+        .closing-content {
             position: relative;
             z-index: 1;
             text-align: center;
         }
 
-        .personal-note h2 {
-            font-size: 46px;
+        .closing-card h2 {
+            font-size: 44px;
             color: white;
             margin-bottom: 28px;
         }
 
-        .personal-note p {
-            font-size: 19px;
-            color: rgba(255,255,255,0.95);
+        .closing-card p {
+            font-size: 17px;
+            color: rgba(255,255,255,0.9);
             line-height: 1.8;
             margin-bottom: 20px;
-            max-width: 700px;
+            max-width: 620px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        .signature-block {
+        .signature {
             margin-top: 48px;
-            padding-top: 36px;
-            border-top: 2px solid rgba(212, 175, 135, 0.3);
+            padding-top: 32px;
+            border-top: 1px solid rgba(201, 168, 124, 0.2);
         }
 
         .signature-text {
             font-family: 'Caveat', cursive;
-            font-size: 38px;
-            color: var(--gold-shimmer);
-            font-weight: 700;
-            margin-bottom: 8px;
+            font-size: 28px;
+            color: var(--rose-gold-light);
+            font-weight: 600;
+            margin-bottom: 6px;
         }
 
         .signature-name {
-            font-size: 18px;
+            font-size: 15px;
             color: var(--soft-pink);
-            font-weight: 600;
+            font-weight: 400;
         }
 
-        /* Mobile Float */
+        /* Mobile CTA */
         .mobile-cta {
             position: fixed;
-            bottom: 20px;
+            bottom: 16px;
             left: 16px;
             right: 16px;
-            z-index: 999;
+            z-index: 998;
             display: none;
         }
 
         .mobile-cta .btn-vip {
             width: 100%;
             justify-content: center;
+            box-shadow:
+                0 4px 16px rgba(31, 79, 77, 0.3),
+                0 8px 32px rgba(0,0,0,0.15);
         }
 
         /* Confetti */
         .confetti {
             position: fixed;
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             pointer-events: none;
-            z-index: 9999;
-        }
-
-        @keyframes confettiFall {
-            to {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
+            z-index: 9998;
         }
 
         @keyframes burst {
@@ -907,245 +692,222 @@
         }
 
         /* Responsive */
-        @media (max-width: 900px) {
-            .hero-grid {
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .hero {
+                padding: 60px 0 80px;
+            }
+
+            .hero-inner {
                 grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .gift-boxes {
-                grid-template-columns: 1fr;
-            }
-
-            .mobile-cta {
-                display: block;
-            }
-
-            .timeline-header h2::before,
-            .timeline-header h2::after {
-                display: none;
-            }
-
-            .envelope-flap {
-                border-left-width: 50vw;
-                border-right-width: 50vw;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .hero-content {
-                padding: 40px 28px;
+                gap: 36px;
             }
 
             .hero h1 {
+                font-size: 48px;
+            }
+
+            .timeline-header h2 {
                 font-size: 38px;
             }
 
+            .timeline-path {
+                padding-left: 48px;
+            }
+
             .invitation-card {
-                padding: 40px 28px;
+                padding: 36px 28px;
             }
 
             .invitation-card h2 {
                 font-size: 32px;
             }
 
-            .timeline-header h2 {
+            .checklist-card {
+                padding: 32px 24px;
+            }
+
+            .checklist-header h2 {
                 font-size: 36px;
             }
 
-            .personal-note {
-                padding: 50px 32px;
+            .closing-card {
+                padding: 48px 32px;
             }
 
-            .personal-note h2 {
-                font-size: 34px;
+            .closing-card h2 {
+                font-size: 36px;
+            }
+
+            .mobile-cta {
+                display: block;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- VIP Wax Seal Badge -->
-    <div class="wax-seal-container">
-        <div class="wax-seal">
-            <div class="wax-seal-text">VIP<br>ACCESS</div>
-        </div>
+    <!-- Delicate top accent -->
+    <div class="top-accent"></div>
+
+    <!-- Small wax seal badge -->
+    <div class="wax-seal-badge">
+        VIP
     </div>
 
-    <!-- Ribbon Across Top -->
-    <div class="ribbon-horizontal"></div>
+    <div class="container">
 
-    <!-- Gift Box Opening -->
-    <div class="gift-box-top">
-        <div class="tissue-paper"></div>
-
+        <!-- Hero Section -->
         <section class="hero">
-            <div class="hero-content">
-                <div class="hero-grid">
-                    <div>
-                        <h1>You're In!<br>Welcome to VIP 🎉</h1>
-                        <p class="hero-subtitle">You just did the thing most people talk themselves out of. That already tells me a lot about you.</p>
-                    </div>
-                    <div>
-                        <div class="video-frame">
-                            <div class="video-inner">
-                                <div class="play-btn">
-                                    <svg width="26" height="30" viewBox="0 0 26 30" fill="none">
-                                        <path d="M2 2L24 15L2 28V2Z" fill="white"/>
-                                    </svg>
-                                </div>
+            <div class="hero-inner">
+                <div>
+                    <h1>You're In!<br>Welcome to VIP 🎉</h1>
+                    <p class="hero-subtitle">You just did the thing most people talk themselves out of. That already tells me a lot about you.</p>
+                </div>
+                <div class="video-container">
+                    <div class="video-frame">
+                        <div class="video-inner">
+                            <div class="play-btn">
+                                <svg width="20" height="24" viewBox="0 0 20 24" fill="none">
+                                    <path d="M2 2L18 12L2 22V2Z" fill="white"/>
+                                </svg>
                             </div>
                         </div>
-                        <p class="video-caption">Thank You Video from Bailey</p>
                     </div>
+                    <p class="video-caption">Thank You Video from Bailey</p>
                 </div>
             </div>
         </section>
-    </div>
 
-    <!-- WhatsApp Invitation -->
-    <section class="whatsapp-section">
-        <div class="envelope-wrapper">
-            <div class="envelope">
-                <div class="envelope-flap"></div>
-            </div>
-        </div>
+        <!-- WhatsApp Section -->
+        <section class="whatsapp-section">
+            <div class="section-label">Your First Step</div>
 
-        <div class="invitation-card">
-            <div class="invitation-header">
+            <div class="invitation-card">
                 <h2>First Things First:<br>Get in the WhatsApp</h2>
+
+                <p>This is where the magic happens. Real questions, real answers, me actually in there with you. Don't wait on this one — get in now so you don't miss anything before Day 1.</p>
+
+                <div class="btn-wrapper">
+                    <a href="#" class="btn-vip">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5l-1.4 5 5.2-1.3c1.5.9 3.2 1.4 5 1.4 5.5 0 10-4.5 10-10S17.5 2 12 2zm5 13.5c-.2.6-1.2 1-1.7 1.1-.5.1-1 .1-1.5-.1-.3-.1-.8-.3-1.3-.6-1.6-.8-2.6-2.5-2.7-2.6-.1-.1-.7-1-.7-2s.5-1.4.7-1.6c.2-.2.4-.2.5-.2h.4c.1 0 .3-.1.4.3l.5 1.4c.1.2.1.4 0 .6-.1.2-.2.3-.3.5l-.3.4c-.1.1-.2.2-.1.4.1.2.5.9 1.1 1.5.8.7 1.5.9 1.7 1 .2.1.3.1.4-.1l.6-.7c.1-.2.3-.2.5-.1l1.3.8c.2.1.4.2.5.3z" fill="white"/>
+                        </svg>
+                        Join the VIP WhatsApp Now
+                    </a>
+                    <span class="btn-note">(Takes like 10 seconds. You'll get a welcome message from me right away.)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section class="timeline-section">
+            <div class="timeline-header">
+                <h2>Here's What's Coming Your Way</h2>
             </div>
 
-            <p>This is where the magic happens. Real questions, real answers, me actually in there with you. Don't wait on this one — get in now so you don't miss anything before Day 1.</p>
-
-            <div style="text-align: center;">
-                <a href="#" class="btn-vip">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5l-1.4 5 5.2-1.3c1.5.9 3.2 1.4 5 1.4 5.5 0 10-4.5 10-10S17.5 2 12 2zm5 13.5c-.2.6-1.2 1-1.7 1.1-.5.1-1 .1-1.5-.1-.3-.1-.8-.3-1.3-.6-1.6-.8-2.6-2.5-2.7-2.6-.1-.1-.7-1-.7-2s.5-1.4.7-1.6c.2-.2.4-.2.5-.2h.4c.1 0 .3-.1.4.3l.5 1.4c.1.2.1.4 0 .6-.1.2-.2.3-.3.5l-.3.4c-.1.1-.2.2-.1.4.1.2.5.9 1.1 1.5.8.7 1.5.9 1.7 1 .2.1.3.1.4-.1l.6-.7c.1-.2.3-.2.5-.1l1.3.8c.2.1.4.2.5.3z" fill="white"/>
-                    </svg>
-                    Join the VIP WhatsApp Now
-                </a>
-                <span class="btn-note">(Takes like 10 seconds. You'll get a welcome message from me right away.)</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Timeline Gift Boxes -->
-    <section class="timeline-section">
-        <div class="timeline-header">
-            <h2>Here's What's Coming Your Way</h2>
-        </div>
-
-        <div class="gift-boxes">
-            <div class="gift-box">
-                <div class="box-lid"></div>
-                <div class="box-content">
-                    <span class="day-tag">Before Day 1</span>
+            <div class="timeline-path">
+                <div class="timeline-item">
+                    <div class="day-label">Before Day 1</div>
                     <h3>📦 Quick Start Kit</h3>
                     <p><strong>Quick Start Kit</strong> hits your inbox. My $1M shop walkthrough, 50 product examples, and a framework for figuring out what in your shop needs to go. Start poking around before we even kick off.</p>
                 </div>
-            </div>
 
-            <div class="gift-box">
-                <div class="box-lid"></div>
-                <div class="box-content">
-                    <span class="day-tag">Day 1</span>
+                <div class="timeline-item">
+                    <div class="day-label">Day 1</div>
                     <h3>🎬 Challenge Starts!</h3>
                     <p><strong>Challenge starts!</strong> And you've got recordings of everything — so when your kid gets sick on Day 2 (because of course they will), you're not screwed.</p>
                 </div>
-            </div>
 
-            <div class="gift-box">
-                <div class="box-lid"></div>
-                <div class="box-content">
-                    <span class="day-tag">After Day 2</span>
+                <div class="timeline-item">
+                    <div class="day-label">After Day 2</div>
                     <h3>🎤 VIP-Only Q&A</h3>
                     <p><strong>VIP-Only Q&A.</strong> This is YOUR time. Bring questions about YOUR actual shop. Not theory. Your real listings, your real stuck points. I'll answer.</p>
                 </div>
-            </div>
 
-            <div class="gift-box">
-                <div class="box-lid"></div>
-                <div class="box-content">
-                    <span class="day-tag">Day 4</span>
+                <div class="timeline-item">
+                    <div class="day-label">Day 4</div>
                     <h3>🔧 Implementation Call</h3>
                     <p><strong>Implementation Call.</strong> Okay this one's my favorite. This is where I help you actually DO the thing. Not learn. DO. We're getting stuff done together.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Checklist Stationery -->
-    <section class="checklist-section">
-        <div class="stationery">
-            <div class="stationery-seal">VIP</div>
-
-            <h2 class="checklist-title">Your Little VIP Checklist</h2>
-
-            <div class="progress-bar-wrapper">
-                <div class="progress-label" id="progressLabel">✨ 0 of 4 tasks complete</div>
-                <div class="progress-track">
-                    <div class="progress-fill" id="progressFill"></div>
-                </div>
+        <!-- Checklist Section -->
+        <section class="checklist-section">
+            <div class="checklist-header">
+                <h2>Your Little VIP Checklist</h2>
+                <p class="checklist-subtitle">You already did the hardest part — you said yes. These are the easy ones.</p>
             </div>
 
-            <div class="checklist-items">
-                <div class="check-item" data-index="0">
-                    <div class="check-box"></div>
-                    <div class="check-text">
-                        <strong>Join the VIP WhatsApp</strong> — Seriously, do this right now. Button's up there ☝️
+            <div class="checklist-card">
+                <div class="progress-wrapper">
+                    <div class="progress-label" id="progressLabel">0 of 4 tasks complete</div>
+                    <div class="progress-track">
+                        <div class="progress-fill" id="progressFill"></div>
                     </div>
                 </div>
 
-                <div class="check-item" data-index="1">
-                    <div class="check-box"></div>
-                    <div class="check-text">
-                        <strong>Watch for the Quick Start Kit</strong> — It's landing in your inbox before Day 1. Don't let it sit there unopened!
+                <div class="checklist-items">
+                    <div class="check-item" data-index="0">
+                        <div class="check-box"></div>
+                        <div class="check-text">
+                            <strong>Join the VIP WhatsApp</strong> — Seriously, do this right now. Button's up there ☝️
+                        </div>
+                    </div>
+
+                    <div class="check-item" data-index="1">
+                        <div class="check-box"></div>
+                        <div class="check-text">
+                            <strong>Watch for the Quick Start Kit</strong> — It's landing in your inbox before Day 1. Don't let it sit there unopened!
+                        </div>
+                    </div>
+
+                    <div class="check-item" data-index="2">
+                        <div class="check-box"></div>
+                        <div class="check-text">
+                            <strong>Block time for your VIP Q&A</strong> — Happening right after Day 2. Put it in your calendar so life doesn't bulldoze it.
+                        </div>
+                    </div>
+
+                    <div class="check-item" data-index="3">
+                        <div class="check-box"></div>
+                        <div class="check-text">
+                            <strong>Block time for your Implementation Call</strong> — Day 4. This is the one where everything clicks. Protect this time like it's a doctor's appointment.
+                        </div>
                     </div>
                 </div>
 
-                <div class="check-item" data-index="2">
-                    <div class="check-box"></div>
-                    <div class="check-text">
-                        <strong>Block time for your VIP Q&A</strong> — Happening right after Day 2. Put it in your calendar so life doesn't bulldoze it.
+                <div class="completion-message" id="completionMessage">
+                    🎉 You're all set! You're going to absolutely crush this challenge!
+                </div>
+            </div>
+        </section>
+
+        <!-- Closing Section -->
+        <section class="closing-section">
+            <div class="closing-card">
+                <div class="closing-content">
+                    <h2>You're Not Just Here to Watch.</h2>
+
+                    <p>Real talk — VIPs don't just sit through the challenge and take pretty notes. They walk out of this with a cleaned-up shop, an actual plan, and real listings ready to go.</p>
+
+                    <p>That's why you're here. And that's exactly what we're gonna make happen together.</p>
+
+                    <p>I don't take this lightly. You invested in yourself and I'm gonna make sure it's worth it.</p>
+
+                    <div class="signature">
+                        <p class="signature-text">See you in the WhatsApp!</p>
+                        <p class="signature-name">— Bailey ❤️</p>
                     </div>
                 </div>
-
-                <div class="check-item" data-index="3">
-                    <div class="check-box"></div>
-                    <div class="check-text">
-                        <strong>Block time for your Implementation Call</strong> — Day 4. This is the one where everything clicks. Protect this time like it's a doctor's appointment.
-                    </div>
-                </div>
             </div>
+        </section>
 
-            <div class="completion-badge" id="completionBadge">
-                🎉 You're all set! You're going to absolutely crush this challenge!
-            </div>
-
-            <p class="checklist-note">You already did the hardest part — you said yes. These are the easy ones.</p>
-        </div>
-    </section>
-
-    <!-- Personal Note -->
-    <section class="closing-section">
-        <div class="personal-note">
-            <div class="note-content">
-                <h2>You're Not Just Here to Watch.</h2>
-
-                <p>Real talk — VIPs don't just sit through the challenge and take pretty notes. They walk out of this with a cleaned-up shop, an actual plan, and real listings ready to go.</p>
-
-                <p>That's why you're here. And that's exactly what we're gonna make happen together.</p>
-
-                <p>I don't take this lightly. You invested in yourself and I'm gonna make sure it's worth it.</p>
-
-                <div class="signature-block">
-                    <p class="signature-text">See you in the WhatsApp!</p>
-                    <p class="signature-name">— Bailey ❤️</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
 
     <!-- Mobile CTA -->
     <div class="mobile-cta">
@@ -1162,7 +924,7 @@
         const items = document.querySelectorAll('.check-item');
         const progressFill = document.getElementById('progressFill');
         const progressLabel = document.getElementById('progressLabel');
-        const completionBadge = document.getElementById('completionBadge');
+        const completionMessage = document.getElementById('completionMessage');
         let checkedCount = 0;
         const totalItems = items.length;
 
@@ -1201,13 +963,13 @@
         function updateProgress() {
             const percentage = (checkedCount / totalItems) * 100;
             progressFill.style.width = percentage + '%';
-            progressLabel.textContent = `✨ ${checkedCount} of ${totalItems} tasks complete`;
+            progressLabel.textContent = `${checkedCount} of ${totalItems} tasks complete`;
 
             if (checkedCount === totalItems) {
-                completionBadge.classList.add('show');
+                completionMessage.classList.add('show');
                 createBigConfetti();
             } else {
-                completionBadge.classList.remove('show');
+                completionMessage.classList.remove('show');
             }
         }
 
@@ -1215,18 +977,38 @@
             const rect = element.getBoundingClientRect();
             const x = rect.left + rect.width / 2;
             const y = rect.top + rect.height / 2;
-            const colors = ['#FF6B9D', '#4ECDC4', '#D4AF87', '#FFD1DC'];
+            const colors = ['#FF6B9D', '#4ECDC4', '#C9A87C', '#FFD1DC'];
 
-            for (let i = 0; i < 12; i++) {
+            for (let i = 0; i < 10; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
                 confetti.style.left = x + 'px';
                 confetti.style.top = y + 'px';
                 confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animation = 'burst 0.6s ease-out forwards';
+
+                const angle = (i / 10) * Math.PI * 2;
+                const distance = 40 + Math.random() * 30;
+                confetti.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
+                confetti.style.setProperty('--ty', Math.sin(angle) * distance + 'px');
+
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 600);
+            }
+        }
+
+        function createBigConfetti() {
+            const colors = ['#FF6B9D', '#4ECDC4', '#C9A87C', '#FFD1DC'];
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = (window.innerWidth / 2) + 'px';
+                confetti.style.top = (window.innerHeight / 2) + 'px';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
                 confetti.style.animation = 'burst 0.8s ease-out forwards';
 
-                const angle = (i / 12) * Math.PI * 2;
-                const distance = 60 + Math.random() * 40;
+                const angle = (i / 30) * Math.PI * 2;
+                const distance = 80 + Math.random() * 100;
                 confetti.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
                 confetti.style.setProperty('--ty', Math.sin(angle) * distance + 'px');
 
@@ -1235,44 +1017,7 @@
             }
         }
 
-        function createBigConfetti() {
-            const colors = ['#FF6B9D', '#4ECDC4', '#D4AF87', '#FFD1DC'];
-            for (let i = 0; i < 40; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = (window.innerWidth / 2) + 'px';
-                confetti.style.top = (window.innerHeight / 2) + 'px';
-                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.animation = 'burst 1s ease-out forwards';
-
-                const angle = (i / 40) * Math.PI * 2;
-                const distance = 100 + Math.random() * 150;
-                confetti.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
-                confetti.style.setProperty('--ty', Math.sin(angle) * distance + 'px');
-
-                document.body.appendChild(confetti);
-                setTimeout(() => confetti.remove(), 1000);
-            }
-        }
-
         updateProgress();
-
-        // Welcome confetti
-        setTimeout(() => {
-            const colors = ['#FF6B9D', '#4ECDC4', '#D4AF87', '#FFD1DC'];
-            for (let i = 0; i < 25; i++) {
-                setTimeout(() => {
-                    const confetti = document.createElement('div');
-                    confetti.className = 'confetti';
-                    confetti.style.left = Math.random() * window.innerWidth + 'px';
-                    confetti.style.top = '-20px';
-                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.animation = `confettiFall ${3 + Math.random() * 2}s linear forwards`;
-                    document.body.appendChild(confetti);
-                    setTimeout(() => confetti.remove(), 6000);
-                }, i * 150);
-            }
-        }, 800);
     </script>
 
 </body>
