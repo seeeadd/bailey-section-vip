@@ -625,12 +625,12 @@
     }
 
     .polaroid-stack {
-        position: -webkit-sticky;
-        position: sticky;
-        top: 30px;
+        position: relative;
         width: 100%;
         height: 520px;
         min-height: 520px;
+        transition: transform 0.1s ease-out;
+        will-change: transform;
     }
 
     .polaroid {
@@ -1217,3 +1217,82 @@
 
     </div>
 </section>
+
+<!-- JavaScript for sticky polaroids (Framer-compatible) -->
+<script>
+(function() {
+    // Only run on desktop (900px+)
+    if (window.innerWidth < 900) return;
+
+    const polaroidStack = document.querySelector('.polaroid-stack');
+    const imagesColumn = document.querySelector('.story-images-column');
+    const section = document.querySelector('.story-part1-section');
+
+    if (!polaroidStack || !imagesColumn || !section) return;
+
+    // Get the scrollable parent (could be window, iframe, or Framer container)
+    function getScrollParent(element) {
+        let parent = element.parentElement;
+        while (parent) {
+            const style = getComputedStyle(parent);
+            if (style.overflow === 'auto' || style.overflow === 'scroll' ||
+                style.overflowY === 'auto' || style.overflowY === 'scroll' ||
+                parent.tagName === 'HTML' || parent.tagName === 'BODY') {
+                return parent;
+            }
+            parent = parent.parentElement;
+        }
+        return window;
+    }
+
+    const scrollParent = getScrollParent(section);
+    const stickyTop = 30;
+
+    function handleScroll() {
+        if (window.innerWidth < 900) {
+            polaroidStack.style.transform = '';
+            return;
+        }
+
+        const sectionRect = section.getBoundingClientRect();
+        const columnRect = imagesColumn.getBoundingClientRect();
+        const stackHeight = polaroidStack.offsetHeight;
+
+        // Calculate how much we've scrolled into the section
+        const scrolledIntoSection = -sectionRect.top + stickyTop;
+
+        // Maximum scroll before stack hits bottom of column
+        const maxScroll = columnRect.height - stackHeight - 60;
+
+        if (sectionRect.top > stickyTop) {
+            // Section hasn't reached top yet - stay at original position
+            polaroidStack.style.transform = 'translateY(0)';
+        } else if (scrolledIntoSection > 0 && scrolledIntoSection < maxScroll) {
+            // In the sticky zone - follow the scroll
+            polaroidStack.style.transform = `translateY(${scrolledIntoSection}px)`;
+        } else if (scrolledIntoSection >= maxScroll) {
+            // Hit the bottom - stay at max position
+            polaroidStack.style.transform = `translateY(${maxScroll}px)`;
+        }
+    }
+
+    // Listen on multiple possible scroll containers for Framer compatibility
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    document.addEventListener('scroll', handleScroll, { passive: true });
+    if (scrollParent !== window) {
+        scrollParent.addEventListener('scroll', handleScroll, { passive: true });
+    }
+
+    // Also check on resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth < 900) {
+            polaroidStack.style.transform = '';
+        } else {
+            handleScroll();
+        }
+    });
+
+    // Initial call
+    handleScroll();
+})();
+</script>
