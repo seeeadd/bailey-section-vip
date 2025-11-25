@@ -8,7 +8,7 @@ import { motion } from "framer-motion"
 
 export default function ProgressBar(props) {
     const {
-        progress = 40,
+        progress = 85,
 
         // Container
         paddingHorizontal = 40,
@@ -574,7 +574,7 @@ addPropertyControls(ProgressBar, {
         title: "Progress",
         min: 0,
         max: 100,
-        defaultValue: 40,
+        defaultValue: 85,
         unit: "%",
         step: 1,
     },
