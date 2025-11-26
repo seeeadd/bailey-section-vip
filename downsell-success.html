@@ -700,6 +700,16 @@
         html {
             scroll-behavior: smooth;
         }
+
+        /* Hide scrollbar for Framer embeds (prevents double scrollbar) */
+        html, body {
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+
+        html::-webkit-scrollbar, body::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
     </style>
 </head>
 <body>
