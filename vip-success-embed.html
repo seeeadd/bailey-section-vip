@@ -47,13 +47,16 @@
     }
 
     /* Hide scrollbar for Framer embeds (prevents double scrollbar) */
-    html, body {
-        scrollbar-width: none; /* Firefox */
-        -ms-overflow-style: none; /* IE and Edge */
+    :root, html, body {
+        scrollbar-width: none !important; /* Firefox */
+        -ms-overflow-style: none !important; /* IE and Edge */
+        overflow-x: hidden;
     }
 
-    html::-webkit-scrollbar, body::-webkit-scrollbar {
-        display: none; /* Chrome, Safari, Opera */
+    ::-webkit-scrollbar {
+        display: none !important; /* Chrome, Safari, Opera */
+        width: 0 !important;
+        height: 0 !important;
     }
 
     .vip-page h1, .vip-page h2, .vip-page h3 {
@@ -257,11 +260,13 @@
 
     /* Mobile Video Drawer */
     .vip-page .video-drawer-overlay {
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
+        right: 0;
+        bottom: 0;
         width: 100%;
-        height: 100vh;
+        height: 100%;
         background: rgba(0, 0, 0, 0.97);
         z-index: 10000;
         opacity: 0;
@@ -1576,29 +1581,10 @@
     }
 
     function openDrawer() {
-        // Use button position to find where user's viewport is
-        // This works in Framer iframes where window.scrollY is always 0
-        const btnRect = mobilePlayBtn.getBoundingClientRect();
-        const btnCenterInViewport = btnRect.top + btnRect.height / 2;
-
-        // Get button's position in document
-        const btnDocumentTop = mobilePlayBtn.offsetTop;
-
-        // Calculate where user's viewport starts in document coordinates
-        // btnRect.top tells us where button is relative to viewport
-        // btnDocumentTop tells us where button is in document
-        // So viewport top = btnDocumentTop - btnRect.top
-        const viewportTopInDocument = btnDocumentTop - btnRect.top;
-
-        // Get viewport height (use clientHeight for better iframe support)
-        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-
-        // Position overlay at viewport position
-        videoOverlay.style.top = Math.max(0, viewportTopInDocument) + 'px';
-        videoOverlay.style.height = viewportHeight + 'px';
-
+        // Fixed positioning handles viewport centering automatically
         videoOverlay.classList.add('open');
         document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
         // Small delay to ensure CSS transition works
         setTimeout(initDrawerVideo, 100);
     }
@@ -1606,6 +1592,7 @@
     function closeDrawer() {
         videoOverlay.classList.remove('open');
         document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
         // Destroy video to stop audio
         setTimeout(destroyDrawerVideo, 350);
     }
