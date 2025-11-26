@@ -75,6 +75,27 @@
             line-height: 1.1;
         }
 
+        /* Top progress bar */
+        .top-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: rgba(245, 235, 224, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 9998;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .top-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--teal), var(--rose-gold));
+            width: 0%;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
+        }
+
         /* Ornate VIP badge */
         .vip-badge {
             position: fixed;
@@ -720,6 +741,117 @@
         .timeline-card:nth-child(3) .timeline-content { border-top: 5px solid var(--peach); }
         .timeline-card:nth-child(4) .timeline-content { border-top: 5px solid var(--rose-gold); }
 
+        /* ADD TO CALENDAR SECTION */
+        .calendar-section {
+            padding: 120px 24px;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .calendar-card {
+            background: linear-gradient(135deg, #ffffff, #fefefe);
+            padding: 60px 50px;
+            border-radius: 24px;
+            box-shadow:
+                0 2px 10px rgba(0,0,0,0.05),
+                0 8px 28px rgba(0,0,0,0.07),
+                0 18px 60px rgba(0,0,0,0.09);
+            border: 2px solid rgba(201, 168, 124, 0.14);
+            position: relative;
+        }
+
+        .calendar-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--rose-gold), transparent);
+            border-radius: 0 0 4px 4px;
+        }
+
+        .calendar-icon {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 28px;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--champagne), #f9f3eb);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow:
+                0 2px 8px rgba(201, 168, 124, 0.12),
+                0 6px 20px rgba(201, 168, 124, 0.15);
+        }
+
+        .calendar-card h3 {
+            font-size: 36px;
+            color: var(--deep-teal);
+            margin-bottom: 18px;
+            letter-spacing: -0.6px;
+        }
+
+        .calendar-card p {
+            font-size: 18px;
+            color: var(--warm-gray);
+            line-height: 1.8;
+            margin-bottom: 32px;
+            max-width: 580px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-calendar {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            background: linear-gradient(135deg, var(--rose-gold), var(--rose-gold-dark));
+            color: white;
+            font-size: 17px;
+            font-weight: 500;
+            padding: 20px 48px;
+            border-radius: 11px;
+            text-decoration: none;
+            box-shadow:
+                0 1px 3px rgba(201, 168, 124, 0.2),
+                0 4px 14px rgba(201, 168, 124, 0.25),
+                0 10px 32px rgba(201, 168, 124, 0.18),
+                inset 0 1px 0 rgba(255,255,255,0.15),
+                inset 0 -1px 0 rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(201, 168, 124, 0.3);
+        }
+
+        .btn-calendar::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.25), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.7s;
+        }
+
+        .btn-calendar:hover::before {
+            transform: translateX(100%);
+        }
+
+        .btn-calendar:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 2px 6px rgba(201, 168, 124, 0.22),
+                0 6px 18px rgba(201, 168, 124, 0.28),
+                0 14px 40px rgba(201, 168, 124, 0.2),
+                inset 0 1px 0 rgba(255,255,255,0.2),
+                inset 0 -1px 0 rgba(0,0,0,0.1);
+        }
+
         /* CHECKLIST - PLAYFUL JOURNAL */
         .checklist-section {
             padding: 150px 24px;
@@ -928,7 +1060,7 @@
             }
         }
 
-        /* CLOSING - PERSONAL NOTE */
+        /* CLOSING - ENGAGING GRID LAYOUT */
         .closing-section {
             padding: 150px 24px 180px;
             max-width: 1200px;
@@ -937,7 +1069,7 @@
 
         .closing-card {
             background: linear-gradient(135deg, var(--deep-teal), #164442);
-            padding: 94px 84px;
+            padding: 70px 60px;
             border-radius: 26px;
             box-shadow:
                 0 4px 16px rgba(31, 79, 77, 0.2),
@@ -971,37 +1103,81 @@
         .closing-content {
             position: relative;
             z-index: 1;
+        }
+
+        .closing-header {
             text-align: center;
+            margin-bottom: 60px;
         }
 
         .closing-card h2 {
-            font-size: 60px;
+            font-size: 56px;
             color: white;
-            margin-bottom: 42px;
+            margin-bottom: 26px;
             line-height: 1.08;
             letter-spacing: -0.8px;
             text-shadow: 0 2px 4px rgba(0,0,0,0.15);
         }
 
-        .closing-card p {
-            font-size: 20px;
-            color: rgba(255,255,255,0.95);
-            line-height: 1.95;
-            letter-spacing: 0.2px;
-            margin-bottom: 30px;
-            max-width: 740px;
-            margin-left: auto;
-            margin-right: auto;
+        .closing-intro {
+            font-size: 19px;
+            color: rgba(255,255,255,0.92);
+            line-height: 1.85;
+            max-width: 680px;
+            margin: 0 auto;
         }
 
-        .signature {
-            margin-top: 72px;
+        .closing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .closing-point {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            padding: 36px 28px;
+            border-radius: 18px;
+            border: 1.5px solid rgba(255,255,255,0.12);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .closing-point:hover {
+            background: rgba(255,255,255,0.12);
+            border-color: rgba(201, 168, 124, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .closing-point-icon {
+            font-size: 42px;
+            margin-bottom: 18px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .closing-point h3 {
+            font-size: 20px;
+            color: white;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .closing-point p {
+            font-size: 16px;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .closing-cta {
+            text-align: center;
             padding-top: 50px;
             border-top: 1.5px solid rgba(201, 168, 124, 0.25);
             position: relative;
         }
 
-        .signature::before {
+        .closing-cta::before {
             content: '';
             position: absolute;
             top: -1px;
@@ -1012,12 +1188,19 @@
             background: linear-gradient(90deg, transparent, rgba(201, 168, 124, 0.4), transparent);
         }
 
+        .closing-cta p {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 28px;
+            font-weight: 500;
+        }
+
         .signature-text {
             font-family: 'Caveat', cursive;
             font-size: 40px;
             color: var(--rose-gold);
             font-weight: 600;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
         .signature-name {
@@ -1117,7 +1300,16 @@
             }
 
             .closing-card {
-                padding: 70px 48px;
+                padding: 60px 40px;
+            }
+
+            .closing-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .calendar-card {
+                padding: 48px 36px;
             }
 
             .checklist-card {
@@ -1148,6 +1340,10 @@
     </style>
 </head>
 <body>
+
+    <div class="top-progress">
+        <div class="top-progress-fill" id="topProgressFill"></div>
+    </div>
 
     <div class="vip-badge">
         <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1255,7 +1451,7 @@
                 <div class="timeline-content">
                     <span class="timeline-label">Before Day 1</span>
                     <h3>Quick Start Kit</h3>
-                    <p><strong>Quick Start Kit</strong> hits your inbox. My $1M shop walkthrough, 50 product examples, and a framework for figuring out what in your shop needs to go. Start poking around before we even kick off.</p>
+                    <p><strong>Quick Start Kit</strong> gets dropped in the VIP WhatsApp group. My $1M shop walkthrough, 50 product examples, and a framework for figuring out what in your shop needs to go. Start poking around before we even kick off.</p>
                 </div>
             </div>
 
@@ -1311,6 +1507,30 @@
                     <p><strong>Implementation Call.</strong> Okay this one's my favorite. This is where I help you actually DO the thing. Not learn. DO. We're getting stuff done together.</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="calendar-section">
+        <div class="calendar-card">
+            <div class="calendar-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect x="6" y="10" width="28" height="24" rx="3" stroke="#C9A87C" stroke-width="2.5" fill="none"/>
+                    <line x1="6" y1="16" x2="34" y2="16" stroke="#C9A87C" stroke-width="2.5"/>
+                    <line x1="14" y1="6" x2="14" y2="12" stroke="#C9A87C" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="26" y1="6" x2="26" y2="12" stroke="#C9A87C" stroke-width="2.5" stroke-linecap="round"/>
+                    <circle cx="14" cy="24" r="1.5" fill="#4ECDC4"/>
+                    <circle cx="20" cy="24" r="1.5" fill="#FFD1DC"/>
+                    <circle cx="26" cy="24" r="1.5" fill="#4ECDC4"/>
+                </svg>
+            </div>
+            <h3>Block Your VIP Times</h3>
+            <p>Lock in your VIP Q&A (after Day 2) and Implementation Call (Day 4) on your calendar right now. Life gets busy — protect these like actual appointments.</p>
+            <a href="#" class="btn-calendar">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M10 2v16M2 10h16" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                Add to Calendar
+            </a>
         </div>
     </section>
 
@@ -1423,15 +1643,33 @@
     <section class="closing-section">
         <div class="closing-card">
             <div class="closing-content">
-                <h2>You're Not Just Here to Watch.</h2>
+                <div class="closing-header">
+                    <h2>You're Not Just Here to Watch.</h2>
+                    <p class="closing-intro">Real talk — VIPs don't just sit through the challenge and take pretty notes. Here's what you're walking out with:</p>
+                </div>
 
-                <p>Real talk — VIPs don't just sit through the challenge and take pretty notes. They walk out of this with a cleaned-up shop, an actual plan, and real listings ready to go.</p>
+                <div class="closing-grid">
+                    <div class="closing-point">
+                        <div class="closing-point-icon">✨</div>
+                        <h3>A Cleaned-Up Shop</h3>
+                        <p>No more clutter. No more "I'll fix that later." A shop that actually looks intentional.</p>
+                    </div>
 
-                <p>That's why you're here. And that's exactly what we're gonna make happen together.</p>
+                    <div class="closing-point">
+                        <div class="closing-point-icon">📋</div>
+                        <h3>An Actual Plan</h3>
+                        <p>Not vague ideas. Not "someday goals." A real plan you can execute starting Day 5.</p>
+                    </div>
 
-                <p>I don't take this lightly. You invested in yourself and I'm gonna make sure it's worth it.</p>
+                    <div class="closing-point">
+                        <div class="closing-point-icon">🎯</div>
+                        <h3>Real Listings Ready</h3>
+                        <p>Not drafts you'll "get to eventually." Listings that are done and ready to publish.</p>
+                    </div>
+                </div>
 
-                <div class="signature">
+                <div class="closing-cta">
+                    <p>I don't take this lightly. You invested in yourself and I'm gonna make sure it's worth it.</p>
                     <p class="signature-text">See you in the WhatsApp!</p>
                     <p class="signature-name">— Bailey</p>
                 </div>
@@ -1449,6 +1687,17 @@
     </div>
 
     <script>
+        // Top progress bar based on scroll
+        const topProgressFill = document.getElementById('topProgressFill');
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            topProgressFill.style.width = scrolled + '%';
+        });
+
+        // Checklist functionality
         const items = document.querySelectorAll('.check-item');
         const progressFill = document.getElementById('progressFill');
         const progressLabel = document.getElementById('progressLabel');
