@@ -1,20 +1,20 @@
 <svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <!-- Soft gradient background -->
+    <!-- Rich gradient background -->
     <rect width="500" height="500" fill="url(#bg-gradient)"/>
 
-    <!-- Subtle radial glow -->
-    <circle cx="250" cy="250" r="240" fill="url(#glow)" opacity="0.4"/>
+    <!-- Radial accent glow -->
+    <circle cx="250" cy="250" r="200" fill="url(#glow)" opacity="0.15"/>
 
     <!-- Main illustration: Premium shopping bag with VIP badge -->
     <g id="shopping-bag">
         <!-- Bag shadow -->
-        <ellipse cx="250" cy="420" rx="110" ry="18" fill="#000000" opacity="0.08"/>
+        <ellipse cx="250" cy="420" rx="110" ry="18" fill="#000000" opacity="0.15"/>
 
         <!-- Bag body -->
         <path d="M160 200 L170 400 Q170 410, 180 410 L320 410 Q330 410, 330 400 L340 200 Z"
               fill="url(#bag-gradient)"
-              stroke="#C9A87C"
-              stroke-width="3"/>
+              stroke="#A88A5E"
+              stroke-width="5"/>
 
         <!-- Bag highlight -->
         <path d="M165 210 L173 390 Q173 400, 182 400 L200 400 L200 210 Z"
@@ -27,14 +27,14 @@
         <!-- Handle left -->
         <path d="M185 195 Q185 150, 210 140"
               stroke="url(#handle-gradient)"
-              stroke-width="8"
+              stroke-width="10"
               stroke-linecap="round"
               fill="none"/>
 
         <!-- Handle right -->
         <path d="M315 195 Q315 150, 290 140"
               stroke="url(#handle-gradient)"
-              stroke-width="8"
+              stroke-width="10"
               stroke-linecap="round"
               fill="none"/>
 
@@ -56,8 +56,8 @@
     <!-- VIP Badge on bag - the centerpiece -->
     <g id="vip-badge" transform="translate(250, 300)">
         <!-- Badge background with depth -->
-        <circle r="75" fill="url(#badge-bg)" stroke="#C9A87C" stroke-width="4"/>
-        <circle r="75" fill="url(#badge-overlay)" opacity="0.2"/>
+        <circle r="75" fill="url(#badge-bg)" stroke="#A88A5E" stroke-width="6"/>
+        <circle r="75" fill="url(#badge-overlay)" opacity="0.35"/>
 
         <!-- Inner decorative ring -->
         <circle r="65" fill="none" stroke="#1F4F4D" stroke-width="1.2" opacity="0.15"/>
@@ -108,7 +108,7 @@
     </g>
 
     <!-- Decorative elements floating around -->
-    <g id="floating-elements" opacity="0.7">
+    <g id="floating-elements" opacity="0.9">
         <!-- Star sparkles -->
         <g transform="translate(120, 180)">
             <path d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" fill="#FFD1DC"/>
@@ -141,23 +141,22 @@
     </g>
 
     <!-- Bottom text -->
-    <g transform="translate(250, 450)">
+    <g transform="translate(250, 455)">
         <text y="0"
               font-family="'Satoshi', sans-serif"
-              font-size="16"
-              font-weight="600"
+              font-size="18"
+              font-weight="700"
               fill="#1F4F4D"
               text-anchor="middle"
-              letter-spacing="2.5"
-              opacity="0.9">BAILEY'S VIP GROUP</text>
+              letter-spacing="2.5">BAILEY'S VIP GROUP</text>
     </g>
 
     <!-- Gradients and Filters -->
     <defs>
-        <!-- Background -->
+        <!-- Background - vibrant -->
         <radialGradient id="bg-gradient" cx="0.5" cy="0.4">
-            <stop offset="0%" stop-color="#FEFEFE"/>
-            <stop offset="100%" stop-color="#F5F9F9"/>
+            <stop offset="0%" stop-color="#FFF5F8"/>
+            <stop offset="100%" stop-color="#E8F5F4"/>
         </radialGradient>
 
         <radialGradient id="glow" cx="0.5" cy="0.5">
@@ -166,11 +165,11 @@
             <stop offset="100%" stop-color="transparent"/>
         </radialGradient>
 
-        <!-- Shopping bag gradients -->
+        <!-- Shopping bag gradients - much more visible -->
         <linearGradient id="bag-gradient" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stop-color="#FFFFFF"/>
-            <stop offset="50%" stop-color="#FEFEFE"/>
-            <stop offset="100%" stop-color="#F9F9F9"/>
+            <stop offset="50%" stop-color="#F5F5F5"/>
+            <stop offset="100%" stop-color="#ECECEC"/>
         </linearGradient>
 
         <linearGradient id="bag-shine" x1="0" y1="0" x2="1" y2="0">
@@ -180,30 +179,31 @@
 
         <linearGradient id="rim-gradient" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%" stop-color="#C9A87C"/>
-            <stop offset="50%" stop-color="#D4B896"/>
+            <stop offset="50%" stop-color="#E0C497"/>
             <stop offset="100%" stop-color="#C9A87C"/>
         </linearGradient>
 
         <linearGradient id="handle-gradient" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#C9A87C"/>
-            <stop offset="100%" stop-color="#B89968"/>
+            <stop offset="0%" stop-color="#D4B896"/>
+            <stop offset="100%" stop-color="#A88A5E"/>
         </linearGradient>
 
-        <!-- Badge gradients -->
+        <!-- Badge gradients - strong contrast -->
         <radialGradient id="badge-bg" cx="0.5" cy="0.5">
             <stop offset="0%" stop-color="#FFFFFF"/>
-            <stop offset="100%" stop-color="#F8F8F8"/>
+            <stop offset="100%" stop-color="#F0F0F0"/>
         </radialGradient>
 
         <radialGradient id="badge-overlay" cx="0.3" cy="0.3">
             <stop offset="0%" stop-color="#FFD1DC"/>
+            <stop offset="50%" stop-color="#FFE5EC"/>
             <stop offset="100%" stop-color="transparent"/>
         </radialGradient>
 
         <linearGradient id="ribbon-gradient" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#C9A87C"/>
+            <stop offset="0%" stop-color="#B89968"/>
             <stop offset="50%" stop-color="#D4B896"/>
-            <stop offset="100%" stop-color="#C9A87C"/>
+            <stop offset="100%" stop-color="#B89968"/>
         </linearGradient>
     </defs>
 </svg>
