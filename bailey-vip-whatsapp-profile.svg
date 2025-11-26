@@ -1,0 +1,165 @@
+<svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background gradient -->
+    <rect width="500" height="500" fill="url(#bg-gradient)"/>
+
+    <!-- Decorative circles -->
+    <circle cx="250" cy="250" r="220" fill="none" stroke="url(#circle-gradient-1)" stroke-width="1.5" opacity="0.15"/>
+    <circle cx="250" cy="250" r="195" fill="none" stroke="url(#circle-gradient-2)" stroke-width="1.2" opacity="0.2"/>
+    <circle cx="250" cy="250" r="170" fill="none" stroke="#FFD1DC" stroke-width="0.8" opacity="0.25"/>
+
+    <!-- Main VIP badge circle -->
+    <circle cx="250" cy="250" r="145" fill="url(#main-gradient)" stroke="#C9A87C" stroke-width="3.5"/>
+    <circle cx="250" cy="250" r="145" fill="url(#overlay-gradient)" opacity="0.3"/>
+
+    <!-- Inner decorative ring -->
+    <circle cx="250" cy="250" r="130" fill="none" stroke="url(#inner-ring)" stroke-width="2" stroke-dasharray="8 6" opacity="0.4"/>
+
+    <!-- WhatsApp icon integrated -->
+    <g transform="translate(250, 180)">
+        <circle r="32" fill="url(#whatsapp-gradient)"/>
+        <path d="M-8 -2 Q-8 -8, -2 -8 L2 -8 Q8 -8, 8 -2 L8 2 Q8 8, 2 8 L-6 8 L-12 12 L-12 2 Q-12 -2, -8 -2 Z"
+              fill="white" opacity="0.95"/>
+        <circle cx="-4" cy="0" r="1.5" fill="#4ECDC4"/>
+        <circle cx="0" cy="0" r="1.5" fill="#4ECDC4"/>
+        <circle cx="4" cy="0" r="1.5" fill="#4ECDC4"/>
+    </g>
+
+    <!-- 'B' monogram - stylized and elegant -->
+    <g transform="translate(250, 260)">
+        <text x="0" y="0"
+              font-family="'Ogg', serif"
+              font-size="120"
+              font-weight="400"
+              fill="url(#text-gradient)"
+              text-anchor="middle"
+              dominant-baseline="middle"
+              style="letter-spacing: -2px;">B</text>
+
+        <!-- Decorative underline -->
+        <path d="M-35 25 Q0 30, 35 25"
+              stroke="url(#underline-gradient)"
+              stroke-width="2.5"
+              fill="none"
+              stroke-linecap="round"/>
+    </g>
+
+    <!-- VIP text curved at bottom -->
+    <g transform="translate(250, 370)">
+        <text x="0" y="0"
+              font-family="'Satoshi', sans-serif"
+              font-size="16"
+              font-weight="700"
+              fill="#1F4F4D"
+              text-anchor="middle"
+              letter-spacing="4">VIP GROUP</text>
+    </g>
+
+    <!-- Decorative stars/sparkles -->
+    <g opacity="0.6">
+        <!-- Top right star -->
+        <path d="M350 120 L352 126 L358 128 L352 130 L350 136 L348 130 L342 128 L348 126 Z" fill="#FFD1DC"/>
+
+        <!-- Top left star -->
+        <path d="M150 120 L152 126 L158 128 L152 130 L150 136 L148 130 L142 128 L148 126 Z" fill="#4ECDC4"/>
+
+        <!-- Bottom right star -->
+        <path d="M360 350 L361 354 L365 355 L361 356 L360 360 L359 356 L355 355 L359 354 Z" fill="#C9A87C"/>
+
+        <!-- Bottom left star -->
+        <path d="M140 350 L141 354 L145 355 L141 356 L140 360 L139 356 L135 355 L139 354 Z" fill="#FFD1DC"/>
+
+        <!-- Small accent dots -->
+        <circle cx="380" cy="250" r="4" fill="#FFD1DC" opacity="0.5"/>
+        <circle cx="120" cy="250" r="4" fill="#4ECDC4" opacity="0.5"/>
+        <circle cx="250" cy="100" r="3" fill="#C9A87C" opacity="0.5"/>
+        <circle cx="250" cy="400" r="3" fill="#FFD1DC" opacity="0.5"/>
+    </g>
+
+    <!-- Crown accent above the B -->
+    <g transform="translate(250, 200)" opacity="0.7">
+        <path d="M-18 0 L-12 -8 L-6 -2 L0 -10 L6 -2 L12 -8 L18 0 Z"
+              fill="none"
+              stroke="url(#crown-gradient)"
+              stroke-width="2.5"
+              stroke-linejoin="round"
+              stroke-linecap="round"/>
+        <circle cx="-12" cy="-8" r="2.5" fill="#C9A87C"/>
+        <circle cx="0" cy="-10" r="3" fill="#FFD1DC"/>
+        <circle cx="12" cy="-8" r="2.5" fill="#4ECDC4"/>
+    </g>
+
+    <!-- Subtle texture overlay -->
+    <rect width="500" height="500" fill="url(#noise)" opacity="0.03"/>
+
+    <!-- Gradients -->
+    <defs>
+        <!-- Background gradient -->
+        <radialGradient id="bg-gradient" cx="0.5" cy="0.3">
+            <stop offset="0%" stop-color="#FFFFFF"/>
+            <stop offset="100%" stop-color="#F8FAFA"/>
+        </radialGradient>
+
+        <!-- Main badge gradient -->
+        <linearGradient id="main-gradient" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#FFFFFF"/>
+            <stop offset="50%" stop-color="#FEFEFE"/>
+            <stop offset="100%" stop-color="#F9F9F9"/>
+        </linearGradient>
+
+        <!-- Overlay gradient for depth -->
+        <radialGradient id="overlay-gradient" cx="0.3" cy="0.3">
+            <stop offset="0%" stop-color="#4ECDC4"/>
+            <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+
+        <!-- Circle gradients -->
+        <linearGradient id="circle-gradient-1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#4ECDC4"/>
+            <stop offset="50%" stop-color="#C9A87C"/>
+            <stop offset="100%" stop-color="#FFD1DC"/>
+        </linearGradient>
+
+        <linearGradient id="circle-gradient-2" x1="1" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FFD1DC"/>
+            <stop offset="50%" stop-color="#4ECDC4"/>
+            <stop offset="100%" stop-color="#C9A87C"/>
+        </linearGradient>
+
+        <!-- Inner ring gradient -->
+        <linearGradient id="inner-ring" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#1F4F4D"/>
+            <stop offset="100%" stop-color="#C9A87C"/>
+        </linearGradient>
+
+        <!-- WhatsApp icon gradient -->
+        <linearGradient id="whatsapp-gradient" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#4ECDC4"/>
+            <stop offset="100%" stop-color="#3db8af"/>
+        </linearGradient>
+
+        <!-- Text gradient -->
+        <linearGradient id="text-gradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1F4F4D"/>
+            <stop offset="100%" stop-color="#164442"/>
+        </linearGradient>
+
+        <!-- Underline gradient -->
+        <linearGradient id="underline-gradient" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#FFD1DC"/>
+            <stop offset="50%" stop-color="#C9A87C"/>
+            <stop offset="100%" stop-color="#4ECDC4"/>
+        </linearGradient>
+
+        <!-- Crown gradient -->
+        <linearGradient id="crown-gradient" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#C9A87C"/>
+            <stop offset="50%" stop-color="#D4B896"/>
+            <stop offset="100%" stop-color="#C9A87C"/>
+        </linearGradient>
+
+        <!-- Noise texture -->
+        <filter id="noise">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/>
+        </filter>
+    </defs>
+</svg>
