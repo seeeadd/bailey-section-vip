@@ -1,0 +1,208 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <defs>
+    <!-- Gradients matching brand palette -->
+    <linearGradient id="roseGoldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C9A87C"/>
+      <stop offset="50%" stop-color="#D4B896"/>
+      <stop offset="100%" stop-color="#B8956A"/>
+    </linearGradient>
+
+    <linearGradient id="tealGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2F5F61"/>
+      <stop offset="100%" stop-color="#4ECDC4"/>
+    </linearGradient>
+
+    <linearGradient id="fadeOutGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8A8A8A" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#8A8A8A" stop-opacity="0.1"/>
+    </linearGradient>
+
+    <linearGradient id="futureGlow" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#4ECDC4" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#4ECDC4" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#C9A87C" stop-opacity="0.6"/>
+    </linearGradient>
+
+    <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C9A87C" stop-opacity="0.3"/>
+      <stop offset="40%" stop-color="#C9A87C"/>
+      <stop offset="100%" stop-color="#4ECDC4"/>
+    </linearGradient>
+
+    <!-- Soft glow filter -->
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="subtleGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Clock face pattern -->
+    <clipPath id="clockClip">
+      <circle cx="115" cy="250" r="55"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background subtle gradient arc - the transformation journey -->
+  <path d="M 80 400 Q 400 100 720 250" stroke="url(#futureGlow)" stroke-width="120" fill="none" opacity="0.4"/>
+
+  <!-- ==================== LEFT SIDE: THE PAST (What to Delete) ==================== -->
+
+  <!-- Faded/ghosted product boxes representing "dead" items -->
+  <g opacity="0.35">
+    <!-- Dead item 1 - crossed out -->
+    <rect x="40" y="120" width="70" height="70" rx="8" fill="#E8E4DF" stroke="#C4C0BB" stroke-width="1.5"/>
+    <line x1="45" y1="125" x2="105" y2="185" stroke="#8A8A8A" stroke-width="2" stroke-linecap="round"/>
+    <line x1="105" y1="125" x2="45" y2="185" stroke="#8A8A8A" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Dead item 2 -->
+    <rect x="30" y="200" width="55" height="55" rx="6" fill="#E8E4DF" stroke="#C4C0BB" stroke-width="1.5"/>
+    <line x1="35" y1="205" x2="80" y2="250" stroke="#8A8A8A" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="80" y1="205" x2="35" y2="250" stroke="#8A8A8A" stroke-width="1.5" stroke-linecap="round"/>
+
+    <!-- Dead item 3 -->
+    <rect x="55" y="270" width="60" height="60" rx="6" fill="#E8E4DF" stroke="#C4C0BB" stroke-width="1.5"/>
+    <line x1="60" y1="275" x2="110" y2="325" stroke="#8A8A8A" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="110" y1="275" x2="60" y2="325" stroke="#8A8A8A" stroke-width="1.5" stroke-linecap="round"/>
+
+    <!-- Scattered dots representing clutter -->
+    <circle cx="25" cy="160" r="4" fill="#C4C0BB"/>
+    <circle cx="120" cy="140" r="3" fill="#C4C0BB"/>
+    <circle cx="15" cy="240" r="5" fill="#C4C0BB"/>
+    <circle cx="125" cy="290" r="4" fill="#C4C0BB"/>
+    <circle cx="40" cy="350" r="3" fill="#C4C0BB"/>
+  </g>
+
+  <!-- ==================== CENTER: THE 90-MINUTE CLOCK ==================== -->
+
+  <!-- Clock outer ring with rose gold -->
+  <circle cx="280" cy="250" r="75" fill="none" stroke="url(#roseGoldGradient)" stroke-width="4" filter="url(#subtleGlow)"/>
+
+  <!-- Clock inner fill -->
+  <circle cx="280" cy="250" r="68" fill="#FDFCF9" stroke="#F5EBE0" stroke-width="2"/>
+
+  <!-- 90-minute arc indicator (90 min = 1.5 hours = 270 degrees from 12 o'clock) -->
+  <path d="M 280 182 A 68 68 0 1 1 212 250" fill="none" stroke="url(#tealGradient)" stroke-width="8" stroke-linecap="round" opacity="0.85"/>
+
+  <!-- Clock hour markers -->
+  <g stroke="#C9A87C" stroke-width="2" stroke-linecap="round">
+    <line x1="280" y1="190" x2="280" y2="200"/> <!-- 12 -->
+    <line x1="340" y1="250" x2="330" y2="250"/> <!-- 3 -->
+    <line x1="280" y1="310" x2="280" y2="300"/> <!-- 6 -->
+    <line x1="220" y1="250" x2="230" y2="250"/> <!-- 9 -->
+  </g>
+
+  <!-- Clock hands pointing to 1:30 (90 minutes from 12) -->
+  <line x1="280" y1="250" x2="280" y2="205" stroke="#2F5F61" stroke-width="3" stroke-linecap="round"/> <!-- Hour -->
+  <line x1="280" y1="250" x2="320" y2="230" stroke="#1A3D3B" stroke-width="2" stroke-linecap="round"/> <!-- Minute -->
+  <circle cx="280" cy="250" r="6" fill="#C9A87C"/>
+
+  <!-- "90" text below clock -->
+  <text x="280" y="355" text-anchor="middle" font-family="Georgia, serif" font-size="28" font-weight="700" fill="#2F5F61">90</text>
+  <text x="280" y="378" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#8A8A8A" letter-spacing="2">MINUTES</text>
+
+  <!-- ==================== TRANSFORMATION ARROW PATH ==================== -->
+
+  <!-- Elegant curved arrow from past to future -->
+  <path d="M 160 250 C 220 180, 420 180, 480 220" stroke="url(#pathGradient)" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="8,6"/>
+
+  <!-- Arrow head pointing to future -->
+  <path d="M 475 210 L 488 222 L 472 228" stroke="#4ECDC4" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- ==================== RIGHT SIDE: THE FUTURE (2026 - What to Build) ==================== -->
+
+  <!-- Glowing aura behind selected items -->
+  <ellipse cx="620" cy="250" rx="140" ry="160" fill="url(#futureGlow)" opacity="0.3"/>
+
+  <!-- Curated product boxes - the "keepers" with spotlight effect -->
+  <g filter="url(#subtleGlow)">
+    <!-- Selected item 1 - Featured/Hero product -->
+    <rect x="560" y="140" width="90" height="90" rx="12" fill="#FDFCF9" stroke="url(#roseGoldGradient)" stroke-width="3"/>
+    <!-- Star badge on featured item -->
+    <circle cx="640" cy="150" r="14" fill="#C9A87C"/>
+    <path d="M 640 140 L 642 146 L 649 146 L 644 150 L 646 157 L 640 153 L 634 157 L 636 150 L 631 146 L 638 146 Z" fill="#FDFCF9"/>
+    <!-- Abstract product representation -->
+    <rect x="575" y="165" width="60" height="8" rx="4" fill="#4ECDC4" opacity="0.7"/>
+    <rect x="575" y="180" width="45" height="6" rx="3" fill="#C9A87C" opacity="0.5"/>
+    <rect x="575" y="193" width="50" height="6" rx="3" fill="#2F5F61" opacity="0.3"/>
+
+    <!-- Selected item 2 -->
+    <rect x="670" y="180" width="75" height="75" rx="10" fill="#FDFCF9" stroke="url(#tealGradient)" stroke-width="2.5"/>
+    <rect x="683" y="200" width="50" height="7" rx="3" fill="#4ECDC4" opacity="0.6"/>
+    <rect x="683" y="213" width="38" height="5" rx="2" fill="#C9A87C" opacity="0.5"/>
+    <rect x="683" y="224" width="42" height="5" rx="2" fill="#2F5F61" opacity="0.3"/>
+
+    <!-- Selected item 3 -->
+    <rect x="545" y="250" width="70" height="70" rx="10" fill="#FDFCF9" stroke="url(#roseGoldGradient)" stroke-width="2.5"/>
+    <rect x="557" y="270" width="46" height="6" rx="3" fill="#C9A87C" opacity="0.6"/>
+    <rect x="557" y="282" width="35" height="5" rx="2" fill="#4ECDC4" opacity="0.5"/>
+    <rect x="557" y="293" width="40" height="5" rx="2" fill="#2F5F61" opacity="0.3"/>
+
+    <!-- Selected item 4 -->
+    <rect x="635" y="275" width="80" height="80" rx="10" fill="#FDFCF9" stroke="url(#tealGradient)" stroke-width="2.5"/>
+    <rect x="650" y="298" width="52" height="7" rx="3" fill="#2F5F61" opacity="0.5"/>
+    <rect x="650" y="312" width="40" height="5" rx="2" fill="#C9A87C" opacity="0.5"/>
+    <rect x="650" y="324" width="45" height="5" rx="2" fill="#4ECDC4" opacity="0.4"/>
+  </g>
+
+  <!-- Checkmarks on selected items -->
+  <g stroke="#4ECDC4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M 595 215 L 602 222 L 618 206"/> <!-- Check 1 -->
+    <path d="M 700 240 L 706 246 L 718 234"/> <!-- Check 2 -->
+    <path d="M 570 305 L 576 311 L 588 299"/> <!-- Check 3 -->
+    <path d="M 665 340 L 671 346 L 683 334"/> <!-- Check 4 -->
+  </g>
+
+  <!-- ==================== 2026 DESTINATION ==================== -->
+
+  <!-- 2026 with elegant styling -->
+  <text x="720" y="120" font-family="Georgia, serif" font-size="42" font-weight="700" fill="url(#tealGradient)" filter="url(#subtleGlow)">2026</text>
+
+  <!-- Small decorative arrow pointing up to 2026 -->
+  <path d="M 695 140 L 700 125 L 705 140" stroke="#C9A87C" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- ==================== DECORATIVE ELEMENTS ==================== -->
+
+  <!-- Sparkles around the future section -->
+  <g fill="#C9A87C">
+    <path d="M 530 130 L 533 138 L 541 138 L 535 143 L 537 151 L 530 146 L 523 151 L 525 143 L 519 138 L 527 138 Z" opacity="0.7"/>
+    <path d="M 740 200 L 742 206 L 748 206 L 743 210 L 745 216 L 740 212 L 735 216 L 737 210 L 732 206 L 738 206 Z" opacity="0.6"/>
+    <path d="M 510 320 L 512 325 L 517 325 L 513 328 L 515 333 L 510 330 L 505 333 L 507 328 L 503 325 L 508 325 Z" opacity="0.5"/>
+  </g>
+
+  <!-- Teal accent sparkles -->
+  <g fill="#4ECDC4">
+    <circle cx="760" cy="300" r="4" opacity="0.6"/>
+    <circle cx="520" cy="380" r="3" opacity="0.5"/>
+    <circle cx="700" cy="380" r="5" opacity="0.4"/>
+  </g>
+
+  <!-- Elegant curved flourish in top left (matching brand) -->
+  <path d="M 20 60 Q 60 30, 120 50 Q 140 55, 150 45" stroke="#C9A87C" stroke-width="2" fill="none" opacity="0.5" stroke-linecap="round"/>
+  <circle cx="155" cy="42" r="4" fill="#FFD1DC" opacity="0.6"/>
+
+  <!-- Bottom flourish -->
+  <path d="M 300 450 Q 400 420, 500 440 Q 550 448, 580 435" stroke="#4ECDC4" stroke-width="1.5" fill="none" opacity="0.4" stroke-linecap="round"/>
+  <circle cx="585" cy="432" r="3" fill="#C9A87C" opacity="0.5"/>
+
+  <!-- ==================== SUBTLE TEXT LABELS ==================== -->
+
+  <!-- "DELETE" label on left -->
+  <text x="75" y="400" font-family="Arial, sans-serif" font-size="11" fill="#8A8A8A" letter-spacing="3" opacity="0.6">DELETE</text>
+
+  <!-- "BUILD" label on right -->
+  <text x="640" y="400" font-family="Arial, sans-serif" font-size="11" fill="#4ECDC4" letter-spacing="3" opacity="0.8">BUILD</text>
+
+  <!-- Transformation arrow label -->
+  <text x="320" y="160" font-family="Arial, sans-serif" font-size="10" fill="#C9A87C" letter-spacing="1" opacity="0.7">RESET</text>
+
+</svg>
