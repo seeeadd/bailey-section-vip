@@ -36,6 +36,9 @@
         font-weight: 400;
         color: #2c2c2c;
         line-height: 1.6;
+        width: 100%;
+        overflow-x: hidden;
+        position: relative;
     }
 
     .vip-page * {
@@ -68,7 +71,7 @@
 
     /* VIP Badge */
     .vip-page .vip-badge {
-        position: fixed;
+        position: absolute;
         top: 70px;
         right: 20px;
         width: 64px;
@@ -98,7 +101,7 @@
 
     /* Hero Section */
     .vip-page .hero {
-        min-height: 100vh;
+        min-height: auto;
         display: flex;
         align-items: center;
         position: relative;
@@ -643,7 +646,7 @@
 
     /* Registration Progress Bar */
     .vip-page .registration-complete-bar {
-        position: fixed;
+        position: sticky;
         top: 0;
         left: 0;
         right: 0;
@@ -1077,12 +1080,14 @@
 
     /* Mobile CTA */
     .vip-page .mobile-cta {
-        position: fixed;
-        bottom: 20px;
-        left: 20px;
-        right: 20px;
+        position: sticky;
+        bottom: 0;
+        left: 0;
+        right: 0;
         z-index: 998;
         display: none;
+        padding: 16px 20px;
+        background: linear-gradient(180deg, transparent 0%, var(--cream) 30%);
     }
 
     .vip-page .mobile-cta a {
@@ -1139,7 +1144,6 @@
         .vip-page .timeline-content { padding: 20px; }
         .vip-page .checklist-card { padding: 28px 20px; }
         .vip-page .mobile-cta { display: block; }
-        .vip-page .closing-section { padding-bottom: 120px; }
         .vip-page .calendar-btn-wrapper { width: 100%; }
     }
 
