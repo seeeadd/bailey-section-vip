@@ -310,12 +310,21 @@
         /* Mobile Video Drawer - Centered for optimal viewing */
         .video-drawer-overlay {
             position: fixed;
-            inset: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
             background: rgba(0, 0, 0, 0.97);
             z-index: 10000;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
         }
 
         .video-drawer-overlay.open {
@@ -324,16 +333,14 @@
         }
 
         .video-drawer {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.9);
-            width: calc(100% - 32px);
+            position: relative;
+            width: 100%;
             max-width: 500px;
+            max-height: 90vh;
             background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
             z-index: 10001;
             opacity: 0;
-            visibility: hidden;
+            transform: scale(0.9);
             transition: all 0.35s cubic-bezier(0.32, 0.72, 0, 1);
             border-radius: 24px;
             overflow: hidden;
@@ -345,10 +352,9 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
-        .video-drawer.open {
-            transform: translate(-50%, -50%) scale(1);
+        .video-drawer-overlay.open .video-drawer {
+            transform: scale(1);
             opacity: 1;
-            visibility: visible;
         }
 
         /* Drawer header with close button */
@@ -1742,40 +1748,41 @@
     </div>
 
     <!-- Mobile Video Drawer - Centered Modal -->
-    <div class="video-drawer-overlay" id="videoOverlay"></div>
-    <div class="video-drawer" id="videoDrawer">
-        <!-- Header with close button -->
-        <div class="drawer-header">
-            <span class="drawer-title">A Message For You</span>
-            <div class="drawer-close-btn" id="drawerClose">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round">
-                    <path d="M18 6L6 18M6 6l12 12"/>
-                </svg>
-            </div>
-        </div>
-
-        <!-- Video container -->
-        <div class="drawer-video-container" id="drawerVideoContainer">
-            <div id="drawer-video-wrapper">
-                <vturb-smartplayer id="vid-drawer-player"></vturb-smartplayer>
-            </div>
-        </div>
-
-        <!-- Animated footer below video -->
-        <div class="drawer-footer">
-            <div class="drawer-rings">
-                <div class="ring"></div>
-                <div class="ring"></div>
-                <div class="ring"></div>
-                <div class="vip-icon">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+    <div class="video-drawer-overlay" id="videoOverlay">
+        <div class="video-drawer" id="videoDrawer">
+            <!-- Header with close button -->
+            <div class="drawer-header">
+                <span class="drawer-title">A Message For You</span>
+                <div class="drawer-close-btn" id="drawerClose">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M18 6L6 18M6 6l12 12"/>
                     </svg>
                 </div>
             </div>
-            <p class="drawer-footer-text">
-                You're <strong>VIP</strong> now. Watch this quick message to see what's next.
-            </p>
+
+            <!-- Video container -->
+            <div class="drawer-video-container" id="drawerVideoContainer">
+                <div id="drawer-video-wrapper">
+                    <!-- Video iframe loaded on open -->
+                </div>
+            </div>
+
+            <!-- Animated footer below video -->
+            <div class="drawer-footer">
+                <div class="drawer-rings">
+                    <div class="ring"></div>
+                    <div class="ring"></div>
+                    <div class="ring"></div>
+                    <div class="vip-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                        </svg>
+                    </div>
+                </div>
+                <p class="drawer-footer-text">
+                    You're <strong>VIP</strong> now. Watch this quick message to see what's next.
+                </p>
+            </div>
         </div>
     </div>
 
@@ -1895,6 +1902,9 @@
 
         updateProgress();
 
+        // Check if mobile
+        const isMobile = window.innerWidth <= 768;
+
         // Mobile Video Drawer functionality
         const mobilePlayBtn = document.getElementById('mobilePlayBtn');
         const videoDrawer = document.getElementById('videoDrawer');
@@ -1916,37 +1926,38 @@
             iframe.setAttribute('frameborder', '0');
             iframe.setAttribute('scrolling', 'no');
 
-            // Replace the placeholder element
-            const placeholder = document.getElementById('vid-drawer-player');
-            if (placeholder) {
-                placeholder.replaceWith(iframe);
-            } else {
-                drawerVideoWrapper.innerHTML = '';
-                drawerVideoWrapper.appendChild(iframe);
-            }
+            drawerVideoWrapper.innerHTML = '';
+            drawerVideoWrapper.appendChild(iframe);
+        }
+
+        function destroyDrawerVideo() {
+            drawerVideoWrapper.innerHTML = '';
+            drawerVideoInitialized = false;
         }
 
         function openDrawer() {
-            videoDrawer.classList.add('open');
             videoOverlay.classList.add('open');
             document.body.style.overflow = 'hidden';
-
-            // Initialize video on first open
-            initDrawerVideo();
+            // Small delay to ensure CSS transition works
+            setTimeout(initDrawerVideo, 100);
         }
 
         function closeDrawer() {
-            videoDrawer.classList.remove('open');
             videoOverlay.classList.remove('open');
             document.body.style.overflow = '';
+            // Destroy video to stop audio
+            setTimeout(destroyDrawerVideo, 350);
         }
 
         if (mobilePlayBtn) {
             mobilePlayBtn.addEventListener('click', openDrawer);
         }
 
+        // Close when clicking overlay (but not the drawer itself)
         if (videoOverlay) {
-            videoOverlay.addEventListener('click', closeDrawer);
+            videoOverlay.addEventListener('click', function(e) {
+                if (e.target === videoOverlay) closeDrawer();
+            });
         }
 
         if (drawerClose) {
@@ -1980,7 +1991,7 @@
                     // Apply drag with resistance
                     const resistance = 0.6;
                     const dragOffset = diff * resistance;
-                    videoDrawer.style.transform = `translate(-50%, calc(-50% + ${dragOffset}px)) scale(${1 - dragOffset * 0.001})`;
+                    videoDrawer.style.transform = `translateY(${dragOffset}px) scale(${1 - dragOffset * 0.001})`;
                     videoDrawer.style.opacity = 1 - (dragOffset / 400);
                 }
             }
@@ -1995,11 +2006,10 @@
                 // If dragged more than 120px, close the drawer
                 if (diff > 120) {
                     closeDrawer();
-                } else {
-                    // Snap back to center
-                    videoDrawer.style.transform = 'translate(-50%, -50%) scale(1)';
-                    videoDrawer.style.opacity = '1';
                 }
+                // Reset transform
+                videoDrawer.style.transform = '';
+                videoDrawer.style.opacity = '';
 
                 startY = 0;
                 currentY = 0;
@@ -2018,14 +2028,14 @@
                 drawerFooter.addEventListener('touchend', handleTouchEnd);
             }
         }
-    </script>
 
-    <!-- Vturb Player Script for Desktop -->
-    <script type="text/javascript">
-        var s = document.createElement("script");
-        s.src = "https://scripts.converteai.net/4a88e4d6-10d6-46da-b41b-334366e58f7b/players/69268e3d1ec0bc043c339ac6/v4/player.js";
-        s.async = true;
-        document.head.appendChild(s);
+        // Only load Vturb player script on desktop - prevents audio conflict on mobile
+        if (!isMobile) {
+            var s = document.createElement("script");
+            s.src = "https://scripts.converteai.net/4a88e4d6-10d6-46da-b41b-334366e58f7b/players/69268e3d1ec0bc043c339ac6/v4/player.js";
+            s.async = true;
+            document.head.appendChild(s);
+        }
     </script>
 
 </body>
