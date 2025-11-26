@@ -89,6 +89,11 @@
             transform: translateY(0);
         }
 
+        /* Special handling for action-section: no transform after animation to prevent dropdown clipping */
+        .action-section.fade-in-section.visible {
+            transform: none;
+        }
+
         /* VIP Badge - with shimmer */
         .vip-badge {
             position: fixed;
@@ -302,11 +307,11 @@
             display: block;
         }
 
-        /* Mobile Video Drawer */
+        /* Mobile Video Drawer - Redesigned for better viewing */
         .video-drawer-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             z-index: 10000;
             opacity: 0;
             visibility: hidden;
@@ -320,74 +325,154 @@
 
         .video-drawer {
             position: fixed;
-            bottom: 0;
+            top: 5vh;
             left: 0;
             right: 0;
-            background: #000;
+            bottom: auto;
+            background: linear-gradient(180deg, #111 0%, #0a0a0a 100%);
             z-index: 10001;
-            transform: translateY(100%);
+            transform: translateY(-120%);
             transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
-            border-radius: 20px 20px 0 0;
+            border-radius: 0 0 24px 24px;
             max-height: 90vh;
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
         }
 
         .video-drawer.open {
             transform: translateY(0);
         }
 
-        .drawer-handle {
+        /* Drawer header with close button */
+        .drawer-header {
             width: 100%;
-            padding: 16px;
+            padding: 16px 20px;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 10px;
-            background: #111;
-            cursor: pointer;
+            justify-content: space-between;
+            background: linear-gradient(180deg, rgba(201, 168, 124, 0.1) 0%, transparent 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             flex-shrink: 0;
         }
 
-        .drawer-handle::before {
-            content: '';
-            width: 40px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 2px;
+        .drawer-title {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--rose-gold);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
-        .drawer-close-text {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.7);
-            font-weight: 500;
+        .drawer-close-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
 
+        .drawer-close-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .drawer-close-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Video container - prominent position */
         .drawer-video-container {
             width: 100%;
-            flex: 1;
-            min-height: 220px;
             background: #000;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 0 env(safe-area-inset-bottom, 20px) 0;
+            padding: 12px;
         }
 
         .drawer-video-container iframe,
         .drawer-video-container vturb-smartplayer {
             width: 100% !important;
             height: 100% !important;
-            min-height: 220px;
             display: block !important;
             aspect-ratio: 16/9;
+            border-radius: 12px;
         }
 
         #drawer-video-wrapper {
             width: 100%;
-            height: 100%;
-            min-height: 220px;
+            aspect-ratio: 16/9;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* Content below the video */
+        .drawer-content {
+            padding: 20px 24px 28px;
+            text-align: center;
+            background: linear-gradient(180deg, transparent 0%, rgba(201, 168, 124, 0.05) 100%);
+        }
+
+        .drawer-content h3 {
+            font-family: 'Ogg', Georgia, serif;
+            font-size: 20px;
+            color: #fff;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .drawer-content p {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .drawer-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, rgba(201, 168, 124, 0.2), rgba(201, 168, 124, 0.1));
+            border: 1px solid rgba(201, 168, 124, 0.3);
+            border-radius: 50px;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--rose-gold);
+        }
+
+        .drawer-badge svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Swipe hint at the bottom */
+        .drawer-swipe-hint {
+            padding: 12px 20px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .drawer-swipe-hint span {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Legacy drawer-handle for backwards compatibility */
+        .drawer-handle {
+            display: none;
         }
 
         /* Mobile: show tap-to-watch overlay */
@@ -599,7 +684,7 @@
             display: flex;
             justify-content: flex-start;
             position: relative;
-            z-index: 100;
+            z-index: 9999;
         }
 
         .calendar-btn-wrapper add-to-calendar-button {
@@ -614,16 +699,21 @@
             --list-text: #333333;
             --list-background-hover: #f5f5f5;
             --list-text-hover: #1A3D3B;
-            --list-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            --list-shadow: 0 8px 32px rgba(0,0,0,0.2);
             --btn-border: none;
             --checkmark-background: #4ECDC4;
-            --overlay-background: transparent;
-            --overlay-cursor: default;
+            --overlay-background: rgba(0,0,0,0.3);
+            --overlay-cursor: pointer;
         }
 
-        /* Action card with calendar needs visible overflow */
+        /* Action card with calendar - ensure visible overflow and high stacking */
         .action-card {
             overflow: visible !important;
+        }
+
+        /* Second action card (calendar card) needs highest z-index when dropdown open */
+        .action-card:nth-child(2) {
+            z-index: 1000;
         }
 
         .action-cards {
@@ -632,11 +722,27 @@
 
         .action-section {
             overflow: visible !important;
+            z-index: 1;
         }
 
-        /* Ensure dropdown list appears above everything */
+        /* Global styles for add-to-calendar dropdown - ensure it's above everything */
+        add-to-calendar-button {
+            --overlay-z: 99999;
+            --list-z: 99999;
+        }
+
+        /* Force the dropdown list to have proper visibility */
         .calendar-btn-wrapper add-to-calendar-button::part(atcb-list) {
-            z-index: 10000 !important;
+            z-index: 99999 !important;
+        }
+
+        .calendar-btn-wrapper add-to-calendar-button::part(atcb-list-wrapper) {
+            z-index: 99999 !important;
+        }
+
+        /* Ensure overlay appears above everything */
+        .calendar-btn-wrapper add-to-calendar-button::part(atcb-bgoverlay) {
+            z-index: 99998 !important;
         }
 
         @media (max-width: 768px) {
@@ -1596,17 +1702,41 @@
         </a>
     </div>
 
-    <!-- Mobile Video Drawer -->
+    <!-- Mobile Video Drawer - Redesigned -->
     <div class="video-drawer-overlay" id="videoOverlay"></div>
     <div class="video-drawer" id="videoDrawer">
-        <div class="drawer-handle" id="drawerClose">
-            <span class="drawer-close-text">Tap to close</span>
+        <!-- Header with close button -->
+        <div class="drawer-header">
+            <span class="drawer-title">A Message For You</span>
+            <div class="drawer-close-btn" id="drawerClose">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </div>
         </div>
+
+        <!-- Video container -->
         <div class="drawer-video-container" id="drawerVideoContainer">
-            <!-- Drawer video - same player ID, vturb will handle it -->
-            <div id="drawer-video-wrapper" style="width: 100%; aspect-ratio: 16/9;">
+            <div id="drawer-video-wrapper">
                 <vturb-smartplayer id="vid-drawer-player"></vturb-smartplayer>
             </div>
+        </div>
+
+        <!-- Content below video -->
+        <div class="drawer-content">
+            <h3>Welcome to VIP</h3>
+            <p>This quick video explains everything you need to know about your VIP access and what's coming next.</p>
+            <div class="drawer-badge">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                </svg>
+                VIP Exclusive Content
+            </div>
+        </div>
+
+        <!-- Swipe hint -->
+        <div class="drawer-swipe-hint">
+            <span>Tap anywhere outside or the X to close</span>
         </div>
     </div>
 
@@ -1741,7 +1871,7 @@
             // Create iframe for mobile drawer using vturb embed format
             const iframe = document.createElement('iframe');
             iframe.src = 'https://scripts.converteai.net/4a88e4d6-10d6-46da-b41b-334366e58f7b/players/69268e3d1ec0bc043c339ac6/embed.html';
-            iframe.style.cssText = 'width: 100%; height: 100%; border: none; display: block; min-height: 200px;';
+            iframe.style.cssText = 'width: 100%; height: 100%; border: none; display: block; border-radius: 12px;';
             iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen';
             iframe.allowFullscreen = true;
             iframe.setAttribute('frameborder', '0');
@@ -1782,31 +1912,43 @@
 
         if (drawerClose) {
             drawerClose.addEventListener('click', closeDrawer);
+        }
 
-            // Swipe down to close
+        // Swipe up on drawer to close (for the new top-positioned drawer)
+        if (videoDrawer) {
             let startY = 0;
             let currentY = 0;
+            let isDragging = false;
 
-            drawerClose.addEventListener('touchstart', (e) => {
-                startY = e.touches[0].clientY;
+            videoDrawer.addEventListener('touchstart', (e) => {
+                // Only track swipes that start in the header area
+                if (e.target.closest('.drawer-header') || e.target.closest('.drawer-swipe-hint')) {
+                    startY = e.touches[0].clientY;
+                    isDragging = true;
+                }
             });
 
-            drawerClose.addEventListener('touchmove', (e) => {
+            videoDrawer.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
                 currentY = e.touches[0].clientY;
                 const diff = currentY - startY;
-                if (diff > 0) {
+                // For top drawer, negative diff means swipe up
+                if (diff < 0) {
                     videoDrawer.style.transform = `translateY(${diff}px)`;
                 }
             });
 
-            drawerClose.addEventListener('touchend', () => {
+            videoDrawer.addEventListener('touchend', () => {
+                if (!isDragging) return;
                 const diff = currentY - startY;
-                if (diff > 100) {
+                // If swiped up more than 80px, close
+                if (diff < -80) {
                     closeDrawer();
                 }
                 videoDrawer.style.transform = '';
                 startY = 0;
                 currentY = 0;
+                isDragging = false;
             });
         }
     </script>
