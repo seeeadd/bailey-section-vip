@@ -1014,24 +1014,25 @@
             }
         }
 
-        /* CLOSING - PREMIUM LAYOUT */
+        /* UNIFIED CLOSING - INTRICATE PREMIUM */
         .closing-section {
-            padding: 150px 24px 100px;
-            max-width: 1200px;
+            padding: 120px 24px 180px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
         .closing-card {
-            background: linear-gradient(135deg, var(--deep-teal), #164442);
-            padding: 80px 70px;
-            border-radius: 26px;
+            background: linear-gradient(135deg, #ffffff, #fefefe);
+            padding: 72px 68px 68px;
+            border-radius: 24px;
             box-shadow:
-                0 4px 16px rgba(31, 79, 77, 0.2),
-                0 12px 32px rgba(31, 79, 77, 0.26),
-                0 32px 76px rgba(31, 79, 77, 0.24);
+                0 2px 10px rgba(0,0,0,0.04),
+                0 8px 28px rgba(0,0,0,0.06),
+                0 20px 64px rgba(0,0,0,0.09),
+                0 36px 96px rgba(31, 79, 77, 0.12);
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(201, 168, 124, 0.2);
+            border: 2.5px solid rgba(201, 168, 124, 0.18);
         }
 
         .closing-card::before {
@@ -1040,17 +1041,19 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 6px;
-            background: linear-gradient(90deg, var(--rose-gold), var(--soft-pink), var(--teal), var(--rose-gold));
+            height: 4px;
+            background: linear-gradient(90deg, var(--rose-gold), var(--teal), var(--soft-pink), var(--rose-gold));
+            opacity: 0.7;
         }
 
         .closing-card::after {
             content: '';
             position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.06), transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(201,168,124,0.09), transparent 40%);
+            top: 24px;
+            right: 24px;
+            width: 140px;
+            height: 140px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140"><circle cx="70" cy="70" r="60" stroke="%23C9A87C" stroke-width="0.8" fill="none" opacity="0.06"/><circle cx="70" cy="70" r="45" stroke="%23FFD1DC" stroke-width="0.6" fill="none" opacity="0.08"/><circle cx="70" cy="70" r="30" stroke="%234ECDC4" stroke-width="0.5" fill="none" opacity="0.06"/><path d="M70 10 L70 130 M10 70 L130 70" stroke="%23C9A87C" stroke-width="0.5" opacity="0.04"/></svg>');
             pointer-events: none;
         }
 
@@ -1059,53 +1062,218 @@
             z-index: 1;
         }
 
-        .closing-main {
-            max-width: 900px;
-            margin: 0 auto;
+        .closing-header {
             text-align: center;
+            margin-bottom: 52px;
+            padding-bottom: 48px;
+            border-bottom: 1.5px solid rgba(201, 168, 124, 0.12);
+            position: relative;
+        }
+
+        .closing-header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 180px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--rose-gold), transparent);
         }
 
         .closing-card h2 {
-            font-size: 58px;
-            color: white;
-            margin-bottom: 36px;
-            line-height: 1.08;
-            letter-spacing: -0.8px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+            font-size: 38px;
+            color: var(--deep-teal);
+            margin-bottom: 28px;
+            line-height: 1.15;
+            letter-spacing: -0.6px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.02);
         }
 
         .closing-outcomes {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
             margin-bottom: 48px;
-            flex-wrap: wrap;
         }
 
-        .outcome-tag {
-            background: rgba(255,255,255,0.12);
-            backdrop-filter: blur(10px);
-            padding: 14px 28px;
-            border-radius: 30px;
-            border: 1.5px solid rgba(255,255,255,0.18);
-            font-size: 17px;
-            color: white;
-            font-weight: 500;
-            letter-spacing: 0.3px;
+        .outcome-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            padding: 28px 20px;
+            background: linear-gradient(135deg, #fafafa, #f7f7f7);
+            border-radius: 16px;
+            border: 1.5px solid rgba(201, 168, 124, 0.1);
+            position: relative;
+            transition: all 0.35s ease;
         }
 
-        .closing-card p {
-            font-size: 20px;
-            color: rgba(255,255,255,0.95);
-            line-height: 1.85;
+        .outcome-item::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 16px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(201, 168, 124, 0.15), transparent, rgba(78, 205, 196, 0.1));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+
+        .outcome-item:hover::before {
+            opacity: 1;
+        }
+
+        .outcome-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 16px rgba(201, 168, 124, 0.12);
+        }
+
+        .outcome-icon {
+            width: 48px;
+            height: 48px;
+            position: relative;
+        }
+
+        .outcome-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--deep-teal);
+            text-align: center;
+            line-height: 1.4;
             letter-spacing: 0.2px;
-            margin-bottom: 28px;
+        }
+
+        .closing-message {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .closing-message p {
+            font-size: 17px;
+            color: var(--warm-gray);
+            line-height: 1.8;
+            letter-spacing: 0.1px;
+            margin-bottom: 20px;
+        }
+
+        .whatsapp-reminder {
+            background: linear-gradient(135deg, #F5F9F9, #F9FAFA);
+            padding: 48px 44px;
+            border-radius: 18px;
+            border: 2px solid rgba(78, 205, 196, 0.15);
+            margin-bottom: 52px;
+            position: relative;
+        }
+
+        .whatsapp-reminder::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--teal), transparent);
+            border-radius: 0 0 3px 3px;
+        }
+
+        .reminder-top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .reminder-illustration {
+            width: 110px;
+            height: 110px;
+            flex-shrink: 0;
+        }
+
+        .reminder-content {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .reminder-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            color: var(--rose-gold);
+            margin-bottom: 10px;
+        }
+
+        .reminder-heading {
+            font-size: 24px;
+            color: var(--deep-teal);
+            margin-bottom: 12px;
+            font-family: 'Ogg', serif;
+            line-height: 1.2;
+            letter-spacing: -0.4px;
+        }
+
+        .reminder-text {
+            font-size: 15px;
+            color: var(--warm-gray);
+            line-height: 1.7;
+        }
+
+        .reminder-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            background: linear-gradient(135deg, var(--deep-teal), #164442);
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 18px 42px;
+            border-radius: 10px;
+            text-decoration: none;
+            box-shadow:
+                0 2px 6px rgba(31, 79, 77, 0.2),
+                0 6px 18px rgba(31, 79, 77, 0.22),
+                0 12px 36px rgba(31, 79, 77, 0.16),
+                inset 0 1px 0 rgba(255,255,255,0.15);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.3px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(78, 205, 196, 0.25);
+        }
+
+        .reminder-cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .reminder-cta:hover::before {
+            transform: translateX(100%);
+        }
+
+        .reminder-cta:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 3px 8px rgba(31, 79, 77, 0.22),
+                0 8px 22px rgba(31, 79, 77, 0.25),
+                0 16px 44px rgba(31, 79, 77, 0.18);
         }
 
         .signature {
-            margin-top: 64px;
-            padding-top: 44px;
-            border-top: 1.5px solid rgba(201, 168, 124, 0.25);
+            margin-top: 52px;
+            padding-top: 40px;
+            border-top: 1.5px solid rgba(201, 168, 124, 0.15);
+            text-align: center;
             position: relative;
         }
 
@@ -1115,126 +1283,24 @@
             top: -1px;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, rgba(201, 168, 124, 0.4), transparent);
+            width: 90px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(201, 168, 124, 0.35), transparent);
         }
 
         .signature-text {
             font-family: 'Caveat', cursive;
-            font-size: 38px;
+            font-size: 32px;
             color: var(--rose-gold);
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .signature-name {
-            font-size: 18px;
-            color: var(--soft-pink);
-            font-weight: 400;
-        }
-
-        /* FINAL WHATSAPP REMINDER */
-        .final-reminder {
-            padding: 100px 24px 180px;
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .reminder-card {
-            background: linear-gradient(135deg, #ffffff, #fefefe);
-            padding: 70px 60px;
-            border-radius: 28px;
-            box-shadow:
-                0 2px 12px rgba(0,0,0,0.06),
-                0 10px 32px rgba(0,0,0,0.08),
-                0 24px 68px rgba(0,0,0,0.1);
-            border: 2.5px solid rgba(201, 168, 124, 0.16);
-            position: relative;
-        }
-
-        .reminder-card::before {
-            content: '';
-            position: absolute;
-            top: -3px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50%;
-            height: 5px;
-            background: linear-gradient(90deg, transparent, var(--teal), transparent);
-            border-radius: 0 0 5px 5px;
-        }
-
-        .reminder-illustration {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 40px;
-            position: relative;
-        }
-
-        .reminder-heading {
-            font-size: 42px;
-            color: var(--deep-teal);
-            margin-bottom: 24px;
-            font-family: 'Ogg', serif;
-            line-height: 1.1;
-            letter-spacing: -0.6px;
-        }
-
-        .reminder-text {
-            font-size: 19px;
+            font-size: 15px;
             color: var(--warm-gray);
-            line-height: 1.75;
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .reminder-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 18px;
-            background: linear-gradient(135deg, var(--deep-teal), #164442);
-            color: white;
-            font-size: 20px;
-            font-weight: 500;
-            padding: 26px 60px;
-            border-radius: 12px;
-            text-decoration: none;
-            box-shadow:
-                0 2px 8px rgba(31, 79, 77, 0.25),
-                0 8px 24px rgba(31, 79, 77, 0.28),
-                0 16px 48px rgba(31, 79, 77, 0.2),
-                inset 0 1px 0 rgba(255,255,255,0.2),
-                inset 0 -2px 4px rgba(0,0,0,0.1);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 400;
             letter-spacing: 0.5px;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(78, 205, 196, 0.2);
-        }
-
-        .reminder-cta::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.25), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.7s;
-        }
-
-        .reminder-cta:hover::before {
-            transform: translateX(100%);
-        }
-
-        .reminder-cta:hover {
-            transform: translateY(-3px);
-            box-shadow:
-                0 3px 12px rgba(31, 79, 77, 0.28),
-                0 10px 28px rgba(31, 79, 77, 0.32),
-                0 20px 56px rgba(31, 79, 77, 0.24);
         }
 
         /* Mobile CTA */
@@ -1343,24 +1409,39 @@
             }
 
             .closing-card h2 {
-                font-size: 48px;
+                font-size: 32px;
             }
 
             .closing-card {
-                padding: 60px 40px;
+                padding: 52px 32px;
             }
 
-            .outcome-tag {
-                font-size: 15px;
-                padding: 12px 22px;
+            .closing-outcomes {
+                grid-template-columns: 1fr;
+                gap: 16px;
             }
 
-            .reminder-card {
-                padding: 50px 40px;
+            .outcome-item {
+                padding: 24px 20px;
+            }
+
+            .reminder-top {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .reminder-illustration {
+                width: 90px;
+                height: 90px;
             }
 
             .reminder-heading {
-                font-size: 36px;
+                font-size: 22px;
+            }
+
+            .reminder-cta {
+                font-size: 15px;
+                padding: 16px 36px;
             }
 
             .checklist-card {
@@ -1704,86 +1785,110 @@
     <section class="closing-section">
         <div class="closing-card">
             <div class="closing-content">
-                <div class="closing-main">
+                <div class="closing-header">
                     <h2>You're Not Just Here to Watch.</h2>
+                    <p style="font-size: 16px; color: var(--warm-gray); max-width: 700px; margin: 0 auto; line-height: 1.7;">VIPs walk out of this with tangible results. That's exactly what we're gonna make happen together.</p>
+                </div>
 
-                    <div class="closing-outcomes">
-                        <span class="outcome-tag">✨ Cleaned-Up Shop</span>
-                        <span class="outcome-tag">📋 Actual Plan</span>
-                        <span class="outcome-tag">🎯 Real Listings Ready</span>
+                <div class="closing-outcomes">
+                    <div class="outcome-item">
+                        <div class="outcome-icon">
+                            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="24" cy="24" r="22" fill="#F5F9F9" stroke="#4ECDC4" stroke-width="1.5"/>
+                                <path d="M14 22 L16 30 L32 30 L34 22" stroke="#1F4F4D" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                                <rect x="12" y="18" width="24" height="4" rx="2" fill="#C9A87C" opacity="0.4"/>
+                                <path d="M18 18 L18 14 C18 11 21 11 24 11 C27 11 30 11 30 14 L30 18" stroke="#1F4F4D" stroke-width="2" fill="none" stroke-linecap="round"/>
+                                <circle cx="20" cy="25" r="1.5" fill="#FFD1DC"/>
+                                <circle cx="28" cy="25" r="1.5" fill="#FFD1DC"/>
+                                <path d="M24 26 L24 28" stroke="#4ECDC4" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <span class="outcome-title">Cleaned-Up Shop</span>
                     </div>
 
-                    <p>Real talk — VIPs don't just sit through the challenge and take pretty notes. They walk out of this with tangible results.</p>
+                    <div class="outcome-item">
+                        <div class="outcome-icon">
+                            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="24" cy="24" r="22" fill="#FFF9F5" stroke="#C9A87C" stroke-width="1.5"/>
+                                <rect x="14" y="12" width="20" height="24" rx="2" fill="none" stroke="#1F4F4D" stroke-width="2"/>
+                                <line x1="18" y1="18" x2="26" y2="18" stroke="#4ECDC4" stroke-width="1.8" stroke-linecap="round"/>
+                                <line x1="18" y1="22" x2="30" y2="22" stroke="#FFD1DC" stroke-width="1.8" stroke-linecap="round"/>
+                                <line x1="18" y1="26" x2="28" y2="26" stroke="#C9A87C" stroke-width="1.8" stroke-linecap="round"/>
+                                <line x1="18" y1="30" x2="24" y2="30" stroke="#4ECDC4" stroke-width="1.8" stroke-linecap="round"/>
+                                <circle cx="14" cy="12" r="2" fill="#FFD1DC"/>
+                            </svg>
+                        </div>
+                        <span class="outcome-title">Actual Plan</span>
+                    </div>
 
-                    <p>That's why you're here. And that's exactly what we're gonna make happen together.</p>
+                    <div class="outcome-item">
+                        <div class="outcome-icon">
+                            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="24" cy="24" r="22" fill="#FFF5F0" stroke="#FFD1DC" stroke-width="1.5"/>
+                                <path d="M24 14 L26 20 L32 20 L27 24 L29 30 L24 26 L19 30 L21 24 L16 20 L22 20 Z" fill="none" stroke="#1F4F4D" stroke-width="2" stroke-linejoin="round"/>
+                                <circle cx="24" cy="24" r="3" fill="#C9A87C" opacity="0.3"/>
+                                <path d="M24 19 L24 21" stroke="#4ECDC4" stroke-width="1.5" stroke-linecap="round"/>
+                                <circle cx="18" cy="15" r="1.5" fill="#FFD1DC"/>
+                                <circle cx="30" cy="15" r="1.5" fill="#4ECDC4"/>
+                            </svg>
+                        </div>
+                        <span class="outcome-title">Real Listings Ready</span>
+                    </div>
+                </div>
 
-                    <p>I don't take this lightly. You invested in yourself and I'm gonna make sure it's worth it.</p>
+                <div class="closing-message">
+                    <p>Real talk — I don't take this lightly. You invested in yourself and I'm gonna make sure it's worth it.</p>
+                    <p style="margin-bottom: 0;">This challenge is designed to give you results, not just motivation. Let's do this together.</p>
+                </div>
+
+                <div class="whatsapp-reminder">
+                    <div class="reminder-top">
+                        <div class="reminder-illustration">
+                            <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <ellipse cx="55" cy="100" rx="42" ry="6" fill="#000" opacity="0.06"/>
+                                <rect x="25" y="10" width="60" height="90" rx="10" fill="url(#phone-grad-2)" stroke="#C9A87C" stroke-width="2"/>
+                                <rect x="30" y="16" width="50" height="78" rx="6" fill="#F8F8F8"/>
+                                <rect x="30" y="16" width="50" height="14" rx="6" fill="#4ECDC4" fill-opacity="0.25"/>
+                                <circle cx="38" cy="23" r="3" fill="#C9A87C"/>
+                                <line x1="44" y1="22" x2="60" y2="22" stroke="#1F4F4D" stroke-width="1.2" stroke-linecap="round"/>
+                                <line x1="44" y1="25" x2="52" y2="25" stroke="#1F4F4D" stroke-width="0.8" stroke-linecap="round" opacity="0.4"/>
+                                <rect x="34" y="34" width="34" height="10" rx="5" fill="#4ECDC4"/>
+                                <rect x="40" y="47" width="28" height="10" rx="5" fill="#FFD1DC"/>
+                                <rect x="34" y="60" width="36" height="10" rx="5" fill="#4ECDC4"/>
+                                <circle cx="40" cy="76" r="1.5" fill="#C9A87C"/>
+                                <circle cx="46" cy="76" r="1.5" fill="#C9A87C"/>
+                                <circle cx="52" cy="76" r="1.5" fill="#C9A87C"/>
+                                <path d="M17 28 L18 30 L17 32 L16 30 Z" fill="#FFD1DC" opacity="0.5"/>
+                                <path d="M93 40 L94 42 L93 44 L92 42 Z" fill="#4ECDC4" opacity="0.5"/>
+                                <defs>
+                                    <linearGradient id="phone-grad-2" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#FFFFFF"/>
+                                        <stop offset="100%" stop-color="#F5F5F5"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div class="reminder-content">
+                            <div class="reminder-label">Don't Miss This</div>
+                            <h3 class="reminder-heading">Join the VIP WhatsApp</h3>
+                            <p class="reminder-text">This is where everything actually happens. The Quick Start Kit. Daily updates. My actual answers to your questions. Don't close this page without joining.</p>
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <a href="#" class="reminder-cta">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5l-1.4 5 5.2-1.3c1.5.9 3.2 1.4 5 1.4 5.5 0 10-4.5 10-10S17.5 2 12 2zm5 13.5c-.2.6-1.2 1-1.7 1.1-.5.1-1 .1-1.5-.1-.3-.1-.8-.3-1.3-.6-1.6-.8-2.6-2.5-2.7-2.6-.1-.1-.7-1-.7-2s.5-1.4.7-1.6c.2-.2.4-.2.5-.2h.4c.1 0 .3-.1.4.3l.5 1.4c.1.2.1.4 0 .6-.1.2-.2.3-.3.5l-.3.4c-.1.1-.2.2-.1.4.1.2.5.9 1.1 1.5.8.7 1.5.9 1.7 1 .2.1.3.1.4-.1l.6-.7c.1-.2.3-.2.5-.1l1.3.8c.2.1.4.2.5.3z" fill="white"/>
+                            </svg>
+                            Join VIP WhatsApp Now
+                        </a>
+                    </div>
                 </div>
 
                 <div class="signature">
-                    <p class="signature-text">See you in the WhatsApp!</p>
+                    <p class="signature-text">See you inside!</p>
                     <p class="signature-name">— Bailey</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="final-reminder">
-        <div class="reminder-card">
-            <div class="reminder-illustration">
-                <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Phone with WhatsApp chat -->
-                    <ellipse cx="100" cy="185" rx="70" ry="10" fill="#000" opacity="0.08"/>
-
-                    <!-- Phone body -->
-                    <rect x="50" y="20" width="100" height="150" rx="16" fill="url(#phone-grad)" stroke="#C9A87C" stroke-width="3"/>
-                    <rect x="57" y="30" width="86" height="130" rx="10" fill="#F5F5F5"/>
-
-                    <!-- WhatsApp header -->
-                    <rect x="57" y="30" width="86" height="20" rx="10" fill="#4ECDC4" fill-opacity="0.3"/>
-                    <circle cx="68" cy="40" r="5" fill="#C9A87C"/>
-                    <line x1="77" y1="38" x2="100" y2="38" stroke="#1F4F4D" stroke-width="2" stroke-linecap="round"/>
-                    <line x1="77" y1="42" x2="90" y2="42" stroke="#1F4F4D" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
-
-                    <!-- Chat bubbles -->
-                    <rect x="62" y="56" width="56" height="18" rx="9" fill="#4ECDC4"/>
-                    <rect x="72" y="78" width="48" height="18" rx="9" fill="#FFD1DC"/>
-                    <rect x="62" y="100" width="60" height="18" rx="9" fill="#4ECDC4"/>
-
-                    <!-- Message dots -->
-                    <circle cx="72" cy="125" r="2.5" fill="#C9A87C"/>
-                    <circle cx="80" cy="125" r="2.5" fill="#C9A87C"/>
-                    <circle cx="88" cy="125" r="2.5" fill="#C9A87C"/>
-
-                    <!-- Decorative sparkles -->
-                    <path d="M30 50 L32 54 L30 58 L28 54 Z" fill="#FFD1DC" opacity="0.6"/>
-                    <path d="M170 70 L172 74 L170 78 L168 74 Z" fill="#4ECDC4" opacity="0.6"/>
-                    <path d="M35 130 L37 134 L35 138 L33 134 Z" fill="#C9A87C" opacity="0.5"/>
-                    <path d="M165 120 L167 124 L165 128 L163 124 Z" fill="#FFD1DC" opacity="0.5"/>
-
-                    <!-- Arrow pointing to phone -->
-                    <path d="M100 185 L100 175" stroke="#C9A87C" stroke-width="3" stroke-linecap="round"/>
-                    <path d="M100 175 L95 180" stroke="#C9A87C" stroke-width="3" stroke-linecap="round"/>
-                    <path d="M100 175 L105 180" stroke="#C9A87C" stroke-width="3" stroke-linecap="round"/>
-
-                    <defs>
-                        <linearGradient id="phone-grad" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0%" stop-color="#FFFFFF"/>
-                            <stop offset="100%" stop-color="#F8F8F8"/>
-                        </linearGradient>
-                    </defs>
-                </svg>
-            </div>
-
-            <h3 class="reminder-heading">Don't Forget — Join the WhatsApp!</h3>
-            <p class="reminder-text">Seriously. This is where everything happens. The Quick Start Kit. Daily updates. My actual answers to your questions. Don't let this page close without joining.</p>
-
-            <a href="#" class="reminder-cta">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                    <path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5l-1.4 5 5.2-1.3c1.5.9 3.2 1.4 5 1.4 5.5 0 10-4.5 10-10S17.5 2 12 2zm5 13.5c-.2.6-1.2 1-1.7 1.1-.5.1-1 .1-1.5-.1-.3-.1-.8-.3-1.3-.6-1.6-.8-2.6-2.5-2.7-2.6-.1-.1-.7-1-.7-2s.5-1.4.7-1.6c.2-.2.4-.2.5-.2h.4c.1 0 .3-.1.4.3l.5 1.4c.1.2.1.4 0 .6-.1.2-.2.3-.3.5l-.3.4c-.1.1-.2.2-.1.4.1.2.5.9 1.1 1.5.8.7 1.5.9 1.7 1 .2.1.3.1.4-.1l.6-.7c.1-.2.3-.2.5-.1l1.3.8c.2.1.4.2.5.3z" fill="white"/>
-                </svg>
-                Join VIP WhatsApp Now
-            </a>
         </div>
     </section>
 
