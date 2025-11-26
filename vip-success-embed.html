@@ -37,7 +37,6 @@
         color: #2c2c2c;
         line-height: 1.6;
         width: 100%;
-        overflow-x: hidden;
         position: relative;
     }
 
@@ -517,6 +516,7 @@
     .vip-page .action-container {
         max-width: 900px;
         margin: 0 auto;
+        overflow: visible !important;
     }
 
     .vip-page .section-header {
@@ -642,10 +642,14 @@
         --list-shadow: 0 4px 20px rgba(0,0,0,0.15);
         --btn-border: none;
         --checkmark-background: #4ECDC4;
+        --overlay-background: rgba(0,0,0,0);
+        --overlay-cursor: default;
+        --backdrop: none;
     }
 
     .vip-page .calendar-btn-wrapper add-to-calendar-button::part(atcb-list) {
         z-index: 10000 !important;
+        position: fixed !important;
     }
 
     /* Registration Progress Bar */

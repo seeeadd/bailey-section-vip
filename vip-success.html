@@ -58,7 +58,6 @@
             background: var(--cream);
             color: #2c2c2c;
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
         /* Subtle paper texture */
@@ -766,8 +765,9 @@
             --list-shadow: 0 4px 20px rgba(0,0,0,0.15);
             --btn-border: none;
             --checkmark-background: #4ECDC4;
-            --overlay-background: transparent;
+            --overlay-background: rgba(0,0,0,0);
             --overlay-cursor: default;
+            --backdrop: none;
         }
 
         /* Action card with calendar needs visible overflow */
@@ -783,9 +783,14 @@
             overflow: visible !important;
         }
 
+        .action-container {
+            overflow: visible !important;
+        }
+
         /* Ensure dropdown list appears above */
         .calendar-btn-wrapper add-to-calendar-button::part(atcb-list) {
             z-index: 10000 !important;
+            position: fixed !important;
         }
 
         @media (max-width: 768px) {
