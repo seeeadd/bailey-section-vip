@@ -92,7 +92,7 @@
         /* VIP Badge - with shimmer */
         .vip-badge {
             position: fixed;
-            top: 20px;
+            top: 70px;
             right: 20px;
             width: 64px;
             height: 64px;
@@ -367,20 +367,27 @@
         .drawer-video-container {
             width: 100%;
             flex: 1;
-            min-height: 200px;
+            min-height: 220px;
             background: #000;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 0 20px 0;
+            padding: 0 0 env(safe-area-inset-bottom, 20px) 0;
         }
 
+        .drawer-video-container iframe,
         .drawer-video-container vturb-smartplayer {
             width: 100% !important;
-            height: auto !important;
-            min-height: 200px;
+            height: 100% !important;
+            min-height: 220px;
             display: block !important;
             aspect-ratio: 16/9;
+        }
+
+        #drawer-video-wrapper {
+            width: 100%;
+            height: 100%;
+            min-height: 220px;
         }
 
         /* Mobile: show tap-to-watch overlay */
@@ -587,10 +594,12 @@
             box-shadow: 0 4px 16px rgba(201, 168, 124, 0.35);
         }
 
-        /* Calendar button wrapper */
+        /* Calendar button wrapper - FIXED for dropdown visibility */
         .calendar-btn-wrapper {
             display: flex;
             justify-content: flex-start;
+            position: relative;
+            z-index: 100;
         }
 
         .calendar-btn-wrapper add-to-calendar-button {
@@ -608,31 +617,37 @@
             --list-shadow: 0 4px 20px rgba(0,0,0,0.15);
             --btn-border: none;
             --checkmark-background: #4ECDC4;
+            --overlay-background: transparent;
+            --overlay-cursor: default;
         }
 
-        /* Fix calendar button display issues */
-        .calendar-btn-wrapper add-to-calendar-button::part(atcb-button) {
-            background: #1A3D3B !important;
-            color: #ffffff !important;
-            border: none !important;
-            box-shadow: 0 2px 8px rgba(26, 61, 59, 0.2) !important;
-            backdrop-filter: none !important;
-            -webkit-backdrop-filter: none !important;
+        /* Action card with calendar needs visible overflow */
+        .action-card {
+            overflow: visible !important;
         }
 
-        .calendar-btn-wrapper add-to-calendar-button::part(atcb-button):hover {
-            background: #234d4a !important;
-            transform: translateY(-2px);
+        .action-cards {
+            overflow: visible !important;
         }
 
-        /* Remove any blur effects that might be causing issues */
-        .action-card:nth-child(2) {
-            overflow: visible;
+        .action-section {
+            overflow: visible !important;
         }
 
-        .action-card:nth-child(2) .calendar-btn-wrapper {
-            position: relative;
-            z-index: 10;
+        /* Ensure dropdown list appears above everything */
+        .calendar-btn-wrapper add-to-calendar-button::part(atcb-list) {
+            z-index: 10000 !important;
+        }
+
+        @media (max-width: 768px) {
+            .calendar-btn-wrapper {
+                width: 100%;
+            }
+
+            .calendar-btn-wrapper add-to-calendar-button {
+                width: 100%;
+                --btn-padding-x: 16px;
+            }
         }
 
         /* Registration Complete Progress Bar - Luxurious Gold Design */
@@ -1247,7 +1262,7 @@
             .vip-badge {
                 width: 52px;
                 height: 52px;
-                top: 16px;
+                top: 62px;
                 right: 16px;
             }
 
@@ -1723,12 +1738,14 @@
             if (drawerVideoInitialized) return;
             drawerVideoInitialized = true;
 
-            // Create iframe for mobile drawer - more reliable than vturb element
+            // Create iframe for mobile drawer using vturb embed format
             const iframe = document.createElement('iframe');
-            iframe.src = 'https://player.vturb.com.br/69268e3d1ec0bc043c339ac6';
-            iframe.style.cssText = 'width: 100%; height: 100%; border: none; display: block;';
-            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            iframe.src = 'https://scripts.converteai.net/4a88e4d6-10d6-46da-b41b-334366e58f7b/players/69268e3d1ec0bc043c339ac6/embed.html';
+            iframe.style.cssText = 'width: 100%; height: 100%; border: none; display: block; min-height: 200px;';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen';
             iframe.allowFullscreen = true;
+            iframe.setAttribute('frameborder', '0');
+            iframe.setAttribute('scrolling', 'no');
 
             // Replace the placeholder element
             const placeholder = document.getElementById('vid-drawer-player');
