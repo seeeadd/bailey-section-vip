@@ -1939,10 +1939,26 @@
         }
 
         function openDrawer() {
-            // Position overlay at current scroll position (critical for iframe embeds)
-            const scrollY = window.scrollY || window.pageYOffset || 0;
-            videoOverlay.style.top = scrollY + 'px';
-            videoOverlay.style.height = window.innerHeight + 'px';
+            // Use button position to find where user's viewport is
+            // This works in Framer iframes where window.scrollY is always 0
+            const btnRect = mobilePlayBtn.getBoundingClientRect();
+            const btnCenterInViewport = btnRect.top + btnRect.height / 2;
+
+            // Get button's position in document
+            const btnDocumentTop = mobilePlayBtn.offsetTop;
+
+            // Calculate where user's viewport starts in document coordinates
+            // btnRect.top tells us where button is relative to viewport
+            // btnDocumentTop tells us where button is in document
+            // So viewport top = btnDocumentTop - btnRect.top
+            const viewportTopInDocument = btnDocumentTop - btnRect.top;
+
+            // Get viewport height (use clientHeight for better iframe support)
+            const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+            // Position overlay at viewport position
+            videoOverlay.style.top = Math.max(0, viewportTopInDocument) + 'px';
+            videoOverlay.style.height = viewportHeight + 'px';
 
             videoOverlay.classList.add('open');
             document.body.style.overflow = 'hidden';
