@@ -309,13 +309,11 @@
 
         /* Mobile Video Drawer - Centered for optimal viewing */
         .video-drawer-overlay {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
             width: 100%;
-            height: 100%;
+            height: 100vh;
             background: rgba(0, 0, 0, 0.97);
             z-index: 10000;
             opacity: 0;
@@ -1936,6 +1934,11 @@
         }
 
         function openDrawer() {
+            // Position overlay at current scroll position (critical for iframe embeds)
+            const scrollY = window.scrollY || window.pageYOffset || 0;
+            videoOverlay.style.top = scrollY + 'px';
+            videoOverlay.style.height = window.innerHeight + 'px';
+
             videoOverlay.classList.add('open');
             document.body.style.overflow = 'hidden';
             // Small delay to ensure CSS transition works
