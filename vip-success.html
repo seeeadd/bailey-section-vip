@@ -1,0 +1,2284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're In! Welcome to VIP</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: 'Ogg';
+            src: url('https://cdn.jsdelivr.net/gh/nicxvan/ogg-font@master/fonts/Ogg-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --rose-gold: #C9A87C;
+            --rose-gold-dark: #B8956A;
+            --champagne: #F5EBE0;
+            --deep-teal: #1F4F4D;
+            --teal: #4ECDC4;
+            --soft-pink: #FFD1DC;
+            --cream: #FFFEF9;
+            --warm-gray: #6B6B6B;
+            --peach: #FFE5D4;
+        }
+
+        body {
+            font-family: 'Satoshi', -apple-system, sans-serif;
+            font-weight: 400;
+            background: var(--cream);
+            color: #2c2c2c;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.03"/></svg>'),
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.006) 2px, rgba(0,0,0,0.006) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.006) 2px, rgba(0,0,0,0.006) 4px);
+            pointer-events: none;
+            opacity: 0.6;
+            z-index: 9999;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(255, 209, 220, 0.03), transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(201, 168, 124, 0.03), transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Ogg', Georgia, serif;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        /* Top progress bar */
+        .top-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: rgba(245, 235, 224, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 9998;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .top-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--teal), var(--rose-gold));
+            width: 0%;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
+        }
+
+        /* Ornate VIP badge */
+        .vip-badge {
+            position: fixed;
+            top: 26px;
+            right: 26px;
+            width: 76px;
+            height: 76px;
+            z-index: 1000;
+            animation: fadeIn 0.6s ease 0.3s both;
+            filter: drop-shadow(0 2px 6px rgba(201, 168, 124, 0.15))
+                    drop-shadow(0 6px 18px rgba(201, 168, 124, 0.2));
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9) rotate(-5deg); }
+            to { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+
+        /* COMPLETION STATUS - INTRICATE COMPACT BAR */
+        .completion-status {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(250,252,252,0.98));
+            backdrop-filter: blur(12px);
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(201, 168, 124, 0.12);
+            box-shadow:
+                0 1px 3px rgba(0,0,0,0.02),
+                0 4px 12px rgba(78, 205, 196, 0.04),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .completion-status::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--teal) 25%, var(--rose-gold) 50%, var(--teal) 75%, transparent);
+            opacity: 0;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0; transform: translateX(-100%); }
+            50% { opacity: 0.4; transform: translateX(100%); }
+        }
+
+        .status-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .status-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .status-icon {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, var(--teal), #3db8af);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow:
+                0 2px 6px rgba(78, 205, 196, 0.2),
+                inset 0 1px 0 rgba(255,255,255,0.4);
+            position: relative;
+            opacity: 0;
+            transform: scale(0) rotate(-180deg);
+            animation: iconPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards;
+        }
+
+        @keyframes iconPop {
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        .status-icon::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 1.5px solid var(--teal);
+            opacity: 0;
+            animation: pulse 2s ease-in-out 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(1.3); }
+        }
+
+        .status-text {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--deep-teal);
+            letter-spacing: 0.5px;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease 0.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .status-right {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex: 1;
+            max-width: 420px;
+        }
+
+        .progress-bar-wrapper {
+            position: relative;
+            height: 6px;
+            background: linear-gradient(90deg, rgba(78, 205, 196, 0.08), rgba(201, 168, 124, 0.08));
+            border-radius: 3px;
+            overflow: visible;
+            flex: 1;
+        }
+
+        .progress-bar-track {
+            position: absolute;
+            inset: 0;
+            border-radius: 3px;
+            border: 1px solid rgba(201, 168, 124, 0.15);
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4ECDC4 0%, #7ED9D2 25%, #C9A87C 75%, #D4B896 100%);
+            border-radius: 3px;
+            width: 0%;
+            position: relative;
+            box-shadow:
+                0 0 16px rgba(78, 205, 196, 0.4),
+                0 1px 3px rgba(0,0,0,0.08),
+                inset 0 1px 0 rgba(255,255,255,0.5);
+            animation: progressFill 2s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
+        }
+
+        @keyframes progressFill {
+            to { width: 100%; }
+        }
+
+        .progress-bar-fill::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: progressShine 2.5s ease-in-out infinite;
+        }
+
+        @keyframes progressShine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+
+        .progress-bar-fill::after {
+            content: '';
+            position: absolute;
+            right: -2px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, #4ECDC4, #3db8af);
+            border-radius: 50%;
+            box-shadow:
+                0 0 0 3px rgba(78, 205, 196, 0.2),
+                0 0 8px rgba(78, 205, 196, 0.6),
+                inset 0 1px 0 rgba(255,255,255,0.6);
+            opacity: 0;
+            animation: dotAppear 0.4s ease 2.4s forwards;
+        }
+
+        @keyframes dotAppear {
+            to { opacity: 1; }
+        }
+
+        .status-percentage {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--teal);
+            font-family: 'Satoshi', sans-serif;
+            letter-spacing: 0.3px;
+            min-width: 38px;
+            text-align: right;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease 0.7s forwards;
+        }
+
+        /* HERO - ASYMMETRIC OVERLAP */
+        .hero {
+            min-height: 92vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 100px 24px 80px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -250px;
+            right: -150px;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(255, 209, 220, 0.2), transparent 65%);
+            border-radius: 40% 60% 70% 30% / 50% 60% 40% 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -200px;
+            left: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(201, 168, 124, 0.12), transparent 65%);
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(40px, -40px) rotate(8deg); }
+        }
+
+        .hero-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Asymmetric hero layout - content overlaps video */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content {
+            position: relative;
+            padding-right: 40px;
+            z-index: 2;
+        }
+
+        .hero-content::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 100px;
+            height: 100px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0 0 Q25 12, 0 25 M0 0 Q12 25, 25 0" stroke="%23C9A87C" stroke-width="2" fill="none" opacity="0.25"/></svg>');
+            background-size: contain;
+        }
+
+        .hero-content::after {
+            content: '"';
+            position: absolute;
+            top: -70px;
+            right: -40px;
+            font-family: 'Ogg', serif;
+            font-size: 200px;
+            color: var(--rose-gold);
+            opacity: 0.06;
+            line-height: 1;
+            z-index: -1;
+        }
+
+        .hero-content h1 {
+            font-size: 82px;
+            color: var(--deep-teal);
+            margin-bottom: 38px;
+            letter-spacing: -1.2px;
+            line-height: 0.95;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.03);
+        }
+
+        .hero-content h1::after {
+            content: '';
+            display: block;
+            width: 220px;
+            height: 10px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 10"><path d="M 0 3 Q 55 0, 110 3 T 220 3" stroke="%23C9A87C" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M 0 7 Q 55 4, 110 7 T 220 7" stroke="%23FFD1DC" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin-top: 20px;
+        }
+
+        .hero-content p {
+            font-size: 21px;
+            color: var(--warm-gray);
+            line-height: 1.8;
+            max-width: 520px;
+            letter-spacing: 0.1px;
+        }
+
+        /* Video with elegant layering */
+        .gift-illustration {
+            position: relative;
+            animation: giftReveal 1s ease-out 0.5s both;
+            transform: translateX(-20px);
+        }
+
+        @keyframes giftReveal {
+            from {
+                opacity: 0;
+                transform: translateY(40px) translateX(-20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) translateX(-20px) scale(1);
+            }
+        }
+
+        .video-frame-custom {
+            background: linear-gradient(135deg, #ffffff, #fefefe);
+            padding: 16px;
+            border-radius: 16px;
+            box-shadow:
+                0 1px 3px rgba(0,0,0,0.04),
+                0 4px 12px rgba(0,0,0,0.06),
+                0 12px 32px rgba(0,0,0,0.08),
+                0 24px 64px rgba(201, 168, 124, 0.18);
+            position: relative;
+            border: 1.5px solid rgba(201, 168, 124, 0.25);
+        }
+
+        .video-frame-custom::before {
+            content: '';
+            position: absolute;
+            inset: 8px;
+            border: 1.5px solid rgba(201, 168, 124, 0.12);
+            border-radius: 10px;
+            pointer-events: none;
+            box-shadow: inset 0 1px 2px rgba(201, 168, 124, 0.08);
+        }
+
+        .video-frame-custom::after {
+            content: '';
+            position: absolute;
+            top: 22px;
+            right: 22px;
+            width: 45px;
+            height: 45px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45"><circle cx="22.5" cy="22.5" r="18" stroke="%23C9A87C" stroke-width="1.2" fill="none" opacity="0.35"/><circle cx="22.5" cy="22.5" r="4" fill="%23FFD1DC" opacity="0.5"/></svg>');
+            background-size: contain;
+        }
+
+        .video-inner {
+            background: linear-gradient(135deg, #e5e5e5, #f2f2f2);
+            border-radius: 7px;
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .play-btn {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--deep-teal), #164442);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow:
+                0 2px 8px rgba(31, 79, 77, 0.25),
+                0 8px 24px rgba(31, 79, 77, 0.3),
+                inset 0 1px 0 rgba(255,255,255,0.2),
+                inset 0 -2px 4px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            border: 2px solid rgba(78, 205, 196, 0.15);
+        }
+
+        .play-btn::before {
+            content: '';
+            position: absolute;
+            inset: -12px;
+            border-radius: 50%;
+            border: 2px solid rgba(78, 205, 196, 0.22);
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+
+        .play-btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent 60%, rgba(0,0,0,0.1));
+            pointer-events: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.15); }
+        }
+
+        .play-btn:hover {
+            transform: scale(1.08);
+            box-shadow:
+                0 3px 10px rgba(31, 79, 77, 0.28),
+                0 10px 28px rgba(31, 79, 77, 0.35),
+                inset 0 1px 0 rgba(255,255,255,0.25),
+                inset 0 -2px 4px rgba(0,0,0,0.15);
+        }
+
+        .video-note {
+            margin-top: 22px;
+            font-family: 'Caveat', cursive;
+            font-size: 23px;
+            color: var(--warm-gray);
+            text-align: center;
+            position: relative;
+        }
+
+        .video-note::before,
+        .video-note::after {
+            content: '✦';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 17px;
+            color: var(--rose-gold);
+            opacity: 0.45;
+        }
+
+        .video-note::before { left: -32px; }
+        .video-note::after { right: -32px; }
+
+        .ribbon-accent {
+            position: absolute;
+            top: -35px;
+            right: -35px;
+            width: 110px;
+            height: 110px;
+            opacity: 0.65;
+            animation: rotate 35s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* WHATSAPP - INVITATION FEEL */
+        .whatsapp-section {
+            padding: 150px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .whatsapp-section::before {
+            content: '';
+            position: absolute;
+            top: 12%;
+            left: 6%;
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(78, 205, 196, 0.05), transparent 70%);
+            border-radius: 50%;
+        }
+
+        .whatsapp-section::after {
+            content: '';
+            position: absolute;
+            bottom: 12%;
+            right: 6%;
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, rgba(255, 209, 220, 0.05), transparent 70%);
+            border-radius: 50%;
+        }
+
+        .phone-illustration-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 80px;
+            position: relative;
+            filter: drop-shadow(0 10px 28px rgba(0,0,0,0.09));
+        }
+
+        .phone-illustration-wrapper::before,
+        .phone-illustration-wrapper::after {
+            content: '✨';
+            position: absolute;
+            font-size: 26px;
+            opacity: 0.55;
+            animation: sparkle 3.5s ease-in-out infinite;
+        }
+
+        .phone-illustration-wrapper::before {
+            top: 18px;
+            left: 28%;
+            animation-delay: 0.7s;
+        }
+
+        .phone-illustration-wrapper::after {
+            top: 45px;
+            right: 28%;
+            animation-delay: 1.8s;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.25; transform: scale(0.85); }
+            50% { opacity: 0.75; transform: scale(1.15); }
+        }
+
+        .invitation-content {
+            max-width: 880px;
+            margin: 0 auto;
+        }
+
+        .section-intro {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-intro h2 {
+            font-size: 58px;
+            color: var(--deep-teal);
+            margin-bottom: 20px;
+            line-height: 1.12;
+            letter-spacing: -0.8px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.03);
+        }
+
+        .section-intro p {
+            font-size: 20px;
+            color: var(--warm-gray);
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .step-item {
+            background: linear-gradient(135deg, #ffffff, #fefefe);
+            border-radius: 20px;
+            padding: 40px 45px;
+            box-shadow:
+                0 2px 10px rgba(0,0,0,0.05),
+                0 8px 28px rgba(0,0,0,0.07),
+                0 18px 60px rgba(0,0,0,0.09);
+            border: 2px solid rgba(201, 168, 124, 0.14);
+            position: relative;
+        }
+
+        .step-item::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--rose-gold), transparent);
+            border-radius: 0 0 4px 4px;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, var(--deep-teal), #164442);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            box-shadow:
+                0 2px 8px rgba(31, 79, 77, 0.25),
+                0 6px 20px rgba(31, 79, 77, 0.2),
+                inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+
+        .step-title {
+            flex: 1;
+        }
+
+        .step-title h3 {
+            font-size: 28px;
+            color: var(--deep-teal);
+            margin-bottom: 6px;
+            line-height: 1.2;
+        }
+
+        .step-title .step-label {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--rose-gold);
+        }
+
+        .step-description {
+            font-size: 17px;
+            color: var(--warm-gray);
+            line-height: 1.75;
+            margin-bottom: 28px;
+            padding-left: 80px;
+        }
+
+        .step-action {
+            padding-left: 80px;
+        }
+
+        .step-note {
+            display: block;
+            margin-top: 14px;
+            font-size: 15px;
+            color: #888;
+            font-style: italic;
+        }
+
+        .btn-vip {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            background: linear-gradient(135deg, var(--deep-teal), #164442);
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 23px 54px;
+            border-radius: 11px;
+            text-decoration: none;
+            box-shadow:
+                0 1px 3px rgba(31, 79, 77, 0.2),
+                0 4px 14px rgba(31, 79, 77, 0.25),
+                0 10px 32px rgba(31, 79, 77, 0.18),
+                inset 0 1px 0 rgba(255,255,255,0.15),
+                inset 0 -1px 0 rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(78, 205, 196, 0.2);
+        }
+
+        .btn-vip::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.25), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.7s;
+        }
+
+        .btn-vip:hover::before {
+            transform: translateX(100%);
+        }
+
+        .btn-vip:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 2px 6px rgba(31, 79, 77, 0.22),
+                0 6px 18px rgba(31, 79, 77, 0.28),
+                0 14px 40px rgba(31, 79, 77, 0.2),
+                inset 0 1px 0 rgba(255,255,255,0.2),
+                inset 0 -1px 0 rgba(0,0,0,0.1);
+        }
+
+        .btn-vip::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 11px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent, rgba(0,0,0,0.05));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        /* TIMELINE - FLOWING JOURNEY (not grid!) */
+        .timeline-section {
+            padding: 150px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 220px;
+            height: 220px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220"><path d="M0 110 Q55 88, 110 110 T 220 110" stroke="%23C9A87C" stroke-width="1.2" fill="none" opacity="0.12"/><path d="M110 0 Q88 55, 110 110 T 110 220" stroke="%23FFD1DC" stroke-width="1.2" fill="none" opacity="0.12"/></svg>');
+            background-size: contain;
+            opacity: 0.35;
+        }
+
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 100px;
+            position: relative;
+        }
+
+        .timeline-header::before {
+            content: '✦';
+            position: absolute;
+            top: -55px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 36px;
+            color: var(--rose-gold);
+            opacity: 0.35;
+        }
+
+        .timeline-header h2 {
+            font-size: 64px;
+            color: var(--deep-teal);
+            margin-bottom: 26px;
+            letter-spacing: -1px;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.03);
+        }
+
+        .timeline-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 85%;
+            height: 7px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 7"><line x1="0" y1="2.5" x2="100" y2="2.5" stroke="%23C9A87C" stroke-width="2"/><line x1="12" y1="5.5" x2="88" y2="5.5" stroke="%23FFD1DC" stroke-width="1.2"/></svg>');
+            background-size: 100% 100%;
+        }
+
+        /* Flowing path - zigzag pattern */
+        .timeline-visual {
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+        }
+
+        .timeline-card {
+            display: grid;
+            grid-template-columns: 0.4fr 1fr;
+            gap: 50px;
+            align-items: start;
+            position: relative;
+        }
+
+        /* Alternate sides */
+        .timeline-card:nth-child(even) {
+            grid-template-columns: 1fr 0.4fr;
+        }
+
+        .timeline-card:nth-child(even) .timeline-icon-large {
+            order: 2;
+        }
+
+        .timeline-card:nth-child(even) .timeline-content {
+            order: 1;
+            text-align: right;
+        }
+
+        /* Large decorative icon */
+        .timeline-icon-large {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto;
+            padding: 22px;
+            background: linear-gradient(135deg, #ffffff, #fefefe);
+            border-radius: 50%;
+            box-shadow:
+                0 2px 6px rgba(0,0,0,0.05),
+                0 8px 20px rgba(0,0,0,0.07),
+                0 18px 48px rgba(0,0,0,0.08);
+            border: 3.5px solid var(--champagne);
+            position: relative;
+        }
+
+        .timeline-icon-large::before {
+            content: '';
+            position: absolute;
+            inset: -14px;
+            border-radius: 50%;
+            border: 1.8px dashed rgba(201, 168, 124, 0.18);
+        }
+
+        .timeline-icon-large::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.6), transparent);
+            pointer-events: none;
+        }
+
+        .timeline-content {
+            padding: 36px 44px;
+            background: linear-gradient(135deg, #ffffff, #fefefe);
+            border-radius: 20px;
+            box-shadow:
+                0 2px 8px rgba(0,0,0,0.04),
+                0 6px 20px rgba(0,0,0,0.06),
+                0 12px 36px rgba(0,0,0,0.08);
+            border: 2px solid rgba(201, 168, 124, 0.14);
+            position: relative;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80px;
+            height: 80px;
+            background:
+                linear-gradient(135deg, transparent 50%, rgba(201, 168, 124, 0.04) 50%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><circle cx="70" cy="10" r="2" fill="%23C9A87C" opacity="0.1"/><circle cx="60" cy="15" r="1.5" fill="%23FFD1DC" opacity="0.15"/></svg>');
+            border-radius: 0 20px 0 0;
+        }
+
+        .timeline-label {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--rose-gold);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .timeline-content h3 {
+            font-size: 30px;
+            color: var(--deep-teal);
+            margin-bottom: 16px;
+            letter-spacing: -0.4px;
+            line-height: 1.2;
+        }
+
+        .timeline-content p {
+            font-size: 17px;
+            color: var(--warm-gray);
+            line-height: 1.85;
+            letter-spacing: 0.1px;
+        }
+
+        .timeline-content strong {
+            color: #2c2c2c;
+            font-weight: 500;
+        }
+
+        /* Color accents */
+        .timeline-card:nth-child(1) .timeline-content { border-top: 5px solid var(--soft-pink); }
+        .timeline-card:nth-child(2) .timeline-content { border-top: 5px solid var(--teal); }
+        .timeline-card:nth-child(3) .timeline-content { border-top: 5px solid var(--peach); }
+        .timeline-card:nth-child(4) .timeline-content { border-top: 5px solid var(--rose-gold); }
+
+        /* CHECKLIST - PLAYFUL JOURNAL */
+        .checklist-section {
+            padding: 150px 24px;
+            max-width: 1050px;
+            margin: 0 auto;
+        }
+
+        .checklist-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .checklist-header h2 {
+            font-size: 60px;
+            color: var(--deep-teal);
+            margin-bottom: 24px;
+        }
+
+        .checklist-subtitle {
+            font-size: 19px;
+            color: var(--warm-gray);
+        }
+
+        .checklist-card {
+            background: linear-gradient(135deg, #ffffff, #fefefe);
+            padding: 72px 64px;
+            border-radius: 22px;
+            box-shadow:
+                0 2px 10px rgba(0,0,0,0.05),
+                0 8px 28px rgba(0,0,0,0.07),
+                0 18px 60px rgba(0,0,0,0.09);
+            border-left: 5px solid var(--rose-gold);
+            border-top: 1px solid rgba(201, 168, 124, 0.15);
+            position: relative;
+        }
+
+        .checklist-card::before {
+            content: '';
+            position: absolute;
+            top: 28px;
+            right: 28px;
+            width: 60px;
+            height: 60px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><circle cx="30" cy="30" r="24" stroke="%23C9A87C" stroke-width="1.2" fill="none" opacity="0.18"/><path d="M30 12 L30 48 M12 30 L48 30" stroke="%23FFD1DC" stroke-width="1.2" opacity="0.25"/></svg>');
+            background-size: contain;
+        }
+
+        .progress-wrapper {
+            margin-bottom: 52px;
+            padding-bottom: 40px;
+            border-bottom: 2.5px solid rgba(201, 168, 124, 0.1);
+        }
+
+        .progress-label {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--deep-teal);
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .progress-track {
+            height: 14px;
+            background: linear-gradient(90deg, #f9f9f9, #f6f6f6);
+            border-radius: 7px;
+            overflow: hidden;
+            box-shadow:
+                inset 0 1px 3px rgba(0,0,0,0.08),
+                inset 0 2px 6px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--teal), var(--rose-gold));
+            border-radius: 7px;
+            width: 0%;
+            transition: width 0.75s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow:
+                0 0 12px rgba(78, 205, 196, 0.4),
+                inset 0 1px 0 rgba(255,255,255,0.3);
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.2), transparent 50%, rgba(0,0,0,0.05));
+            border-radius: 7px;
+        }
+
+        .checklist-items {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 22px;
+            padding: 28px 34px;
+            background: linear-gradient(135deg, #fafafa, #f7f7f7);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            position: relative;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        }
+
+        .check-item::before {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 5px;
+            background: var(--rose-gold);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+
+        .check-item:hover::before {
+            opacity: 0.35;
+        }
+
+        .check-item:hover {
+            background: linear-gradient(135deg, #ffffff, #fefefe);
+            border-color: rgba(255, 209, 220, 0.4);
+            transform: translateX(8px);
+            box-shadow:
+                0 2px 8px rgba(0,0,0,0.04),
+                0 6px 20px rgba(255, 209, 220, 0.15);
+        }
+
+        .check-box {
+            width: 30px;
+            height: 30px;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .check-text {
+            flex: 1;
+            font-size: 18px;
+            color: #2c2c2c;
+            line-height: 1.7;
+        }
+
+        .check-text strong {
+            font-weight: 500;
+            color: var(--deep-teal);
+        }
+
+        .check-item.completed .check-text {
+            opacity: 0.5;
+        }
+
+        .completion-message {
+            margin-top: 38px;
+            padding: 34px;
+            background: linear-gradient(135deg, #FFF9F5, #FFF5F0);
+            border-radius: 16px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--deep-teal);
+            border: 2px solid rgba(201, 168, 124, 0.25);
+            display: none;
+            box-shadow:
+                0 2px 8px rgba(201, 168, 124, 0.1),
+                0 6px 20px rgba(201, 168, 124, 0.14);
+            position: relative;
+        }
+
+        .completion-message::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(201, 168, 124, 0.3), transparent, rgba(255, 209, 220, 0.2));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .completion-message.show {
+            display: block;
+            animation: slideDown 0.65s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* UNIFIED CLOSING - INTRICATE PREMIUM */
+        .closing-section {
+            padding: 120px 24px 180px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .closing-card {
+            background: linear-gradient(135deg, #ffffff, #fefefe);
+            padding: 72px 68px 68px;
+            border-radius: 24px;
+            box-shadow:
+                0 2px 10px rgba(0,0,0,0.04),
+                0 8px 28px rgba(0,0,0,0.06),
+                0 20px 64px rgba(0,0,0,0.09),
+                0 36px 96px rgba(31, 79, 77, 0.12);
+            position: relative;
+            overflow: hidden;
+            border: 2.5px solid rgba(201, 168, 124, 0.18);
+        }
+
+        .closing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--rose-gold), var(--teal), var(--soft-pink), var(--rose-gold));
+            opacity: 0.7;
+        }
+
+        .closing-card::after {
+            content: '';
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 140px;
+            height: 140px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140"><circle cx="70" cy="70" r="60" stroke="%23C9A87C" stroke-width="0.8" fill="none" opacity="0.06"/><circle cx="70" cy="70" r="45" stroke="%23FFD1DC" stroke-width="0.6" fill="none" opacity="0.08"/><circle cx="70" cy="70" r="30" stroke="%234ECDC4" stroke-width="0.5" fill="none" opacity="0.06"/><path d="M70 10 L70 130 M10 70 L130 70" stroke="%23C9A87C" stroke-width="0.5" opacity="0.04"/></svg>');
+            pointer-events: none;
+        }
+
+        .closing-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .closing-header {
+            text-align: center;
+            margin-bottom: 52px;
+            padding-bottom: 48px;
+            border-bottom: 1.5px solid rgba(201, 168, 124, 0.12);
+            position: relative;
+        }
+
+        .closing-header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 180px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--rose-gold), transparent);
+        }
+
+        .closing-card h2 {
+            font-size: 38px;
+            color: var(--deep-teal);
+            margin-bottom: 28px;
+            line-height: 1.15;
+            letter-spacing: -0.6px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+
+        .closing-outcomes {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .outcome-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            padding: 28px 20px;
+            background: linear-gradient(135deg, #fafafa, #f7f7f7);
+            border-radius: 16px;
+            border: 1.5px solid rgba(201, 168, 124, 0.1);
+            position: relative;
+            transition: all 0.35s ease;
+        }
+
+        .outcome-item::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 16px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(201, 168, 124, 0.15), transparent, rgba(78, 205, 196, 0.1));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+
+        .outcome-item:hover::before {
+            opacity: 1;
+        }
+
+        .outcome-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 16px rgba(201, 168, 124, 0.12);
+        }
+
+        .outcome-icon {
+            width: 48px;
+            height: 48px;
+            position: relative;
+        }
+
+        .outcome-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--deep-teal);
+            text-align: center;
+            line-height: 1.4;
+            letter-spacing: 0.2px;
+        }
+
+        .closing-message {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .closing-message p {
+            font-size: 17px;
+            color: var(--warm-gray);
+            line-height: 1.8;
+            letter-spacing: 0.1px;
+            margin-bottom: 20px;
+        }
+
+        .whatsapp-reminder {
+            background: linear-gradient(135deg, #F5F9F9, #F9FAFA);
+            padding: 48px 44px;
+            border-radius: 18px;
+            border: 2px solid rgba(78, 205, 196, 0.15);
+            margin-bottom: 52px;
+            position: relative;
+        }
+
+        .whatsapp-reminder::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--teal), transparent);
+            border-radius: 0 0 3px 3px;
+        }
+
+        .reminder-top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .reminder-illustration {
+            width: 110px;
+            height: 110px;
+            flex-shrink: 0;
+        }
+
+        .reminder-content {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .reminder-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            color: var(--rose-gold);
+            margin-bottom: 10px;
+        }
+
+        .reminder-heading {
+            font-size: 24px;
+            color: var(--deep-teal);
+            margin-bottom: 12px;
+            font-family: 'Ogg', serif;
+            line-height: 1.2;
+            letter-spacing: -0.4px;
+        }
+
+        .reminder-text {
+            font-size: 15px;
+            color: var(--warm-gray);
+            line-height: 1.7;
+        }
+
+        .reminder-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            background: linear-gradient(135deg, var(--deep-teal), #164442);
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 18px 42px;
+            border-radius: 10px;
+            text-decoration: none;
+            box-shadow:
+                0 2px 6px rgba(31, 79, 77, 0.2),
+                0 6px 18px rgba(31, 79, 77, 0.22),
+                0 12px 36px rgba(31, 79, 77, 0.16),
+                inset 0 1px 0 rgba(255,255,255,0.15);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.3px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(78, 205, 196, 0.25);
+        }
+
+        .reminder-cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .reminder-cta:hover::before {
+            transform: translateX(100%);
+        }
+
+        .reminder-cta:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 3px 8px rgba(31, 79, 77, 0.22),
+                0 8px 22px rgba(31, 79, 77, 0.25),
+                0 16px 44px rgba(31, 79, 77, 0.18);
+        }
+
+        .signature {
+            margin-top: 52px;
+            padding-top: 40px;
+            border-top: 1.5px solid rgba(201, 168, 124, 0.15);
+            text-align: center;
+            position: relative;
+        }
+
+        .signature::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(201, 168, 124, 0.35), transparent);
+        }
+
+        .signature-text {
+            font-family: 'Caveat', cursive;
+            font-size: 32px;
+            color: var(--rose-gold);
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .signature-name {
+            font-size: 15px;
+            color: var(--warm-gray);
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        /* Mobile CTA */
+        .mobile-cta {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            right: 24px;
+            z-index: 998;
+            display: none;
+        }
+
+        .mobile-cta .btn-vip {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            width: 11px;
+            height: 11px;
+            pointer-events: none;
+            z-index: 9998;
+        }
+
+        @keyframes burst {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1000px) {
+            .completion-status {
+                padding: 12px 0;
+            }
+
+            .status-container {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 14px;
+                padding: 0 24px;
+            }
+
+            .status-left {
+                justify-content: space-between;
+            }
+
+            .status-right {
+                max-width: none;
+                gap: 14px;
+            }
+
+            .status-text {
+                font-size: 12px;
+            }
+
+            .status-percentage {
+                font-size: 12px;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 90px 24px;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .gift-illustration {
+                transform: translateX(0);
+            }
+
+            .hero-content h1 {
+                font-size: 62px;
+            }
+
+            .step-item {
+                padding: 32px 28px;
+            }
+
+            .step-description,
+            .step-action {
+                padding-left: 0;
+            }
+
+            .step-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .section-intro h2 {
+                font-size: 48px;
+            }
+
+            .timeline-card {
+                grid-template-columns: 1fr !important;
+                gap: 30px;
+            }
+
+            .timeline-card:nth-child(even) .timeline-icon-large,
+            .timeline-card:nth-child(even) .timeline-content {
+                order: initial;
+            }
+
+            .timeline-content {
+                text-align: left !important;
+            }
+
+            .timeline-icon-large {
+                width: 120px;
+                height: 120px;
+            }
+
+            .invitation-content h2 {
+                font-size: 48px;
+            }
+
+            .timeline-header h2 {
+                font-size: 52px;
+            }
+
+            .checklist-header h2 {
+                font-size: 50px;
+            }
+
+            .closing-card h2 {
+                font-size: 32px;
+            }
+
+            .closing-card {
+                padding: 52px 32px;
+            }
+
+            .closing-outcomes {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .outcome-item {
+                padding: 24px 20px;
+            }
+
+            .reminder-top {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .reminder-illustration {
+                width: 90px;
+                height: 90px;
+            }
+
+            .reminder-heading {
+                font-size: 22px;
+            }
+
+            .reminder-cta {
+                font-size: 15px;
+                padding: 16px 36px;
+            }
+
+            .checklist-card {
+                padding: 52px 36px;
+            }
+
+            .mobile-cta {
+                display: block;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-content h1 {
+                font-size: 50px;
+            }
+
+            .invitation-content h2,
+            .timeline-header h2,
+            .checklist-header h2,
+            .closing-card h2 {
+                font-size: 40px;
+            }
+
+            .timeline-content h3 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-progress">
+        <div class="top-progress-fill" id="topProgressFill"></div>
+    </div>
+
+    <div class="vip-badge">
+        <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="36" cy="36" r="34" fill="url(#badge-gradient)" stroke="#C9A87C" stroke-width="1.5"/>
+            <circle cx="36" cy="36" r="28" stroke="#1F4F4D" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.25"/>
+            <circle cx="36" cy="36" r="22" stroke="#C9A87C" stroke-width="0.5" opacity="0.4"/>
+            <text x="36" y="32" font-family="Satoshi, sans-serif" font-size="10" font-weight="700" fill="#1F4F4D" text-anchor="middle" letter-spacing="0.8">VIP</text>
+            <text x="36" y="42" font-family="Satoshi, sans-serif" font-size="6" font-weight="500" fill="#1F4F4D" text-anchor="middle" opacity="0.7">ACCESS</text>
+            <path d="M36 12 L37 15 L36 18" stroke="#FFD1DC" stroke-width="1" opacity="0.5"/>
+            <path d="M60 36 L57 37 L60 38" stroke="#FFD1DC" stroke-width="1" opacity="0.5"/>
+            <defs>
+                <radialGradient id="badge-gradient" cx="0.35" cy="0.35" r="1">
+                    <stop offset="0%" stop-color="#D4B896"/>
+                    <stop offset="100%" stop-color="#C9A87C"/>
+                </radialGradient>
+            </defs>
+        </svg>
+    </div>
+
+    <div class="completion-status">
+        <div class="status-container">
+            <div class="status-left">
+                <div class="status-icon">
+                    <svg width="14" height="10" viewBox="0 0 16 12" fill="none">
+                        <path d="M2 6 L6 10 L14 2" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="status-text">Registration Complete</span>
+            </div>
+            <div class="status-right">
+                <div class="progress-bar-wrapper">
+                    <div class="progress-bar-track"></div>
+                    <div class="progress-bar-fill" id="completionBar"></div>
+                </div>
+                <span class="status-percentage" id="statusPercentage">0%</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1>You're In!<br>Welcome to VIP</h1>
+                    <p>You just did the thing most people talk themselves out of. That already tells me a lot about you.</p>
+                </div>
+                <div class="gift-illustration">
+                    <div class="video-frame-custom">
+                        <div class="video-inner">
+                            <div class="play-btn">
+                                <svg width="28" height="32" viewBox="0 0 28 32" fill="none">
+                                    <path d="M2 2L26 16L2 30V2Z" fill="white"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="video-note">A quick thank you from Bailey</p>
+                    <svg class="ribbon-accent" viewBox="0 0 110 110" fill="none">
+                        <path d="M22 55 Q55 22, 88 55 T 88 88" stroke="#C9A87C" stroke-width="2.2" fill="none" opacity="0.35"/>
+                        <circle cx="55" cy="55" r="14" fill="#FFD1DC" opacity="0.28"/>
+                        <circle cx="77" cy="33" r="7" fill="#4ECDC4" opacity="0.22"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="whatsapp-section">
+        <div class="phone-illustration-wrapper">
+            <svg width="240" height="240" viewBox="0 0 240 240" fill="none">
+                <ellipse cx="120" cy="215" rx="90" ry="14" fill="#000" opacity="0.07"/>
+                <rect x="50" y="30" width="140" height="180" rx="20" fill="url(#phone-gradient)" stroke="#C9A87C" stroke-width="2.8"/>
+                <rect x="59" y="43" width="122" height="150" rx="12" fill="#F8F8F8"/>
+                <rect x="72" y="62" width="88" height="30" rx="15" fill="#4ECDC4"/>
+                <rect x="83" y="102" width="76" height="30" rx="15" fill="#FFD1DC"/>
+                <rect x="72" y="142" width="92" height="30" rx="15" fill="#4ECDC4"/>
+                <path d="M168 72 L172 68 L176 72 L172 76 Z" fill="#FF6B9D" opacity="0.6"/>
+                <path d="M162 118 L166 114 L170 118 L166 122 Z" fill="#FF6B9D" opacity="0.5"/>
+                <path d="M170 158 L174 154 L178 158 L174 162 Z" fill="#FF6B9D" opacity="0.4"/>
+                <circle cx="66" cy="56" r="3.5" fill="#C9A87C" opacity="0.6"/>
+                <circle cx="173" cy="88" r="3.5" fill="#C9A87C" opacity="0.6"/>
+                <circle cx="68" cy="152" r="3.5" fill="#C9A87C" opacity="0.6"/>
+                <circle cx="171" cy="174" r="3" fill="#FFD1DC" opacity="0.7"/>
+                <defs>
+                    <linearGradient id="phone-gradient" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#FFFFFF"/>
+                        <stop offset="100%" stop-color="#F5F5F5"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+
+        <div class="invitation-content">
+            <div class="section-intro">
+                <h2>Do This Right Now</h2>
+                <p>These two steps are critical. Do them immediately before you get distracted.</p>
+            </div>
+
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">
+                            <span class="step-label">Step 1 — Required</span>
+                            <h3>Join the VIP WhatsApp Group</h3>
+                        </div>
+                    </div>
+                    <p class="step-description">This is where the magic happens. Real questions, real answers, me actually in there with you. The Quick Start Kit gets dropped here too.</p>
+                    <div class="step-action">
+                        <a href="#" class="btn-vip">
+                            <svg width="25" height="25" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5l-1.4 5 5.2-1.3c1.5.9 3.2 1.4 5 1.4 5.5 0 10-4.5 10-10S17.5 2 12 2zm5 13.5c-.2.6-1.2 1-1.7 1.1-.5.1-1 .1-1.5-.1-.3-.1-.8-.3-1.3-.6-1.6-.8-2.6-2.5-2.7-2.6-.1-.1-.7-1-.7-2s.5-1.4.7-1.6c.2-.2.4-.2.5-.2h.4c.1 0 .3-.1.4.3l.5 1.4c.1.2.1.4 0 .6-.1.2-.2.3-.3.5l-.3.4c-.1.1-.2.2-.1.4.1.2.5.9 1.1 1.5.8.7 1.5.9 1.7 1 .2.1.3.1.4-.1l.6-.7c.1-.2.3-.2.5-.1l1.3.8c.2.1.4.2.5.3z" fill="white"/>
+                            </svg>
+                            Join the VIP WhatsApp Now
+                        </a>
+                        <span class="step-note">Takes 10 seconds. You'll get a welcome message from me right away.</span>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">
+                            <span class="step-label">Step 2 — Required</span>
+                            <h3>Block Your VIP Call Times</h3>
+                        </div>
+                    </div>
+                    <p class="step-description">Add your VIP Q&A (after Day 2) and Implementation Call (Day 4) to your calendar right now. Life gets busy — protect these times like actual appointments.</p>
+                    <div class="step-action">
+                        <a href="#" class="btn-vip" style="background: linear-gradient(135deg, var(--rose-gold), var(--rose-gold-dark)); border: 1px solid rgba(201, 168, 124, 0.3);">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M10 2v16M2 10h16" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                            </svg>
+                            Add VIP Calls to Calendar
+                        </a>
+                        <span class="step-note">Block these times now before you forget.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="timeline-section">
+        <div class="timeline-header">
+            <h2>Here's What's Coming Your Way</h2>
+        </div>
+
+        <div class="timeline-visual">
+            <div class="timeline-card">
+                <div class="timeline-icon-large">
+                    <svg viewBox="0 0 100 100" fill="none">
+                        <rect x="17" y="30" width="66" height="50" rx="3" stroke="#C9A87C" stroke-width="3.5" fill="#FFF9F5"/>
+                        <line x1="50" y1="30" x2="50" y2="80" stroke="#C9A87C" stroke-width="3.5"/>
+                        <line x1="17" y1="55" x2="83" y2="55" stroke="#C9A87C" stroke-width="3.5"/>
+                        <path d="M38 30 L50 18 L62 30" stroke="#C9A87C" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="50" cy="55" r="7" fill="#FFD1DC" opacity="0.5"/>
+                    </svg>
+                </div>
+                <div class="timeline-content">
+                    <span class="timeline-label">Before Day 1</span>
+                    <h3>Quick Start Kit</h3>
+                    <p><strong>Quick Start Kit</strong> gets dropped in the VIP WhatsApp group. My $1M shop walkthrough, 50 product examples, and a framework for figuring out what in your shop needs to go. Start poking around before we even kick off.</p>
+                </div>
+            </div>
+
+            <div class="timeline-card">
+                <div class="timeline-icon-large">
+                    <svg viewBox="0 0 100 100" fill="none">
+                        <rect x="24" y="32" width="52" height="38" rx="3" stroke="#C9A87C" stroke-width="3.5" fill="#FFF9F5"/>
+                        <rect x="27" y="36" width="10" height="7" fill="#4ECDC4" opacity="0.4"/>
+                        <rect x="27" y="57" width="10" height="7" fill="#4ECDC4" opacity="0.4"/>
+                        <rect x="63" y="36" width="10" height="7" fill="#4ECDC4" opacity="0.4"/>
+                        <rect x="63" y="57" width="10" height="7" fill="#4ECDC4" opacity="0.4"/>
+                        <circle cx="50" cy="51" r="10" stroke="#C9A87C" stroke-width="2.5"/>
+                        <polygon points="46,46 46,56 54,51" fill="#C9A87C"/>
+                    </svg>
+                </div>
+                <div class="timeline-content">
+                    <span class="timeline-label">Day 1</span>
+                    <h3>Challenge Starts!</h3>
+                    <p><strong>Challenge starts!</strong> And you've got recordings of everything — so when your kid gets sick on Day 2 (because of course they will), you're not screwed.</p>
+                </div>
+            </div>
+
+            <div class="timeline-card">
+                <div class="timeline-icon-large">
+                    <svg viewBox="0 0 100 100" fill="none">
+                        <rect x="43" y="25" width="14" height="25" rx="7" stroke="#C9A87C" stroke-width="3.5" fill="#FFF9F5"/>
+                        <path d="M34 45 Q34 62, 50 62 Q66 62, 66 45" stroke="#C9A87C" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+                        <line x1="50" y1="62" x2="50" y2="73" stroke="#C9A87C" stroke-width="3.5" stroke-linecap="round"/>
+                        <line x1="40" y1="73" x2="60" y2="73" stroke="#C9A87C" stroke-width="3.5" stroke-linecap="round"/>
+                        <circle cx="50" cy="35" r="3.5" fill="#FFD1DC"/>
+                    </svg>
+                </div>
+                <div class="timeline-content">
+                    <span class="timeline-label">After Day 2</span>
+                    <h3>VIP-Only Q&A</h3>
+                    <p><strong>VIP-Only Q&A.</strong> This is YOUR time. Bring questions about YOUR actual shop. Not theory. Your real listings, your real stuck points. I'll answer.</p>
+                </div>
+            </div>
+
+            <div class="timeline-card">
+                <div class="timeline-icon-large">
+                    <svg viewBox="0 0 100 100" fill="none">
+                        <path d="M31 46 L43 34 L55 46 L43 58 Z" stroke="#C9A87C" stroke-width="3.5" fill="#FFF9F5"/>
+                        <circle cx="66" cy="37" r="10" stroke="#C9A87C" stroke-width="3.5" fill="none"/>
+                        <line x1="72" y1="43" x2="79" y2="50" stroke="#C9A87C" stroke-width="3.5" stroke-linecap="round"/>
+                        <path d="M43 58 L37 69" stroke="#C9A87C" stroke-width="3.5" stroke-linecap="round"/>
+                        <circle cx="49" cy="46" r="5" fill="#4ECDC4" opacity="0.4"/>
+                    </svg>
+                </div>
+                <div class="timeline-content">
+                    <span class="timeline-label">Day 4</span>
+                    <h3>Implementation Call</h3>
+                    <p><strong>Implementation Call.</strong> Okay this one's my favorite. This is where I help you actually DO the thing. Not learn. DO. We're getting stuff done together.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="checklist-section">
+        <div class="checklist-header">
+            <h2>Your Little VIP Checklist</h2>
+            <p class="checklist-subtitle">You already did the hardest part — you said yes. These are the easy ones.</p>
+        </div>
+
+        <div class="checklist-card">
+            <div class="progress-wrapper">
+                <div class="progress-label" id="progressLabel">0 of 4 tasks complete</div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+
+            <div class="checklist-items">
+                <div class="check-item" data-index="0">
+                    <div class="check-box">
+                        <svg class="check-empty" viewBox="0 0 30 30" fill="none">
+                            <circle cx="15" cy="15" r="13" stroke="#ddd" stroke-width="2.8"/>
+                        </svg>
+                        <svg class="check-filled" viewBox="0 0 30 30" fill="none" style="display: none;">
+                            <circle cx="15" cy="15" r="14" fill="url(#check-gradient)"/>
+                            <path d="M9 15 L13 19 L21 11" stroke="white" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            <defs>
+                                <linearGradient id="check-gradient" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0%" stop-color="#1F4F4D"/>
+                                    <stop offset="100%" stop-color="#164442"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="check-text">
+                        <strong>Join the VIP WhatsApp</strong> — Seriously, do this right now. Button's up there ☝️
+                    </div>
+                </div>
+
+                <div class="check-item" data-index="1">
+                    <div class="check-box">
+                        <svg class="check-empty" viewBox="0 0 30 30" fill="none">
+                            <circle cx="15" cy="15" r="13" stroke="#ddd" stroke-width="2.8"/>
+                        </svg>
+                        <svg class="check-filled" viewBox="0 0 30 30" fill="none" style="display: none;">
+                            <circle cx="15" cy="15" r="14" fill="url(#check-gradient2)"/>
+                            <path d="M9 15 L13 19 L21 11" stroke="white" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            <defs>
+                                <linearGradient id="check-gradient2" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0%" stop-color="#1F4F4D"/>
+                                    <stop offset="100%" stop-color="#164442"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="check-text">
+                        <strong>Watch for the Quick Start Kit</strong> — It's landing in your inbox before Day 1. Don't let it sit there unopened!
+                    </div>
+                </div>
+
+                <div class="check-item" data-index="2">
+                    <div class="check-box">
+                        <svg class="check-empty" viewBox="0 0 30 30" fill="none">
+                            <circle cx="15" cy="15" r="13" stroke="#ddd" stroke-width="2.8"/>
+                        </svg>
+                        <svg class="check-filled" viewBox="0 0 30 30" fill="none" style="display: none;">
+                            <circle cx="15" cy="15" r="14" fill="url(#check-gradient3)"/>
+                            <path d="M9 15 L13 19 L21 11" stroke="white" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            <defs>
+                                <linearGradient id="check-gradient3" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0%" stop-color="#1F4F4D"/>
+                                    <stop offset="100%" stop-color="#164442"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="check-text">
+                        <strong>Block time for your VIP Q&A</strong> — Happening right after Day 2. Put it in your calendar so life doesn't bulldoze it.
+                    </div>
+                </div>
+
+                <div class="check-item" data-index="3">
+                    <div class="check-box">
+                        <svg class="check-empty" viewBox="0 0 30 30" fill="none">
+                            <circle cx="15" cy="15" r="13" stroke="#ddd" stroke-width="2.8"/>
+                        </svg>
+                        <svg class="check-filled" viewBox="0 0 30 30" fill="none" style="display: none;">
+                            <circle cx="15" cy="15" r="14" fill="url(#check-gradient4)"/>
+                            <path d="M9 15 L13 19 L21 11" stroke="white" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            <defs>
+                                <linearGradient id="check-gradient4" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0%" stop-color="#1F4F4D"/>
+                                    <stop offset="100%" stop-color="#164442"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="check-text">
+                        <strong>Block time for your Implementation Call</strong> — Day 4. This is the one where everything clicks. Protect this time like it's a doctor's appointment.
+                    </div>
+                </div>
+            </div>
+
+            <div class="completion-message" id="completionMessage">
+                You're all set! You're going to absolutely crush this challenge!
+            </div>
+        </div>
+    </section>
+
+    <section class="closing-section">
+        <div class="closing-card">
+            <div class="closing-content">
+                <div class="closing-header">
+                    <h2>You're Not Just Here to Watch.</h2>
+                    <p style="font-size: 16px; color: var(--warm-gray); max-width: 700px; margin: 0 auto; line-height: 1.7;">VIPs walk out of this with tangible results. That's exactly what we're gonna make happen together.</p>
+                </div>
+
+                <div class="closing-outcomes">
+                    <div class="outcome-item">
+                        <div class="outcome-icon">
+                            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="24" cy="24" r="22" fill="#F5F9F9" stroke="#4ECDC4" stroke-width="1.5"/>
+                                <path d="M14 22 L16 30 L32 30 L34 22" stroke="#1F4F4D" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                                <rect x="12" y="18" width="24" height="4" rx="2" fill="#C9A87C" opacity="0.4"/>
+                                <path d="M18 18 L18 14 C18 11 21 11 24 11 C27 11 30 11 30 14 L30 18" stroke="#1F4F4D" stroke-width="2" fill="none" stroke-linecap="round"/>
+                                <circle cx="20" cy="25" r="1.5" fill="#FFD1DC"/>
+                                <circle cx="28" cy="25" r="1.5" fill="#FFD1DC"/>
+                                <path d="M24 26 L24 28" stroke="#4ECDC4" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <span class="outcome-title">Cleaned-Up Shop</span>
+                    </div>
+
+                    <div class="outcome-item">
+                        <div class="outcome-icon">
+                            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="24" cy="24" r="22" fill="#FFF9F5" stroke="#C9A87C" stroke-width="1.5"/>
+                                <rect x="14" y="12" width="20" height="24" rx="2" fill="none" stroke="#1F4F4D" stroke-width="2"/>
+                                <line x1="18" y1="18" x2="26" y2="18" stroke="#4ECDC4" stroke-width="1.8" stroke-linecap="round"/>
+                                <line x1="18" y1="22" x2="30" y2="22" stroke="#FFD1DC" stroke-width="1.8" stroke-linecap="round"/>
+                                <line x1="18" y1="26" x2="28" y2="26" stroke="#C9A87C" stroke-width="1.8" stroke-linecap="round"/>
+                                <line x1="18" y1="30" x2="24" y2="30" stroke="#4ECDC4" stroke-width="1.8" stroke-linecap="round"/>
+                                <circle cx="14" cy="12" r="2" fill="#FFD1DC"/>
+                            </svg>
+                        </div>
+                        <span class="outcome-title">Actual Plan</span>
+                    </div>
+
+                    <div class="outcome-item">
+                        <div class="outcome-icon">
+                            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="24" cy="24" r="22" fill="#FFF5F0" stroke="#FFD1DC" stroke-width="1.5"/>
+                                <path d="M24 14 L26 20 L32 20 L27 24 L29 30 L24 26 L19 30 L21 24 L16 20 L22 20 Z" fill="none" stroke="#1F4F4D" stroke-width="2" stroke-linejoin="round"/>
+                                <circle cx="24" cy="24" r="3" fill="#C9A87C" opacity="0.3"/>
+                                <path d="M24 19 L24 21" stroke="#4ECDC4" stroke-width="1.5" stroke-linecap="round"/>
+                                <circle cx="18" cy="15" r="1.5" fill="#FFD1DC"/>
+                                <circle cx="30" cy="15" r="1.5" fill="#4ECDC4"/>
+                            </svg>
+                        </div>
+                        <span class="outcome-title">Real Listings Ready</span>
+                    </div>
+                </div>
+
+                <div class="closing-message">
+                    <p>Real talk — I don't take this lightly. You invested in yourself and I'm gonna make sure it's worth it.</p>
+                    <p style="margin-bottom: 0;">This challenge is designed to give you results, not just motivation. Let's do this together.</p>
+                </div>
+
+                <div class="whatsapp-reminder">
+                    <div class="reminder-top">
+                        <div class="reminder-illustration">
+                            <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <ellipse cx="55" cy="100" rx="42" ry="6" fill="#000" opacity="0.06"/>
+                                <rect x="25" y="10" width="60" height="90" rx="10" fill="url(#phone-grad-2)" stroke="#C9A87C" stroke-width="2"/>
+                                <rect x="30" y="16" width="50" height="78" rx="6" fill="#F8F8F8"/>
+                                <rect x="30" y="16" width="50" height="14" rx="6" fill="#4ECDC4" fill-opacity="0.25"/>
+                                <circle cx="38" cy="23" r="3" fill="#C9A87C"/>
+                                <line x1="44" y1="22" x2="60" y2="22" stroke="#1F4F4D" stroke-width="1.2" stroke-linecap="round"/>
+                                <line x1="44" y1="25" x2="52" y2="25" stroke="#1F4F4D" stroke-width="0.8" stroke-linecap="round" opacity="0.4"/>
+                                <rect x="34" y="34" width="34" height="10" rx="5" fill="#4ECDC4"/>
+                                <rect x="40" y="47" width="28" height="10" rx="5" fill="#FFD1DC"/>
+                                <rect x="34" y="60" width="36" height="10" rx="5" fill="#4ECDC4"/>
+                                <circle cx="40" cy="76" r="1.5" fill="#C9A87C"/>
+                                <circle cx="46" cy="76" r="1.5" fill="#C9A87C"/>
+                                <circle cx="52" cy="76" r="1.5" fill="#C9A87C"/>
+                                <path d="M17 28 L18 30 L17 32 L16 30 Z" fill="#FFD1DC" opacity="0.5"/>
+                                <path d="M93 40 L94 42 L93 44 L92 42 Z" fill="#4ECDC4" opacity="0.5"/>
+                                <defs>
+                                    <linearGradient id="phone-grad-2" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#FFFFFF"/>
+                                        <stop offset="100%" stop-color="#F5F5F5"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div class="reminder-content">
+                            <div class="reminder-label">Don't Miss This</div>
+                            <h3 class="reminder-heading">Join the VIP WhatsApp</h3>
+                            <p class="reminder-text">This is where everything actually happens. The Quick Start Kit. Daily updates. My actual answers to your questions. Don't close this page without joining.</p>
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <a href="#" class="reminder-cta">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5l-1.4 5 5.2-1.3c1.5.9 3.2 1.4 5 1.4 5.5 0 10-4.5 10-10S17.5 2 12 2zm5 13.5c-.2.6-1.2 1-1.7 1.1-.5.1-1 .1-1.5-.1-.3-.1-.8-.3-1.3-.6-1.6-.8-2.6-2.5-2.7-2.6-.1-.1-.7-1-.7-2s.5-1.4.7-1.6c.2-.2.4-.2.5-.2h.4c.1 0 .3-.1.4.3l.5 1.4c.1.2.1.4 0 .6-.1.2-.2.3-.3.5l-.3.4c-.1.1-.2.2-.1.4.1.2.5.9 1.1 1.5.8.7 1.5.9 1.7 1 .2.1.3.1.4-.1l.6-.7c.1-.2.3-.2.5-.1l1.3.8c.2.1.4.2.5.3z" fill="white"/>
+                            </svg>
+                            Join VIP WhatsApp Now
+                        </a>
+                    </div>
+                </div>
+
+                <div class="signature">
+                    <p class="signature-text">See you inside!</p>
+                    <p class="signature-name">— Bailey</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="mobile-cta">
+        <a href="#" class="btn-vip">
+            <svg width="23" height="23" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5l-1.4 5 5.2-1.3c1.5.9 3.2 1.4 5 1.4 5.5 0 10-4.5 10-10S17.5 2 12 2zm5 13.5c-.2.6-1.2 1-1.7 1.1-.5.1-1 .1-1.5-.1-.3-.1-.8-.3-1.3-.6-1.6-.8-2.6-2.5-2.7-2.6-.1-.1-.7-1-.7-2s.5-1.4.7-1.6c.2-.2.4-.2.5-.2h.4c.1 0 .3-.1.4.3l.5 1.4c.1.2.1.4 0 .6-.1.2-.2.3-.3.5l-.3.4c-.1.1-.2.2-.1.4.1.2.5.9 1.1 1.5.8.7 1.5.9 1.7 1 .2.1.3.1.4-.1l.6-.7c.1-.2.3-.2.5-.1l1.3.8c.2.1.4.2.5.3z" fill="white"/>
+            </svg>
+            Join VIP WhatsApp
+        </a>
+    </div>
+
+    <script>
+        // Top progress bar based on scroll
+        const topProgressFill = document.getElementById('topProgressFill');
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            topProgressFill.style.width = scrolled + '%';
+        });
+
+        // Completion status percentage counter animation
+        const statusPercentage = document.getElementById('statusPercentage');
+
+        // Animate percentage counter in sync with CSS progress bar (2s duration, 0.6s delay)
+        setTimeout(() => {
+            let currentPercent = 0;
+            const targetPercent = 100;
+            const duration = 2000; // 2 seconds to match CSS animation
+            const steps = 80;
+            const increment = targetPercent / steps;
+            const stepDuration = duration / steps;
+
+            const percentageInterval = setInterval(() => {
+                currentPercent += increment;
+                if (currentPercent >= targetPercent) {
+                    currentPercent = targetPercent;
+                    clearInterval(percentageInterval);
+                }
+                statusPercentage.textContent = Math.round(currentPercent) + '%';
+            }, stepDuration);
+        }, 600); // 0.6s delay to match CSS animation
+
+        // Checklist functionality
+        const items = document.querySelectorAll('.check-item');
+        const progressFill = document.getElementById('progressFill');
+        const progressLabel = document.getElementById('progressLabel');
+        const completionMessage = document.getElementById('completionMessage');
+        let checkedCount = 0;
+        const totalItems = items.length;
+
+        const savedState = JSON.parse(localStorage.getItem('vipChecklist') || '{}');
+
+        items.forEach((item, index) => {
+            const emptyCheck = item.querySelector('.check-empty');
+            const filledCheck = item.querySelector('.check-filled');
+
+            if (savedState[index]) {
+                emptyCheck.style.display = 'none';
+                filledCheck.style.display = 'block';
+                item.classList.add('completed');
+                checkedCount++;
+            }
+
+            item.addEventListener('click', function() {
+                const isChecked = item.classList.contains('completed');
+
+                if (!isChecked) {
+                    emptyCheck.style.display = 'none';
+                    filledCheck.style.display = 'block';
+                    item.classList.add('completed');
+                    checkedCount++;
+                    createConfetti(item);
+                    savedState[index] = true;
+                } else {
+                    emptyCheck.style.display = 'block';
+                    filledCheck.style.display = 'none';
+                    item.classList.remove('completed');
+                    checkedCount--;
+                    savedState[index] = false;
+                }
+
+                localStorage.setItem('vipChecklist', JSON.stringify(savedState));
+                updateProgress();
+            });
+        });
+
+        function updateProgress() {
+            const percentage = (checkedCount / totalItems) * 100;
+            progressFill.style.width = percentage + '%';
+            progressLabel.textContent = `${checkedCount} of ${totalItems} tasks complete`;
+
+            if (checkedCount === totalItems) {
+                completionMessage.classList.add('show');
+                createBigConfetti();
+            } else {
+                completionMessage.classList.remove('show');
+            }
+        }
+
+        function createConfetti(element) {
+            const rect = element.getBoundingClientRect();
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
+            const colors = ['#FF6B9D', '#4ECDC4', '#C9A87C', '#FFD1DC'];
+
+            for (let i = 0; i < 16; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = x + 'px';
+                confetti.style.top = y + 'px';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animation = 'burst 0.85s ease-out forwards';
+
+                const angle = (i / 16) * Math.PI * 2;
+                const distance = 65 + Math.random() * 50;
+                confetti.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
+                confetti.style.setProperty('--ty', Math.sin(angle) * distance + 'px');
+
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 850);
+            }
+        }
+
+        function createBigConfetti() {
+            const colors = ['#FF6B9D', '#4ECDC4', '#C9A87C', '#FFD1DC'];
+            for (let i = 0; i < 45; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = (window.innerWidth / 2) + 'px';
+                confetti.style.top = (window.innerHeight / 2) + 'px';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animation = 'burst 1.1s ease-out forwards';
+
+                const angle = (i / 45) * Math.PI * 2;
+                const distance = 110 + Math.random() * 160;
+                confetti.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
+                confetti.style.setProperty('--ty', Math.sin(angle) * distance + 'px');
+
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 1100);
+            }
+        }
+
+        updateProgress();
+    </script>
+
+</body>
+</html>
