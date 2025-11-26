@@ -635,87 +635,134 @@
             z-index: 10;
         }
 
-        /* Registration Complete Progress Bar */
+        /* Registration Complete Progress Bar - Luxurious Gold Design */
         .registration-complete-bar {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 9999;
-            background: linear-gradient(135deg, var(--deep-teal), #234d4a);
-            padding: 12px 20px;
+            background: linear-gradient(135deg, #FFFBF5 0%, #FFF8EE 50%, #FFF5E6 100%);
+            padding: 14px 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            box-shadow: 0 2px 12px rgba(26, 61, 59, 0.15);
+            gap: 16px;
+            box-shadow:
+                0 2px 20px rgba(201, 168, 124, 0.15),
+                0 4px 40px rgba(201, 168, 124, 0.1),
+                inset 0 -1px 0 rgba(201, 168, 124, 0.2);
+            border-bottom: 1px solid rgba(201, 168, 124, 0.15);
         }
 
         .registration-complete-bar .check-icon {
-            width: 22px;
-            height: 22px;
-            background: #4ECDC4;
+            width: 26px;
+            height: 26px;
+            background: linear-gradient(135deg, #4ECDC4, #3DBDB5);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            box-shadow:
+                0 2px 8px rgba(78, 205, 196, 0.3),
+                0 0 20px rgba(78, 205, 196, 0.2);
+            animation: checkPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes checkPulse {
+            0%, 100% { box-shadow: 0 2px 8px rgba(78, 205, 196, 0.3), 0 0 20px rgba(78, 205, 196, 0.2); }
+            50% { box-shadow: 0 2px 12px rgba(78, 205, 196, 0.5), 0 0 30px rgba(78, 205, 196, 0.3); }
         }
 
         .registration-complete-bar .check-icon svg {
-            width: 12px;
-            height: 12px;
+            width: 13px;
+            height: 13px;
         }
 
         .registration-complete-bar .progress-info {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 18px;
         }
 
         .registration-complete-bar .progress-label {
             font-size: 14px;
             font-weight: 600;
-            color: #fff;
+            color: var(--deep-teal);
             letter-spacing: 0.3px;
         }
 
         .registration-complete-bar .mini-progress {
-            width: 120px;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 3px;
-            overflow: hidden;
+            width: 140px;
+            height: 8px;
+            background: linear-gradient(90deg, rgba(201, 168, 124, 0.15), rgba(201, 168, 124, 0.25));
+            border-radius: 10px;
+            overflow: visible;
+            position: relative;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
         .registration-complete-bar .mini-progress-fill {
-            width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, #4ECDC4, var(--rose-gold));
-            border-radius: 3px;
-            animation: progressComplete 1s ease-out both;
+            background: linear-gradient(90deg, #D4AF37, #E8C547, #F0D860, #E8C547, #D4AF37);
+            background-size: 200% 100%;
+            border-radius: 10px;
+            animation: progressComplete 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards, goldShimmer 2s ease-in-out infinite 1.5s;
+            position: relative;
+            box-shadow:
+                0 0 10px rgba(212, 175, 55, 0.5),
+                0 0 20px rgba(212, 175, 55, 0.3),
+                0 0 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .registration-complete-bar .mini-progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.6) 50%, transparent 100%);
+            border-radius: 10px;
+            animation: progressShine 2s ease-in-out infinite 1.5s;
         }
 
         @keyframes progressComplete {
-            from { width: 0%; }
-            to { width: 100%; }
+            from { width: 0%; opacity: 0.5; }
+            to { width: 100%; opacity: 1; }
+        }
+
+        @keyframes goldShimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes progressShine {
+            0% { transform: translateX(-100%); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%); opacity: 0; }
         }
 
         .registration-complete-bar .percentage {
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 700;
-            color: var(--rose-gold);
+            background: linear-gradient(135deg, #D4AF37, #B8860B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
 
         /* Adjust body padding for fixed bar */
         body {
-            padding-top: 50px;
+            padding-top: 54px;
         }
 
         @media (max-width: 480px) {
             .registration-complete-bar {
-                padding: 10px 16px;
-                gap: 8px;
+                padding: 12px 16px;
+                gap: 10px;
             }
 
             .registration-complete-bar .progress-label {
@@ -723,11 +770,22 @@
             }
 
             .registration-complete-bar .mini-progress {
-                width: 80px;
+                width: 90px;
+                height: 6px;
             }
 
             .registration-complete-bar .percentage {
                 font-size: 12px;
+            }
+
+            .registration-complete-bar .check-icon {
+                width: 22px;
+                height: 22px;
+            }
+
+            .registration-complete-bar .check-icon svg {
+                width: 11px;
+                height: 11px;
             }
         }
 
@@ -1530,8 +1588,10 @@
             <span class="drawer-close-text">Tap to close</span>
         </div>
         <div class="drawer-video-container" id="drawerVideoContainer">
-            <!-- Video loads here when drawer opens -->
-            <div class="drawer-loading" id="drawerLoading" style="color: rgba(255,255,255,0.6); font-size: 14px;">Loading video...</div>
+            <!-- Drawer video - same player ID, vturb will handle it -->
+            <div id="drawer-video-wrapper" style="width: 100%; aspect-ratio: 16/9;">
+                <vturb-smartplayer id="vid-drawer-player"></vturb-smartplayer>
+            </div>
         </div>
     </div>
 
@@ -1656,33 +1716,37 @@
         const videoDrawer = document.getElementById('videoDrawer');
         const videoOverlay = document.getElementById('videoOverlay');
         const drawerClose = document.getElementById('drawerClose');
-        const drawerVideoContainer = document.getElementById('drawerVideoContainer');
-        let drawerVideoLoaded = false;
+        const drawerVideoWrapper = document.getElementById('drawer-video-wrapper');
+        let drawerVideoInitialized = false;
+
+        function initDrawerVideo() {
+            if (drawerVideoInitialized) return;
+            drawerVideoInitialized = true;
+
+            // Create iframe for mobile drawer - more reliable than vturb element
+            const iframe = document.createElement('iframe');
+            iframe.src = 'https://player.vturb.com.br/69268e3d1ec0bc043c339ac6';
+            iframe.style.cssText = 'width: 100%; height: 100%; border: none; display: block;';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            iframe.allowFullscreen = true;
+
+            // Replace the placeholder element
+            const placeholder = document.getElementById('vid-drawer-player');
+            if (placeholder) {
+                placeholder.replaceWith(iframe);
+            } else {
+                drawerVideoWrapper.innerHTML = '';
+                drawerVideoWrapper.appendChild(iframe);
+            }
+        }
 
         function openDrawer() {
             videoDrawer.classList.add('open');
             videoOverlay.classList.add('open');
             document.body.style.overflow = 'hidden';
 
-            // Load video into drawer if not already loaded
-            if (!drawerVideoLoaded) {
-                const loadingEl = document.getElementById('drawerLoading');
-                if (loadingEl) loadingEl.style.display = 'none';
-
-                // Create the video player element
-                const playerEl = document.createElement('vturb-smartplayer');
-                playerEl.id = 'vid-drawer-69268e3d1ec0bc043c339ac6';
-                playerEl.style.cssText = 'display: block; width: 100%; margin: 0 auto;';
-                drawerVideoContainer.appendChild(playerEl);
-
-                drawerVideoLoaded = true;
-
-                // Reinitialize the player script for the drawer video
-                var drawerScript = document.createElement("script");
-                drawerScript.src = "https://scripts.converteai.net/4a88e4d6-10d6-46da-b41b-334366e58f7b/players/69268e3d1ec0bc043c339ac6/v4/player.js";
-                drawerScript.async = true;
-                document.head.appendChild(drawerScript);
-            }
+            // Initialize video on first open
+            initDrawerVideo();
         }
 
         function closeDrawer() {
@@ -1730,7 +1794,7 @@
         }
     </script>
 
-    <!-- Vturb Player Script -->
+    <!-- Vturb Player Script for Desktop -->
     <script type="text/javascript">
         var s = document.createElement("script");
         s.src = "https://scripts.converteai.net/4a88e4d6-10d6-46da-b41b-334366e58f7b/players/69268e3d1ec0bc043c339ac6/v4/player.js";
