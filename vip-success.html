@@ -361,6 +361,20 @@
             background: linear-gradient(180deg, rgba(201, 168, 124, 0.08) 0%, transparent 100%);
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             flex-shrink: 0;
+            position: relative;
+        }
+
+        /* Drag handle indicator */
+        .drawer-header::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 36px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 2px;
         }
 
         .drawer-title {
@@ -725,12 +739,12 @@
             box-shadow: 0 4px 16px rgba(201, 168, 124, 0.35);
         }
 
-        /* Calendar button wrapper - FIXED for dropdown visibility */
+        /* Calendar button wrapper */
         .calendar-btn-wrapper {
             display: flex;
             justify-content: flex-start;
             position: relative;
-            z-index: 9999;
+            z-index: 100;
         }
 
         .calendar-btn-wrapper add-to-calendar-button {
@@ -745,21 +759,16 @@
             --list-text: #333333;
             --list-background-hover: #f5f5f5;
             --list-text-hover: #1A3D3B;
-            --list-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            --list-shadow: 0 4px 20px rgba(0,0,0,0.15);
             --btn-border: none;
             --checkmark-background: #4ECDC4;
-            --overlay-background: rgba(0,0,0,0.3);
-            --overlay-cursor: pointer;
+            --overlay-background: transparent;
+            --overlay-cursor: default;
         }
 
-        /* Action card with calendar - ensure visible overflow and high stacking */
+        /* Action card with calendar needs visible overflow */
         .action-card {
             overflow: visible !important;
-        }
-
-        /* Second action card (calendar card) needs highest z-index when dropdown open */
-        .action-card:nth-child(2) {
-            z-index: 1000;
         }
 
         .action-cards {
@@ -768,27 +777,11 @@
 
         .action-section {
             overflow: visible !important;
-            z-index: 1;
         }
 
-        /* Global styles for add-to-calendar dropdown - ensure it's above everything */
-        add-to-calendar-button {
-            --overlay-z: 99999;
-            --list-z: 99999;
-        }
-
-        /* Force the dropdown list to have proper visibility */
+        /* Ensure dropdown list appears above */
         .calendar-btn-wrapper add-to-calendar-button::part(atcb-list) {
-            z-index: 99999 !important;
-        }
-
-        .calendar-btn-wrapper add-to-calendar-button::part(atcb-list-wrapper) {
-            z-index: 99999 !important;
-        }
-
-        /* Ensure overlay appears above everything */
-        .calendar-btn-wrapper add-to-calendar-button::part(atcb-bgoverlay) {
-            z-index: 99998 !important;
+            z-index: 10000 !important;
         }
 
         @media (max-width: 768px) {
@@ -1593,7 +1586,6 @@
                             hideCheckmark
                             size="4"
                             label="Add to Calendar"
-                            listStyle="overlay"
                         ></add-to-calendar-button>
                     </div>
                 </div>
@@ -1959,6 +1951,72 @@
 
         if (drawerClose) {
             drawerClose.addEventListener('click', closeDrawer);
+        }
+
+        // Swipe down to close the modal (drawer-like behavior)
+        if (videoDrawer) {
+            let startY = 0;
+            let currentY = 0;
+            let isDragging = false;
+
+            const drawerHeader = videoDrawer.querySelector('.drawer-header');
+            const drawerFooter = videoDrawer.querySelector('.drawer-footer');
+
+            // Start drag on header or footer touch
+            function handleTouchStart(e) {
+                startY = e.touches[0].clientY;
+                currentY = startY;
+                isDragging = true;
+                videoDrawer.style.transition = 'none';
+            }
+
+            function handleTouchMove(e) {
+                if (!isDragging) return;
+                currentY = e.touches[0].clientY;
+                const diff = currentY - startY;
+
+                // Only allow dragging down (positive diff)
+                if (diff > 0) {
+                    // Apply drag with resistance
+                    const resistance = 0.6;
+                    const dragOffset = diff * resistance;
+                    videoDrawer.style.transform = `translate(-50%, calc(-50% + ${dragOffset}px)) scale(${1 - dragOffset * 0.001})`;
+                    videoDrawer.style.opacity = 1 - (dragOffset / 400);
+                }
+            }
+
+            function handleTouchEnd() {
+                if (!isDragging) return;
+                isDragging = false;
+
+                const diff = currentY - startY;
+                videoDrawer.style.transition = 'all 0.35s cubic-bezier(0.32, 0.72, 0, 1)';
+
+                // If dragged more than 120px, close the drawer
+                if (diff > 120) {
+                    closeDrawer();
+                } else {
+                    // Snap back to center
+                    videoDrawer.style.transform = 'translate(-50%, -50%) scale(1)';
+                    videoDrawer.style.opacity = '1';
+                }
+
+                startY = 0;
+                currentY = 0;
+            }
+
+            // Add listeners to header and footer for dragging
+            if (drawerHeader) {
+                drawerHeader.addEventListener('touchstart', handleTouchStart, { passive: true });
+                drawerHeader.addEventListener('touchmove', handleTouchMove, { passive: true });
+                drawerHeader.addEventListener('touchend', handleTouchEnd);
+            }
+
+            if (drawerFooter) {
+                drawerFooter.addEventListener('touchstart', handleTouchStart, { passive: true });
+                drawerFooter.addEventListener('touchmove', handleTouchMove, { passive: true });
+                drawerFooter.addEventListener('touchend', handleTouchEnd);
+            }
         }
     </script>
 
