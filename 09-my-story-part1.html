@@ -14,8 +14,8 @@
     }
 
     .story-part1-section {
-        --pink-primary: #FFB8CF;
-        --pink-dark: #F5B3CE;
+        --pink-primary: #FFD9E8;
+        --pink-dark: #F8CDE0;
         --teal-primary: #4ECDC4;
         --teal-dark: #2F5F61;
         --navy: #1a202c;
@@ -57,7 +57,7 @@
         font-family: 'Satoshi', sans-serif;
         font-weight: 900;
         font-size: 100px;
-        background: linear-gradient(135deg, #FFB347 0%, #FFB8CF 50%, #FFC4D6 100%);
+        background: linear-gradient(135deg, #FFB347 0%, #FFD9E8 50%, #FFDEE9 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -325,7 +325,7 @@
     }
 
     /* Responsive */
-    @media (max-width: 1024px) {
+    @media (max-width: 1100px) {
         .story-content-grid {
             grid-template-columns: 1fr;
             gap: 50px;
@@ -340,12 +340,26 @@
         .polaroid-stack {
             height: 400px;
             min-height: 400px;
+            max-width: 450px;
+            margin: 0 auto;
         }
     }
 
     @media (max-width: 768px) {
+        .story-part1-section {
+            padding: 40px 0 60px;
+        }
+
         .story-part1-section .container {
-            padding: 0 24px;
+            padding: 0 20px;
+        }
+
+        .story-hero-header {
+            margin-bottom: 40px;
+        }
+
+        .story-hero-header .subtitle {
+            font-size: 24px;
         }
 
         .story-hero-header h1 {
@@ -353,28 +367,36 @@
         }
 
         .story-hero-header h1 .figure-text {
-            font-size: 60px;
+            font-size: 64px;
         }
 
         .story-hero-header .etsy-text,
         .story-hero-header .shop-owner {
-            font-size: 32px;
+            font-size: 28px;
         }
 
         .story-content {
             font-size: 17px;
+            line-height: 1.75;
         }
 
         .story-intro {
-            font-size: 24px;
+            font-size: 22px;
+            margin-bottom: 24px;
         }
 
         .quote-text {
+            font-size: 21px;
+            margin: 24px 0;
+        }
+
+        .script-text {
             font-size: 22px;
+            margin: 20px 0;
         }
 
         .larger-text {
-            font-size: 19px;
+            font-size: 18px;
         }
 
         .polaroid-stack {
@@ -407,6 +429,77 @@
             width: 125px;
         }
         .polaroid-4 .polaroid-inner { width: 105px; height: 105px; }
+    }
+
+    @media (max-width: 480px) {
+        .story-hero-header .subtitle {
+            font-size: 20px;
+        }
+
+        .story-hero-header h1 {
+            font-size: 36px;
+        }
+
+        .story-hero-header h1 .figure-text {
+            font-size: 52px;
+        }
+
+        .story-hero-header .etsy-line {
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .story-hero-header .etsy-text,
+        .story-hero-header .shop-owner {
+            font-size: 24px;
+        }
+
+        .story-content {
+            font-size: 16px;
+        }
+
+        .story-intro {
+            font-size: 20px;
+        }
+
+        .quote-text {
+            font-size: 19px;
+        }
+
+        .script-text {
+            font-size: 20px;
+        }
+
+        .polaroid-stack {
+            height: 280px;
+            min-height: 280px;
+        }
+
+        .polaroid-1 {
+            margin-left: 5px;
+            width: 120px;
+        }
+        .polaroid-1 .polaroid-inner { width: 100px; height: 100px; }
+
+        .polaroid-2 {
+            margin-left: -120px;
+            width: 115px;
+        }
+        .polaroid-2 .polaroid-inner { width: 95px; height: 95px; }
+
+        .polaroid-3 {
+            top: 140px;
+            margin-left: 10px;
+            width: 115px;
+        }
+        .polaroid-3 .polaroid-inner { width: 95px; height: 95px; }
+
+        .polaroid-4 {
+            top: 150px;
+            margin-left: -110px;
+            width: 110px;
+        }
+        .polaroid-4 .polaroid-inner { width: 90px; height: 90px; }
     }
 </style>
 
