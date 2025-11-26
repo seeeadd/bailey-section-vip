@@ -1,25 +1,107 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>VIP Sections</title>
+    <title>Bailey's Challenge Pages</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: Arial, sans-serif; padding: 40px; max-width: 600px; margin: 0 auto; }
-        h1 { color: #333; }
-        a { display: block; padding: 12px 0; font-size: 18px; color: #FF6B9D; text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Satoshi', Arial, sans-serif;
+            padding: 60px 24px;
+            max-width: 700px;
+            margin: 0 auto;
+            background: #FAF7F2;
+            min-height: 100vh;
+        }
+        h1 {
+            color: #2F5F61;
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+        .page-group {
+            margin-bottom: 32px;
+        }
+        .group-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+        .page-card {
+            display: block;
+            padding: 20px 24px;
+            background: #FFFFFF;
+            border-radius: 12px;
+            text-decoration: none;
+            margin-bottom: 12px;
+            border: 1px solid #E8E8E8;
+            transition: all 0.2s ease;
+        }
+        .page-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            border-color: #4ECDC4;
+        }
+        .page-card h3 {
+            color: #2F5F61;
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+        .page-card p {
+            color: #666;
+            font-size: 14px;
+        }
+        .page-card.featured {
+            border: 2px solid #4ECDC4;
+            background: linear-gradient(180deg, rgba(78, 205, 196, 0.05) 0%, #FFFFFF 100%);
+        }
+        .page-card.featured h3 {
+            color: #4ECDC4;
+        }
+        .badge {
+            display: inline-block;
+            background: #4ECDC4;
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
     </style>
 </head>
 <body>
-    <h1>VIP Sections</h1>
-    <a href="/01-choose-experience.html">01 - Choose Experience</a>
-    <a href="/02-fast-action-toolkit.html">02 - Fast Action Toolkit</a>
-    <a href="/03-why-upgrade.html">03 - Why Upgrade</a>
-    <a href="/04-final-cta.html">04 - Final CTA</a>
-    <a href="/05-everything-you-get.html">05 - Everything You Get</a>
-    <a href="/06-is-vip-for-you.html">06 - Is VIP For You</a>
-    <a href="/07-faq.html">07 - FAQ</a>
-    <a href="/08-guarantee.html">08 - Guarantee</a>
-    <a href="/09-my-story-part1.html">09 - My Story Part 1</a>
-    <a href="/10-my-story-part2.html">10 - My Story Part 2</a>
+    <h1>Bailey's Challenge Pages</h1>
+    <p class="subtitle">All embeddable HTML sections for ThriveCart</p>
+
+    <div class="page-group">
+        <div class="group-title">Success Pages</div>
+        <a href="/downsell-success.html" class="page-card featured">
+            <h3>Downsell Success Page <span class="badge">NEW</span></h3>
+            <p>$17 Toolkit confirmation page — replays, AI prompts, decision matrix</p>
+        </a>
+    </div>
+
+    <div class="page-group">
+        <div class="group-title">VIP Upsell Sections</div>
+        <a href="/vip-upsell.html" class="page-card">
+            <h3>VIP Upsell Page Index</h3>
+            <p>All 10 sections for the $67 VIP upsell flow</p>
+        </a>
+    </div>
 </body>
 </html>
