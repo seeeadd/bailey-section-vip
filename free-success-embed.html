@@ -1464,111 +1464,37 @@
     }
 
     /* ============================================
-       CLOSING - FUN & CREATIVE FINALE
+       CLOSING - WARM & ON-BRAND FINALE
        ============================================ */
     .closing {
         width: 100%;
         padding: 100px 24px 120px;
-        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        background: linear-gradient(180deg, var(--cream) 0%, var(--pink-pale) 50%, var(--cream) 100%);
         position: relative;
         overflow: hidden;
     }
 
-    /* Animated star field background */
+    /* Subtle decorative shapes */
     .closing::before {
         content: '';
         position: absolute;
-        inset: 0;
-        background-image:
-            radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.5), transparent),
-            radial-gradient(2px 2px at 40px 70px, rgba(255,215,0,0.4), transparent),
-            radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.6), transparent),
-            radial-gradient(2px 2px at 130px 80px, rgba(255,107,157,0.5), transparent),
-            radial-gradient(1px 1px at 160px 120px, rgba(78,205,196,0.6), transparent),
-            radial-gradient(2px 2px at 200px 50px, rgba(255,255,255,0.4), transparent);
-        background-size: 250px 150px;
-        animation: closingTwinkle 6s ease-in-out infinite;
-    }
-
-    @keyframes closingTwinkle {
-        0%, 100% { opacity: 0.5; }
-        50% { opacity: 1; }
-    }
-
-    /* Gradient orbs */
-    .closing-orb {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(80px);
+        top: -200px;
+        right: -200px;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(255, 107, 107, 0.08), transparent 70%);
         pointer-events: none;
-        z-index: 0;
     }
 
-    .orb-1 {
+    .closing::after {
+        content: '';
+        position: absolute;
+        bottom: -150px;
+        left: -150px;
         width: 400px;
         height: 400px;
-        background: radial-gradient(circle, rgba(255, 107, 107, 0.3), transparent 70%);
-        top: -150px;
-        left: -100px;
-        animation: orbMove1 12s ease-in-out infinite;
-    }
-
-    .orb-2 {
-        width: 350px;
-        height: 350px;
-        background: radial-gradient(circle, rgba(78, 205, 196, 0.25), transparent 70%);
-        bottom: -100px;
-        right: -80px;
-        animation: orbMove2 15s ease-in-out infinite;
-    }
-
-    .orb-3 {
-        width: 250px;
-        height: 250px;
-        background: radial-gradient(circle, rgba(255, 209, 102, 0.2), transparent 70%);
-        top: 40%;
-        left: 60%;
-        animation: orbMove3 10s ease-in-out infinite;
-    }
-
-    @keyframes orbMove1 {
-        0%, 100% { transform: translate(0, 0) scale(1); }
-        50% { transform: translate(50px, 30px) scale(1.15); }
-    }
-
-    @keyframes orbMove2 {
-        0%, 100% { transform: translate(0, 0) scale(1); }
-        50% { transform: translate(-40px, -20px) scale(1.1); }
-    }
-
-    @keyframes orbMove3 {
-        0%, 100% { transform: translate(0, 0); opacity: 0.6; }
-        50% { transform: translate(-30px, 20px); opacity: 1; }
-    }
-
-    /* Floating emojis/decorations */
-    .closing-float {
-        position: absolute;
-        font-size: 30px;
+        background: radial-gradient(circle, rgba(78, 205, 196, 0.08), transparent 70%);
         pointer-events: none;
-        z-index: 2;
-        opacity: 0.7;
-    }
-
-    .float-1 { top: 10%; left: 8%; animation: floatBounce 4s ease-in-out infinite; }
-    .float-2 { top: 20%; right: 12%; animation: floatBounce 5s ease-in-out infinite 0.5s; }
-    .float-3 { bottom: 25%; left: 6%; animation: floatBounce 4.5s ease-in-out infinite 1s; }
-    .float-4 { bottom: 15%; right: 10%; animation: floatBounce 5.5s ease-in-out infinite 1.5s; }
-    .float-5 { top: 50%; left: 3%; animation: floatBounce 6s ease-in-out infinite 2s; font-size: 24px; }
-
-    @keyframes floatBounce {
-        0%, 100% { transform: translateY(0) rotate(0deg); }
-        25% { transform: translateY(-15px) rotate(5deg); }
-        75% { transform: translateY(10px) rotate(-5deg); }
-    }
-
-    @media (max-width: 768px) {
-        .closing-float { display: none; }
     }
 
     .closing-inner {
@@ -1578,32 +1504,15 @@
         z-index: 10;
     }
 
-    /* Main card with animated gradient border */
+    /* Main card */
     .closing-card {
-        background: linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
-        backdrop-filter: blur(20px);
+        background: #fff;
         border-radius: 40px;
         padding: 70px 50px 50px;
         position: relative;
         overflow: visible;
-    }
-
-    .closing-card::before {
-        content: '';
-        position: absolute;
-        inset: -2px;
-        background: linear-gradient(135deg, rgba(255, 107, 157, 0.5) 0%, rgba(255, 209, 102, 0.4) 50%, rgba(78, 205, 196, 0.5) 100%);
-        border-radius: 42px;
-        z-index: -1;
-    }
-
-    .closing-card::after {
-        content: '';
-        position: absolute;
-        inset: 2px;
-        background: linear-gradient(145deg, rgba(22, 33, 62, 0.98) 0%, rgba(15, 52, 96, 0.98) 100%);
-        border-radius: 38px;
-        z-index: -1;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.04);
+        border: 2px solid rgba(255, 107, 157, 0.15);
     }
 
     /* Trophy icon - custom CSS design */
@@ -1611,16 +1520,16 @@
         width: 100px;
         height: 100px;
         margin: -100px auto 30px;
-        background: linear-gradient(135deg, #FFD700, #FFA500);
+        background: linear-gradient(135deg, var(--gold), var(--gold-dark));
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         box-shadow:
-            0 15px 50px rgba(255, 215, 0, 0.5),
-            0 0 100px rgba(255, 215, 0, 0.3),
-            inset 0 -5px 0 rgba(0,0,0,0.15);
-        animation: trophyBounce 2s ease-in-out infinite;
+            0 15px 40px rgba(255, 209, 102, 0.4),
+            0 0 60px rgba(255, 209, 102, 0.2),
+            inset 0 -4px 0 rgba(0,0,0,0.1);
+        animation: trophyBounce 3s ease-in-out infinite;
         position: relative;
     }
 
@@ -1628,7 +1537,7 @@
         content: '';
         position: absolute;
         inset: -8px;
-        border: 2px dashed rgba(255, 215, 0, 0.4);
+        border: 2px dashed rgba(255, 209, 102, 0.5);
         border-radius: 50%;
         animation: spin 25s linear infinite;
     }
@@ -1710,7 +1619,7 @@
 
     @keyframes trophyBounce {
         0%, 100% { transform: translateY(0) scale(1); }
-        50% { transform: translateY(-8px) scale(1.03); }
+        50% { transform: translateY(-6px) scale(1.02); }
     }
 
     /* Headline */
@@ -1723,7 +1632,7 @@
         display: block;
         font-family: 'Caveat', cursive;
         font-size: 28px;
-        color: var(--gold);
+        color: var(--coral);
         margin-bottom: 8px;
     }
 
@@ -1731,11 +1640,11 @@
         font-size: clamp(32px, 5.5vw, 48px);
         line-height: 1.1;
         margin: 0;
+        color: var(--navy);
     }
 
-    .closing-headline h2 .white { color: #fff; }
     .closing-headline h2 .gradient {
-        background: linear-gradient(90deg, var(--coral), var(--pink), var(--mint));
+        background: linear-gradient(90deg, var(--coral), var(--pink));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -1749,13 +1658,13 @@
 
     .closing-body p {
         font-size: 18px;
-        color: rgba(255,255,255,0.85);
+        color: var(--text);
         line-height: 1.8;
         margin-bottom: 16px;
     }
 
     .closing-body strong {
-        color: #fff;
+        color: var(--navy);
         font-weight: 700;
     }
 
@@ -1772,21 +1681,21 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        background: rgba(255,255,255,0.08);
-        border: 2px solid rgba(255,255,255,0.15);
+        background: var(--cream);
+        border: 2px solid rgba(47, 95, 97, 0.12);
         border-radius: 50px;
         padding: 14px 24px;
         font-size: 15px;
         font-weight: 700;
-        color: #fff;
+        color: var(--navy);
         transition: all 0.3s;
         cursor: default;
     }
 
     .action-pill:hover {
-        transform: translateY(-4px) scale(1.02);
-        border-color: rgba(255,255,255,0.3);
-        background: rgba(255,255,255,0.12);
+        transform: translateY(-3px);
+        border-color: rgba(47, 95, 97, 0.25);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
     }
 
     .action-pill .num {
@@ -1798,6 +1707,7 @@
         justify-content: center;
         font-size: 14px;
         font-weight: 800;
+        color: #fff;
     }
 
     .action-pill:nth-child(1) .num { background: var(--coral); }
@@ -1806,8 +1716,8 @@
 
     /* WhatsApp highlight box */
     .whatsapp-box {
-        background: linear-gradient(135deg, rgba(37, 211, 102, 0.2) 0%, rgba(37, 211, 102, 0.05) 100%);
-        border: 2px solid rgba(37, 211, 102, 0.4);
+        background: linear-gradient(135deg, rgba(37, 211, 102, 0.1) 0%, rgba(37, 211, 102, 0.03) 100%);
+        border: 2px solid rgba(37, 211, 102, 0.25);
         border-radius: 24px;
         padding: 28px 32px;
         margin: 36px 0;
@@ -1822,7 +1732,7 @@
         right: 0;
         width: 120px;
         height: 120px;
-        background: radial-gradient(circle, rgba(37, 211, 102, 0.2), transparent 70%);
+        background: radial-gradient(circle, rgba(37, 211, 102, 0.1), transparent 70%);
         transform: translate(30%, -30%);
     }
 
@@ -1841,18 +1751,18 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
     }
 
     .whatsapp-box-title {
         font-size: 20px;
         font-weight: 800;
-        color: #fff;
+        color: var(--navy);
     }
 
     .whatsapp-box p {
         font-size: 16px;
-        color: rgba(255,255,255,0.9);
+        color: var(--text);
         line-height: 1.7;
         margin: 0;
     }
@@ -1874,8 +1784,8 @@
     }
 
     @keyframes ctaPulse {
-        0%, 100% { box-shadow: 0 6px 30px rgba(37, 211, 102, 0.4); }
-        50% { box-shadow: 0 10px 50px rgba(37, 211, 102, 0.6); }
+        0%, 100% { box-shadow: 0 6px 30px rgba(37, 211, 102, 0.3); }
+        50% { box-shadow: 0 10px 45px rgba(37, 211, 102, 0.5); }
     }
 
     .closing-cta .btn::after {
@@ -1899,26 +1809,46 @@
     .closing-sig {
         margin-top: 48px;
         padding-top: 32px;
-        border-top: 1px solid rgba(255,255,255,0.1);
+        border-top: 1px solid rgba(47, 95, 97, 0.1);
         text-align: center;
         position: relative;
     }
 
     .closing-sig::before {
-        content: '💕';
+        content: '';
         position: absolute;
-        top: -16px;
+        top: -12px;
         left: 50%;
         transform: translateX(-50%);
-        background: linear-gradient(145deg, rgba(22, 33, 62, 0.97) 0%, rgba(15, 52, 96, 0.97) 100%);
-        padding: 0 20px;
-        font-size: 24px;
+        width: 24px;
+        height: 24px;
+        background: #fff;
+    }
+
+    .closing-sig-hearts {
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 4px;
+    }
+
+    .closing-sig-hearts span {
+        width: 8px;
+        height: 8px;
+        background: var(--coral);
+        border-radius: 50%;
+    }
+
+    .closing-sig-hearts span:nth-child(2) {
+        background: var(--pink);
     }
 
     .sig-main {
         font-family: 'Caveat', cursive;
         font-size: 44px;
-        color: #fff;
+        color: var(--navy);
         margin-bottom: 10px;
         display: flex;
         align-items: center;
@@ -1933,12 +1863,12 @@
 
     @keyframes heartbeat {
         0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.25); }
+        50% { transform: scale(1.2); }
     }
 
     .sig-name {
-        font-size: 15px;
-        color: rgba(255,255,255,0.5);
+        font-size: 14px;
+        color: var(--text-light);
         letter-spacing: 3px;
         text-transform: uppercase;
     }
@@ -2734,21 +2664,9 @@
         </section>
 
         <!-- ============================================
-             CLOSING - FUN & CREATIVE FINALE
+             CLOSING - WARM & ON-BRAND FINALE
              ============================================ -->
         <section class="closing">
-            <!-- Animated gradient orbs -->
-            <div class="closing-orb orb-1"></div>
-            <div class="closing-orb orb-2"></div>
-            <div class="closing-orb orb-3"></div>
-
-            <!-- Floating emojis -->
-            <span class="closing-float float-1">✨</span>
-            <span class="closing-float float-2">🎯</span>
-            <span class="closing-float float-3">💪</span>
-            <span class="closing-float float-4">🚀</span>
-            <span class="closing-float float-5">⭐</span>
-
             <div class="closing-inner">
                 <div class="closing-card">
                     <!-- Trophy icon -->
@@ -2765,7 +2683,7 @@
                     <div class="closing-headline">
                         <span class="top-line">You did it!</span>
                         <h2>
-                            <span class="white">You Already Did</span><br>
+                            You Already Did<br>
                             <span class="gradient">The Hard Part.</span>
                         </h2>
                     </div>
@@ -2802,7 +2720,7 @@
                             </div>
                             <span class="whatsapp-box-title">Don't miss the good stuff!</span>
                         </div>
-                        <p>All the challenge details, live links, bonus content, and my best tips will be sent through WhatsApp — <strong>not email</strong>. This is where the real magic happens. 🪄</p>
+                        <p>All the challenge details, live links, bonus content, and my best tips will be sent through WhatsApp — <strong>not email</strong>. This is where the real magic happens.</p>
                     </div>
 
                     <!-- Big CTA -->
@@ -2817,10 +2735,11 @@
 
                     <!-- Signature -->
                     <div class="closing-sig">
-                        <p class="sig-main">
-                            See you there!
-                            <span class="heart">❤️</span>
-                        </p>
+                        <div class="closing-sig-hearts">
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <p class="sig-main">See you there!</p>
                         <p class="sig-name">— Bailey</p>
                     </div>
                 </div>
