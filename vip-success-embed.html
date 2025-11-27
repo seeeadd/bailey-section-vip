@@ -179,7 +179,7 @@
     }
 
     .vip-page .hero h1 {
-        font-size: clamp(44px, 6vw, 72px);
+        font-size: 72px;
         color: var(--deep-teal);
         margin-bottom: 24px;
         letter-spacing: -2px;
@@ -260,33 +260,27 @@
 
     /* Mobile Video Drawer - fullscreen overlay - HIDDEN by default */
     .vip-page .video-drawer-overlay {
-        display: none; /* Completely hidden until opened */
+        display: none !important; /* Completely hidden until opened */
     }
 
     /* Only show overlay when open class is added */
     .vip-page .video-drawer-overlay.open {
-        display: flex;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100vw;
-        height: 100vh;
-        height: 100dvh;
-        background: rgba(0, 0, 0, 0.97);
-        z-index: 999999;
-        align-items: center;
-        justify-content: center;
-        padding: 16px;
-        overflow: hidden;
-        margin: 0;
-        animation: fadeInOverlay 0.3s ease forwards;
-    }
-
-    @keyframes fadeInOverlay {
-        from { opacity: 0; }
-        to { opacity: 1; }
+        display: flex !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        background: rgba(0, 0, 0, 0.95) !important;
+        z-index: 999999 !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 20px !important;
+        overflow: hidden !important;
+        margin: 0 !important;
     }
 
     /* Body scroll lock - ONLY when drawer-open class is present */
@@ -302,20 +296,13 @@
     .vip-page .video-drawer {
         position: relative;
         width: 100%;
-        max-width: 500px;
-        max-height: 90vh;
+        max-width: 400px;
         background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
-        border-radius: 24px;
+        border-radius: 20px;
         overflow: hidden;
         display: flex;
         flex-direction: column;
-        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(201, 168, 124, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        animation: scaleInDrawer 0.35s cubic-bezier(0.32, 0.72, 0, 1) forwards;
-    }
-
-    @keyframes scaleInDrawer {
-        from { opacity: 0; transform: scale(0.9); }
-        to { opacity: 1; transform: scale(1); }
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(201, 168, 124, 0.2);
     }
 
     .vip-page .drawer-header {
@@ -405,80 +392,20 @@
     }
 
     .vip-page .drawer-footer {
-        padding: 20px 24px 24px;
+        padding: 12px 16px 16px;
         text-align: center;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .vip-page .drawer-footer::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 200px;
-        height: 200px;
-        background: radial-gradient(circle, rgba(201, 168, 124, 0.15), transparent 70%);
-        transform: translate(-50%, -50%);
-        animation: vipPulseGlow 3s ease-in-out infinite;
-    }
-
-    @keyframes vipPulseGlow {
-        0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-        50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+        background: linear-gradient(180deg, transparent 0%, rgba(201, 168, 124, 0.05) 100%);
     }
 
     .vip-page .drawer-rings {
-        position: relative;
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 16px;
-    }
-
-    .vip-page .drawer-rings .ring {
-        position: absolute;
-        inset: 0;
-        border: 2px solid rgba(201, 168, 124, 0.3);
-        border-radius: 50%;
-        animation: vipRingPulse 2s ease-out infinite;
-    }
-
-    .vip-page .drawer-rings .ring:nth-child(2) { animation-delay: 0.4s; }
-    .vip-page .drawer-rings .ring:nth-child(3) { animation-delay: 0.8s; }
-
-    @keyframes vipRingPulse {
-        0% { transform: scale(0.5); opacity: 1; }
-        100% { transform: scale(1.5); opacity: 0; }
-    }
-
-    .vip-page .drawer-rings .vip-icon {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 44px;
-        height: 44px;
-        background: linear-gradient(135deg, var(--rose-gold), #B8956A);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 4px 20px rgba(201, 168, 124, 0.4);
-    }
-
-    .vip-page .drawer-rings .vip-icon svg {
-        width: 20px;
-        height: 20px;
-        fill: #fff;
+        display: none;
     }
 
     .vip-page .drawer-footer-text {
-        position: relative;
-        z-index: 1;
         font-family: 'Satoshi', sans-serif;
-        font-size: 14px;
-        color: rgba(255, 255, 255, 0.7);
-        line-height: 1.5;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.4;
     }
 
     .vip-page .drawer-footer-text strong {
@@ -689,7 +616,7 @@
     }
 
     .vip-page .section-header h2 {
-        font-size: clamp(36px, 5vw, 48px);
+        font-size: 48px;
         color: var(--deep-teal);
         margin-bottom: 12px;
         letter-spacing: -1px;
@@ -923,7 +850,7 @@
     }
 
     .vip-page .timeline-header h2 {
-        font-size: clamp(32px, 5vw, 44px);
+        font-size: 44px;
         color: var(--deep-teal);
         position: relative;
         display: inline-block;
@@ -1031,7 +958,7 @@
     }
 
     .vip-page .checklist-header h2 {
-        font-size: clamp(28px, 4vw, 36px);
+        font-size: 36px;
         color: var(--deep-teal);
         margin-bottom: 8px;
     }
@@ -1200,7 +1127,7 @@
     }
 
     .vip-page .closing-section h2 {
-        font-size: clamp(28px, 4vw, 38px);
+        font-size: 38px;
         color: #fff;
         margin-bottom: 20px;
     }
@@ -2001,14 +1928,10 @@
         // Show overlay (display: flex via .open class)
         videoOverlay.classList.add('open');
 
-        // Check if user has watched before - show resume prompt or start video
+        // Start video immediately - no resume prompt
         setTimeout(function() {
-            if (hasWatchedBefore()) {
-                showResumePrompt();
-            } else {
-                initDrawerVideo(false);
-            }
-        }, 150);
+            initDrawerVideo(false);
+        }, 100);
     }
 
     function closeDrawer() {
