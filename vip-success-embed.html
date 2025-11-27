@@ -1704,13 +1704,14 @@
     updateProgress();
 
     // ==================== MOBILE VIDEO DRAWER ====================
-    // SCROLL-TO-TOP approach: Scroll page to top, show drawer at top
+    // HIDE-EVERYTHING approach: Hide all content, show only drawer
 
     const mobilePlayBtn = document.getElementById('mobilePlayBtn');
     const videoDrawer = document.getElementById('videoDrawer');
     const videoOverlay = document.getElementById('videoOverlay');
     const drawerClose = document.getElementById('drawerClose');
     const drawerVideoWrapper = document.getElementById('drawer-video-wrapper');
+    const vipPage = document.querySelector('.vip-page');
     let drawerVideoInitialized = false;
     let savedScrollY = 0;
     let isDrawerOpen = false;
@@ -1736,59 +1737,51 @@
         if (!videoOverlay || !videoDrawer || isDrawerOpen) return;
         isDrawerOpen = true;
 
-        // Save where user was scrolled to
+        // Save scroll position
         savedScrollY = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
-        // FIRST: Scroll to absolute top of page
+        // HIDE the entire VIP page content
+        if (vipPage) {
+            vipPage.style.display = 'none';
+        }
+
+        // Scroll to top
         window.scrollTo(0, 0);
         document.documentElement.scrollTop = 0;
         document.body.scrollTop = 0;
 
-        // Get viewport dimensions
+        // Get viewport size
         const vw = window.innerWidth;
-        const vh = window.innerHeight;
-
-        // Drawer size
         const dw = Math.min(vw - 40, 320);
 
-        // Move overlay to be first child of body for proper stacking
-        if (videoOverlay.parentElement !== document.body) {
-            document.body.insertBefore(videoOverlay, document.body.firstChild);
-        }
-
-        // Full screen overlay at top of document
+        // Style overlay - becomes the ONLY visible content
         videoOverlay.style.cssText = `
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            right: 0 !important;
-            bottom: 0 !important;
-            width: 100% !important;
-            height: 100% !important;
-            background: rgba(0,0,0,0.96) !important;
-            z-index: 2147483647 !important;
-            margin: 0 !important;
-            padding: 20px !important;
-            box-sizing: border-box !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100vw;
+            min-height: 100vh;
+            background: rgba(0,0,0,0.96);
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
         `;
 
-        // Drawer centered via flexbox parent
+        // Style drawer
         videoDrawer.style.cssText = `
-            position: relative !important;
-            width: ${dw}px !important;
-            max-width: calc(100vw - 40px) !important;
-            background: #111 !important;
-            border-radius: 16px !important;
-            overflow: hidden !important;
-            box-shadow: 0 25px 80px rgba(0,0,0,0.95) !important;
-            transform: translateY(0) !important;
+            position: relative;
+            width: ${dw}px;
+            max-width: calc(100vw - 40px);
+            background: #111;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.95);
+            transform: translateY(0);
         `;
 
-        // Lock ALL scrolling
-        document.body.style.cssText = 'overflow:hidden!important;position:fixed!important;width:100%!important;top:0!important;left:0!important;';
+        // Prevent scrolling
+        document.body.style.overflow = 'hidden';
         document.documentElement.style.overflow = 'hidden';
 
         // Load video
@@ -1802,8 +1795,13 @@
         // Hide overlay
         videoOverlay.style.display = 'none';
 
-        // Unlock scrolling
-        document.body.style.cssText = '';
+        // SHOW the VIP page content again
+        if (vipPage) {
+            vipPage.style.display = '';
+        }
+
+        // Restore scrolling
+        document.body.style.overflow = '';
         document.documentElement.style.overflow = '';
 
         // Restore scroll position
