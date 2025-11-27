@@ -1011,8 +1011,13 @@
 
         /* Show mobile overlay only on mobile */
         @media (max-width: 768px) {
-            .mobile-play-overlay { display: block; }
-            .video-container .video-placeholder { display: none; }
+            .mobile-play-overlay {
+                display: block !important;
+                position: absolute;
+                inset: 0;
+                z-index: 10;
+            }
+            .video-container .video-placeholder { display: none !important; }
         }
 
         /* Hide drawer on desktop */
@@ -1348,7 +1353,13 @@
         setTimeout(destroyDrawerVideo, 350);
     }
 
-    if (mobilePlayBtn) mobilePlayBtn.addEventListener('click', openDrawer);
+    if (mobilePlayBtn) {
+        mobilePlayBtn.addEventListener('click', openDrawer);
+        mobilePlayBtn.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            openDrawer();
+        });
+    }
 
     // Close when clicking overlay (but not the drawer itself)
     if (videoOverlay) {
