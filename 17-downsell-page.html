@@ -1283,22 +1283,20 @@
         box-shadow: 0 8px 30px rgba(255, 107, 107, 0.12);
     }
 
-    .downsell-page .final-cta-wrapper::before {
-        content: '\\2728';
+    .downsell-page .final-cta-sparkle {
         position: absolute;
         top: -15px;
-        left: 20px;
         font-size: 28px;
         animation: twinkle 2s ease-in-out infinite;
     }
 
-    .downsell-page .final-cta-wrapper::after {
-        content: '\\2728';
-        position: absolute;
-        top: -15px;
+    .downsell-page .final-cta-sparkle.left {
+        left: 20px;
+    }
+
+    .downsell-page .final-cta-sparkle.right {
         right: 20px;
-        font-size: 28px;
-        animation: twinkle 2s ease-in-out infinite 0.5s;
+        animation-delay: 0.5s;
     }
 
     .downsell-page .final-cta-label {
@@ -1514,8 +1512,7 @@
             margin-top: 24px;
         }
 
-        .downsell-page .final-cta-wrapper::before,
-        .downsell-page .final-cta-wrapper::after {
+        .downsell-page .final-cta-sparkle {
             font-size: 22px;
             top: -12px;
         }
@@ -1885,6 +1882,8 @@
 
             <!-- FINAL CTA - Wrapped in a nice box -->
             <div class="final-cta-wrapper">
+                <span class="final-cta-sparkle left">&#10024;</span>
+                <span class="final-cta-sparkle right">&#10024;</span>
                 <p class="final-cta-label">Last chance on this page!</p>
                 <div class="final-price-reminder">
                     <span class="old-price">$27</span>
