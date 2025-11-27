@@ -272,98 +272,6 @@
         color: var(--light-gray);
     }
 
-    /* ========== VIDEO DRAWER - BULLETPROOF VERSION ========== */
-
-    .vip-page .mobile-play-overlay {
-        position: absolute;
-        inset: 0;
-        display: none;
-        cursor: pointer;
-        border-radius: 10px;
-        z-index: 10;
-        overflow: hidden;
-    }
-
-    .vip-page .mobile-play-overlay .preview-video {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 10px;
-    }
-
-    .vip-page .mobile-play-overlay .play-button-overlay {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        gap: 8px;
-        background: rgba(0, 0, 0, 0.3);
-        transition: background 0.3s ease;
-    }
-
-    .vip-page .mobile-play-overlay:active .play-button-overlay {
-        background: rgba(0, 0, 0, 0.5);
-    }
-
-    .vip-page .mobile-play-overlay .play-icon-circle {
-        width: 64px;
-        height: 64px;
-        background: rgba(255, 255, 255, 0.95);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-        transition: transform 0.2s ease;
-    }
-
-    .vip-page .mobile-play-overlay:active .play-icon-circle {
-        transform: scale(0.95);
-    }
-
-    .vip-page .mobile-play-overlay .play-icon-circle svg {
-        width: 24px;
-        height: 24px;
-        margin-left: 3px;
-    }
-
-    .vip-page .mobile-play-overlay .tap-text {
-        color: #fff;
-        font-size: 13px;
-        font-weight: 600;
-        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
-        letter-spacing: 0.3px;
-    }
-
-    @media (max-width: 768px) {
-        .vip-page .mobile-play-overlay {
-            display: block !important;
-            position: absolute;
-            inset: 0;
-            z-index: 10;
-        }
-        .vip-page .vsl-inner > vturb-smartplayer {
-            display: none !important;
-            visibility: hidden !important;
-            position: absolute !important;
-            width: 0 !important;
-            height: 0 !important;
-        }
-        .vip-page .vsl-inner {
-            min-height: 200px;
-            aspect-ratio: 16/9;
-            position: relative;
-        }
-    }
-
-    @media (min-width: 769px) {
-        .vip-page .mobile-play-overlay { display: none !important; }
-    }
-
     /* Action Section */
     .vip-page .action-section {
         padding: 80px 24px;
@@ -1154,16 +1062,172 @@
         .vip-page .section-header h2 {
             font-size: 22px !important;
         }
-        .vip-page .mobile-play-overlay .play-icon-circle {
-            width: 46px !important;
-            height: 46px !important;
+        .vip-page .section-header p {
+            font-size: 13px !important;
         }
-        .vip-page .mobile-play-overlay .play-icon-circle svg {
+        /* Action Section - 350px */
+        .vip-page .action-section {
+            padding: 40px 10px !important;
+        }
+        .vip-page .section-header {
+            margin-bottom: 24px !important;
+        }
+        .vip-page .action-card {
+            padding: 20px 14px !important;
+            border-radius: 12px !important;
+        }
+        .vip-page .action-number {
+            width: 26px !important;
+            height: 26px !important;
+            font-size: 12px !important;
+            top: -10px !important;
+            left: 14px !important;
+        }
+        .vip-page .action-label {
+            font-size: 8px !important;
+        }
+        .vip-page .action-card h3 {
+            font-size: 17px !important;
+            margin-bottom: 8px !important;
+        }
+        .vip-page .action-card p {
+            font-size: 12px !important;
+            margin-bottom: 14px !important;
+        }
+        .vip-page .btn-primary {
+            padding: 12px 16px !important;
+            font-size: 12px !important;
+            gap: 6px !important;
+        }
+        .vip-page .btn-primary svg {
             width: 16px !important;
             height: 16px !important;
         }
-        .vip-page .mobile-play-overlay .tap-text {
+        /* Timeline Section - 350px */
+        .vip-page .timeline-section {
+            padding: 40px 10px !important;
+        }
+        .vip-page .timeline-header {
+            margin-bottom: 30px !important;
+        }
+        .vip-page .timeline-header h2 {
+            font-size: 26px !important;
+        }
+        .vip-page .timeline {
+            padding-left: 22px !important;
+        }
+        .vip-page .timeline::before {
+            left: 3px !important;
+        }
+        .vip-page .timeline-item::before {
+            left: -22px !important;
+            width: 8px !important;
+            height: 8px !important;
+        }
+        .vip-page .timeline-item {
+            padding-bottom: 20px !important;
+        }
+        .vip-page .timeline-content {
+            padding: 14px !important;
+            border-radius: 10px !important;
+        }
+        .vip-page .timeline-label {
             font-size: 9px !important;
+        }
+        .vip-page .timeline-content h3 {
+            font-size: 15px !important;
+            margin-bottom: 4px !important;
+        }
+        .vip-page .timeline-content p {
+            font-size: 12px !important;
+            line-height: 1.5 !important;
+        }
+        /* Checklist Section - 350px */
+        .vip-page .checklist-section {
+            padding: 40px 10px !important;
+        }
+        .vip-page .checklist-header {
+            margin-bottom: 24px !important;
+        }
+        .vip-page .checklist-header h2 {
+            font-size: 24px !important;
+        }
+        .vip-page .checklist-header p {
+            font-size: 13px !important;
+        }
+        .vip-page .checklist-card {
+            padding: 20px 14px !important;
+            border-radius: 12px !important;
+        }
+        .vip-page .progress-wrapper {
+            margin-bottom: 20px !important;
+        }
+        .vip-page .progress-text {
+            font-size: 11px !important;
+        }
+        .vip-page .checklist-items {
+            gap: 8px !important;
+        }
+        .vip-page .check-item {
+            padding: 12px 14px !important;
+            gap: 12px !important;
+            border-radius: 8px !important;
+        }
+        .vip-page .check-box {
+            width: 20px !important;
+            height: 20px !important;
+        }
+        .vip-page .check-circle {
+            width: 20px !important;
+            height: 20px !important;
+        }
+        .vip-page .check-text {
+            font-size: 12px !important;
+            line-height: 1.4 !important;
+        }
+        .vip-page .completion-message {
+            padding: 14px !important;
+            font-size: 12px !important;
+        }
+        /* Closing Section - 350px */
+        .vip-page .closing-section {
+            padding: 50px 14px 60px !important;
+        }
+        .vip-page .closing-section h2 {
+            font-size: 24px !important;
+            margin-bottom: 14px !important;
+        }
+        .vip-page .closing-text {
+            font-size: 13px !important;
+            margin-bottom: 24px !important;
+            line-height: 1.6 !important;
+        }
+        .vip-page .closing-cta {
+            padding: 14px 24px !important;
+            font-size: 13px !important;
+            gap: 8px !important;
+        }
+        .vip-page .closing-cta svg {
+            width: 18px !important;
+            height: 18px !important;
+        }
+        .vip-page .signature {
+            margin-top: 30px !important;
+            padding-top: 20px !important;
+        }
+        .vip-page .signature-text {
+            font-size: 22px !important;
+        }
+        .vip-page .signature-name {
+            font-size: 12px !important;
+        }
+        /* Mobile CTA - 350px */
+        .vip-page .mobile-cta {
+            padding: 12px 14px !important;
+        }
+        .vip-page .mobile-cta a {
+            padding: 14px 20px !important;
+            font-size: 13px !important;
         }
     }
 
@@ -1237,104 +1301,90 @@
         .vip-page .section-header h2 {
             font-size: 20px !important;
         }
-        .vip-page .mobile-play-overlay .play-icon-circle {
-            width: 40px !important;
-            height: 40px !important;
+        .vip-page .section-header p {
+            font-size: 12px !important;
         }
-        .vip-page .mobile-play-overlay .play-icon-circle svg {
-            width: 14px !important;
-            height: 14px !important;
-            margin-left: 2px !important;
+        /* Action Section - 320px */
+        .vip-page .action-section {
+            padding: 35px 8px !important;
         }
-        .vip-page .mobile-play-overlay .tap-text {
-            font-size: 8px !important;
+        .vip-page .action-card {
+            padding: 18px 12px !important;
         }
-    }
-
-    /* ==================== VIDEO DRAWER STYLES ==================== */
-    /* BULLETPROOF: Positioned via JavaScript for Framer embed compatibility */
-
-    .video-drawer-overlay {
-        display: none;
-        position: fixed;
-        z-index: 2147483647;
-        background: rgba(0, 0, 0, 0.95);
-    }
-
-    .video-drawer {
-        background: #111;
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.9);
-        position: absolute;
-    }
-
-    .drawer-drag-handle {
-        width: 40px;
-        height: 5px;
-        background: rgba(255,255,255,0.4);
-        border-radius: 3px;
-        position: absolute;
-        top: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 5;
-    }
-
-    .drawer-close-btn {
-        position: absolute;
-        top: 8px;
-        right: 8px;
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        background: rgba(255,255,255,0.2);
-        border: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        z-index: 10;
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    .drawer-close-btn:active {
-        background: rgba(255,255,255,0.3);
-    }
-
-    .drawer-close-btn svg {
-        width: 16px;
-        height: 16px;
-        stroke: #fff;
-    }
-
-    .drawer-video-container {
-        width: 100%;
-        padding: 28px 12px 12px;
-        box-sizing: border-box;
-    }
-
-    #drawer-video-wrapper {
-        width: 100%;
-        aspect-ratio: 16/9;
-        border-radius: 10px;
-        overflow: hidden;
-        background: #000;
-    }
-
-    #drawer-video-wrapper iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
-        display: block;
-    }
-
-    /* Hide on desktop */
-    @media (min-width: 769px) {
-        .video-drawer-overlay {
-            display: none !important;
+        .vip-page .action-number {
+            width: 24px !important;
+            height: 24px !important;
+            font-size: 11px !important;
+        }
+        .vip-page .action-card h3 {
+            font-size: 15px !important;
+        }
+        .vip-page .action-card p {
+            font-size: 11px !important;
+        }
+        .vip-page .btn-primary {
+            padding: 10px 14px !important;
+            font-size: 11px !important;
+        }
+        /* Timeline Section - 320px */
+        .vip-page .timeline-section {
+            padding: 35px 8px !important;
+        }
+        .vip-page .timeline-header h2 {
+            font-size: 24px !important;
+        }
+        .vip-page .timeline {
+            padding-left: 20px !important;
+        }
+        .vip-page .timeline-content {
+            padding: 12px !important;
+        }
+        .vip-page .timeline-content h3 {
+            font-size: 14px !important;
+        }
+        .vip-page .timeline-content p {
+            font-size: 11px !important;
+        }
+        /* Checklist Section - 320px */
+        .vip-page .checklist-section {
+            padding: 35px 8px !important;
+        }
+        .vip-page .checklist-header h2 {
+            font-size: 22px !important;
+        }
+        .vip-page .checklist-card {
+            padding: 16px 12px !important;
+        }
+        .vip-page .check-item {
+            padding: 10px 12px !important;
+        }
+        .vip-page .check-text {
+            font-size: 11px !important;
+        }
+        /* Closing Section - 320px */
+        .vip-page .closing-section {
+            padding: 40px 10px 50px !important;
+        }
+        .vip-page .closing-section h2 {
+            font-size: 22px !important;
+        }
+        .vip-page .closing-text {
+            font-size: 12px !important;
+        }
+        .vip-page .closing-cta {
+            padding: 12px 20px !important;
+            font-size: 12px !important;
+        }
+        .vip-page .signature-text {
+            font-size: 20px !important;
+        }
+        /* Mobile CTA - 320px */
+        .vip-page .mobile-cta a {
+            padding: 12px 16px !important;
+            font-size: 12px !important;
         }
     }
+
 </style>
 
 <!-- Load Calendar Button Script -->
@@ -1386,25 +1436,6 @@
                 <div class="vsl-frame">
                     <div class="vsl-inner">
                         <vturb-smartplayer id="vid-69268e3d1ec0bc043c339ac6"></vturb-smartplayer>
-                        <div class="mobile-play-overlay" id="mobilePlayBtn">
-                            <iframe
-                                class="preview-video"
-                                id="previewVideo"
-                                src="https://scripts.converteai.net/4a88e4d6-10d6-46da-b41b-334366e58f7b/players/69268e3d1ec0bc043c339ac6/embed.html?muted=true"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen
-                                style="pointer-events: none;"
-                            ></iframe>
-                            <div class="play-button-overlay">
-                                <div class="play-icon-circle">
-                                    <svg viewBox="0 0 24 24" fill="none">
-                                        <path d="M5 3L19 12L5 21V3Z" fill="#1A3D3B"/>
-                                    </svg>
-                                </div>
-                                <span class="tap-text">Tap to watch with sound</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <p class="vsl-note">A quick thank you from Bailey</p>
@@ -1612,26 +1643,8 @@
 
 </div>
 
-<!-- Video Drawer Overlay - OUTSIDE vip-page for proper centering -->
-<div class="video-drawer-overlay" id="videoOverlay">
-    <div class="video-drawer" id="videoDrawer">
-        <div class="drawer-drag-handle"></div>
-        <div class="drawer-close-btn" id="drawerClose">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round">
-                <path d="M18 6L6 18M6 6l12 12"/>
-            </svg>
-        </div>
-        <div class="drawer-video-container">
-            <div id="drawer-video-wrapper"></div>
-        </div>
-    </div>
-</div>
-
 <script>
 (function() {
-    // Check if mobile
-    const isMobile = window.innerWidth <= 768;
-
     // Scroll-triggered fade-in
     const fadeElements = document.querySelectorAll('.vip-page .fade-in-section');
     const fadeObserver = new IntersectionObserver((entries) => {
@@ -1703,196 +1716,10 @@
 
     updateProgress();
 
-    // ==================== MOBILE VIDEO DRAWER ====================
-    // HIDE-EVERYTHING approach: Hide all content, show only drawer
-
-    const mobilePlayBtn = document.getElementById('mobilePlayBtn');
-    const videoDrawer = document.getElementById('videoDrawer');
-    const videoOverlay = document.getElementById('videoOverlay');
-    const drawerClose = document.getElementById('drawerClose');
-    const drawerVideoWrapper = document.getElementById('drawer-video-wrapper');
-    const vipPage = document.querySelector('.vip-page');
-    let drawerVideoInitialized = false;
-    let savedScrollY = 0;
-    let isDrawerOpen = false;
-
-    function initDrawerVideo() {
-        if (drawerVideoInitialized || !drawerVideoWrapper) return;
-        drawerVideoInitialized = true;
-
-        const iframe = document.createElement('iframe');
-        iframe.src = 'https://scripts.converteai.net/4a88e4d6-10d6-46da-b41b-334366e58f7b/players/69268e3d1ec0bc043c339ac6/embed.html';
-        iframe.style.cssText = 'width:100%;height:100%;border:none;display:block;';
-        iframe.allow = 'accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;fullscreen';
-        iframe.allowFullscreen = true;
-        drawerVideoWrapper.appendChild(iframe);
-    }
-
-    function destroyDrawerVideo() {
-        if (drawerVideoWrapper) drawerVideoWrapper.innerHTML = '';
-        drawerVideoInitialized = false;
-    }
-
-    function openDrawer() {
-        if (!videoOverlay || !videoDrawer || isDrawerOpen) return;
-        isDrawerOpen = true;
-
-        // Save scroll position
-        savedScrollY = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-
-        // HIDE the entire VIP page content
-        if (vipPage) {
-            vipPage.style.display = 'none';
-        }
-
-        // Scroll to top
-        window.scrollTo(0, 0);
-        document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
-
-        // Get viewport size
-        const vw = window.innerWidth;
-        const dw = Math.min(vw - 40, 320);
-
-        // Style overlay - becomes the ONLY visible content
-        videoOverlay.style.cssText = `
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            width: 100vw;
-            min-height: 100vh;
-            background: rgba(0,0,0,0.96);
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-        `;
-
-        // Style drawer
-        videoDrawer.style.cssText = `
-            position: relative;
-            width: ${dw}px;
-            max-width: calc(100vw - 40px);
-            background: #111;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 25px 80px rgba(0,0,0,0.95);
-            transform: translateY(0);
-        `;
-
-        // Prevent scrolling
-        document.body.style.overflow = 'hidden';
-        document.documentElement.style.overflow = 'hidden';
-
-        // Load video
-        setTimeout(initDrawerVideo, 100);
-    }
-
-    function closeDrawer() {
-        if (!videoOverlay || !isDrawerOpen) return;
-        isDrawerOpen = false;
-
-        // Hide overlay
-        videoOverlay.style.display = 'none';
-
-        // SHOW the VIP page content again
-        if (vipPage) {
-            vipPage.style.display = '';
-        }
-
-        // Restore scrolling
-        document.body.style.overflow = '';
-        document.documentElement.style.overflow = '';
-
-        // Restore scroll position
-        requestAnimationFrame(() => {
-            window.scrollTo(0, savedScrollY);
-        });
-
-        // Cleanup video
-        setTimeout(destroyDrawerVideo, 300);
-    }
-
-    // Play button click
-    if (mobilePlayBtn) {
-        mobilePlayBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            openDrawer();
-        });
-    }
-
-    // Close on overlay click (but not drawer)
-    if (videoOverlay) {
-        videoOverlay.addEventListener('click', function(e) {
-            if (e.target === videoOverlay) {
-                closeDrawer();
-            }
-        });
-    }
-
-    // Close button
-    if (drawerClose) {
-        drawerClose.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            closeDrawer();
-        });
-    }
-
-    // Swipe down to close
-    if (videoDrawer) {
-        let touchStartY = 0;
-        let touchCurrentY = 0;
-        let isDragging = false;
-        let dragOffset = 0;
-
-        videoDrawer.addEventListener('touchstart', function(e) {
-            touchStartY = e.touches[0].clientY;
-            touchCurrentY = touchStartY;
-            isDragging = true;
-            dragOffset = 0;
-            videoDrawer.style.transition = 'none';
-        }, { passive: true });
-
-        videoDrawer.addEventListener('touchmove', function(e) {
-            if (!isDragging) return;
-            touchCurrentY = e.touches[0].clientY;
-            dragOffset = touchCurrentY - touchStartY;
-
-            if (dragOffset > 0) {
-                videoDrawer.style.transform = `translateY(${dragOffset}px)`;
-                const opacity = Math.max(0.3, 0.96 - (dragOffset / 350));
-                videoOverlay.style.background = `rgba(0,0,0,${opacity})`;
-            }
-        }, { passive: true });
-
-        videoDrawer.addEventListener('touchend', function() {
-            if (!isDragging) return;
-            isDragging = false;
-
-            videoDrawer.style.transition = 'transform 0.25s ease-out';
-
-            if (dragOffset > 80) {
-                videoDrawer.style.transform = `translateY(${window.innerHeight}px)`;
-                setTimeout(closeDrawer, 200);
-            } else {
-                videoDrawer.style.transform = 'translateY(0)';
-                videoOverlay.style.background = 'rgba(0,0,0,0.96)';
-            }
-
-            touchStartY = 0;
-            touchCurrentY = 0;
-            dragOffset = 0;
-        });
-    }
-
-    // Only load Vturb player script on desktop - prevents audio conflict on mobile
-    if (!isMobile) {
-        var s = document.createElement('script');
-        s.src = 'https://scripts.converteai.net/4a88e4d6-10d6-46da-b41b-334366e58f7b/players/69268e3d1ec0bc043c339ac6/v4/player.js';
-        s.async = true;
-        document.head.appendChild(s);
-    }
+    // Load Vturb player script on all devices
+    var s = document.createElement('script');
+    s.src = 'https://scripts.converteai.net/4a88e4d6-10d6-46da-b41b-334366e58f7b/players/69268e3d1ec0bc043c339ac6/v4/player.js';
+    s.async = true;
+    document.head.appendChild(s);
 })();
 </script>
