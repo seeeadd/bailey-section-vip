@@ -258,22 +258,22 @@
         color: var(--light-gray);
     }
 
-    /* Mobile Video Drawer - absolute for Framer iframe compatibility */
+    /* Mobile Video Drawer - fullscreen overlay */
     .vip-page .video-drawer-overlay {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
-        height: 100vh;
+        min-height: 100%;
         background: rgba(0, 0, 0, 0.97);
         z-index: 10000;
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.3s ease, visibility 0.3s ease;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
-        padding: 16px;
+        padding: 60px 16px 16px;
     }
 
     .vip-page .video-drawer-overlay.open {
@@ -1579,19 +1579,21 @@
     }
 
     function openDrawer() {
-        // Calculate viewport position using button as reference
-        // In Framer iframes, we need to position based on where user actually sees
-        var btnRect = mobilePlayBtn.getBoundingClientRect();
-        var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-
-        // Button's document position minus its viewport position = scroll offset
-        var scrollOffset = mobilePlayBtn.offsetTop - btnRect.top;
-
-        // Position overlay at user's current viewport
-        videoOverlay.style.top = Math.max(0, scrollOffset) + 'px';
-        videoOverlay.style.height = viewportHeight + 'px';
-
+        // Show overlay first
         videoOverlay.classList.add('open');
+
+        // Scroll to top of overlay so drawer is visible immediately
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+
+        // Also try to scroll parent frame if in iframe
+        try {
+            if (window.parent && window.parent !== window) {
+                window.parent.scrollTo(0, 0);
+            }
+        } catch(e) {}
+
         document.body.style.overflow = 'hidden';
         document.documentElement.style.overflow = 'hidden';
 
@@ -1603,12 +1605,8 @@
         videoOverlay.classList.remove('open');
         document.body.style.overflow = '';
         document.documentElement.style.overflow = '';
-        // Reset position after close animation
-        setTimeout(function() {
-            videoOverlay.style.top = '';
-            videoOverlay.style.height = '';
-            destroyDrawerVideo();
-        }, 350);
+        // Destroy video after animation
+        setTimeout(destroyDrawerVideo, 350);
     }
 
     if (mobilePlayBtn) mobilePlayBtn.addEventListener('click', openDrawer);
