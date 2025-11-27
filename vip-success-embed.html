@@ -258,15 +258,13 @@
         color: var(--light-gray);
     }
 
-    /* Mobile Video Drawer */
+    /* Mobile Video Drawer - absolute for Framer iframe compatibility */
     .vip-page .video-drawer-overlay {
-        position: fixed;
+        position: absolute;
         top: 0;
         left: 0;
-        right: 0;
-        bottom: 0;
         width: 100%;
-        height: 100%;
+        height: 100vh;
         background: rgba(0, 0, 0, 0.97);
         z-index: 10000;
         opacity: 0;
@@ -1581,10 +1579,22 @@
     }
 
     function openDrawer() {
-        // Fixed positioning handles viewport centering automatically
+        // Calculate viewport position using button as reference
+        // In Framer iframes, we need to position based on where user actually sees
+        var btnRect = mobilePlayBtn.getBoundingClientRect();
+        var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+        // Button's document position minus its viewport position = scroll offset
+        var scrollOffset = mobilePlayBtn.offsetTop - btnRect.top;
+
+        // Position overlay at user's current viewport
+        videoOverlay.style.top = Math.max(0, scrollOffset) + 'px';
+        videoOverlay.style.height = viewportHeight + 'px';
+
         videoOverlay.classList.add('open');
         document.body.style.overflow = 'hidden';
         document.documentElement.style.overflow = 'hidden';
+
         // Small delay to ensure CSS transition works
         setTimeout(initDrawerVideo, 100);
     }
@@ -1593,8 +1603,12 @@
         videoOverlay.classList.remove('open');
         document.body.style.overflow = '';
         document.documentElement.style.overflow = '';
-        // Destroy video to stop audio
-        setTimeout(destroyDrawerVideo, 350);
+        // Reset position after close animation
+        setTimeout(function() {
+            videoOverlay.style.top = '';
+            videoOverlay.style.height = '';
+            destroyDrawerVideo();
+        }, 350);
     }
 
     if (mobilePlayBtn) mobilePlayBtn.addEventListener('click', openDrawer);
