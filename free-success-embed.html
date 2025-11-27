@@ -1093,238 +1093,210 @@
     }
 
     /* ============================================
-       3-DAY BREAKDOWN - EVENT POSTERS
+       3-DAY BREAKDOWN - CLEAN & REFINED
        ============================================ */
     .breakdown {
         width: 100%;
         padding: 70px 24px 80px;
-        background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 100%);
+        background: var(--cream);
         position: relative;
     }
 
     .breakdown-inner {
-        max-width: 800px;
+        max-width: 680px;
         margin: 0 auto;
     }
 
     .breakdown-header {
         text-align: center;
-        margin-bottom: 50px;
+        margin-bottom: 36px;
     }
 
     .breakdown-header h2 {
-        font-size: clamp(26px, 4.5vw, 38px);
+        font-size: clamp(26px, 4.5vw, 36px);
         color: var(--navy);
-        margin-bottom: 6px;
+        margin-bottom: 4px;
     }
 
     .breakdown-header .annotation {
         font-family: 'Caveat', cursive;
         font-size: 20px;
-        color: var(--pink);
-    }
-
-    /* Timeline container */
-    .timeline {
-        position: relative;
-        padding-left: 60px;
-    }
-
-    /* Vertical timeline line */
-    .timeline::before {
-        content: '';
-        position: absolute;
-        left: 24px;
-        top: 0;
-        bottom: 0;
-        width: 4px;
-        background: linear-gradient(180deg, var(--coral), var(--pink), var(--mint));
-        border-radius: 2px;
+        color: var(--coral);
     }
 
     .day-cards {
         display: flex;
         flex-direction: column;
-        gap: 24px;
+        gap: 14px;
     }
 
-    /* Day card - COMPACT STYLE */
+    /* Day card - REFINED LIST STYLE */
     .day-card {
-        display: flex;
-        align-items: stretch;
+        display: grid;
+        grid-template-columns: 56px 1fr;
         background: #fff;
-        border-radius: 20px;
+        border-radius: 16px;
         overflow: hidden;
-        box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02);
+        border: 1px solid rgba(0,0,0,0.03);
         position: relative;
-        transition: transform 0.3s, box-shadow 0.3s;
+        transition: all 0.25s ease;
     }
 
     .day-card:hover {
-        transform: translateY(-4px) translateX(4px);
-        box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        transform: translateX(4px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+        border-color: rgba(0,0,0,0.06);
     }
 
-    /* Timeline dot */
+    /* Colored left edge accent */
     .day-card::before {
         content: '';
         position: absolute;
-        left: -48px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        border: 4px solid #fff;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 4px;
     }
+    .day-card-1::before { background: linear-gradient(180deg, #FF6B6B, #FF8585); }
+    .day-card-2::before { background: linear-gradient(180deg, #FF6B9D, #FF85B1); }
+    .day-card-3::before { background: linear-gradient(180deg, #4ECDC4, #6BD9D2); }
 
-    .day-card-1::before { background: var(--coral); }
-    .day-card-2::before { background: var(--pink); }
-    .day-card-3::before { background: var(--mint); }
-
-    /* Day visual/poster side - compact */
-    .day-poster {
-        padding: 24px;
+    /* Day number column */
+    .day-num {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        text-align: center;
-        position: relative;
-        min-width: 140px;
-        max-width: 140px;
+        padding: 16px 0;
+        background: var(--cream);
+        border-right: 1px solid rgba(0,0,0,0.04);
     }
 
-    /* Unique backgrounds */
-    .day-card-1 .day-poster {
-        background: linear-gradient(135deg, #FFF0F0 0%, #FFE4E4 100%);
-    }
-
-    .day-card-2 .day-poster {
-        background: linear-gradient(135deg, #FFF0F5 0%, #FFE4EE 100%);
-    }
-
-    .day-card-3 .day-poster {
-        background: linear-gradient(135deg, #E8FAF8 0%, #D0F5F0 100%);
-    }
-
-    /* Day badge - compact */
-    .day-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        font-size: 11px;
-        font-weight: 800;
-        letter-spacing: 1.5px;
+    .day-num-label {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
         text-transform: uppercase;
-        padding: 6px 14px;
-        border-radius: 20px;
-        margin-bottom: 12px;
+        color: var(--text-light);
+        margin-bottom: 2px;
     }
 
-    .day-card-1 .day-badge {
-        background: var(--coral);
-        color: #fff;
-        box-shadow: 0 4px 12px rgba(255, 107, 107, 0.35);
+    .day-num-value {
+        font-family: 'Ogg', Georgia, serif;
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 1;
     }
+    .day-card-1 .day-num-value { color: var(--coral); }
+    .day-card-2 .day-num-value { color: var(--pink); }
+    .day-card-3 .day-num-value { color: var(--mint); }
 
-    .day-card-2 .day-badge {
-        background: var(--pink);
-        color: #fff;
-        box-shadow: 0 4px 12px rgba(255, 107, 157, 0.35);
-    }
-
-    .day-card-3 .day-badge {
-        background: var(--mint);
-        color: #fff;
-        box-shadow: 0 4px 12px rgba(78, 205, 196, 0.35);
-    }
-
-    /* Day illustrations - smaller */
-    .day-illust {
-        width: 80px;
-        height: 80px;
+    /* Day content main area */
+    .day-main {
         display: flex;
         align-items: center;
-        justify-content: center;
+        padding: 18px 20px;
+        gap: 16px;
     }
 
-    .day-illust svg {
-        width: 80px;
-        height: 80px;
-        filter: drop-shadow(0 2px 6px rgba(0,0,0,0.06));
-    }
-
-    /* Day content side - compact */
-    .day-content {
-        padding: 24px 28px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+    .day-text {
         flex: 1;
+        min-width: 0;
     }
 
-    .day-content h3 {
-        font-size: clamp(18px, 2.5vw, 22px);
+    .day-text h3 {
+        font-size: 16px;
         color: var(--navy);
-        margin-bottom: 8px;
-        line-height: 1.25;
+        margin-bottom: 4px;
+        line-height: 1.3;
     }
 
-    .day-content .desc {
-        font-size: 14px;
+    .day-text .desc {
+        font-size: 13px;
         color: var(--text);
-        line-height: 1.6;
-        margin-bottom: 14px;
+        line-height: 1.5;
+        margin-bottom: 8px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 
     .day-time {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
-        font-size: 13px;
+        gap: 5px;
+        font-size: 11px;
         font-weight: 600;
         color: var(--text-light);
         background: var(--cream);
-        padding: 10px 16px;
-        border-radius: 30px;
-        width: fit-content;
+        padding: 6px 10px;
+        border-radius: 16px;
     }
 
     .day-time svg {
-        width: 14px;
-        height: 14px;
+        width: 11px;
+        height: 11px;
+        opacity: 0.6;
+    }
+
+    /* Day illustration - right side accent */
+    .day-illust {
+        width: 64px;
+        height: 64px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .day-card-1 .day-illust { background: linear-gradient(135deg, #FFF0F0 0%, #FFE8E8 100%); }
+    .day-card-2 .day-illust { background: linear-gradient(135deg, #FFF0F5 0%, #FFE8EE 100%); }
+    .day-card-3 .day-illust { background: linear-gradient(135deg, #E8FAF8 0%, #E0F5F0 100%); }
+
+    .day-illust svg {
+        width: 44px;
+        height: 44px;
     }
 
     @media (max-width: 600px) {
-        .timeline {
-            padding-left: 0;
-        }
-        .timeline::before {
-            display: none;
-        }
-        .day-card::before {
-            display: none;
-        }
+        .breakdown { padding: 50px 16px 60px; }
         .day-card {
-            flex-direction: column;
+            grid-template-columns: 48px 1fr;
         }
-        .day-poster {
-            max-width: none;
-            min-width: auto;
-            padding: 20px;
+        .day-num {
+            padding: 14px 0;
         }
-        .day-content {
-            padding: 20px 24px;
+        .day-num-label {
+            font-size: 8px;
+        }
+        .day-num-value {
+            font-size: 24px;
+        }
+        .day-main {
+            padding: 14px 16px;
+            gap: 12px;
         }
         .day-illust {
-            width: 70px;
-            height: 70px;
+            width: 52px;
+            height: 52px;
         }
         .day-illust svg {
-            width: 70px;
-            height: 70px;
+            width: 36px;
+            height: 36px;
+        }
+        .day-text h3 {
+            font-size: 14px;
+        }
+        .day-text .desc {
+            font-size: 12px;
+            -webkit-line-clamp: 2;
+        }
+        .day-time {
+            font-size: 10px;
+            padding: 5px 8px;
         }
     }
 
@@ -2360,7 +2332,7 @@
         </section>
 
         <!-- ============================================
-             3-DAY BREAKDOWN - EVENT POSTERS
+             3-DAY BREAKDOWN - CLEAN LIST
              ============================================ -->
         <section class="breakdown">
             <div class="breakdown-inner">
@@ -2369,263 +2341,103 @@
                     <p class="annotation">↓ don't miss these!</p>
                 </div>
 
-                <div class="timeline">
-                    <div class="day-cards">
-                        <!-- Day 1 -->
-                        <div class="day-card day-card-1">
-                            <div class="day-poster">
-                                <div class="day-badge">Day 1</div>
-                                <div class="day-illust">
-                                    <!-- Day 1: LIBERATION - Shop clearing, one golden product shining -->
-                                    <svg width="110" height="110" viewBox="0 0 110 110" fill="none">
-                                        <!-- Soft background glow -->
-                                        <circle cx="55" cy="55" r="52" fill="#FFE8E8"/>
-
-                                        <!-- Mini shop/storefront silhouette -->
-                                        <rect x="25" y="45" width="60" height="40" rx="4" fill="#fff" stroke="#FF6B6B" stroke-width="2"/>
-                                        <rect x="25" y="40" width="60" height="8" rx="2" fill="#FF6B6B"/>
-
-                                        <!-- Products flying OUT (being deleted) -->
-                                        <!-- Product 1 - flying top left with X -->
-                                        <g transform="rotate(-25, 20, 30)">
-                                            <rect x="12" y="22" width="14" height="14" rx="2" fill="#FFD1D1" stroke="#FF8888" stroke-width="1.5"/>
-                                            <path d="M16 26l6 6M22 26l-6 6" stroke="#FF6B6B" stroke-width="2" stroke-linecap="round"/>
-                                        </g>
-
-                                        <!-- Product 2 - flying top right with X -->
-                                        <g transform="rotate(20, 90, 28)">
-                                            <rect x="82" y="18" width="12" height="16" rx="2" fill="#FFD1D1" stroke="#FF8888" stroke-width="1.5"/>
-                                            <path d="M85 23l6 6M91 23l-6 6" stroke="#FF6B6B" stroke-width="2" stroke-linecap="round"/>
-                                        </g>
-
-                                        <!-- Product 3 - flying left -->
-                                        <g transform="rotate(-15, 10, 55)">
-                                            <rect x="4" y="48" width="11" height="11" rx="2" fill="#FFE0E0" stroke="#FF9999" stroke-width="1"/>
-                                            <path d="M7 51l5 5M12 51l-5 5" stroke="#FF6B6B" stroke-width="1.5" stroke-linecap="round"/>
-                                        </g>
-
-                                        <!-- THE ONE GOLDEN PRODUCT - glowing, centered, special -->
-                                        <g filter="url(#goldGlow)">
-                                            <rect x="45" y="55" width="20" height="22" rx="3" fill="#FFD166" stroke="#E5A500" stroke-width="2"/>
-                                            <!-- Star badge on product -->
-                                            <path d="M55 60l1.5 3 3.5.5-2.5 2.5.5 3.5-3-1.5-3 1.5.5-3.5-2.5-2.5 3.5-.5z" fill="#fff"/>
-                                        </g>
-
-                                        <!-- Sparkles around golden product -->
-                                        <path d="M72 62l2 2-2 2-2-2z" fill="#FFD166"/>
-                                        <path d="M38 58l1.5 1.5-1.5 1.5-1.5-1.5z" fill="#FFD166"/>
-                                        <circle cx="70" cy="52" r="2" fill="#FF6B6B" opacity="0.6"/>
-
-                                        <!-- Trash bin overflowing -->
-                                        <g transform="translate(78, 68)">
-                                            <path d="M2 5h16M5 5v13c0 1 1 2 2 2h6c1 0 2-1 2-2V5" stroke="#FF9999" stroke-width="2" fill="#fff" stroke-linecap="round"/>
-                                            <rect x="4" y="0" width="12" height="4" rx="1" fill="#FF9999"/>
-                                            <!-- Overflow items poking out -->
-                                            <rect x="6" y="-4" width="4" height="5" rx="1" fill="#FFD1D1" stroke="#FFAAAA" stroke-width="0.5"/>
-                                            <rect x="11" y="-3" width="3" height="4" rx="1" fill="#FFE0E0" stroke="#FFBBBB" stroke-width="0.5"/>
-                                        </g>
-
-                                        <!-- Handwritten "FREE!" text -->
-                                        <text x="15" y="92" font-family="Caveat, cursive" font-size="16" fill="#FF6B6B" font-weight="700" transform="rotate(-8, 15, 92)">FREE!</text>
-
-                                        <!-- Filter for gold glow -->
-                                        <defs>
-                                            <filter id="goldGlow" x="35" y="45" width="40" height="42" filterUnits="userSpaceOnUse">
-                                                <feGaussianBlur stdDeviation="3" result="blur"/>
-                                                <feFlood flood-color="#FFD166" flood-opacity="0.5"/>
-                                                <feComposite in2="blur" operator="in"/>
-                                                <feMerge>
-                                                    <feMergeNode/>
-                                                    <feMergeNode in="SourceGraphic"/>
-                                                </feMerge>
-                                            </filter>
-                                        </defs>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="day-content">
+                <div class="day-cards">
+                    <!-- Day 1 -->
+                    <div class="day-card day-card-1">
+                        <div class="day-num">
+                            <span class="day-num-label">Day</span>
+                            <span class="day-num-value">1</span>
+                        </div>
+                        <div class="day-main">
+                            <div class="day-text">
                                 <h3>"The Day I Deleted 200+ Products"</h3>
                                 <p class="desc">Why deleting half my shop made me MORE money — and the exact framework you'll use to do it too.</p>
                                 <div class="day-time">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
                                         <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
                                         <path d="M12 7v5l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                                     </svg>
-                                    Tuesday, Dec 9 @ 7pm EST
+                                    Tue, Dec 9 @ 7pm EST
                                 </div>
+                            </div>
+                            <div class="day-illust">
+                                <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                                    <rect x="8" y="12" width="28" height="24" rx="3" fill="#fff" stroke="#FF6B6B" stroke-width="2"/>
+                                    <rect x="8" y="8" width="28" height="6" rx="2" fill="#FF6B6B"/>
+                                    <rect x="17" y="20" width="10" height="12" rx="2" fill="#FFD166" stroke="#E5A500" stroke-width="1.5"/>
+                                    <path d="M22 23l1 2 2 .3-1.5 1.5.3 2-1.8-1-1.8 1 .3-2-1.5-1.5 2-.3z" fill="#fff"/>
+                                    <path d="M6 16l-3-3M6 22l-4 0M38 16l3-3M38 22l4 0" stroke="#FF6B6B" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+                                </svg>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Day 2 -->
-                        <div class="day-card day-card-2">
-                            <div class="day-poster">
-                                <div class="day-badge">Day 2</div>
-                                <div class="day-illust">
-                                    <!-- Day 2: CREATION IN ACTION - Building live, magic happening -->
-                                    <svg width="110" height="110" viewBox="0 0 110 110" fill="none">
-                                        <!-- Soft background -->
-                                        <circle cx="55" cy="55" r="52" fill="#FFF0F5"/>
-
-                                        <!-- Laptop base -->
-                                        <rect x="20" y="55" width="70" height="40" rx="4" fill="#fff" stroke="#FF6B9D" stroke-width="2"/>
-                                        <!-- Laptop screen bezel -->
-                                        <rect x="25" y="60" width="60" height="30" rx="2" fill="#2F5F61"/>
-
-                                        <!-- Screen content - product being built -->
-                                        <rect x="30" y="65" width="18" height="20" rx="2" fill="#FFE4EE"/>
-                                        <rect x="52" y="65" width="28" height="5" rx="1" fill="rgba(255,255,255,0.3)"/>
-                                        <rect x="52" y="72" width="22" height="3" rx="1" fill="rgba(255,255,255,0.2)"/>
-                                        <rect x="52" y="77" width="25" height="3" rx="1" fill="rgba(255,255,255,0.2)"/>
-
-                                        <!-- LIVE indicator - pulsing -->
-                                        <rect x="70" y="62" width="18" height="9" rx="2" fill="#FF6B6B">
-                                            <animate attributeName="opacity" values="1;0.6;1" dur="1.5s" repeatCount="indefinite"/>
-                                        </rect>
-                                        <text x="73" y="69" font-family="Satoshi, sans-serif" font-size="6" fill="#fff" font-weight="800">LIVE</text>
-
-                                        <!-- Product materializing ABOVE laptop - floating with magic -->
-                                        <g transform="translate(48, 15)">
-                                            <!-- Product card floating -->
-                                            <rect x="0" y="0" width="28" height="32" rx="4" fill="#fff" stroke="#FF6B9D" stroke-width="2">
-                                                <animate attributeName="y" values="0;-3;0" dur="2s" repeatCount="indefinite"/>
-                                            </rect>
-                                            <!-- Product image area -->
-                                            <rect x="4" y="4" width="20" height="16" rx="2" fill="#FFE4EE"/>
-                                            <!-- Price tag -->
-                                            <rect x="4" y="23" width="12" height="5" rx="1" fill="#4ECDC4"/>
-                                            <text x="7" y="27" font-family="Satoshi, sans-serif" font-size="4" fill="#fff" font-weight="700">$29</text>
-                                        </g>
-
-                                        <!-- Magic sparkles/dust around floating product -->
-                                        <g>
-                                            <path d="M42 20l2 2-2 2-2-2z" fill="#FFD166">
-                                                <animate attributeName="opacity" values="1;0.3;1" dur="1s" repeatCount="indefinite"/>
-                                            </path>
-                                            <path d="M82 25l1.5 1.5-1.5 1.5-1.5-1.5z" fill="#FF6B9D">
-                                                <animate attributeName="opacity" values="0.3;1;0.3" dur="1.2s" repeatCount="indefinite"/>
-                                            </path>
-                                            <circle cx="38" cy="35" r="2" fill="#4ECDC4" opacity="0.8">
-                                                <animate attributeName="r" values="2;3;2" dur="1.5s" repeatCount="indefinite"/>
-                                            </circle>
-                                            <circle cx="85" cy="40" r="1.5" fill="#FFD166"/>
-                                        </g>
-
-                                        <!-- Magic connection lines from laptop to product -->
-                                        <path d="M55 55 Q55 45 55 35" stroke="#FF6B9D" stroke-width="1.5" stroke-dasharray="3 3" fill="none" opacity="0.6">
-                                            <animate attributeName="stroke-dashoffset" values="0;6" dur="0.5s" repeatCount="indefinite"/>
-                                        </path>
-
-                                        <!-- Hands on keyboard hint -->
-                                        <ellipse cx="55" cy="98" rx="20" ry="6" fill="#FFE4EE" opacity="0.5"/>
-
-                                        <!-- Handwritten "magic!" -->
-                                        <text x="8" y="40" font-family="Caveat, cursive" font-size="14" fill="#FF6B9D" font-weight="600" transform="rotate(-12, 8, 40)">magic!</text>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="day-content">
+                    <!-- Day 2 -->
+                    <div class="day-card day-card-2">
+                        <div class="day-num">
+                            <span class="day-num-label">Day</span>
+                            <span class="day-num-value">2</span>
+                        </div>
+                        <div class="day-main">
+                            <div class="day-text">
                                 <h3>"Watch Me Build a Product Live"</h3>
                                 <p class="desc">30 minutes. No prep. From scratch. You'll plan your first winning product right alongside me.</p>
                                 <div class="day-time">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
                                         <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
                                         <path d="M12 7v5l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                                     </svg>
-                                    Wednesday, Dec 10 @ 7pm EST
+                                    Wed, Dec 10 @ 7pm EST
                                 </div>
+                            </div>
+                            <div class="day-illust">
+                                <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                                    <rect x="6" y="14" width="32" height="22" rx="3" fill="#fff" stroke="#FF6B9D" stroke-width="2"/>
+                                    <rect x="10" y="18" width="24" height="14" rx="2" fill="#2F5F61"/>
+                                    <rect x="13" y="21" width="8" height="8" rx="1" fill="#FFE4EE"/>
+                                    <rect x="23" y="21" width="8" height="2" rx="1" fill="rgba(255,255,255,0.4)"/>
+                                    <rect x="23" y="25" width="6" height="2" rx="1" fill="rgba(255,255,255,0.3)"/>
+                                    <rect x="28" y="18" width="8" height="5" rx="1" fill="#FF6B6B"/>
+                                    <text x="30" y="22" font-size="4" fill="#fff" font-weight="700">LIVE</text>
+                                    <path d="M22 10l1.5 1.5-1.5 1.5-1.5-1.5z" fill="#FFD166"/>
+                                    <circle cx="30" cy="10" r="1.5" fill="#FF6B9D" opacity="0.6"/>
+                                </svg>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Day 3 -->
-                        <div class="day-card day-card-3">
-                            <div class="day-poster">
-                                <div class="day-badge">Day 3</div>
-                                <div class="day-illust">
-                                    <!-- Day 3: CALM CONSISTENCY - Cozy desk, weekly routine, steady growth -->
-                                    <svg width="110" height="110" viewBox="0 0 110 110" fill="none">
-                                        <!-- Soft background -->
-                                        <circle cx="55" cy="55" r="52" fill="#E5F8F6"/>
-
-                                        <!-- Cozy desk surface -->
-                                        <rect x="12" y="70" width="86" height="30" rx="3" fill="#fff" stroke="#4ECDC4" stroke-width="2"/>
-
-                                        <!-- Weekly calendar/planner - the star of the show -->
-                                        <g transform="translate(18, 38)">
-                                            <rect x="0" y="0" width="45" height="35" rx="3" fill="#fff" stroke="#4ECDC4" stroke-width="2"/>
-                                            <!-- Header -->
-                                            <rect x="0" y="0" width="45" height="9" rx="3" fill="#4ECDC4"/>
-                                            <text x="8" y="7" font-family="Satoshi, sans-serif" font-size="5" fill="#fff" font-weight="700">WEEKLY</text>
-
-                                            <!-- Days of week -->
-                                            <text x="4" y="16" font-family="Satoshi, sans-serif" font-size="4" fill="#888">M</text>
-                                            <text x="10" y="16" font-family="Satoshi, sans-serif" font-size="4" fill="#888">T</text>
-                                            <text x="16" y="16" font-family="Satoshi, sans-serif" font-size="4" fill="#888">W</text>
-                                            <text x="22" y="16" font-family="Satoshi, sans-serif" font-size="4" fill="#888">T</text>
-                                            <text x="28" y="16" font-family="Satoshi, sans-serif" font-size="4" fill="#888">F</text>
-                                            <text x="34" y="16" font-family="Satoshi, sans-serif" font-size="4" fill="#888">S</text>
-                                            <text x="40" y="16" font-family="Satoshi, sans-serif" font-size="4" fill="#888">S</text>
-
-                                            <!-- 3 hours blocked (highlighted blocks) -->
-                                            <rect x="3" y="19" width="5" height="6" rx="1" fill="#4ECDC4" opacity="0.8"/>
-                                            <rect x="15" y="19" width="5" height="6" rx="1" fill="#4ECDC4" opacity="0.8"/>
-                                            <rect x="27" y="19" width="5" height="6" rx="1" fill="#4ECDC4" opacity="0.8"/>
-
-                                            <!-- "3 hrs" label -->
-                                            <text x="8" y="32" font-family="Caveat, cursive" font-size="7" fill="#4ECDC4" font-weight="600">3 hrs/wk</text>
-                                        </g>
-
-                                        <!-- Coffee mug with steam -->
-                                        <g transform="translate(70, 48)">
-                                            <!-- Mug body -->
-                                            <path d="M5 8h22v18c0 3-2 5-5 5H10c-3 0-5-2-5-5V8z" fill="#fff" stroke="#4ECDC4" stroke-width="2"/>
-                                            <!-- Handle -->
-                                            <path d="M27 12c4 0 6 2 6 6s-2 6-6 6" stroke="#4ECDC4" stroke-width="2" fill="none"/>
-                                            <!-- Coffee inside -->
-                                            <ellipse cx="16" cy="13" rx="9" ry="3" fill="#C9A87C"/>
-                                            <!-- Steam wisps -->
-                                            <path d="M12 5c0-3 2-5 2-5s2 2 0 5" stroke="#4ECDC4" stroke-width="1.5" fill="none" opacity="0.5">
-                                                <animate attributeName="opacity" values="0.5;0.2;0.5" dur="2s" repeatCount="indefinite"/>
-                                            </path>
-                                            <path d="M20 3c0-2.5 1.5-4 1.5-4s1.5 1.5 0 4" stroke="#4ECDC4" stroke-width="1.5" fill="none" opacity="0.4">
-                                                <animate attributeName="opacity" values="0.4;0.1;0.4" dur="2.3s" repeatCount="indefinite"/>
-                                            </path>
-                                        </g>
-
-                                        <!-- Small plant growing steadily -->
-                                        <g transform="translate(8, 60)">
-                                            <!-- Pot -->
-                                            <path d="M4 12h14l-2 10H6z" fill="#FFD1A9" stroke="#E5A87C" stroke-width="1"/>
-                                            <rect x="3" y="10" width="16" height="4" rx="1" fill="#E5A87C"/>
-                                            <!-- Plant stem and leaves -->
-                                            <path d="M11 10V0" stroke="#4ECDC4" stroke-width="2"/>
-                                            <ellipse cx="7" cy="4" rx="5" ry="4" fill="#4ECDC4" transform="rotate(-30, 7, 4)"/>
-                                            <ellipse cx="15" cy="2" rx="4" ry="3" fill="#4ECDC4" transform="rotate(25, 15, 2)"/>
-                                            <ellipse cx="11" cy="-2" rx="3" ry="2.5" fill="#3DB8B0"/>
-                                        </g>
-
-                                        <!-- Checkmarks floating - tasks done -->
-                                        <g opacity="0.7">
-                                            <circle cx="85" cy="30" r="6" fill="#4ECDC4"/>
-                                            <path d="M82 30l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
-                                            <circle cx="92" cy="42" r="5" fill="#4ECDC4" opacity="0.6"/>
-                                            <path d="M89.5 42l1.5 1.5 3-3" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/>
-                                        </g>
-
-                                        <!-- Handwritten "easy!" -->
-                                        <text x="72" y="95" font-family="Caveat, cursive" font-size="14" fill="#4ECDC4" font-weight="600" transform="rotate(5, 72, 95)">easy!</text>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="day-content">
+                    <!-- Day 3 -->
+                    <div class="day-card day-card-3">
+                        <div class="day-num">
+                            <span class="day-num-label">Day</span>
+                            <span class="day-num-value">3</span>
+                        </div>
+                        <div class="day-main">
+                            <div class="day-text">
                                 <h3>"The Boring 3-Hour System"</h3>
                                 <p class="desc">The unsexy weekly routine that got me to 4,000+ sales. You'll have it mapped out by end of day.</p>
                                 <div class="day-time">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
                                         <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
                                         <path d="M12 7v5l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                                     </svg>
-                                    Thursday, Dec 11 @ 7pm EST
+                                    Thu, Dec 11 @ 7pm EST
                                 </div>
+                            </div>
+                            <div class="day-illust">
+                                <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                                    <rect x="8" y="10" width="24" height="20" rx="3" fill="#fff" stroke="#4ECDC4" stroke-width="2"/>
+                                    <rect x="8" y="10" width="24" height="6" rx="2" fill="#4ECDC4"/>
+                                    <text x="12" y="15" font-size="5" fill="#fff" font-weight="700">WEEK</text>
+                                    <rect x="11" y="20" width="4" height="4" rx="1" fill="#4ECDC4" opacity="0.7"/>
+                                    <rect x="17" y="20" width="4" height="4" rx="1" fill="#4ECDC4" opacity="0.7"/>
+                                    <rect x="23" y="20" width="4" height="4" rx="1" fill="#4ECDC4" opacity="0.7"/>
+                                    <g transform="translate(34, 18)">
+                                        <path d="M0 6h8v10c0 1.5-1 2.5-2.5 2.5h-3C1 18.5 0 17.5 0 16V6z" fill="#fff" stroke="#4ECDC4" stroke-width="1.5"/>
+                                        <ellipse cx="4" cy="8" rx="3" ry="1.5" fill="#C9A87C"/>
+                                        <path d="M3 3c0-2 1-3 1-3s1 1 0 3" stroke="#4ECDC4" stroke-width="1" opacity="0.5"/>
+                                    </g>
+                                </svg>
                             </div>
                         </div>
                     </div>
