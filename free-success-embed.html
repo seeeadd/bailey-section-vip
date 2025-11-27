@@ -424,7 +424,7 @@
     /* Highlight underline */
     .hero h1 .highlight {
         position: relative;
-        white-space: nowrap;
+        display: inline;
     }
 
     .hero h1 .highlight::after {
@@ -439,6 +439,13 @@
         z-index: -1;
         border-radius: 4px;
         transform: rotate(-1deg);
+    }
+
+    @media (max-width: 600px) {
+        .hero h1 .highlight::after {
+            height: 10px;
+            bottom: 0;
+        }
     }
 
     /* Handwritten annotations */
@@ -1889,9 +1896,30 @@
        ============================================ */
     @media (max-width: 600px) {
         .page-content { padding-top: 140px; }
-        .hero { padding: 50px 16px 70px; }
-        .hero h1 { font-size: 28px; }
+
+        /* Hero - more breathable */
+        .hero { padding: 60px 20px 80px; }
+        .hero h1 {
+            font-size: 26px;
+            line-height: 1.25;
+            margin: 24px 0 20px;
+        }
+        .hero h1 .line1 { margin-bottom: 12px; }
+        .hero-sub {
+            font-size: 17px;
+            margin: 0 auto 44px;
+            line-height: 1.7;
+        }
+        .stamp {
+            font-size: 13px;
+            padding: 14px 26px;
+        }
+
+        /* Video */
+        .video-section { margin-top: 10px; }
         .polaroid { padding: 12px 12px 50px 12px; }
+        .video-callout { top: -50px; }
+
         .gameplan, .breakdown { padding: 60px 16px 70px; }
         .vip-section { padding: 50px 16px; }
         .closing { padding: 60px 16px 80px; }
@@ -1909,11 +1937,20 @@
         .progress-step-dot { width: 26px; height: 26px; font-size: 12px; }
         .progress-step-label { font-size: 9px; }
 
-        /* Hero adjustments */
-        .hero { padding: 40px 12px 60px; }
-        .hero h1 { font-size: 22px; margin: 20px 0 12px; }
-        .hero-sub { font-size: 15px; margin-bottom: 30px; }
-        .stamp { font-size: 12px; padding: 12px 20px; letter-spacing: 1.5px; }
+        /* Hero adjustments - even more breathable */
+        .hero { padding: 50px 16px 70px; }
+        .hero h1 {
+            font-size: 22px;
+            margin: 20px 0 16px;
+            line-height: 1.3;
+        }
+        .hero h1 .line1 { margin-bottom: 10px; }
+        .hero-sub {
+            font-size: 15px;
+            margin-bottom: 36px;
+            line-height: 1.7;
+        }
+        .stamp { font-size: 11px; padding: 12px 20px; letter-spacing: 1.5px; }
 
         /* Video/Polaroid adjustments */
         .polaroid { padding: 8px 8px 40px 8px; }
