@@ -52,13 +52,25 @@
     :root, html, body {
         scrollbar-width: none !important; /* Firefox */
         -ms-overflow-style: none !important; /* IE and Edge */
-        overflow-x: hidden;
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
     }
 
     ::-webkit-scrollbar {
         display: none !important; /* Chrome, Safari, Opera */
         width: 0 !important;
         height: 0 !important;
+    }
+
+    /* Global overflow prevention */
+    * {
+        -webkit-overflow-scrolling: touch;
+    }
+
+    html, body {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
     }
 
     .vip-page h1, .vip-page h2, .vip-page h3 {
@@ -1028,12 +1040,21 @@
 
     /* Very small mobile screens - under 350px */
     @media (max-width: 350px) {
+        .vip-page,
+        .vip-page *,
+        .vip-page *::before,
+        .vip-page *::after {
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+        }
         .vip-page {
             overflow-x: hidden !important;
+            width: 100% !important;
         }
         .vip-page .hero {
-            padding: 70px 12px 40px !important;
+            padding: 60px 10px 30px !important;
             overflow: hidden !important;
+            width: 100% !important;
         }
         .vip-page .hero::before {
             display: none !important;
@@ -1042,139 +1063,78 @@
             width: 100% !important;
             max-width: 100% !important;
             padding: 0 !important;
+            margin: 0 !important;
         }
         .vip-page .hero h1 {
-            font-size: 28px !important;
-            letter-spacing: -1px !important;
-            margin-bottom: 12px !important;
+            font-size: 26px !important;
+            letter-spacing: -0.5px !important;
+            margin-bottom: 10px !important;
             word-wrap: break-word !important;
+            overflow-wrap: break-word !important;
+            padding: 0 !important;
         }
         .vip-page .hero-eyebrow {
-            font-size: 8px !important;
+            font-size: 7px !important;
             letter-spacing: 1px !important;
-            gap: 4px !important;
-            margin-bottom: 10px !important;
+            gap: 0 !important;
+            margin-bottom: 8px !important;
+            padding: 0 !important;
         }
         .vip-page .hero-eyebrow::before,
         .vip-page .hero-eyebrow::after {
             display: none !important;
-        }
-        .vip-page .hero-subtitle {
-            font-size: 13px !important;
-            line-height: 1.5 !important;
-            padding: 0 !important;
-        }
-        .vip-page .hero-container {
-            gap: 24px !important;
-            padding: 0 !important;
-            width: 100% !important;
-        }
-        .vip-page .vip-badge {
-            width: 36px !important;
-            height: 36px !important;
-            top: 42px !important;
-            right: 8px !important;
-        }
-        .vip-page .vsl-container {
-            width: 100% !important;
-            max-width: 100% !important;
-        }
-        .vip-page .vsl-frame {
-            padding: 4px !important;
-            border-radius: 8px !important;
-        }
-        .vip-page .vsl-inner {
-            border-radius: 6px !important;
-        }
-        .vip-page .vsl-note {
-            font-size: 15px !important;
-            margin-top: 10px !important;
-        }
-        .vip-page .registration-complete-bar {
-            padding: 8px 8px !important;
-            gap: 4px !important;
-            flex-wrap: wrap !important;
-            justify-content: center !important;
-        }
-        .vip-page .registration-complete-bar .progress-label {
-            font-size: 9px !important;
-        }
-        .vip-page .registration-complete-bar .mini-progress {
-            width: 50px !important;
-            height: 4px !important;
-        }
-        .vip-page .registration-complete-bar .percentage {
-            font-size: 9px !important;
-        }
-        .vip-page .registration-complete-bar .check-icon {
-            width: 16px !important;
-            height: 16px !important;
-        }
-        .vip-page .registration-complete-bar .check-icon svg {
-            width: 8px !important;
-            height: 8px !important;
-        }
-        .vip-page .section-header h2 {
-            font-size: 24px !important;
-        }
-        .vip-page .mobile-play-overlay .play-icon-circle {
-            width: 50px !important;
-            height: 50px !important;
-        }
-        .vip-page .mobile-play-overlay .play-icon-circle svg {
-            width: 18px !important;
-            height: 18px !important;
-        }
-        .vip-page .mobile-play-overlay .tap-text {
-            font-size: 10px !important;
-        }
-    }
-
-    /* Extra small mobile screens - under 320px */
-    @media (max-width: 320px) {
-        .vip-page .hero {
-            padding: 65px 10px 35px !important;
-        }
-        .vip-page .hero h1 {
-            font-size: 24px !important;
-            letter-spacing: -0.5px !important;
-            margin-bottom: 10px !important;
-        }
-        .vip-page .hero-eyebrow {
-            font-size: 7px !important;
-            letter-spacing: 0.5px !important;
-            margin-bottom: 8px !important;
+            width: 0 !important;
         }
         .vip-page .hero-subtitle {
             font-size: 12px !important;
             line-height: 1.45 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            max-width: 100% !important;
         }
         .vip-page .hero-container {
             gap: 20px !important;
+            padding: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 !important;
         }
         .vip-page .vip-badge {
             width: 32px !important;
             height: 32px !important;
-            top: 38px !important;
+            top: 36px !important;
             right: 6px !important;
+        }
+        .vip-page .vsl-container {
+            width: 100% !important;
+            max-width: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
         }
         .vip-page .vsl-frame {
             padding: 3px !important;
-            border-radius: 6px !important;
+            border-radius: 8px !important;
+            margin: 0 !important;
         }
         .vip-page .vsl-inner {
-            border-radius: 5px !important;
+            border-radius: 6px !important;
         }
         .vip-page .vsl-note {
-            font-size: 13px !important;
+            font-size: 14px !important;
             margin-top: 8px !important;
         }
         .vip-page .registration-complete-bar {
             padding: 6px 6px !important;
-            gap: 3px !important;
+            gap: 4px !important;
+            flex-wrap: nowrap !important;
+            justify-content: center !important;
         }
         .vip-page .registration-complete-bar .progress-label {
             font-size: 8px !important;
+            white-space: nowrap !important;
+        }
+        .vip-page .registration-complete-bar .progress-info {
+            gap: 6px !important;
         }
         .vip-page .registration-complete-bar .mini-progress {
             width: 40px !important;
@@ -1195,8 +1155,8 @@
             font-size: 22px !important;
         }
         .vip-page .mobile-play-overlay .play-icon-circle {
-            width: 44px !important;
-            height: 44px !important;
+            width: 46px !important;
+            height: 46px !important;
         }
         .vip-page .mobile-play-overlay .play-icon-circle svg {
             width: 16px !important;
@@ -1207,107 +1167,171 @@
         }
     }
 
-    /* ==================== VIDEO DRAWER STYLES ==================== */
-    /* These styles are for the drawer that sits OUTSIDE .vip-page */
-
-    .video-drawer-overlay {
-        display: none !important;
+    /* Extra small mobile screens - under 320px */
+    @media (max-width: 320px) {
+        .vip-page .hero {
+            padding: 55px 8px 25px !important;
+        }
+        .vip-page .hero h1 {
+            font-size: 22px !important;
+            letter-spacing: -0.3px !important;
+            margin-bottom: 8px !important;
+        }
+        .vip-page .hero-eyebrow {
+            font-size: 6px !important;
+            letter-spacing: 0.5px !important;
+            margin-bottom: 6px !important;
+        }
+        .vip-page .hero-subtitle {
+            font-size: 11px !important;
+            line-height: 1.4 !important;
+        }
+        .vip-page .hero-container {
+            gap: 16px !important;
+        }
+        .vip-page .vip-badge {
+            width: 28px !important;
+            height: 28px !important;
+            top: 32px !important;
+            right: 4px !important;
+        }
+        .vip-page .vsl-container {
+            padding: 0 !important;
+        }
+        .vip-page .vsl-frame {
+            padding: 2px !important;
+            border-radius: 6px !important;
+        }
+        .vip-page .vsl-inner {
+            border-radius: 5px !important;
+        }
+        .vip-page .vsl-note {
+            font-size: 12px !important;
+            margin-top: 6px !important;
+        }
+        .vip-page .registration-complete-bar {
+            padding: 5px 4px !important;
+            gap: 3px !important;
+        }
+        .vip-page .registration-complete-bar .progress-label {
+            font-size: 7px !important;
+        }
+        .vip-page .registration-complete-bar .progress-info {
+            gap: 4px !important;
+        }
+        .vip-page .registration-complete-bar .mini-progress {
+            width: 35px !important;
+            height: 3px !important;
+        }
+        .vip-page .registration-complete-bar .percentage {
+            font-size: 7px !important;
+        }
+        .vip-page .registration-complete-bar .check-icon {
+            width: 12px !important;
+            height: 12px !important;
+        }
+        .vip-page .registration-complete-bar .check-icon svg {
+            width: 6px !important;
+            height: 6px !important;
+        }
+        .vip-page .section-header h2 {
+            font-size: 20px !important;
+        }
+        .vip-page .mobile-play-overlay .play-icon-circle {
+            width: 40px !important;
+            height: 40px !important;
+        }
+        .vip-page .mobile-play-overlay .play-icon-circle svg {
+            width: 14px !important;
+            height: 14px !important;
+            margin-left: 2px !important;
+        }
+        .vip-page .mobile-play-overlay .tap-text {
+            font-size: 8px !important;
+        }
     }
 
-    .video-drawer-overlay.open {
-        display: flex !important;
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        bottom: 0 !important;
-        width: 100vw !important;
-        height: 100vh !important;
-        background: rgba(0, 0, 0, 0.95) !important;
-        z-index: 2147483647 !important; /* Max z-index */
-        align-items: center !important;
-        justify-content: center !important;
-        margin: 0 !important;
-        padding: 16px !important;
-        box-sizing: border-box !important;
+    /* ==================== VIDEO DRAWER STYLES ==================== */
+    /* BULLETPROOF: Positioned via JavaScript for Framer embed compatibility */
+
+    .video-drawer-overlay {
+        display: none;
+        position: fixed;
+        z-index: 2147483647;
+        background: rgba(0, 0, 0, 0.95);
     }
 
     .video-drawer {
-        width: calc(100vw - 32px) !important;
-        max-width: 320px !important;
-        background: #111 !important;
-        border-radius: 14px !important;
-        overflow: hidden !important;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.8) !important;
-        position: relative !important;
+        background: #111;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+        position: absolute;
     }
 
     .drawer-drag-handle {
-        width: 36px !important;
-        height: 4px !important;
-        background: rgba(255,255,255,0.35) !important;
-        border-radius: 2px !important;
-        position: absolute !important;
-        top: 8px !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        z-index: 5 !important;
+        width: 40px;
+        height: 5px;
+        background: rgba(255,255,255,0.4);
+        border-radius: 3px;
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 5;
     }
 
     .drawer-close-btn {
-        position: absolute !important;
-        top: 6px !important;
-        right: 6px !important;
-        width: 28px !important;
-        height: 28px !important;
-        border-radius: 50% !important;
-        background: rgba(255,255,255,0.15) !important;
-        border: none !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        cursor: pointer !important;
-        z-index: 10 !important;
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.2);
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 10;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .drawer-close-btn:active {
+        background: rgba(255,255,255,0.3);
     }
 
     .drawer-close-btn svg {
-        width: 14px !important;
-        height: 14px !important;
-        stroke: #fff !important;
+        width: 16px;
+        height: 16px;
+        stroke: #fff;
     }
 
     .drawer-video-container {
-        width: 100% !important;
-        padding: 24px 8px 8px !important;
-        box-sizing: border-box !important;
+        width: 100%;
+        padding: 28px 12px 12px;
+        box-sizing: border-box;
     }
 
     #drawer-video-wrapper {
-        width: 100% !important;
-        aspect-ratio: 16/9 !important;
-        border-radius: 8px !important;
-        overflow: hidden !important;
-        background: #000 !important;
+        width: 100%;
+        aspect-ratio: 16/9;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #000;
     }
 
     #drawer-video-wrapper iframe {
-        width: 100% !important;
-        height: 100% !important;
-        border: none !important;
-        display: block !important;
-    }
-
-    /* Scroll lock when drawer is open */
-    html.drawer-open,
-    html.drawer-open body {
-        overflow: hidden !important;
-        height: 100% !important;
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
     }
 
     /* Hide on desktop */
     @media (min-width: 769px) {
-        .video-drawer-overlay,
-        .video-drawer-overlay.open {
+        .video-drawer-overlay {
             display: none !important;
         }
     }
@@ -1679,14 +1703,17 @@
 
     updateProgress();
 
-    // Mobile Video Drawer
+    // ==================== MOBILE VIDEO DRAWER ====================
+    // BULLETPROOF: Uses absolute pixel positioning for Framer embed compatibility
+
     const mobilePlayBtn = document.getElementById('mobilePlayBtn');
     const videoDrawer = document.getElementById('videoDrawer');
     const videoOverlay = document.getElementById('videoOverlay');
     const drawerClose = document.getElementById('drawerClose');
     const drawerVideoWrapper = document.getElementById('drawer-video-wrapper');
     let drawerVideoInitialized = false;
-    let scrollPosition = 0;
+    let savedScrollY = 0;
+    let isDrawerOpen = false;
 
     function initDrawerVideo() {
         if (drawerVideoInitialized || !drawerVideoWrapper) return;
@@ -1706,30 +1733,81 @@
     }
 
     function openDrawer() {
-        if (!videoOverlay) return;
+        if (!videoOverlay || !videoDrawer || isDrawerOpen) return;
+        isDrawerOpen = true;
 
-        scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        // Save current scroll position
+        savedScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
 
-        document.body.classList.add('drawer-open');
-        document.documentElement.classList.add('drawer-open');
-        document.body.style.top = `-${scrollPosition}px`;
+        // Get EXACT viewport dimensions (works in iframes)
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
 
-        videoOverlay.classList.add('open');
+        // Drawer dimensions
+        const drawerWidth = Math.min(viewportWidth - 32, 340);
+        const drawerHeight = (drawerWidth * 9 / 16) + 52; // video aspect ratio + padding
 
-        setTimeout(initDrawerVideo, 50);
+        // Calculate center position relative to document (not viewport)
+        const overlayTop = savedScrollY;
+        const drawerLeft = (viewportWidth - drawerWidth) / 2;
+        const drawerTop = savedScrollY + (viewportHeight - drawerHeight) / 2;
+
+        // Ensure overlay is in body
+        if (videoOverlay.parentElement !== document.body) {
+            document.body.appendChild(videoOverlay);
+        }
+
+        // Style overlay - covers entire DOCUMENT height but visible from current scroll
+        videoOverlay.style.cssText = `
+            display: block;
+            position: absolute;
+            top: ${overlayTop}px;
+            left: 0;
+            width: ${viewportWidth}px;
+            height: ${viewportHeight}px;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2147483647;
+        `;
+
+        // Style drawer - absolutely positioned at calculated center
+        videoDrawer.style.cssText = `
+            position: absolute;
+            top: ${(viewportHeight - drawerHeight) / 2}px;
+            left: ${drawerLeft}px;
+            width: ${drawerWidth}px;
+            background: #111;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+            transform: translateY(0);
+            transition: none;
+        `;
+
+        // Prevent body scrolling
+        document.body.style.overflow = 'hidden';
+        document.body.style.touchAction = 'none';
+        document.documentElement.style.overflow = 'hidden';
+
+        // Load video after small delay
+        setTimeout(initDrawerVideo, 150);
     }
 
     function closeDrawer() {
-        if (!videoOverlay) return;
+        if (!videoOverlay || !isDrawerOpen) return;
+        isDrawerOpen = false;
 
-        videoOverlay.classList.remove('open');
+        // Hide overlay
+        videoOverlay.style.display = 'none';
 
-        document.body.classList.remove('drawer-open');
-        document.documentElement.classList.remove('drawer-open');
-        document.body.style.top = '';
+        // Restore scrolling
+        document.body.style.overflow = '';
+        document.body.style.touchAction = '';
+        document.documentElement.style.overflow = '';
 
-        window.scrollTo(0, scrollPosition);
+        // Restore scroll position
+        window.scrollTo(0, savedScrollY);
 
+        // Cleanup video
         setTimeout(destroyDrawerVideo, 300);
     }
 
@@ -1742,51 +1820,72 @@
         });
     }
 
-    // Close on overlay click
+    // Close on overlay click (but not drawer)
     if (videoOverlay) {
         videoOverlay.addEventListener('click', function(e) {
-            if (e.target === videoOverlay) closeDrawer();
+            if (e.target === videoOverlay) {
+                closeDrawer();
+            }
         });
     }
 
     // Close button
     if (drawerClose) {
-        drawerClose.addEventListener('click', closeDrawer);
+        drawerClose.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            closeDrawer();
+        });
     }
 
-    // Swipe down to close - on entire drawer
+    // Swipe down to close - works on entire drawer
     if (videoDrawer) {
-        let startY = 0, currentY = 0, isDragging = false;
+        let touchStartY = 0;
+        let touchCurrentY = 0;
+        let isDragging = false;
+        let dragOffset = 0;
 
         videoDrawer.addEventListener('touchstart', function(e) {
-            startY = e.touches[0].clientY;
-            currentY = startY;
+            touchStartY = e.touches[0].clientY;
+            touchCurrentY = touchStartY;
             isDragging = true;
+            dragOffset = 0;
             videoDrawer.style.transition = 'none';
         }, { passive: true });
 
         videoDrawer.addEventListener('touchmove', function(e) {
             if (!isDragging) return;
-            currentY = e.touches[0].clientY;
-            const diff = currentY - startY;
-            if (diff > 0) {
-                videoDrawer.style.transform = `translateY(${diff}px)`;
-                videoOverlay.style.background = `rgba(0,0,0,${Math.max(0.2, 0.92 - diff/500)})`;
+            touchCurrentY = e.touches[0].clientY;
+            dragOffset = touchCurrentY - touchStartY;
+
+            // Only allow dragging DOWN
+            if (dragOffset > 0) {
+                videoDrawer.style.transform = `translateY(${dragOffset}px)`;
+                // Fade overlay as drawer is dragged
+                const opacity = Math.max(0.3, 0.95 - (dragOffset / 400));
+                videoOverlay.style.background = `rgba(0,0,0,${opacity})`;
             }
         }, { passive: true });
 
         videoDrawer.addEventListener('touchend', function() {
             if (!isDragging) return;
             isDragging = false;
-            videoDrawer.style.transition = 'transform 0.3s ease';
 
-            if (currentY - startY > 80) {
-                closeDrawer();
+            videoDrawer.style.transition = 'transform 0.25s ease-out';
+
+            // If dragged more than 100px down, close it
+            if (dragOffset > 100) {
+                videoDrawer.style.transform = `translateY(${window.innerHeight}px)`;
+                setTimeout(closeDrawer, 200);
+            } else {
+                // Snap back
+                videoDrawer.style.transform = 'translateY(0)';
+                videoOverlay.style.background = 'rgba(0,0,0,0.95)';
             }
-            videoDrawer.style.transform = '';
-            videoOverlay.style.background = '';
-            startY = 0;
-            currentY = 0;
+
+            touchStartY = 0;
+            touchCurrentY = 0;
+            dragOffset = 0;
         });
     }
 
