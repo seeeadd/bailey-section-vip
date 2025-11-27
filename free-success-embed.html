@@ -1591,30 +1591,22 @@
     .closing-card::before {
         content: '';
         position: absolute;
-        inset: -3px;
-        background: linear-gradient(60deg, var(--coral), var(--pink), var(--gold), var(--mint), var(--coral));
-        background-size: 300% 300%;
-        border-radius: 43px;
+        inset: -2px;
+        background: linear-gradient(135deg, rgba(255, 107, 157, 0.5) 0%, rgba(255, 209, 102, 0.4) 50%, rgba(78, 205, 196, 0.5) 100%);
+        border-radius: 42px;
         z-index: -1;
-        animation: gradientBorder 6s ease infinite;
     }
 
     .closing-card::after {
         content: '';
         position: absolute;
-        inset: 3px;
-        background: linear-gradient(145deg, rgba(22, 33, 62, 0.97) 0%, rgba(15, 52, 96, 0.97) 100%);
-        border-radius: 37px;
+        inset: 2px;
+        background: linear-gradient(145deg, rgba(22, 33, 62, 0.98) 0%, rgba(15, 52, 96, 0.98) 100%);
+        border-radius: 38px;
         z-index: -1;
     }
 
-    @keyframes gradientBorder {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-
-    /* Trophy icon */
+    /* Trophy icon - custom CSS design */
     .closing-trophy {
         width: 100px;
         height: 100px;
@@ -1624,7 +1616,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 50px;
         box-shadow:
             0 15px 50px rgba(255, 215, 0, 0.5),
             0 0 100px rgba(255, 215, 0, 0.3),
@@ -1637,14 +1628,89 @@
         content: '';
         position: absolute;
         inset: -8px;
-        border: 3px dashed rgba(255, 215, 0, 0.5);
+        border: 2px dashed rgba(255, 215, 0, 0.4);
         border-radius: 50%;
-        animation: spin 20s linear infinite;
+        animation: spin 25s linear infinite;
+    }
+
+    /* Custom trophy shape */
+    .trophy-icon {
+        position: relative;
+        width: 44px;
+        height: 50px;
+    }
+
+    .trophy-cup {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 36px;
+        height: 28px;
+        background: linear-gradient(180deg, #FFFACD 0%, #FFD700 30%, #DAA520 100%);
+        border-radius: 4px 4px 18px 18px;
+        box-shadow: inset 0 2px 4px rgba(255,255,255,0.5), inset 0 -4px 8px rgba(0,0,0,0.15);
+    }
+
+    .trophy-cup::before,
+    .trophy-cup::after {
+        content: '';
+        position: absolute;
+        top: 4px;
+        width: 10px;
+        height: 16px;
+        border: 3px solid;
+        border-image: linear-gradient(180deg, #FFFACD, #DAA520) 1;
+        border-radius: 0 10px 10px 0;
+    }
+
+    .trophy-cup::before {
+        left: -10px;
+        border-radius: 10px 0 0 10px;
+        border-right: none;
+    }
+
+    .trophy-cup::after {
+        right: -10px;
+        border-left: none;
+    }
+
+    .trophy-stem {
+        position: absolute;
+        bottom: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 10px;
+        height: 14px;
+        background: linear-gradient(180deg, #FFD700, #B8860B);
+        border-radius: 2px;
+    }
+
+    .trophy-base {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 28px;
+        height: 8px;
+        background: linear-gradient(180deg, #FFD700, #B8860B);
+        border-radius: 2px 2px 4px 4px;
+    }
+
+    .trophy-star {
+        position: absolute;
+        top: 6px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 14px;
+        height: 14px;
+        background: linear-gradient(135deg, #FFF8DC, #FFE4B5);
+        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
     }
 
     @keyframes trophyBounce {
         0%, 100% { transform: translateY(0) scale(1); }
-        50% { transform: translateY(-12px) scale(1.05); }
+        50% { transform: translateY(-8px) scale(1.03); }
     }
 
     /* Headline */
@@ -1880,7 +1946,15 @@
     @media (max-width: 600px) {
         .closing { padding: 80px 16px 100px; }
         .closing-card { padding: 60px 24px 40px; border-radius: 28px; }
-        .closing-trophy { width: 80px; height: 80px; font-size: 40px; margin-top: -80px; }
+        .closing-trophy { width: 80px; height: 80px; margin-top: -80px; }
+        .trophy-icon { width: 36px; height: 40px; }
+        .trophy-cup { width: 28px; height: 22px; }
+        .trophy-cup::before, .trophy-cup::after { width: 8px; height: 12px; top: 3px; }
+        .trophy-cup::before { left: -8px; }
+        .trophy-cup::after { right: -8px; }
+        .trophy-star { width: 11px; height: 11px; top: 5px; }
+        .trophy-stem { width: 8px; height: 11px; bottom: 6px; }
+        .trophy-base { width: 22px; height: 6px; }
         .closing-actions { flex-direction: column; align-items: center; }
         .action-pill { width: 100%; justify-content: center; }
         .whatsapp-box { padding: 24px 20px; }
@@ -1890,7 +1964,15 @@
     @media (max-width: 350px) {
         .closing { padding: 60px 12px 80px; }
         .closing-card { padding: 50px 16px 32px; }
-        .closing-trophy { width: 70px; height: 70px; font-size: 35px; margin-top: -70px; }
+        .closing-trophy { width: 70px; height: 70px; margin-top: -70px; }
+        .trophy-icon { width: 32px; height: 36px; }
+        .trophy-cup { width: 24px; height: 18px; }
+        .trophy-cup::before, .trophy-cup::after { width: 7px; height: 10px; top: 2px; }
+        .trophy-cup::before { left: -7px; }
+        .trophy-cup::after { right: -7px; }
+        .trophy-star { width: 10px; height: 10px; top: 4px; }
+        .trophy-stem { width: 7px; height: 10px; bottom: 5px; }
+        .trophy-base { width: 18px; height: 5px; }
         .closing-headline h2 { font-size: 26px; }
         .closing-body p { font-size: 15px; }
         .sig-main { font-size: 34px; }
@@ -2670,7 +2752,14 @@
             <div class="closing-inner">
                 <div class="closing-card">
                     <!-- Trophy icon -->
-                    <div class="closing-trophy">🏆</div>
+                    <div class="closing-trophy">
+                        <div class="trophy-icon">
+                            <div class="trophy-cup"></div>
+                            <div class="trophy-star"></div>
+                            <div class="trophy-stem"></div>
+                            <div class="trophy-base"></div>
+                        </div>
+                    </div>
 
                     <!-- Headline -->
                     <div class="closing-headline">
