@@ -258,8 +258,8 @@
         color: var(--light-gray);
     }
 
-    /* Mobile Video Drawer - fullscreen overlay */
-    .vip-page .video-drawer-overlay {
+    /* Mobile Video Drawer - fullscreen overlay (outside .vip-page) */
+    .video-drawer-overlay {
         position: fixed;
         top: 0 !important;
         left: 0 !important;
@@ -281,7 +281,7 @@
         margin: 0 !important;
     }
 
-    .vip-page .video-drawer-overlay.open {
+    .video-drawer-overlay.open {
         opacity: 1 !important;
         visibility: visible !important;
     }
@@ -295,7 +295,7 @@
         height: 100% !important;
     }
 
-    .vip-page .video-drawer {
+    .video-drawer {
         position: relative;
         width: calc(100% - 32px);
         max-width: 500px;
@@ -314,12 +314,12 @@
         margin: auto;
     }
 
-    .vip-page .video-drawer-overlay.open .video-drawer {
+    .video-drawer-overlay.open .video-drawer {
         transform: scale(1) !important;
         opacity: 1 !important;
     }
 
-    .vip-page .drawer-header {
+    .drawer-header {
         width: 100%;
         padding: 18px 20px;
         display: flex;
@@ -331,7 +331,7 @@
         position: relative;
     }
 
-    .vip-page .drawer-header::before {
+    .drawer-header::before {
         content: '';
         position: absolute;
         top: 8px;
@@ -343,7 +343,7 @@
         border-radius: 2px;
     }
 
-    .vip-page .drawer-title {
+    .drawer-title {
         font-family: 'Satoshi', sans-serif;
         font-size: 13px;
         font-weight: 600;
@@ -352,7 +352,7 @@
         text-transform: uppercase;
     }
 
-    .vip-page .drawer-close-btn {
+    .drawer-close-btn {
         width: 34px;
         height: 34px;
         border-radius: 50%;
@@ -365,19 +365,19 @@
         transition: all 0.2s ease;
     }
 
-    .vip-page .drawer-close-btn:hover,
-    .vip-page .drawer-close-btn:active {
+    .drawer-close-btn:hover,
+    .drawer-close-btn:active {
         background: rgba(255, 255, 255, 0.15);
         transform: scale(1.05);
     }
 
-    .vip-page .drawer-close-btn svg {
+    .drawer-close-btn svg {
         width: 14px;
         height: 14px;
         stroke: rgba(255, 255, 255, 0.7);
     }
 
-    .vip-page .drawer-video-container {
+    .drawer-video-container {
         width: 100%;
         background: #000;
         display: flex;
@@ -387,7 +387,7 @@
         position: relative;
     }
 
-    .vip-page .drawer-video-container iframe {
+    .drawer-video-container iframe {
         width: 100% !important;
         height: 100% !important;
         display: block !important;
@@ -395,7 +395,7 @@
         border-radius: 12px;
     }
 
-    .vip-page #drawer-video-wrapper {
+    #drawer-video-wrapper {
         width: 100%;
         aspect-ratio: 16/9;
         border-radius: 12px;
@@ -405,14 +405,14 @@
         background: #111;
     }
 
-    .vip-page .drawer-footer {
+    .drawer-footer {
         padding: 20px 24px 24px;
         text-align: center;
         position: relative;
         overflow: hidden;
     }
 
-    .vip-page .drawer-footer::before {
+    .drawer-footer::before {
         content: '';
         position: absolute;
         top: 50%;
@@ -429,14 +429,14 @@
         50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
     }
 
-    .vip-page .drawer-rings {
+    .drawer-rings {
         position: relative;
         width: 80px;
         height: 80px;
         margin: 0 auto 16px;
     }
 
-    .vip-page .drawer-rings .ring {
+    .drawer-rings .ring {
         position: absolute;
         inset: 0;
         border: 2px solid rgba(201, 168, 124, 0.3);
@@ -444,15 +444,15 @@
         animation: vipRingPulse 2s ease-out infinite;
     }
 
-    .vip-page .drawer-rings .ring:nth-child(2) { animation-delay: 0.4s; }
-    .vip-page .drawer-rings .ring:nth-child(3) { animation-delay: 0.8s; }
+    .drawer-rings .ring:nth-child(2) { animation-delay: 0.4s; }
+    .drawer-rings .ring:nth-child(3) { animation-delay: 0.8s; }
 
     @keyframes vipRingPulse {
         0% { transform: scale(0.5); opacity: 1; }
         100% { transform: scale(1.5); opacity: 0; }
     }
 
-    .vip-page .drawer-rings .vip-icon {
+    .drawer-rings .vip-icon {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -467,13 +467,13 @@
         box-shadow: 0 4px 20px rgba(201, 168, 124, 0.4);
     }
 
-    .vip-page .drawer-rings .vip-icon svg {
+    .drawer-rings .vip-icon svg {
         width: 20px;
         height: 20px;
         fill: #fff;
     }
 
-    .vip-page .drawer-footer-text {
+    .drawer-footer-text {
         position: relative;
         z-index: 1;
         font-family: 'Satoshi', sans-serif;
@@ -482,18 +482,13 @@
         line-height: 1.5;
     }
 
-    .vip-page .drawer-footer-text strong {
+    .drawer-footer-text strong {
         color: var(--rose-gold);
         font-weight: 600;
     }
 
-    /* Resume Watching Prompt */
-    .vip-page .resume-prompt {
-        display: none !important;
-        visibility: hidden !important;
-    }
-
-    .vip-page .resume-prompt.show {
+    /* Resume Watching Prompt - disabled */
+    .resume-prompt {
         display: none !important;
         visibility: hidden !important;
     }
@@ -1612,56 +1607,38 @@
         </a>
     </div>
 
-    <!-- Mobile Video Drawer -->
-    <div class="video-drawer-overlay" id="videoOverlay">
-        <div class="video-drawer" id="videoDrawer">
-            <div class="drawer-header">
-                <span class="drawer-title">A Message For You</span>
-                <div class="drawer-close-btn" id="drawerClose">
-                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round">
-                        <path d="M18 6L6 18M6 6l12 12"/>
+</div>
+
+<!-- Mobile Video Drawer - OUTSIDE vip-page for proper fixed positioning -->
+<div class="video-drawer-overlay" id="videoOverlay">
+    <div class="video-drawer" id="videoDrawer">
+        <div class="drawer-header">
+            <span class="drawer-title">A Message For You</span>
+            <div class="drawer-close-btn" id="drawerClose">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </div>
+        </div>
+        <div class="drawer-video-container" id="drawerVideoContainer">
+            <div id="drawer-video-wrapper">
+                <!-- Video iframe loaded on open -->
+            </div>
+        </div>
+        <div class="drawer-footer">
+            <div class="drawer-rings">
+                <div class="ring"></div>
+                <div class="ring"></div>
+                <div class="ring"></div>
+                <div class="vip-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
                     </svg>
                 </div>
             </div>
-            <div class="drawer-video-container" id="drawerVideoContainer">
-                <div id="drawer-video-wrapper">
-                    <!-- Video iframe loaded on open -->
-                    <div class="resume-prompt" id="resumePrompt">
-                        <div class="resume-prompt-inner">
-                            <div class="resume-prompt-title">You have already started watching this video</div>
-                            <div class="resume-prompt-option" id="continueWatching">
-                                <svg viewBox="0 0 24 24" fill="none">
-                                    <circle cx="12" cy="12" r="10" stroke="#1A3D3B" stroke-width="2"/>
-                                    <path d="M10 8L16 12L10 16V8Z" fill="#1A3D3B"/>
-                                </svg>
-                                <span>Continue watching?</span>
-                            </div>
-                            <div class="resume-prompt-option" id="startFromBeginning">
-                                <svg viewBox="0 0 24 24" fill="none">
-                                    <circle cx="12" cy="12" r="10" stroke="#1A3D3B" stroke-width="2"/>
-                                    <path d="M12 8V12L15 14" stroke="#1A3D3B" stroke-width="2" stroke-linecap="round"/>
-                                </svg>
-                                <span>Start from beginning?</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="drawer-footer">
-                <div class="drawer-rings">
-                    <div class="ring"></div>
-                    <div class="ring"></div>
-                    <div class="ring"></div>
-                    <div class="vip-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
-                        </svg>
-                    </div>
-                </div>
-                <p class="drawer-footer-text">
-                    You're <strong>VIP</strong> now. Watch this quick message to see what's next.
-                </p>
-            </div>
+            <p class="drawer-footer-text">
+                You're <strong>VIP</strong> now. Watch this quick message to see what's next.
+            </p>
         </div>
     </div>
 </div>
