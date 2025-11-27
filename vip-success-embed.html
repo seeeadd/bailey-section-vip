@@ -258,8 +258,14 @@
         color: var(--light-gray);
     }
 
-    /* Mobile Video Drawer - fullscreen overlay */
+    /* Mobile Video Drawer - fullscreen overlay - HIDDEN by default */
     .vip-page .video-drawer-overlay {
+        display: none; /* Completely hidden until opened */
+    }
+
+    /* Only show overlay when open class is added */
+    .vip-page .video-drawer-overlay.open {
+        display: flex;
         position: fixed;
         top: 0;
         left: 0;
@@ -267,45 +273,29 @@
         bottom: 0;
         width: 100vw;
         height: 100vh;
-        height: 100dvh; /* Dynamic viewport height for mobile */
+        height: 100dvh;
         background: rgba(0, 0, 0, 0.97);
         z-index: 999999;
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-        display: flex;
         align-items: center;
         justify-content: center;
         padding: 16px;
         overflow: hidden;
-        /* Ensure it breaks out of any container */
         margin: 0;
-        transform: translateZ(0);
-        -webkit-transform: translateZ(0);
+        animation: fadeInOverlay 0.3s ease forwards;
     }
 
-    .vip-page .video-drawer-overlay.open {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
+    @keyframes fadeInOverlay {
+        from { opacity: 0; }
+        to { opacity: 1; }
     }
 
-    /* Body scroll lock when drawer is open */
+    /* Body scroll lock - ONLY when drawer-open class is present */
     body.drawer-open,
     html.drawer-open {
         overflow: hidden !important;
         position: fixed !important;
         width: 100% !important;
         height: 100% !important;
-        touch-action: none !important;
-        -webkit-overflow-scrolling: none !important;
-    }
-
-    /* Extra scroll lock for Framer embeds */
-    .drawer-open .vip-page {
-        overflow: hidden !important;
-        height: 100vh !important;
         touch-action: none !important;
     }
 
@@ -315,20 +305,17 @@
         max-width: 500px;
         max-height: 90vh;
         background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
-        z-index: 10001;
-        opacity: 0;
-        transform: scale(0.9);
-        transition: all 0.35s cubic-bezier(0.32, 0.72, 0, 1);
         border-radius: 24px;
         overflow: hidden;
         display: flex;
         flex-direction: column;
         box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(201, 168, 124, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        animation: scaleInDrawer 0.35s cubic-bezier(0.32, 0.72, 0, 1) forwards;
     }
 
-    .vip-page .video-drawer-overlay.open .video-drawer {
-        transform: scale(1);
-        opacity: 1;
+    @keyframes scaleInDrawer {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
     }
 
     .vip-page .drawer-header {
@@ -1319,7 +1306,7 @@
 
     @media (max-width: 768px) {
         .vip-page .hero { min-height: auto; padding: 100px 20px 60px; }
-        .vip-page .hero h1 { font-size: 42px; }
+        .vip-page .hero h1 { font-size: 42px !important; }
         .vip-page .vip-badge { width: 52px; height: 52px; top: 62px; right: 16px; }
         .vip-page .action-cards { grid-template-columns: 1fr; }
         .vip-page .action-card { padding: 28px 24px; }
@@ -1333,9 +1320,9 @@
     }
 
     @media (max-width: 480px) {
-        .vip-page .hero h1 { font-size: 40px; }
-        .vip-page .hero-subtitle { font-size: 16px; }
-        .vip-page .section-header h2 { font-size: 32px; }
+        .vip-page .hero h1 { font-size: 38px !important; }
+        .vip-page .hero-subtitle { font-size: 16px !important; }
+        .vip-page .section-header h2 { font-size: 30px !important; }
         .vip-page .action-card h3 { font-size: 20px; }
         .vip-page .btn-primary { width: 100%; justify-content: center; padding: 16px 24px; }
         .vip-page .registration-complete-bar { padding: 12px 16px; gap: 10px; }
@@ -1348,146 +1335,171 @@
     /* Very small mobile screens - under 350px */
     @media (max-width: 350px) {
         .vip-page .hero {
-            padding: 90px 16px 50px;
+            padding: 80px 14px 45px !important;
         }
         .vip-page .hero h1 {
-            font-size: 32px;
-            letter-spacing: -1px;
+            font-size: 30px !important;
+            letter-spacing: -1px !important;
+            margin-bottom: 16px !important;
         }
         .vip-page .hero-eyebrow {
-            font-size: 10px;
-            letter-spacing: 1.5px;
-            gap: 8px;
-            margin-bottom: 16px;
+            font-size: 9px !important;
+            letter-spacing: 1.5px !important;
+            gap: 6px !important;
+            margin-bottom: 14px !important;
         }
         .vip-page .hero-eyebrow::before,
         .vip-page .hero-eyebrow::after {
-            width: 24px;
+            width: 20px !important;
         }
         .vip-page .hero-subtitle {
-            font-size: 14px;
-            line-height: 1.6;
+            font-size: 14px !important;
+            line-height: 1.55 !important;
+        }
+        .vip-page .hero-container {
+            gap: 30px !important;
         }
         .vip-page .vip-badge {
-            width: 44px;
-            height: 44px;
-            top: 56px;
-            right: 12px;
+            width: 42px !important;
+            height: 42px !important;
+            top: 50px !important;
+            right: 10px !important;
         }
         .vip-page .vsl-frame {
-            padding: 6px;
-            border-radius: 12px;
+            padding: 5px !important;
+            border-radius: 10px !important;
+        }
+        .vip-page .vsl-inner {
+            border-radius: 8px !important;
         }
         .vip-page .vsl-note {
-            font-size: 18px;
-            margin-top: 14px;
+            font-size: 17px !important;
+            margin-top: 12px !important;
         }
         .vip-page .registration-complete-bar {
-            padding: 10px 12px;
-            gap: 8px;
-            flex-wrap: wrap;
-            justify-content: center;
+            padding: 10px 10px !important;
+            gap: 6px !important;
+            flex-wrap: wrap !important;
+            justify-content: center !important;
         }
         .vip-page .registration-complete-bar .progress-label {
-            font-size: 11px;
+            font-size: 10px !important;
         }
         .vip-page .registration-complete-bar .mini-progress {
-            width: 70px;
-            height: 5px;
+            width: 60px !important;
+            height: 5px !important;
         }
         .vip-page .registration-complete-bar .percentage {
-            font-size: 11px;
+            font-size: 10px !important;
         }
         .vip-page .registration-complete-bar .check-icon {
-            width: 20px;
-            height: 20px;
+            width: 18px !important;
+            height: 18px !important;
         }
         .vip-page .registration-complete-bar .check-icon svg {
-            width: 10px;
-            height: 10px;
+            width: 9px !important;
+            height: 9px !important;
+        }
+        .vip-page .section-header h2 {
+            font-size: 26px !important;
+        }
+        /* Mobile play overlay adjustments */
+        .vip-page .mobile-play-overlay .play-icon-circle {
+            width: 54px !important;
+            height: 54px !important;
+        }
+        .vip-page .mobile-play-overlay .play-icon-circle svg {
+            width: 20px !important;
+            height: 20px !important;
+        }
+        .vip-page .mobile-play-overlay .tap-text {
+            font-size: 11px !important;
         }
     }
 
     /* Extra small mobile screens - under 320px */
     @media (max-width: 320px) {
         .vip-page .hero {
-            padding: 85px 12px 40px;
+            padding: 75px 10px 40px !important;
         }
         .vip-page .hero h1 {
-            font-size: 28px;
-            letter-spacing: -0.5px;
-            margin-bottom: 16px;
+            font-size: 26px !important;
+            letter-spacing: -0.5px !important;
+            margin-bottom: 14px !important;
         }
         .vip-page .hero-eyebrow {
-            font-size: 9px;
-            letter-spacing: 1px;
-            gap: 6px;
-            margin-bottom: 12px;
+            font-size: 8px !important;
+            letter-spacing: 1px !important;
+            gap: 4px !important;
+            margin-bottom: 10px !important;
         }
         .vip-page .hero-eyebrow::before,
         .vip-page .hero-eyebrow::after {
-            width: 16px;
+            width: 14px !important;
         }
         .vip-page .hero-subtitle {
-            font-size: 13px;
-            line-height: 1.55;
-        }
-        .vip-page .vip-badge {
-            width: 38px;
-            height: 38px;
-            top: 52px;
-            right: 10px;
-        }
-        .vip-page .vsl-frame {
-            padding: 4px;
-            border-radius: 10px;
-        }
-        .vip-page .vsl-inner {
-            border-radius: 8px;
-        }
-        .vip-page .vsl-note {
-            font-size: 16px;
-            margin-top: 12px;
+            font-size: 13px !important;
+            line-height: 1.5 !important;
         }
         .vip-page .hero-container {
-            gap: 28px;
+            gap: 24px !important;
+        }
+        .vip-page .vip-badge {
+            width: 36px !important;
+            height: 36px !important;
+            top: 46px !important;
+            right: 8px !important;
+        }
+        .vip-page .vsl-frame {
+            padding: 4px !important;
+            border-radius: 8px !important;
+        }
+        .vip-page .vsl-inner {
+            border-radius: 6px !important;
+        }
+        .vip-page .vsl-note {
+            font-size: 15px !important;
+            margin-top: 10px !important;
         }
         .vip-page .registration-complete-bar {
-            padding: 8px 10px;
-            gap: 6px;
+            padding: 8px 8px !important;
+            gap: 4px !important;
         }
         .vip-page .registration-complete-bar .progress-info {
-            gap: 8px;
+            gap: 6px !important;
         }
         .vip-page .registration-complete-bar .progress-label {
-            font-size: 10px;
+            font-size: 9px !important;
         }
         .vip-page .registration-complete-bar .mini-progress {
-            width: 50px;
-            height: 4px;
+            width: 45px !important;
+            height: 4px !important;
         }
         .vip-page .registration-complete-bar .percentage {
-            font-size: 10px;
+            font-size: 9px !important;
         }
         .vip-page .registration-complete-bar .check-icon {
-            width: 18px;
-            height: 18px;
+            width: 16px !important;
+            height: 16px !important;
         }
         .vip-page .registration-complete-bar .check-icon svg {
-            width: 9px;
-            height: 9px;
+            width: 8px !important;
+            height: 8px !important;
+        }
+        .vip-page .section-header h2 {
+            font-size: 24px !important;
         }
         /* Mobile play overlay adjustments */
         .vip-page .mobile-play-overlay .play-icon-circle {
-            width: 52px;
-            height: 52px;
+            width: 48px !important;
+            height: 48px !important;
         }
         .vip-page .mobile-play-overlay .play-icon-circle svg {
-            width: 20px;
-            height: 20px;
+            width: 18px !important;
+            height: 18px !important;
         }
         .vip-page .mobile-play-overlay .tap-text {
-            font-size: 11px;
+            font-size: 10px !important;
         }
     }
 </style>
@@ -1974,44 +1986,20 @@
     }
 
     let scrollPosition = 0;
-    let overlayMovedToBody = false;
 
     function openDrawer() {
+        if (!videoOverlay) return;
+
         // Save scroll position
         scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
 
-        // Move overlay to document.body to ensure it renders on top of everything
-        // This is critical for Framer embeds where parent containers may clip
-        if (!overlayMovedToBody && videoOverlay) {
-            document.body.appendChild(videoOverlay);
-            overlayMovedToBody = true;
-        }
-
-        // Lock scroll
+        // Lock scroll ONLY now
         document.body.classList.add('drawer-open');
         document.documentElement.classList.add('drawer-open');
         document.body.style.top = `-${scrollPosition}px`;
 
-        // Force overlay to cover entire viewport
-        videoOverlay.style.position = 'fixed';
-        videoOverlay.style.top = '0';
-        videoOverlay.style.left = '0';
-        videoOverlay.style.width = '100vw';
-        videoOverlay.style.height = '100vh';
-
-        // Show overlay
+        // Show overlay (display: flex via .open class)
         videoOverlay.classList.add('open');
-
-        // Try to lock parent frame scroll too (for Framer embeds)
-        try {
-            if (window.parent && window.parent !== window) {
-                window.parent.document.body.style.overflow = 'hidden';
-                window.parent.document.documentElement.style.overflow = 'hidden';
-            }
-        } catch(e) {}
-
-        // Prevent any touch scrolling on overlay
-        videoOverlay.addEventListener('touchmove', preventScroll, { passive: false });
 
         // Check if user has watched before - show resume prompt or start video
         setTimeout(function() {
@@ -2020,21 +2008,14 @@
             } else {
                 initDrawerVideo(false);
             }
-        }, 100);
-    }
-
-    function preventScroll(e) {
-        // Only prevent scroll on overlay background, not drawer content
-        if (e.target === videoOverlay) {
-            e.preventDefault();
-        }
+        }, 150);
     }
 
     function closeDrawer() {
-        videoOverlay.classList.remove('open');
+        if (!videoOverlay) return;
 
-        // Remove scroll prevention listener
-        videoOverlay.removeEventListener('touchmove', preventScroll);
+        // Hide overlay
+        videoOverlay.classList.remove('open');
 
         // Unlock scroll
         document.body.classList.remove('drawer-open');
@@ -2043,14 +2024,6 @@
 
         // Restore scroll position
         window.scrollTo(0, scrollPosition);
-
-        // Unlock parent frame scroll too
-        try {
-            if (window.parent && window.parent !== window) {
-                window.parent.document.body.style.overflow = '';
-                window.parent.document.documentElement.style.overflow = '';
-            }
-        } catch(e) {}
 
         // Destroy video after animation
         setTimeout(destroyDrawerVideo, 350);
