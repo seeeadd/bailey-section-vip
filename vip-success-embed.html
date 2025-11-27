@@ -629,13 +629,30 @@
     }
 
     @media (max-width: 768px) {
-        .vip-page .mobile-play-overlay { display: block; }
-        .vip-page .vsl-inner > vturb-smartplayer { display: none; }
+        .vip-page .mobile-play-overlay {
+            display: block !important;
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+        }
+        .vip-page .vsl-inner > vturb-smartplayer {
+            display: none !important;
+            visibility: hidden !important;
+            position: absolute !important;
+            width: 0 !important;
+            height: 0 !important;
+        }
+        .vip-page .vsl-inner {
+            min-height: 200px;
+            aspect-ratio: 16/9;
+            position: relative;
+        }
     }
 
     @media (min-width: 769px) {
         .vip-page .video-drawer,
         .vip-page .video-drawer-overlay { display: none !important; }
+        .vip-page .mobile-play-overlay { display: none !important; }
     }
 
     /* Action Section */
@@ -1847,7 +1864,13 @@
         setTimeout(destroyDrawerVideo, 350);
     }
 
-    if (mobilePlayBtn) mobilePlayBtn.addEventListener('click', openDrawer);
+    if (mobilePlayBtn) {
+        mobilePlayBtn.addEventListener('click', openDrawer);
+        mobilePlayBtn.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            openDrawer();
+        });
+    }
     // Close when clicking overlay (but not the drawer itself)
     if (videoOverlay) {
         videoOverlay.addEventListener('click', function(e) {
