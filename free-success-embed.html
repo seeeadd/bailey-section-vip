@@ -1445,144 +1445,436 @@
     }
 
     /* ============================================
-       CLOSING - PERSONAL LETTER
+       CLOSING - FUN & CREATIVE FINALE
        ============================================ */
     .closing {
         width: 100%;
-        padding: 80px 24px 100px;
-        background: linear-gradient(135deg, var(--navy) 0%, #264B4D 100%);
+        padding: 100px 24px 120px;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
         position: relative;
         overflow: hidden;
     }
 
-    /* Decorative glow */
+    /* Animated star field background */
     .closing::before {
         content: '';
         position: absolute;
-        top: -100px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 600px;
-        height: 600px;
-        background: radial-gradient(circle, rgba(255, 107, 107, 0.12), transparent 60%);
-        pointer-events: none;
+        inset: 0;
+        background-image:
+            radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.5), transparent),
+            radial-gradient(2px 2px at 40px 70px, rgba(255,215,0,0.4), transparent),
+            radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.6), transparent),
+            radial-gradient(2px 2px at 130px 80px, rgba(255,107,157,0.5), transparent),
+            radial-gradient(1px 1px at 160px 120px, rgba(78,205,196,0.6), transparent),
+            radial-gradient(2px 2px at 200px 50px, rgba(255,255,255,0.4), transparent);
+        background-size: 250px 150px;
+        animation: closingTwinkle 6s ease-in-out infinite;
     }
 
-    /* Floating decorations */
-    .closing-decor {
+    @keyframes closingTwinkle {
+        0%, 100% { opacity: 0.5; }
+        50% { opacity: 1; }
+    }
+
+    /* Gradient orbs */
+    .closing-orb {
         position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
         pointer-events: none;
+        z-index: 0;
     }
 
-    .cd-1 { top: 50px; left: 8%; animation: float 4s ease-in-out infinite; }
-    .cd-2 { top: 40%; right: 8%; animation: floatSlow 3.5s ease-in-out infinite 0.5s; }
-    .cd-3 { bottom: 80px; left: 12%; animation: twinkle 3s ease-in-out infinite; }
+    .orb-1 {
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(255, 107, 107, 0.3), transparent 70%);
+        top: -150px;
+        left: -100px;
+        animation: orbMove1 12s ease-in-out infinite;
+    }
 
-    @media (max-width: 700px) {
-        .closing-decor { display: none; }
+    .orb-2 {
+        width: 350px;
+        height: 350px;
+        background: radial-gradient(circle, rgba(78, 205, 196, 0.25), transparent 70%);
+        bottom: -100px;
+        right: -80px;
+        animation: orbMove2 15s ease-in-out infinite;
+    }
+
+    .orb-3 {
+        width: 250px;
+        height: 250px;
+        background: radial-gradient(circle, rgba(255, 209, 102, 0.2), transparent 70%);
+        top: 40%;
+        left: 60%;
+        animation: orbMove3 10s ease-in-out infinite;
+    }
+
+    @keyframes orbMove1 {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        50% { transform: translate(50px, 30px) scale(1.15); }
+    }
+
+    @keyframes orbMove2 {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        50% { transform: translate(-40px, -20px) scale(1.1); }
+    }
+
+    @keyframes orbMove3 {
+        0%, 100% { transform: translate(0, 0); opacity: 0.6; }
+        50% { transform: translate(-30px, 20px); opacity: 1; }
+    }
+
+    /* Floating emojis/decorations */
+    .closing-float {
+        position: absolute;
+        font-size: 30px;
+        pointer-events: none;
+        z-index: 2;
+        opacity: 0.7;
+    }
+
+    .float-1 { top: 10%; left: 8%; animation: floatBounce 4s ease-in-out infinite; }
+    .float-2 { top: 20%; right: 12%; animation: floatBounce 5s ease-in-out infinite 0.5s; }
+    .float-3 { bottom: 25%; left: 6%; animation: floatBounce 4.5s ease-in-out infinite 1s; }
+    .float-4 { bottom: 15%; right: 10%; animation: floatBounce 5.5s ease-in-out infinite 1.5s; }
+    .float-5 { top: 50%; left: 3%; animation: floatBounce 6s ease-in-out infinite 2s; font-size: 24px; }
+
+    @keyframes floatBounce {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        25% { transform: translateY(-15px) rotate(5deg); }
+        75% { transform: translateY(10px) rotate(-5deg); }
+    }
+
+    @media (max-width: 768px) {
+        .closing-float { display: none; }
     }
 
     .closing-inner {
-        max-width: 620px;
+        max-width: 700px;
         margin: 0 auto;
         position: relative;
-        z-index: 1;
+        z-index: 10;
     }
 
-    /* Letter card */
-    .letter {
-        background: rgba(255, 255, 255, 0.04);
-        border: 2px solid rgba(255, 255, 255, 0.1);
-        border-radius: 28px;
-        padding: 56px 48px;
+    /* Main card with animated gradient border */
+    .closing-card {
+        background: linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
+        backdrop-filter: blur(20px);
+        border-radius: 40px;
+        padding: 70px 50px 50px;
+        position: relative;
+        overflow: visible;
+    }
+
+    .closing-card::before {
+        content: '';
+        position: absolute;
+        inset: -3px;
+        background: linear-gradient(60deg, var(--coral), var(--pink), var(--gold), var(--mint), var(--coral));
+        background-size: 300% 300%;
+        border-radius: 43px;
+        z-index: -1;
+        animation: gradientBorder 6s ease infinite;
+    }
+
+    .closing-card::after {
+        content: '';
+        position: absolute;
+        inset: 3px;
+        background: linear-gradient(145deg, rgba(22, 33, 62, 0.97) 0%, rgba(15, 52, 96, 0.97) 100%);
+        border-radius: 37px;
+        z-index: -1;
+    }
+
+    @keyframes gradientBorder {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* Trophy icon */
+    .closing-trophy {
+        width: 100px;
+        height: 100px;
+        margin: -100px auto 30px;
+        background: linear-gradient(135deg, #FFD700, #FFA500);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 50px;
+        box-shadow:
+            0 15px 50px rgba(255, 215, 0, 0.5),
+            0 0 100px rgba(255, 215, 0, 0.3),
+            inset 0 -5px 0 rgba(0,0,0,0.15);
+        animation: trophyBounce 2s ease-in-out infinite;
         position: relative;
     }
 
-    @media (max-width: 600px) {
-        .letter { padding: 40px 28px; }
-    }
-
-    /* Corner decoration */
-    .letter-corner {
+    .closing-trophy::before {
+        content: '';
         position: absolute;
-        top: -2px;
-        left: -2px;
-        width: 70px;
-        height: 70px;
-        border-top: 4px solid var(--coral);
-        border-left: 4px solid var(--coral);
-        border-radius: 28px 0 0 0;
-        opacity: 0.6;
+        inset: -8px;
+        border: 3px dashed rgba(255, 215, 0, 0.5);
+        border-radius: 50%;
+        animation: spin 20s linear infinite;
     }
 
-    .letter-corner-br {
-        position: absolute;
-        bottom: -2px;
-        right: -2px;
-        width: 70px;
-        height: 70px;
-        border-bottom: 4px solid var(--mint);
-        border-right: 4px solid var(--mint);
-        border-radius: 0 0 28px 0;
-        opacity: 0.6;
+    @keyframes trophyBounce {
+        0%, 100% { transform: translateY(0) scale(1); }
+        50% { transform: translateY(-12px) scale(1.05); }
     }
 
-    .letter h2 {
-        font-size: clamp(28px, 4.5vw, 38px);
-        color: #fff;
-        margin-bottom: 24px;
+    /* Headline */
+    .closing-headline {
         text-align: center;
+        margin-bottom: 28px;
     }
 
-    .letter p {
-        font-size: 17px;
-        color: rgba(255,255,255,0.85);
-        line-height: 1.8;
-        margin-bottom: 16px;
-        text-align: center;
-    }
-
-    .letter strong {
-        color: #fff;
-    }
-
-    .letter .emphasis {
-        font-size: 20px;
-        font-weight: 700;
-        color: var(--mint);
-        margin: 32px 0;
-        text-align: center;
-    }
-
-    /* Signature */
-    .signature {
-        margin-top: 40px;
-        padding-top: 32px;
-        border-top: 1px solid rgba(255,255,255,0.1);
-        text-align: center;
-    }
-
-    .sig-text {
+    .closing-headline .top-line {
+        display: block;
         font-family: 'Caveat', cursive;
-        font-size: 36px;
-        color: var(--pink-soft);
+        font-size: 28px;
+        color: var(--gold);
         margin-bottom: 8px;
     }
 
-    .sig-heart {
-        display: inline-block;
-        animation: heartbeat 1.5s ease-in-out infinite;
+    .closing-headline h2 {
+        font-size: clamp(32px, 5.5vw, 48px);
+        line-height: 1.1;
+        margin: 0;
+    }
+
+    .closing-headline h2 .white { color: #fff; }
+    .closing-headline h2 .gradient {
+        background: linear-gradient(90deg, var(--coral), var(--pink), var(--mint));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Body content */
+    .closing-body {
+        text-align: center;
+        margin-bottom: 32px;
+    }
+
+    .closing-body p {
+        font-size: 18px;
+        color: rgba(255,255,255,0.85);
+        line-height: 1.8;
+        margin-bottom: 16px;
+    }
+
+    .closing-body strong {
+        color: #fff;
+        font-weight: 700;
+    }
+
+    /* Action steps - pill style */
+    .closing-actions {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin: 32px 0;
+    }
+
+    .action-pill {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(255,255,255,0.08);
+        border: 2px solid rgba(255,255,255,0.15);
+        border-radius: 50px;
+        padding: 14px 24px;
+        font-size: 15px;
+        font-weight: 700;
+        color: #fff;
+        transition: all 0.3s;
+        cursor: default;
+    }
+
+    .action-pill:hover {
+        transform: translateY(-4px) scale(1.02);
+        border-color: rgba(255,255,255,0.3);
+        background: rgba(255,255,255,0.12);
+    }
+
+    .action-pill .num {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 800;
+    }
+
+    .action-pill:nth-child(1) .num { background: var(--coral); }
+    .action-pill:nth-child(2) .num { background: var(--whatsapp); }
+    .action-pill:nth-child(3) .num { background: var(--mint); }
+
+    /* WhatsApp highlight box */
+    .whatsapp-box {
+        background: linear-gradient(135deg, rgba(37, 211, 102, 0.2) 0%, rgba(37, 211, 102, 0.05) 100%);
+        border: 2px solid rgba(37, 211, 102, 0.4);
+        border-radius: 24px;
+        padding: 28px 32px;
+        margin: 36px 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .whatsapp-box::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 120px;
+        height: 120px;
+        background: radial-gradient(circle, rgba(37, 211, 102, 0.2), transparent 70%);
+        transform: translate(30%, -30%);
+    }
+
+    .whatsapp-box-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 14px;
+    }
+
+    .whatsapp-box-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--whatsapp);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    }
+
+    .whatsapp-box-title {
+        font-size: 20px;
+        font-weight: 800;
+        color: #fff;
+    }
+
+    .whatsapp-box p {
+        font-size: 16px;
+        color: rgba(255,255,255,0.9);
+        line-height: 1.7;
+        margin: 0;
+    }
+
+    /* Big CTA */
+    .closing-cta {
+        display: flex;
+        justify-content: center;
+        margin-top: 36px;
+    }
+
+    .closing-cta .btn {
+        padding: 22px 48px;
+        font-size: 18px;
+        border-radius: 60px;
+        position: relative;
+        overflow: hidden;
+        animation: ctaPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes ctaPulse {
+        0%, 100% { box-shadow: 0 6px 30px rgba(37, 211, 102, 0.4); }
+        50% { box-shadow: 0 10px 50px rgba(37, 211, 102, 0.6); }
+    }
+
+    .closing-cta .btn::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+        transform: rotate(45deg);
+        animation: btnShine 3s infinite;
+    }
+
+    @keyframes btnShine {
+        0% { transform: translateX(-100%) rotate(45deg); }
+        100% { transform: translateX(100%) rotate(45deg); }
+    }
+
+    /* Signature area */
+    .closing-sig {
+        margin-top: 48px;
+        padding-top: 32px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        text-align: center;
+        position: relative;
+    }
+
+    .closing-sig::before {
+        content: '💕';
+        position: absolute;
+        top: -16px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(145deg, rgba(22, 33, 62, 0.97) 0%, rgba(15, 52, 96, 0.97) 100%);
+        padding: 0 20px;
+        font-size: 24px;
+    }
+
+    .sig-main {
+        font-family: 'Caveat', cursive;
+        font-size: 44px;
+        color: #fff;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .sig-main .heart {
+        color: var(--coral);
+        animation: heartbeat 1.2s ease-in-out infinite;
     }
 
     @keyframes heartbeat {
         0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.2); }
+        50% { transform: scale(1.25); }
     }
 
     .sig-name {
         font-size: 15px;
         color: rgba(255,255,255,0.5);
-        letter-spacing: 1px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+    }
+
+    @media (max-width: 600px) {
+        .closing { padding: 80px 16px 100px; }
+        .closing-card { padding: 60px 24px 40px; border-radius: 28px; }
+        .closing-trophy { width: 80px; height: 80px; font-size: 40px; margin-top: -80px; }
+        .closing-actions { flex-direction: column; align-items: center; }
+        .action-pill { width: 100%; justify-content: center; }
+        .whatsapp-box { padding: 24px 20px; }
+        .closing-cta .btn { width: 100%; justify-content: center; }
+    }
+
+    @media (max-width: 350px) {
+        .closing { padding: 60px 12px 80px; }
+        .closing-card { padding: 50px 16px 32px; }
+        .closing-trophy { width: 70px; height: 70px; font-size: 35px; margin-top: -70px; }
+        .closing-headline h2 { font-size: 26px; }
+        .closing-body p { font-size: 15px; }
+        .sig-main { font-size: 34px; }
     }
 
     /* ============================================
@@ -2303,48 +2595,85 @@
         </section>
 
         <!-- ============================================
-             CLOSING - PERSONAL LETTER
+             CLOSING - FUN & CREATIVE FINALE
              ============================================ -->
         <section class="closing">
-            <!-- Decorations -->
-            <svg class="closing-decor cd-1" width="32" height="32" viewBox="0 0 24 24" fill="rgba(255,209,166,0.5)">
-                <path d="M12 2l2.5 7.5L22 10l-6 5 2 8-6-4-6 4 2-8-6-5 7.5-.5L12 2z"/>
-            </svg>
-            <svg class="closing-decor cd-2" width="26" height="26" viewBox="0 0 24 24" fill="rgba(255,107,157,0.5)">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-            </svg>
-            <svg class="closing-decor cd-3" width="20" height="20" viewBox="0 0 24 24" fill="rgba(78,205,196,0.5)">
-                <path d="M12 0l1.5 10.5L24 12l-10.5 1.5L12 24l-1.5-10.5L0 12l10.5-1.5L12 0z"/>
-            </svg>
+            <!-- Animated gradient orbs -->
+            <div class="closing-orb orb-1"></div>
+            <div class="closing-orb orb-2"></div>
+            <div class="closing-orb orb-3"></div>
+
+            <!-- Floating emojis -->
+            <span class="closing-float float-1">✨</span>
+            <span class="closing-float float-2">🎯</span>
+            <span class="closing-float float-3">💪</span>
+            <span class="closing-float float-4">🚀</span>
+            <span class="closing-float float-5">⭐</span>
 
             <div class="closing-inner">
-                <div class="letter">
-                    <div class="letter-corner"></div>
-                    <div class="letter-corner-br"></div>
+                <div class="closing-card">
+                    <!-- Trophy icon -->
+                    <div class="closing-trophy">🏆</div>
 
-                    <h2>You Already Did the Hard Part.</h2>
+                    <!-- Headline -->
+                    <div class="closing-headline">
+                        <span class="top-line">You did it!</span>
+                        <h2>
+                            <span class="white">You Already Did</span><br>
+                            <span class="gradient">The Hard Part.</span>
+                        </h2>
+                    </div>
 
-                    <p>Most people think about fixing their Etsy shop for months. They save videos, screenshot posts, tell themselves "eventually."</p>
+                    <!-- Body -->
+                    <div class="closing-body">
+                        <p>Most people think about fixing their Etsy shop for months. They save videos, screenshot posts, tell themselves "eventually."</p>
+                        <p><strong>You actually did something.</strong> That's already different.</p>
+                    </div>
 
-                    <p><strong>You actually did something.</strong> That's already different.</p>
+                    <!-- Action steps -->
+                    <div class="closing-actions">
+                        <div class="action-pill">
+                            <span class="num">1</span>
+                            Add the dates
+                        </div>
+                        <div class="action-pill">
+                            <span class="num">2</span>
+                            Join WhatsApp
+                        </div>
+                        <div class="action-pill">
+                            <span class="num">3</span>
+                            Show up Day 1
+                        </div>
+                    </div>
 
-                    <p class="emphasis">Add the dates. Join the WhatsApp. Show up Day 1.</p>
+                    <!-- WhatsApp highlight box -->
+                    <div class="whatsapp-box">
+                        <div class="whatsapp-box-header">
+                            <div class="whatsapp-box-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff">
+                                    <path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5l-1.4 5 5.2-1.3c1.5.9 3.2 1.4 5 1.4 5.5 0 10-4.5 10-10S17.5 2 12 2z"/>
+                                </svg>
+                            </div>
+                            <span class="whatsapp-box-title">Don't miss the good stuff!</span>
+                        </div>
+                        <p>All the challenge details, live links, bonus content, and my best tips will be sent through WhatsApp — <strong>not email</strong>. This is where the real magic happens. 🪄</p>
+                    </div>
 
-                    <p>The people who get results are in the room.<br><strong>Be in the room.</strong></p>
+                    <!-- Big CTA -->
+                    <div class="closing-cta">
+                        <a href="https://chat.whatsapp.com/HNPUssdKVNA1jdBbmjjBwr" target="_blank" class="btn btn-whatsapp">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5l-1.4 5 5.2-1.3c1.5.9 3.2 1.4 5 1.4 5.5 0 10-4.5 10-10S17.5 2 12 2z"/>
+                            </svg>
+                            Join the WhatsApp Now
+                        </a>
+                    </div>
 
-                    <p style="margin-top: 24px; font-size: 15px; color: var(--text-light);"><strong style="color: var(--navy);">Important:</strong> All the challenge details, bonus links, and my best tips will be sent through WhatsApp — not email. This is where the real conversation happens.</p>
-
-                    <a href="https://chat.whatsapp.com/HNPUssdKVNA1jdBbmjjBwr" target="_blank" class="btn btn-whatsapp" style="margin-top: 28px; display: inline-flex; max-width: 280px;">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5l-1.4 5 5.2-1.3c1.5.9 3.2 1.4 5 1.4 5.5 0 10-4.5 10-10S17.5 2 12 2z"/>
-                        </svg>
-                        Join WhatsApp Now
-                    </a>
-
-                    <div class="signature">
-                        <p class="sig-text">
+                    <!-- Signature -->
+                    <div class="closing-sig">
+                        <p class="sig-main">
                             See you there!
-                            <span class="sig-heart">❤️</span>
+                            <span class="heart">❤️</span>
                         </p>
                         <p class="sig-name">— Bailey</p>
                     </div>
