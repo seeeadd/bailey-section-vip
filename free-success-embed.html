@@ -415,6 +415,8 @@
         margin: 28px 0 16px;
         line-height: 1.1;
         position: relative;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 
     .hero h1 .line1 {
@@ -423,14 +425,18 @@
     }
 
     .hero h1 .line2 {
-        display: inline;
+        display: block;
         position: relative;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 
     /* Highlight underline */
     .hero h1 .highlight {
         position: relative;
         display: inline;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 
     .hero h1 .highlight::after {
@@ -1911,6 +1917,14 @@
             margin: 24px 0 20px;
         }
         .hero h1 .line1 { margin-bottom: 12px; }
+        .hero h1 .line2 {
+            display: block;
+            line-height: 1.35;
+        }
+        .hero h1 .highlight {
+            display: inline;
+            line-height: 1.35;
+        }
         .hero-sub {
             font-size: 17px;
             margin: 0 auto 44px;
