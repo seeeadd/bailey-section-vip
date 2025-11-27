@@ -11,6 +11,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,700,900&display=swap" rel="stylesheet">
 
+    <!-- Vturb Preloads -->
+    <script>!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);</script>
+    <link rel="preload" href="https://scripts.converteai.net/4a88e4d6-10d6-46da-b41b-334366e58f7b/players/69268e3d1ec0bc043c339ac6/v4/player.js" as="script">
+    <link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
+    <link rel="preload" href="https://cdn.converteai.net/4a88e4d6-10d6-46da-b41b-334366e58f7b/69268e3628a44c0f4a8dccf1/main.m3u8" as="fetch">
+    <link rel="dns-prefetch" href="https://cdn.converteai.net">
+    <link rel="dns-prefetch" href="https://scripts.converteai.net">
+    <link rel="dns-prefetch" href="https://images.converteai.net">
+    <link rel="dns-prefetch" href="https://api.vturb.com.br">
+
+    <!-- Add to Calendar Button -->
+    <script src="https://cdn.jsdelivr.net/npm/add-to-calendar-button@2" async defer></script>
+
     <style>
         @font-face {
             font-family: 'Ogg';
@@ -36,22 +49,22 @@
         }
 
         :root {
-            /* New playful palette - coral/pink forward */
+            /* Playful palette - coral/pink forward */
             --coral: #FF6B6B;
             --coral-light: #FF8A8A;
             --coral-dark: #E85555;
             --pink: #FF85A2;
             --pink-light: #FFB3C6;
-            --pink-dark: #E86B8A;
-            --mint: #7FDBCA;
+            --pink-dark: #D96B8A;
+            --mint: #5ECFBD;
             --mint-light: #A8E6DB;
-            --mint-dark: #5FBFAE;
+            --mint-dark: #3BA99A;
             --cream: #FFF9F5;
             --cream-dark: #FFF0E8;
             --warm-white: #FFFCFA;
             --text-dark: #2D3436;
-            --text-medium: #636E72;
-            --text-light: #B2BEC3;
+            --text-medium: #555555;
+            --text-light: #888888;
             --gold-accent: #FFD93D;
             --whatsapp-green: #25D366;
         }
@@ -103,7 +116,7 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            box-shadow: 0 2px 10px rgba(127, 219, 202, 0.4);
+            box-shadow: 0 2px 10px rgba(94, 207, 189, 0.4);
             animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
         }
 
@@ -189,22 +202,20 @@
             font-family: 'Caveat', cursive;
             font-size: 24px;
             color: var(--mint);
-            opacity: 0.3;
+            opacity: 0.4;
             pointer-events: none;
         }
 
         /* ========================================
-           SECTION 1: CELEBRATION HERO
+           SECTION 1: CELEBRATION HERO - 2 COLUMNS
            ======================================== */
         .section-hero {
             background: linear-gradient(180deg, var(--cream) 0%, var(--warm-white) 100%);
-            padding: 50px 24px 40px;
-            text-align: center;
+            padding: 50px 24px 60px;
             position: relative;
             overflow: hidden;
         }
 
-        /* Decorative background shapes */
         .section-hero::before {
             content: '';
             position: absolute;
@@ -223,30 +234,30 @@
             left: -50px;
             width: 200px;
             height: 200px;
-            background: radial-gradient(circle, rgba(127, 219, 202, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(94, 207, 189, 0.1) 0%, transparent 70%);
             pointer-events: none;
         }
 
         .hero-container {
-            max-width: 800px;
+            max-width: 1100px;
             margin: 0 auto;
             position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
         }
 
-        /* Floating decorative elements */
-        .hero-sparkle-1 { top: 20px; left: 10%; animation-delay: 0s; }
-        .hero-sparkle-2 { top: 60px; right: 15%; animation-delay: 0.5s; }
-        .hero-sparkle-3 { bottom: 100px; left: 5%; animation-delay: 1s; }
-        .hero-dollar-1 { top: 40px; left: 8%; transform: rotate(-15deg); }
-        .hero-dollar-2 { top: 80px; right: 10%; transform: rotate(20deg); }
-        .hero-dollar-3 { bottom: 150px; right: 8%; transform: rotate(-10deg); }
+        .hero-text {
+            text-align: left;
+        }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             background: linear-gradient(135deg, var(--coral-light), var(--pink-light));
-            color: var(--coral-dark);
+            color: #c44545;
             font-family: 'Satoshi', sans-serif;
             font-size: 13px;
             font-weight: 700;
@@ -260,7 +271,7 @@
 
         .hero-title {
             font-family: 'Ogg', Georgia, serif;
-            font-size: clamp(36px, 6vw, 52px);
+            font-size: clamp(32px, 5vw, 46px);
             font-weight: 700;
             color: var(--text-dark);
             margin-bottom: 8px;
@@ -291,6 +302,7 @@
             color: var(--mint-dark);
             margin-bottom: 16px;
             transform: rotate(-2deg);
+            display: inline-block;
         }
 
         .hero-subtitle {
@@ -298,8 +310,7 @@
             font-size: 17px;
             font-weight: 500;
             color: var(--text-medium);
-            max-width: 550px;
-            margin: 0 auto 30px;
+            max-width: 480px;
             line-height: 1.7;
         }
 
@@ -310,8 +321,6 @@
 
         /* Video Container - Warm coral frame */
         .video-wrapper {
-            max-width: 650px;
-            margin: 0 auto;
             position: relative;
         }
 
@@ -330,24 +339,10 @@
             position: relative;
         }
 
-        .video-placeholder {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 12px;
-            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
-        }
-
-        .video-placeholder svg {
-            opacity: 0.6;
-        }
-
-        .video-placeholder p {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 14px;
+        .video-inner vturb-smartplayer {
+            width: 100%;
+            height: 100%;
+            display: block;
         }
 
         .video-label {
@@ -356,6 +351,61 @@
             font-family: 'Caveat', cursive;
             font-size: 20px;
             color: var(--text-medium);
+        }
+
+        /* Mobile play overlay */
+        .mobile-play-overlay {
+            position: absolute;
+            inset: 0;
+            display: none;
+            cursor: pointer;
+            border-radius: 16px;
+            z-index: 10;
+            overflow: hidden;
+            background: rgba(26, 26, 26, 0.9);
+        }
+
+        .mobile-play-overlay .play-button-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .mobile-play-overlay .play-icon-circle {
+            width: 64px;
+            height: 64px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .mobile-play-overlay .play-icon-circle svg {
+            width: 24px;
+            height: 24px;
+            margin-left: 3px;
+        }
+
+        .mobile-play-overlay .tap-text {
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-play-overlay {
+                display: block;
+            }
+            .video-inner > vturb-smartplayer {
+                display: none !important;
+            }
         }
 
         /* ========================================
@@ -412,7 +462,7 @@
             border: 2px solid transparent;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
             position: relative;
-            overflow: hidden;
+            overflow: visible;
             transition: all 0.3s ease;
         }
 
@@ -426,7 +476,7 @@
         }
 
         .step-card.step-2 {
-            border-color: rgba(127, 219, 202, 0.3);
+            border-color: rgba(94, 207, 189, 0.3);
         }
 
         .step-card.step-3 {
@@ -449,7 +499,7 @@
         }
 
         .step-card.step-2 .step-number { background: var(--mint-dark); }
-        .step-card.step-3 .step-number { background: var(--pink); }
+        .step-card.step-3 .step-number { background: var(--pink-dark); }
 
         .step-content {
             padding-top: 20px;
@@ -477,7 +527,7 @@
         }
 
         .step-card.step-1 .step-title .icon { background: rgba(255, 107, 107, 0.12); }
-        .step-card.step-2 .step-title .icon { background: rgba(127, 219, 202, 0.15); }
+        .step-card.step-2 .step-title .icon { background: rgba(94, 207, 189, 0.15); }
         .step-card.step-3 .step-title .icon { background: rgba(255, 133, 162, 0.12); }
 
         .step-description {
@@ -518,17 +568,6 @@
             box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
         }
 
-        .action-btn.notion {
-            background: linear-gradient(135deg, var(--mint), var(--mint-dark));
-            color: #fff;
-            box-shadow: 0 4px 15px rgba(127, 219, 202, 0.3);
-        }
-
-        .action-btn.notion:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(127, 219, 202, 0.4);
-        }
-
         /* Schedule in Step 2 */
         .schedule-grid {
             display: grid;
@@ -538,8 +577,8 @@
         }
 
         .schedule-day {
-            background: linear-gradient(135deg, rgba(127, 219, 202, 0.08), rgba(127, 219, 202, 0.04));
-            border: 1px solid rgba(127, 219, 202, 0.2);
+            background: linear-gradient(135deg, rgba(94, 207, 189, 0.08), rgba(94, 207, 189, 0.04));
+            border: 1px solid rgba(94, 207, 189, 0.25);
             border-radius: 14px;
             padding: 16px;
             text-align: center;
@@ -549,7 +588,7 @@
         .schedule-day:hover {
             transform: translateY(-2px);
             border-color: var(--mint);
-            box-shadow: 0 4px 15px rgba(127, 219, 202, 0.15);
+            box-shadow: 0 4px 15px rgba(94, 207, 189, 0.15);
         }
 
         .schedule-day .day-label {
@@ -585,6 +624,32 @@
             font-size: 18px;
             color: var(--mint-dark);
             margin-top: 12px;
+        }
+
+        /* Calendar Button Wrapper */
+        .calendar-btn-wrapper {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 16px;
+            position: relative;
+            z-index: 100;
+        }
+
+        .calendar-btn-wrapper add-to-calendar-button {
+            --btn-background: #FF6B6B;
+            --btn-background-hover: #E85555;
+            --btn-text: #ffffff;
+            --btn-text-hover: #ffffff;
+            --font: 'Satoshi', -apple-system, sans-serif;
+            --btn-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+            --btn-shadow-hover: 0 6px 20px rgba(255, 107, 107, 0.4);
+            --list-background: #ffffff;
+            --list-text: #333333;
+            --list-background-hover: #FFF5F5;
+            --list-text-hover: #FF6B6B;
+            --list-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            --btn-border: none;
+            --checkmark-background: #5ECFBD;
         }
 
         /* Tips in Step 3 */
@@ -657,11 +722,10 @@
 
         .value-header .handwritten {
             font-size: 20px;
-            color: var(--mint-dark);
+            color: var(--coral);
             margin-top: 8px;
         }
 
-        /* Dynamic staggered grid for value items */
         .value-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -706,7 +770,7 @@
         }
 
         .value-item:nth-child(1) .item-icon { background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(255, 107, 107, 0.08)); }
-        .value-item:nth-child(2) .item-icon { background: linear-gradient(135deg, rgba(127, 219, 202, 0.18), rgba(127, 219, 202, 0.08)); }
+        .value-item:nth-child(2) .item-icon { background: linear-gradient(135deg, rgba(94, 207, 189, 0.18), rgba(94, 207, 189, 0.08)); }
         .value-item:nth-child(3) .item-icon { background: linear-gradient(135deg, rgba(255, 217, 61, 0.2), rgba(255, 217, 61, 0.08)); }
         .value-item:nth-child(4) .item-icon { background: linear-gradient(135deg, rgba(255, 133, 162, 0.15), rgba(255, 133, 162, 0.08)); }
 
@@ -746,7 +810,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 12px 40px rgba(127, 219, 202, 0.25);
+            box-shadow: 0 12px 40px rgba(94, 207, 189, 0.25);
         }
 
         .reminder-card::before {
@@ -778,7 +842,7 @@
             font-size: 26px;
             color: #fff;
             margin-bottom: 20px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
         }
 
         .reminder-schedule {
@@ -825,7 +889,7 @@
             font-family: 'Caveat', cursive;
             font-size: 24px;
             color: #fff;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
         }
 
         /* ========================================
@@ -869,7 +933,7 @@
         .closing-text {
             font-family: 'Satoshi', sans-serif;
             font-size: 17px;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.95);
             line-height: 1.7;
             margin-bottom: 24px;
         }
@@ -892,73 +956,8 @@
         }
 
         /* ========================================
-           MOBILE VIDEO DRAWER
+           VIDEO DRAWER (Mobile)
            ======================================== */
-        .mobile-play-overlay {
-            position: absolute;
-            inset: 0;
-            display: none;
-            cursor: pointer;
-            border-radius: 16px;
-            z-index: 10;
-            overflow: hidden;
-        }
-
-        .mobile-play-overlay .preview-video {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 16px;
-        }
-
-        .mobile-play-overlay .play-button-overlay {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 8px;
-            background: rgba(0, 0, 0, 0.3);
-            transition: background 0.3s ease;
-        }
-
-        .mobile-play-overlay:active .play-button-overlay {
-            background: rgba(0, 0, 0, 0.5);
-        }
-
-        .mobile-play-overlay .play-icon-circle {
-            width: 64px;
-            height: 64px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-            transition: transform 0.2s ease;
-        }
-
-        .mobile-play-overlay:active .play-icon-circle {
-            transform: scale(0.95);
-        }
-
-        .mobile-play-overlay .play-icon-circle svg {
-            width: 24px;
-            height: 24px;
-            margin-left: 3px;
-        }
-
-        .mobile-play-overlay .tap-text {
-            color: #fff;
-            font-size: 13px;
-            font-weight: 600;
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Video Drawer Overlay */
         .video-drawer-overlay {
             position: fixed;
             top: 0;
@@ -1173,24 +1172,13 @@
             z-index: 1;
             font-family: 'Satoshi', sans-serif;
             font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
             line-height: 1.5;
         }
 
         .drawer-footer-text strong {
             color: var(--coral);
             font-weight: 600;
-        }
-
-        /* Show mobile overlay only on mobile */
-        @media (max-width: 768px) {
-            .mobile-play-overlay {
-                display: block !important;
-                position: absolute;
-                inset: 0;
-                z-index: 10;
-            }
-            .video-inner .video-placeholder { display: none !important; }
         }
 
         @media (min-width: 769px) {
@@ -1201,6 +1189,29 @@
         /* ========================================
            RESPONSIVE STYLES
            ======================================== */
+        @media (max-width: 900px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+
+            .hero-text {
+                text-align: center;
+                order: 1;
+            }
+
+            .video-wrapper {
+                order: 2;
+                max-width: 550px;
+                margin: 0 auto;
+            }
+
+            .hero-subtitle {
+                margin: 0 auto;
+            }
+        }
+
         @media (max-width: 768px) {
             body {
                 padding-top: 52px;
@@ -1221,11 +1232,11 @@
             }
 
             .section-hero {
-                padding: 40px 20px 30px;
+                padding: 40px 20px 40px;
             }
 
             .hero-title {
-                font-size: 32px;
+                font-size: 30px;
             }
 
             .hero-annotation {
@@ -1306,7 +1317,7 @@
             }
 
             .hero-title {
-                font-size: 28px;
+                font-size: 26px;
             }
 
             .hero-subtitle {
@@ -1334,6 +1345,14 @@
 
             .closing-title {
                 font-size: 26px;
+            }
+
+            .calendar-btn-wrapper {
+                width: 100%;
+            }
+
+            .calendar-btn-wrapper add-to-calendar-button {
+                width: 100%;
             }
         }
 
@@ -1377,17 +1396,17 @@
 </div>
 
 <!-- ============================================
-     SECTION 1: CELEBRATION HERO
+     SECTION 1: CELEBRATION HERO - 2 COLUMNS
      ============================================ -->
 <section class="section-hero">
     <!-- Decorative elements -->
-    <div class="sparkle hero-sparkle-1" style="top: 30px; left: 12%;">
+    <div class="sparkle" style="top: 30px; left: 12%;">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 0L12 8L20 10L12 12L10 20L8 12L0 10L8 8L10 0Z" fill="#FF6B6B" opacity="0.6"/></svg>
     </div>
-    <div class="sparkle hero-sparkle-2" style="top: 80px; right: 15%; animation-delay: 0.5s;">
-        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 0L12 8L20 10L12 12L10 20L8 12L0 10L8 8L10 0Z" fill="#7FDBCA" opacity="0.5"/></svg>
+    <div class="sparkle" style="top: 80px; right: 15%; animation-delay: 0.5s;">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 0L12 8L20 10L12 12L10 20L8 12L0 10L8 8L10 0Z" fill="#5ECFBD" opacity="0.5"/></svg>
     </div>
-    <div class="sparkle hero-sparkle-3" style="bottom: 120px; left: 8%; animation-delay: 1s;">
+    <div class="sparkle" style="bottom: 120px; left: 8%; animation-delay: 1s;">
         <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M10 0L12 8L20 10L12 12L10 20L8 12L0 10L8 8L10 0Z" fill="#FF85A2" opacity="0.5"/></svg>
     </div>
     <div class="dollar-float" style="top: 50px; left: 6%; transform: rotate(-15deg);">$</div>
@@ -1395,42 +1414,31 @@
     <div class="dollar-float" style="bottom: 140px; right: 5%; transform: rotate(-10deg);">$</div>
 
     <div class="hero-container">
-        <div class="hero-badge">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 0L10 6L16 8L10 10L8 16L6 10L0 8L6 6L8 0Z" fill="currentColor"/></svg>
-            Smart Move
+        <!-- Left: Text -->
+        <div class="hero-text">
+            <div class="hero-badge">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 0L10 6L16 8L10 10L8 16L6 10L0 8L6 6L8 0Z" fill="currentColor"/></svg>
+                Smart Move
+            </div>
+
+            <h1 class="hero-title">You Got It! <span class="highlight">Here's Your Toolkit</span></h1>
+
+            <p class="hero-annotation">^ that was a great deal, btw ✨</p>
+
+            <p class="hero-subtitle">
+                You grabbed the essentials — the replays, the decision frameworks, the AI prompts that actually work. <strong>Everything you need to follow along and implement.</strong>
+            </p>
         </div>
 
-        <h1 class="hero-title">You Got It! <span class="highlight">Here's Your Toolkit</span></h1>
-
-        <p class="hero-annotation">^ that was a great deal, btw ✨</p>
-
-        <p class="hero-subtitle">
-            You grabbed the essentials — the replays, the decision frameworks, the AI prompts that actually work. <strong>Everything you need to follow along and implement.</strong>
-        </p>
-
-        <!-- Video -->
+        <!-- Right: Video -->
         <div class="video-wrapper">
             <div class="video-frame">
                 <div class="video-inner">
-                    <div class="video-placeholder">
-                        <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
-                            <circle cx="32" cy="32" r="30" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
-                            <path d="M26 22L44 32L26 42V22Z" fill="rgba(255,255,255,0.5)"/>
-                        </svg>
-                        <p>Quick Thank You from Bailey</p>
-                    </div>
+                    <!-- Desktop: Vturb Player -->
+                    <vturb-smartplayer id="vid-69268e3d1ec0bc043c339ac6" style="display: block; margin: 0 auto; width: 100%;"></vturb-smartplayer>
 
-                    <!-- Mobile Play Overlay -->
+                    <!-- Mobile: Play Overlay -->
                     <div class="mobile-play-overlay" id="mobilePlayBtn">
-                        <iframe
-                            class="preview-video"
-                            id="previewVideo"
-                            src="https://scripts.converteai.net/4a88e4d6-10d6-46da-b41b-334366e58f7b/players/69268e3d1ec0bc043c339ac6/embed.html?muted=true"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen
-                            style="pointer-events: none;"
-                        ></iframe>
                         <div class="play-button-overlay">
                             <div class="play-icon-circle">
                                 <svg viewBox="0 0 24 24" fill="none">
@@ -1458,31 +1466,23 @@
         </div>
 
         <div class="steps-container">
-            <!-- Step 1: Grab Your Stuff -->
+            <!-- Step 1: Join WhatsApp -->
             <div class="step-card step-1">
                 <div class="step-number">Step 1</div>
                 <div class="step-content">
                     <h3 class="step-title">
                         <span class="icon">📦</span>
-                        Grab Your Stuff
+                        Join the Community
                     </h3>
                     <p class="step-description">
-                        Your toolkit lives in two places. Get access to both right now (takes 30 seconds):
+                        This is where everything happens — reminders, resources, and your fellow challengers. Join now (takes 10 seconds):
                     </p>
                     <div class="step-actions">
-                        <a href="#" class="action-btn whatsapp">
+                        <a href="https://chat.whatsapp.com/HNPUssdKVNA1jdBbmjjBwr" target="_blank" class="action-btn whatsapp">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                                 <path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5l-1.4 5 5.2-1.3c1.5.9 3.2 1.4 5 1.4 5.5 0 10-4.5 10-10S17.5 2 12 2z" fill="currentColor"/>
                             </svg>
-                            Join WhatsApp Community
-                        </a>
-                        <a href="#" class="action-btn notion">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                                <rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="2" fill="none"/>
-                                <rect x="7" y="8" width="10" height="2" rx="1" fill="currentColor"/>
-                                <rect x="7" y="12" width="7" height="2" rx="1" fill="currentColor"/>
-                            </svg>
-                            Open Notion Dashboard
+                            Join the WhatsApp Group
                         </a>
                     </div>
                 </div>
@@ -1516,6 +1516,25 @@
                             <div class="day-date">Thursday, Dec 11th</div>
                             <div class="day-time">7:00 PM EST</div>
                         </div>
+                    </div>
+
+                    <div class="calendar-btn-wrapper">
+                        <add-to-calendar-button
+                            name="🌞 Bailey's 3-DAY CHALLENGE - BLACK FRIDAY TRAINING"
+                            description="Don't forget about this!!! This event will give you the answer to your 'how do i start' questions on making WIFI money with digital products."
+                            startDate="2025-12-09"
+                            startTime="19:00"
+                            endDate="2025-12-11"
+                            endTime="20:00"
+                            timeZone="US/Eastern"
+                            location="World Wide Web"
+                            options="'Apple','Google','iCal','Outlook.com','Yahoo'"
+                            buttonStyle="round"
+                            trigger="click"
+                            hideCheckmark
+                            size="4"
+                            label="Add All 3 Days to Calendar"
+                        ></add-to-calendar-button>
                     </div>
 
                     <p class="calendar-note">
@@ -1584,7 +1603,7 @@
             <div class="value-item">
                 <span class="item-number">#2</span>
                 <div class="item-icon">
-                    <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L12 8M12 16L12 22M2 12H8M16 12H22" stroke="#7FDBCA" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="3" stroke="#7FDBCA" stroke-width="2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L12 8M12 16L12 22M2 12H8M16 12H22" stroke="#5ECFBD" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="3" stroke="#5ECFBD" stroke-width="2"/></svg>
                 </div>
                 <div class="item-content">
                     <h4>Delete Decision Matrix</h4>
@@ -1698,6 +1717,9 @@
 
 <script>
 (function() {
+    // Check if mobile
+    const isMobile = window.innerWidth <= 768;
+
     // Mobile Video Drawer
     const mobilePlayBtn = document.getElementById('mobilePlayBtn');
     const videoDrawer = document.getElementById('videoDrawer');
@@ -1817,9 +1839,17 @@
         }
     }
 
+    // Only load Vturb player script on desktop
+    if (!isMobile) {
+        var s = document.createElement("script");
+        s.src = "https://scripts.converteai.net/4a88e4d6-10d6-46da-b41b-334366e58f7b/players/69268e3d1ec0bc043c339ac6/v4/player.js";
+        s.async = true;
+        document.head.appendChild(s);
+    }
+
     // Confetti burst on page load
     function createConfettiBurst() {
-        const colors = ['#FF6B6B', '#FF85A2', '#7FDBCA', '#FFD93D', '#FFB3C6'];
+        const colors = ['#FF6B6B', '#FF85A2', '#5ECFBD', '#FFD93D', '#FFB3C6'];
         const container = document.body;
 
         for (let i = 0; i < 50; i++) {
