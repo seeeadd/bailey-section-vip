@@ -1174,6 +1174,163 @@
     }
 
     /* ==========================================
+       INLINE CTA - Repeatable Throughout Page
+       ========================================== */
+    .downsell-page .inline-cta-wrapper {
+        padding: 40px 20px;
+        background: linear-gradient(135deg, rgba(255, 107, 107, 0.05) 0%, rgba(255, 107, 157, 0.08) 100%);
+        text-align: center;
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .downsell-page .inline-cta-wrapper::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--pink-light), transparent);
+    }
+
+    .downsell-page .inline-cta-wrapper::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--pink-light), transparent);
+    }
+
+    .downsell-page .inline-cta-container {
+        max-width: 480px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 10px;
+    }
+
+    .downsell-page .inline-cta-text {
+        font-family: 'Caveat', cursive;
+        font-size: 22px;
+        color: var(--coral);
+        margin-bottom: 16px;
+    }
+
+    .downsell-page .inline-cta-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background: linear-gradient(135deg, var(--coral), var(--pink));
+        color: white;
+        font-size: 15px;
+        font-weight: 700;
+        padding: 16px 28px;
+        border-radius: 50px;
+        text-decoration: none;
+        box-shadow: 0 6px 25px rgba(255, 107, 107, 0.3);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .downsell-page .inline-cta-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        animation: ctaShine 3s ease-in-out infinite;
+    }
+
+    .downsell-page .inline-cta-btn:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 8px 30px rgba(255, 107, 107, 0.4);
+    }
+
+    .downsell-page .inline-skip-link {
+        display: block;
+        margin-top: 12px;
+        font-size: 13px;
+        color: var(--light-gray);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .downsell-page .inline-skip-link:hover {
+        color: var(--warm-gray);
+        text-decoration: underline;
+    }
+
+    /* Enhanced Close Section - More Visual Energy */
+    .downsell-page .close-section .sparkle-decoration {
+        display: inline-block;
+        animation: twinkle 2s ease-in-out infinite;
+    }
+
+    .downsell-page .final-cta-wrapper {
+        background: linear-gradient(135deg, #FFF5F0 0%, #FFE8E0 50%, #FFF5F8 100%);
+        border-radius: 20px;
+        padding: 35px 25px;
+        margin-top: 30px;
+        position: relative;
+        border: 2px solid rgba(255, 107, 157, 0.2);
+        box-shadow: 0 8px 30px rgba(255, 107, 107, 0.12);
+    }
+
+    .downsell-page .final-cta-wrapper::before {
+        content: '\\2728';
+        position: absolute;
+        top: -15px;
+        left: 20px;
+        font-size: 28px;
+        animation: twinkle 2s ease-in-out infinite;
+    }
+
+    .downsell-page .final-cta-wrapper::after {
+        content: '\\2728';
+        position: absolute;
+        top: -15px;
+        right: 20px;
+        font-size: 28px;
+        animation: twinkle 2s ease-in-out infinite 0.5s;
+    }
+
+    .downsell-page .final-cta-label {
+        font-family: 'Caveat', cursive;
+        font-size: 20px;
+        color: var(--coral);
+        margin-bottom: 12px;
+    }
+
+    .downsell-page .final-price-reminder {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+
+    .downsell-page .final-price-reminder .old-price {
+        font-size: 18px;
+        color: #ccc;
+        text-decoration: line-through;
+    }
+
+    .downsell-page .final-price-reminder .new-price {
+        font-family: 'Ogg', Georgia, serif;
+        font-size: 32px;
+        background: linear-gradient(135deg, var(--coral), var(--pink));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* ==========================================
        RESPONSIVE STYLES
        ========================================== */
     @media (max-width: 768px) {
@@ -1336,11 +1493,35 @@
         }
 
         .downsell-page .close-section {
-            padding: 40px 12px 20px;
+            padding: 40px 12px 40px;
         }
 
-        .downsell-page .cta-section {
-            padding: 15px 12px 60px;
+        .downsell-page .inline-cta-wrapper {
+            padding: 30px 12px;
+        }
+
+        .downsell-page .inline-cta-text {
+            font-size: 18px;
+        }
+
+        .downsell-page .inline-cta-btn {
+            font-size: 13px;
+            padding: 14px 20px;
+        }
+
+        .downsell-page .final-cta-wrapper {
+            padding: 28px 18px;
+            margin-top: 24px;
+        }
+
+        .downsell-page .final-cta-wrapper::before,
+        .downsell-page .final-cta-wrapper::after {
+            font-size: 22px;
+            top: -12px;
+        }
+
+        .downsell-page .final-price-reminder .new-price {
+            font-size: 28px;
         }
 
         .downsell-page .close-question {
@@ -1463,6 +1644,20 @@
         </div>
     </section>
 
+    <!-- INLINE CTA 1 - After Real Talk -->
+    <div class="inline-cta-wrapper">
+        <div class="inline-cta-container">
+            <p class="inline-cta-text">Ready to secure your backup plan?</p>
+            <a href="https://digitallypurposed.thrivecart.com/7-day-replay-pass/" class="inline-cta-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                GET THE REPLAYS + TOOLKIT — $17
+            </a>
+            <a href="https://www.etsyupgrade.com/free-whatsapp" class="inline-skip-link">No thanks, I'll take my chances</a>
+        </div>
+    </div>
+
     <!-- SECTION DIVIDER -->
     <div class="section-divider">
         <div class="divider-line">
@@ -1520,6 +1715,20 @@
             </div>
         </div>
     </section>
+
+    <!-- INLINE CTA 2 - After Price -->
+    <div class="inline-cta-wrapper">
+        <div class="inline-cta-container">
+            <p class="inline-cta-text">$17 for peace of mind? Yes please!</p>
+            <a href="https://digitallypurposed.thrivecart.com/7-day-replay-pass/" class="inline-cta-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                I'M IN — GIVE ME ACCESS NOW
+            </a>
+            <a href="https://www.etsyupgrade.com/free-whatsapp" class="inline-skip-link">Skip this offer</a>
+        </div>
+    </div>
 
     <!-- SECTION DIVIDER -->
     <div class="section-divider">
@@ -1644,10 +1853,24 @@
         </div>
     </section>
 
+    <!-- INLINE CTA 3 - After Value -->
+    <div class="inline-cta-wrapper">
+        <div class="inline-cta-container">
+            <p class="inline-cta-text">All of this. $17. Let's go!</p>
+            <a href="https://digitallypurposed.thrivecart.com/7-day-replay-pass/" class="inline-cta-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                YES — GET EVERYTHING FOR $17
+            </a>
+            <a href="https://www.etsyupgrade.com/free-whatsapp" class="inline-skip-link">No thanks, I'll pass</a>
+        </div>
+    </div>
+
     <!-- CLOSE SECTION -->
     <section class="close-section">
         <div class="close-container">
-            <p class="close-text">Here's the thing...</p>
+            <p class="close-text"><span class="sparkle-decoration">&#10024;</span> Here's the thing... <span class="sparkle-decoration">&#10024;</span></p>
             <p class="close-text">
                 You didn't register for this challenge just to browse. <strong>Something about your shop needs to change.</strong> Maybe sales are inconsistent. Maybe you're spending way too much time. Maybe you're just tired of guessing.
             </p>
@@ -1658,52 +1881,49 @@
                 And for <strong>$17</strong>, you're making sure you don't miss any of it — even if life gets in the way. Plus you're walking away with the actual tools, not just the training.
             </p>
             <h3 class="close-question">Is that worth it?</h3>
-            <p class="close-answer">I think you already know the answer.</p>
-        </div>
-    </section>
+            <p class="close-answer">I think you already know the answer. &#128521;</p>
 
-    <!-- CTA SECTION -->
-    <section class="cta-section">
-        <div class="cta-container">
-            <div class="trust-line">
-                <span>
-                    <svg viewBox="0 0 24 24" fill="none">
-                        <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- FINAL CTA - Wrapped in a nice box -->
+            <div class="final-cta-wrapper">
+                <p class="final-cta-label">Last chance on this page!</p>
+                <div class="final-price-reminder">
+                    <span class="old-price">$27</span>
+                    <span class="new-price">$17</span>
+                </div>
+
+                <div class="trust-line">
+                    <span>
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        One-time payment
+                    </span>
+                    <span>&#8226;</span>
+                    <span>
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Instant access
+                    </span>
+                    <span>&#8226;</span>
+                    <span>
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 7V12L15 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        This page only
+                    </span>
+                </div>
+
+                <a href="https://digitallypurposed.thrivecart.com/7-day-replay-pass/" class="main-cta" style="margin-top: 20px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    One-time payment
-                </span>
-                <span>&#8226;</span>
-                <span>
-                    <svg viewBox="0 0 24 24" fill="none">
-                        <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    No upsells inside
-                </span>
-                <span>&#8226;</span>
-                <span>
-                    <svg viewBox="0 0 24 24" fill="none">
-                        <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    Instant access
-                </span>
-                <span>&#8226;</span>
-                <span>
-                    <svg viewBox="0 0 24 24" fill="none">
-                        <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
-                        <path d="M12 7V12L15 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                    This page only
-                </span>
+                    YES — GIVE ME THE REPLAYS + TOOLKIT FOR $17
+                </a>
+
+                <a href="https://www.etsyupgrade.com/free-whatsapp" class="exit-link">No thanks, I'll try to catch everything live</a>
             </div>
-
-            <a href="#" class="main-cta">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                YES — GIVE ME THE REPLAYS + TOOLKIT FOR $17
-            </a>
-
-            <a href="#" class="exit-link">No thanks, I'll try to catch everything live</a>
         </div>
     </section>
 </div>
