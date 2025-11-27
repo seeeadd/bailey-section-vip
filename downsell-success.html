@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>You're All Set - Downsell Success</title>
+    <title>You Got It! - Your Toolkit Is Ready</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,20 +36,23 @@
         }
 
         :root {
-            --pink-primary: #FF6B9D;
-            --pink-dark: #C7254E;
-            --pink-light: #FFB3D1;
-            --teal-primary: #4ECDC4;
-            --teal-dark: #2F5F61;
-            --teal-light: #A8E6E3;
-            --gold: #FFD166;
-            --gold-dark: #F4A261;
-            --cream: #FAF7F2;
-            --cream-dark: #F5EFE7;
-            --navy: #2F5F61;
-            --gray-light: #E8E8E8;
-            --gray-medium: #999999;
-            --gray-dark: #555555;
+            /* New playful palette - coral/pink forward */
+            --coral: #FF6B6B;
+            --coral-light: #FF8A8A;
+            --coral-dark: #E85555;
+            --pink: #FF85A2;
+            --pink-light: #FFB3C6;
+            --pink-dark: #E86B8A;
+            --mint: #7FDBCA;
+            --mint-light: #A8E6DB;
+            --mint-dark: #5FBFAE;
+            --cream: #FFF9F5;
+            --cream-dark: #FFF0E8;
+            --warm-white: #FFFCFA;
+            --text-dark: #2D3436;
+            --text-medium: #636E72;
+            --text-light: #B2BEC3;
+            --gold-accent: #FFD93D;
             --whatsapp-green: #25D366;
         }
 
@@ -57,9 +60,10 @@
             font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
             font-weight: 500;
             -webkit-font-smoothing: antialiased;
-            color: #333;
+            color: var(--text-dark);
             line-height: 1.6;
-            background: #FFFFFF;
+            background: var(--cream);
+            padding-top: 60px;
         }
 
         h1, h2, h3, h4 {
@@ -67,446 +71,769 @@
             font-weight: 700;
         }
 
-        /* ========================================
-           SECTION 1: HERO (Build in Framer)
-           ======================================== */
-        .section-hero {
-            background: linear-gradient(180deg, var(--cream) 0%, #FFFFFF 100%);
-            padding: 80px 24px 60px;
-            text-align: center;
+        .handwritten {
+            font-family: 'Caveat', cursive;
         }
 
-        .section-hero .container {
+        /* ========================================
+           PURCHASE COMPLETE BAR (Fixed at top)
+           ======================================== */
+        .purchase-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            background: linear-gradient(135deg, #FFF5F5 0%, #FFF0F5 50%, #FFF5F0 100%);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            box-shadow: 0 2px 20px rgba(255, 107, 107, 0.15);
+            border-bottom: 1px solid rgba(255, 107, 107, 0.1);
+        }
+
+        .purchase-bar .checkmark {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, var(--mint), var(--mint-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 2px 10px rgba(127, 219, 202, 0.4);
+            animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+
+        .purchase-bar .checkmark svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .purchase-bar .bar-content {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .purchase-bar .bar-text {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .purchase-bar .progress-track {
+            width: 120px;
+            height: 8px;
+            background: rgba(255, 107, 107, 0.15);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .purchase-bar .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--coral), var(--pink), var(--coral));
+            background-size: 200% 100%;
+            border-radius: 10px;
+            animation: fillProgress 1.2s ease-out 0.3s forwards, shimmer 2s ease-in-out infinite 1.5s;
+            box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+        }
+
+        @keyframes fillProgress {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .purchase-bar .confetti-icon {
+            font-size: 18px;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        /* ========================================
+           DECORATIVE ELEMENTS
+           ======================================== */
+        .sparkle {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .sparkle svg {
+            animation: twinkle 2s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.4; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .dollar-float {
+            position: absolute;
+            font-family: 'Caveat', cursive;
+            font-size: 24px;
+            color: var(--mint);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        /* ========================================
+           SECTION 1: CELEBRATION HERO
+           ======================================== */
+        .section-hero {
+            background: linear-gradient(180deg, var(--cream) 0%, var(--warm-white) 100%);
+            padding: 50px 24px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative background shapes */
+        .section-hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 107, 107, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .section-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(127, 219, 202, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-container {
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
         }
+
+        /* Floating decorative elements */
+        .hero-sparkle-1 { top: 20px; left: 10%; animation-delay: 0s; }
+        .hero-sparkle-2 { top: 60px; right: 15%; animation-delay: 0.5s; }
+        .hero-sparkle-3 { bottom: 100px; left: 5%; animation-delay: 1s; }
+        .hero-dollar-1 { top: 40px; left: 8%; transform: rotate(-15deg); }
+        .hero-dollar-2 { top: 80px; right: 10%; transform: rotate(20deg); }
+        .hero-dollar-3 { bottom: 150px; right: 8%; transform: rotate(-10deg); }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: linear-gradient(135deg, var(--teal-light), rgba(78, 205, 196, 0.3));
-            color: var(--teal-dark);
+            background: linear-gradient(135deg, var(--coral-light), var(--pink-light));
+            color: var(--coral-dark);
             font-family: 'Satoshi', sans-serif;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             padding: 10px 20px;
             border-radius: 30px;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.2);
         }
 
         .hero-title {
             font-family: 'Ogg', Georgia, serif;
-            font-size: 48px;
+            font-size: clamp(36px, 6vw, 52px);
             font-weight: 700;
-            color: var(--navy);
-            margin-bottom: 20px;
-            line-height: 1.15;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            line-height: 1.1;
+        }
+
+        .hero-title .highlight {
+            color: var(--coral);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-title .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, rgba(255, 107, 107, 0.3), rgba(255, 133, 162, 0.3));
+            border-radius: 4px;
+            z-index: -1;
+        }
+
+        .hero-annotation {
+            font-family: 'Caveat', cursive;
+            font-size: 24px;
+            color: var(--mint-dark);
+            margin-bottom: 16px;
+            transform: rotate(-2deg);
         }
 
         .hero-subtitle {
             font-family: 'Satoshi', sans-serif;
-            font-size: 19px;
+            font-size: 17px;
             font-weight: 500;
-            color: var(--gray-dark);
-            max-width: 600px;
-            margin: 0 auto 40px;
+            color: var(--text-medium);
+            max-width: 550px;
+            margin: 0 auto 30px;
             line-height: 1.7;
         }
 
         .hero-subtitle strong {
-            color: var(--navy);
+            color: var(--text-dark);
             font-weight: 700;
         }
 
-        /* Video Placeholder */
-        .video-container {
-            max-width: 700px;
+        /* Video Container - Warm coral frame */
+        .video-wrapper {
+            max-width: 650px;
             margin: 0 auto;
+            position: relative;
+        }
+
+        .video-frame {
+            background: linear-gradient(135deg, var(--coral), var(--pink));
+            padding: 6px;
             border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-            background: var(--navy);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.25);
+        }
+
+        .video-inner {
+            background: #000;
+            border-radius: 16px;
             aspect-ratio: 16 / 9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            overflow: hidden;
             position: relative;
         }
 
         .video-placeholder {
-            color: rgba(255, 255, 255, 0.6);
-            font-family: 'Satoshi', sans-serif;
-            font-size: 16px;
-            text-align: center;
-        }
-
-        .video-placeholder svg {
-            display: block;
-            margin: 0 auto 12px;
-            opacity: 0.6;
-        }
-
-        /* ========================================
-           SECTION 2: DUAL CTA (Build in Framer)
-           ======================================== */
-        .section-dual-cta {
-            background: #FFFFFF;
-            padding: 60px 24px 80px;
-        }
-
-        .section-dual-cta .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .section-dual-cta .section-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .section-dual-cta .section-title {
-            font-family: 'Ogg', Georgia, serif;
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--navy);
-        }
-
-        .cta-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-        }
-
-        .cta-card {
-            background: #FFFFFF;
-            border-radius: 24px;
-            padding: 40px 32px;
-            text-align: center;
-            border: 2px solid var(--gray-light);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .cta-card.whatsapp {
-            border-color: rgba(37, 211, 102, 0.3);
-            background: linear-gradient(180deg, rgba(37, 211, 102, 0.03) 0%, #FFFFFF 100%);
-        }
-
-        .cta-card.whatsapp:hover {
-            border-color: var(--whatsapp-green);
-            box-shadow: 0 16px 40px rgba(37, 211, 102, 0.15);
-        }
-
-        .cta-card.notion {
-            border-color: rgba(78, 205, 196, 0.3);
-            background: linear-gradient(180deg, rgba(78, 205, 196, 0.03) 0%, #FFFFFF 100%);
-        }
-
-        .cta-card.notion:hover {
-            border-color: var(--teal-primary);
-            box-shadow: 0 16px 40px rgba(78, 205, 196, 0.15);
-        }
-
-        .cta-icon {
-            width: 72px;
-            height: 72px;
-            border-radius: 20px;
+            position: absolute;
+            inset: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 24px;
+            flex-direction: column;
+            gap: 12px;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
         }
 
-        .cta-card.whatsapp .cta-icon {
-            background: linear-gradient(135deg, var(--whatsapp-green), #20BA5C);
+        .video-placeholder svg {
+            opacity: 0.6;
         }
 
-        .cta-card.notion .cta-icon {
-            background: linear-gradient(135deg, var(--teal-primary), var(--teal-dark));
+        .video-placeholder p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
         }
 
-        .cta-card h3 {
-            font-family: 'Ogg', Georgia, serif;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--navy);
-            margin-bottom: 12px;
-        }
-
-        .cta-card p {
-            font-family: 'Satoshi', sans-serif;
-            font-size: 16px;
-            color: var(--gray-dark);
-            margin-bottom: 24px;
-            line-height: 1.6;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 16px 28px;
-            border-radius: 50px;
-            font-family: 'Satoshi', sans-serif;
-            font-size: 16px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .cta-button.whatsapp {
-            background: linear-gradient(135deg, var(--whatsapp-green), #20BA5C);
-            color: #FFFFFF;
-        }
-
-        .cta-button.whatsapp:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
-        }
-
-        .cta-button.notion {
-            background: linear-gradient(135deg, var(--teal-primary), var(--teal-dark));
-            color: #FFFFFF;
-        }
-
-        .cta-button.notion:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 24px rgba(78, 205, 196, 0.35);
+        .video-label {
+            text-align: center;
+            margin-top: 16px;
+            font-family: 'Caveat', cursive;
+            font-size: 20px;
+            color: var(--text-medium);
         }
 
         /* ========================================
-           SECTION 3: VALUE STACK (Embeddable HTML)
+           SECTION 2: YOUR GAME PLAN (Step by Step)
            ======================================== */
-        .section-value-stack {
-            background: var(--cream);
-            padding: 80px 24px;
-        }
-
-        .section-value-stack .container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .section-value-stack .section-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-value-stack .section-title {
-            font-family: 'Ogg', Georgia, serif;
-            font-size: 38px;
-            font-weight: 700;
-            color: var(--navy);
-            margin-bottom: 8px;
-        }
-
-        .price-tag {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--pink-primary), var(--pink-dark));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 900;
-        }
-
-        .value-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-        }
-
-        .value-card {
-            background: #FFFFFF;
-            border-radius: 20px;
-            padding: 32px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-            border: 1px solid rgba(0, 0, 0, 0.04);
-            transition: all 0.3s ease;
+        .section-gameplan {
+            background: var(--warm-white);
+            padding: 60px 24px;
             position: relative;
-            overflow: hidden;
         }
 
-        .value-card::before {
+        .section-gameplan::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: var(--card-accent, var(--teal-primary));
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--pink-light), transparent);
         }
 
-        .value-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-        }
-
-        .value-card-1 { --card-accent: var(--teal-primary); }
-        .value-card-2 { --card-accent: var(--pink-primary); }
-        .value-card-3 { --card-accent: var(--gold-dark); }
-        .value-card-4 { --card-accent: var(--navy); }
-
-        .value-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            font-size: 28px;
-        }
-
-        .value-card-1 .value-icon { background: rgba(78, 205, 196, 0.12); }
-        .value-card-2 .value-icon { background: rgba(255, 107, 157, 0.12); }
-        .value-card-3 .value-icon { background: rgba(244, 162, 97, 0.12); }
-        .value-card-4 .value-icon { background: rgba(47, 95, 97, 0.12); }
-
-        .value-card h4 {
-            font-family: 'Satoshi', sans-serif;
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--navy);
-            margin-bottom: 10px;
-        }
-
-        .value-card p {
-            font-family: 'Satoshi', sans-serif;
-            font-size: 15px;
-            font-weight: 500;
-            color: var(--gray-dark);
-            line-height: 1.6;
-        }
-
-        /* ========================================
-           SECTION 4: CHECKLIST (Embeddable HTML)
-           ======================================== */
-        .section-checklist {
-            background: #FFFFFF;
-            padding: 80px 24px;
-        }
-
-        .section-checklist .container {
-            max-width: 700px;
+        .gameplan-container {
+            max-width: 900px;
             margin: 0 auto;
         }
 
-        .section-checklist .section-header {
+        .gameplan-header {
             text-align: center;
             margin-bottom: 40px;
         }
 
-        .section-checklist .section-title {
-            font-family: 'Ogg', Georgia, serif;
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--navy);
+        .gameplan-header h2 {
+            font-size: clamp(28px, 5vw, 38px);
+            color: var(--text-dark);
+            margin-bottom: 8px;
         }
 
-        .checklist-card {
-            background: linear-gradient(180deg, var(--cream) 0%, #FFFFFF 100%);
-            border-radius: 24px;
-            padding: 40px;
-            border: 2px solid var(--cream-dark);
+        .gameplan-header .handwritten {
+            font-size: 22px;
+            color: var(--coral);
         }
 
-        .checklist-items {
+        /* Step Cards */
+        .steps-container {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 24px;
         }
 
-        .checklist-item {
+        .step-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 28px;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .step-card.step-1 {
+            border-color: rgba(255, 107, 107, 0.2);
+        }
+
+        .step-card.step-2 {
+            border-color: rgba(127, 219, 202, 0.3);
+        }
+
+        .step-card.step-3 {
+            border-color: rgba(255, 133, 162, 0.2);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -1px;
+            left: 28px;
+            background: var(--coral);
+            color: #fff;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .step-card.step-2 .step-number { background: var(--mint-dark); }
+        .step-card.step-3 .step-number { background: var(--pink); }
+
+        .step-content {
+            padding-top: 20px;
+        }
+
+        .step-title {
+            font-family: 'Ogg', Georgia, serif;
+            font-size: 24px;
+            color: var(--text-dark);
+            margin-bottom: 12px;
             display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            padding: 16px 20px;
-            background: #FFFFFF;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .step-title .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .step-card.step-1 .step-title .icon { background: rgba(255, 107, 107, 0.12); }
+        .step-card.step-2 .step-title .icon { background: rgba(127, 219, 202, 0.15); }
+        .step-card.step-3 .step-title .icon { background: rgba(255, 133, 162, 0.12); }
+
+        .step-description {
+            font-size: 15px;
+            color: var(--text-medium);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        /* Action buttons row */
+        .step-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn.whatsapp {
+            background: linear-gradient(135deg, var(--whatsapp-green), #20BA5C);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .action-btn.whatsapp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .action-btn.notion {
+            background: linear-gradient(135deg, var(--mint), var(--mint-dark));
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(127, 219, 202, 0.3);
+        }
+
+        .action-btn.notion:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(127, 219, 202, 0.4);
+        }
+
+        /* Schedule in Step 2 */
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .schedule-day {
+            background: linear-gradient(135deg, rgba(127, 219, 202, 0.08), rgba(127, 219, 202, 0.04));
+            border: 1px solid rgba(127, 219, 202, 0.2);
             border-radius: 14px;
-            border: 1px solid var(--gray-light);
-            cursor: pointer;
-            transition: all 0.2s ease;
+            padding: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
         }
 
-        .checklist-item:hover {
-            border-color: var(--teal-primary);
-            box-shadow: 0 4px 12px rgba(78, 205, 196, 0.1);
+        .schedule-day:hover {
+            transform: translateY(-2px);
+            border-color: var(--mint);
+            box-shadow: 0 4px 15px rgba(127, 219, 202, 0.15);
         }
 
-        .checklist-item.checked {
-            background: rgba(78, 205, 196, 0.06);
-            border-color: var(--teal-primary);
+        .schedule-day .day-label {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--mint-dark);
+            margin-bottom: 6px;
         }
 
-        .checklist-item.checked .checkbox {
-            background: var(--teal-primary);
-            border-color: var(--teal-primary);
+        .schedule-day .day-date {
+            font-family: 'Ogg', Georgia, serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 4px;
         }
 
-        .checklist-item.checked .checkbox svg {
-            opacity: 1;
+        .schedule-day .day-time {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--coral);
         }
 
-        .checklist-item.checked .checklist-text {
-            color: var(--teal-dark);
+        .calendar-note {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Caveat', cursive;
+            font-size: 18px;
+            color: var(--mint-dark);
+            margin-top: 12px;
         }
 
-        .checkbox {
-            width: 28px;
-            height: 28px;
-            border: 2px solid var(--gray-light);
+        /* Tips in Step 3 */
+        .tips-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .tip-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: rgba(255, 133, 162, 0.06);
+            border-radius: 10px;
+        }
+
+        .tip-item .tip-icon {
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 133, 162, 0.15);
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
-            transition: all 0.2s ease;
-            background: #FFFFFF;
-        }
-
-        .checkbox svg {
-            opacity: 0;
-            transition: opacity 0.2s ease;
-        }
-
-        .checklist-text {
-            font-family: 'Satoshi', sans-serif;
             font-size: 16px;
-            font-weight: 500;
-            color: var(--gray-dark);
-            line-height: 1.5;
-            padding-top: 2px;
+            flex-shrink: 0;
         }
 
-        .checklist-text strong {
-            color: var(--navy);
-            font-weight: 700;
-        }
-
-        .checklist-note {
-            text-align: center;
-            margin-top: 32px;
-            font-family: 'Satoshi', sans-serif;
+        .tip-item p {
             font-size: 15px;
-            font-style: italic;
-            color: var(--gray-medium);
+            color: var(--text-medium);
+        }
+
+        .tip-item p strong {
+            color: var(--text-dark);
         }
 
         /* ========================================
-           SECTION 5: CLOSING (Embeddable HTML)
+           SECTION 3: WHAT YOU GOT (Value Stack)
+           ======================================== */
+        .section-value {
+            background: linear-gradient(180deg, var(--cream-dark) 0%, var(--cream) 100%);
+            padding: 60px 24px;
+            position: relative;
+        }
+
+        .value-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .value-header {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        .value-header h2 {
+            font-size: clamp(26px, 5vw, 34px);
+            color: var(--text-dark);
+        }
+
+        .value-header .price-highlight {
+            background: linear-gradient(135deg, var(--coral), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .value-header .handwritten {
+            font-size: 20px;
+            color: var(--mint-dark);
+            margin-top: 8px;
+        }
+
+        /* Dynamic staggered grid for value items */
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .value-item {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .value-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+        }
+
+        .value-item .item-number {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-family: 'Caveat', cursive;
+            font-size: 18px;
+            color: var(--text-light);
+        }
+
+        .value-item .item-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .value-item:nth-child(1) .item-icon { background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(255, 107, 107, 0.08)); }
+        .value-item:nth-child(2) .item-icon { background: linear-gradient(135deg, rgba(127, 219, 202, 0.18), rgba(127, 219, 202, 0.08)); }
+        .value-item:nth-child(3) .item-icon { background: linear-gradient(135deg, rgba(255, 217, 61, 0.2), rgba(255, 217, 61, 0.08)); }
+        .value-item:nth-child(4) .item-icon { background: linear-gradient(135deg, rgba(255, 133, 162, 0.15), rgba(255, 133, 162, 0.08)); }
+
+        .value-item .item-icon svg {
+            width: 26px;
+            height: 26px;
+        }
+
+        .value-item .item-content h4 {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .value-item .item-content p {
+            font-size: 14px;
+            color: var(--text-medium);
+            line-height: 1.5;
+        }
+
+        /* ========================================
+           SECTION 4: SCHEDULE REMINDER CARD
+           ======================================== */
+        .section-reminder {
+            background: var(--warm-white);
+            padding: 50px 24px;
+        }
+
+        .reminder-card {
+            max-width: 700px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--mint-light), var(--mint));
+            border-radius: 24px;
+            padding: 36px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(127, 219, 202, 0.25);
+        }
+
+        .reminder-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .reminder-icon {
+            width: 60px;
+            height: 60px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 28px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .reminder-card h3 {
+            font-family: 'Ogg', Georgia, serif;
+            font-size: 26px;
+            color: #fff;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .reminder-schedule {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .reminder-day {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 14px 20px;
+            min-width: 160px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .reminder-day .label {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--mint-dark);
+            margin-bottom: 4px;
+        }
+
+        .reminder-day .date {
+            font-family: 'Ogg', Georgia, serif;
+            font-size: 15px;
+            color: var(--text-dark);
+            margin-bottom: 2px;
+        }
+
+        .reminder-day .time {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--coral);
+        }
+
+        .reminder-footer {
+            font-family: 'Caveat', cursive;
+            font-size: 24px;
+            color: #fff;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ========================================
+           SECTION 5: CLOSING
            ======================================== */
         .section-closing {
-            background: linear-gradient(135deg, var(--navy) 0%, var(--teal-dark) 100%);
-            padding: 80px 24px;
+            background: linear-gradient(135deg, var(--coral) 0%, var(--pink) 100%);
+            padding: 60px 24px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -518,14 +845,14 @@
             top: -100px;
             left: 50%;
             transform: translateX(-50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
             pointer-events: none;
         }
 
-        .section-closing .container {
-            max-width: 650px;
+        .closing-container {
+            max-width: 550px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
@@ -533,198 +860,46 @@
 
         .closing-title {
             font-family: 'Ogg', Georgia, serif;
-            font-size: 42px;
-            font-weight: 700;
-            color: #FFFFFF;
-            margin-bottom: 24px;
+            font-size: clamp(28px, 5vw, 38px);
+            color: #fff;
+            margin-bottom: 16px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .closing-text {
             font-family: 'Satoshi', sans-serif;
-            font-size: 18px;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.85);
-            line-height: 1.8;
-            margin-bottom: 16px;
-        }
-
-        .closing-text strong {
-            color: #FFFFFF;
-            font-weight: 700;
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.7;
+            margin-bottom: 24px;
         }
 
         .closing-signoff {
             font-family: 'Caveat', cursive;
             font-size: 32px;
-            font-weight: 600;
-            color: var(--gold);
-            margin-top: 32px;
+            color: #fff;
         }
 
-        /* ========================================
-           RESPONSIVE STYLES
-           ======================================== */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 36px;
-            }
-
-            .hero-subtitle {
-                font-size: 17px;
-            }
-
-            .cta-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .cta-card {
-                padding: 32px 24px;
-            }
-
-            .value-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .section-value-stack .section-title,
-            .section-checklist .section-title {
-                font-size: 30px;
-            }
-
-            .closing-title {
-                font-size: 32px;
-            }
+        .closing-heart {
+            color: #fff;
+            display: inline-block;
+            animation: heartbeat 1.5s ease-in-out infinite;
         }
 
-        @media (max-width: 500px) {
-            .section-hero {
-                padding: 60px 16px 40px;
-            }
-
-            .hero-title {
-                font-size: 30px;
-            }
-
-            .hero-badge {
-                font-size: 12px;
-                padding: 8px 16px;
-            }
-
-            .section-dual-cta {
-                padding: 40px 16px 60px;
-            }
-
-            .section-dual-cta .section-title {
-                font-size: 28px;
-            }
-
-            .cta-card {
-                padding: 28px 20px;
-            }
-
-            .cta-icon {
-                width: 60px;
-                height: 60px;
-            }
-
-            .cta-card h3 {
-                font-size: 20px;
-            }
-
-            .cta-button {
-                padding: 14px 24px;
-                font-size: 15px;
-                width: 100%;
-                justify-content: center;
-            }
-
-            .section-value-stack,
-            .section-checklist {
-                padding: 60px 16px;
-            }
-
-            .section-value-stack .section-title,
-            .section-checklist .section-title {
-                font-size: 26px;
-            }
-
-            .value-card {
-                padding: 24px;
-            }
-
-            .value-icon {
-                width: 48px;
-                height: 48px;
-                font-size: 24px;
-            }
-
-            .value-card h4 {
-                font-size: 16px;
-            }
-
-            .value-card p {
-                font-size: 14px;
-            }
-
-            .checklist-card {
-                padding: 24px 16px;
-            }
-
-            .checklist-item {
-                padding: 14px 16px;
-            }
-
-            .checklist-text {
-                font-size: 15px;
-            }
-
-            .section-closing {
-                padding: 60px 16px;
-            }
-
-            .closing-title {
-                font-size: 28px;
-            }
-
-            .closing-text {
-                font-size: 16px;
-            }
-
-            .closing-signoff {
-                font-size: 28px;
-            }
-        }
-
-        /* Smooth scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Hide scrollbar for Framer embeds (prevents double scrollbar) */
-        :root, html, body {
-            scrollbar-width: none !important; /* Firefox */
-            -ms-overflow-style: none !important; /* IE and Edge */
-            overflow-x: hidden;
-        }
-
-        ::-webkit-scrollbar {
-            display: none !important; /* Chrome, Safari, Opera */
-            width: 0 !important;
-            height: 0 !important;
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
 
         /* ========================================
            MOBILE VIDEO DRAWER
            ======================================== */
-
-        /* Mobile play overlay on video */
         .mobile-play-overlay {
             position: absolute;
             inset: 0;
             display: none;
             cursor: pointer;
-            border-radius: 20px;
+            border-radius: 16px;
             z-index: 10;
             overflow: hidden;
         }
@@ -735,7 +910,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 20px;
+            border-radius: 16px;
         }
 
         .mobile-play-overlay .play-button-overlay {
@@ -781,7 +956,6 @@
             font-size: 13px;
             font-weight: 600;
             text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
-            letter-spacing: 0.3px;
         }
 
         /* Video Drawer Overlay */
@@ -810,7 +984,6 @@
             visibility: visible;
         }
 
-        /* Body scroll lock when drawer is open */
         body.drawer-open,
         html.drawer-open {
             overflow: hidden !important;
@@ -833,7 +1006,7 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(78, 205, 196, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 107, 107, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
         .video-drawer-overlay.open .video-drawer {
@@ -847,7 +1020,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: linear-gradient(180deg, rgba(78, 205, 196, 0.08) 0%, transparent 100%);
+            background: linear-gradient(180deg, rgba(255, 107, 107, 0.08) 0%, transparent 100%);
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             flex-shrink: 0;
             position: relative;
@@ -869,7 +1042,7 @@
             font-family: 'Satoshi', sans-serif;
             font-size: 13px;
             font-weight: 600;
-            color: var(--teal-primary);
+            color: var(--coral);
             letter-spacing: 1px;
             text-transform: uppercase;
         }
@@ -941,7 +1114,7 @@
             left: 50%;
             width: 200px;
             height: 200px;
-            background: radial-gradient(circle, rgba(78, 205, 196, 0.15), transparent 70%);
+            background: radial-gradient(circle, rgba(255, 107, 107, 0.15), transparent 70%);
             transform: translate(-50%, -50%);
             animation: pulseGlow 3s ease-in-out infinite;
         }
@@ -961,7 +1134,7 @@
         .drawer-rings .ring {
             position: absolute;
             inset: 0;
-            border: 2px solid rgba(78, 205, 196, 0.3);
+            border: 2px solid rgba(255, 107, 107, 0.3);
             border-radius: 50%;
             animation: ringPulse 2s ease-out infinite;
         }
@@ -981,12 +1154,12 @@
             transform: translate(-50%, -50%);
             width: 44px;
             height: 44px;
-            background: linear-gradient(135deg, var(--teal-primary), var(--teal-dark));
+            background: linear-gradient(135deg, var(--coral), var(--pink));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 20px rgba(78, 205, 196, 0.4);
+            box-shadow: 0 4px 20px rgba(255, 107, 107, 0.4);
         }
 
         .drawer-rings .icon-circle svg {
@@ -1005,7 +1178,7 @@
         }
 
         .drawer-footer-text strong {
-            color: var(--teal-primary);
+            color: var(--coral);
             font-weight: 600;
         }
 
@@ -1017,62 +1190,367 @@
                 inset: 0;
                 z-index: 10;
             }
-            .video-container .video-placeholder { display: none !important; }
+            .video-inner .video-placeholder { display: none !important; }
         }
 
-        /* Hide drawer on desktop */
         @media (min-width: 769px) {
             .video-drawer,
             .video-drawer-overlay { display: none !important; }
+        }
+
+        /* ========================================
+           RESPONSIVE STYLES
+           ======================================== */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 52px;
+            }
+
+            .purchase-bar {
+                padding: 10px 16px;
+                gap: 10px;
+            }
+
+            .purchase-bar .bar-text {
+                font-size: 12px;
+            }
+
+            .purchase-bar .progress-track {
+                width: 80px;
+                height: 6px;
+            }
+
+            .section-hero {
+                padding: 40px 20px 30px;
+            }
+
+            .hero-title {
+                font-size: 32px;
+            }
+
+            .hero-annotation {
+                font-size: 20px;
+            }
+
+            .video-frame {
+                padding: 4px;
+                border-radius: 16px;
+            }
+
+            .video-inner {
+                border-radius: 14px;
+            }
+
+            .section-gameplan {
+                padding: 40px 20px;
+            }
+
+            .step-card {
+                padding: 24px 20px;
+            }
+
+            .schedule-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .section-value {
+                padding: 40px 20px;
+            }
+
+            .value-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .value-item {
+                padding: 20px;
+            }
+
+            .section-reminder {
+                padding: 40px 20px;
+            }
+
+            .reminder-card {
+                padding: 28px 20px;
+            }
+
+            .reminder-schedule {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .reminder-day {
+                min-width: auto;
+            }
+
+            .section-closing {
+                padding: 50px 20px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .purchase-bar .checkmark {
+                width: 24px;
+                height: 24px;
+            }
+
+            .purchase-bar .checkmark svg {
+                width: 12px;
+                height: 12px;
+            }
+
+            .hero-badge {
+                font-size: 11px;
+                padding: 8px 16px;
+            }
+
+            .hero-title {
+                font-size: 28px;
+            }
+
+            .hero-subtitle {
+                font-size: 15px;
+            }
+
+            .step-title {
+                font-size: 20px;
+            }
+
+            .step-title .icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            .action-btn {
+                width: 100%;
+                justify-content: center;
+                padding: 14px 20px;
+            }
+
+            .value-header h2 {
+                font-size: 24px;
+            }
+
+            .closing-title {
+                font-size: 26px;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Hide scrollbar for Framer embeds */
+        :root, html, body {
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
         }
     </style>
 </head>
 <body>
 
 <!-- ============================================
-     SECTION 1: HERO/HEADER
-     (Build this in Framer - this is a reference)
+     PURCHASE COMPLETE BAR (Fixed at top)
+     ============================================ -->
+<div class="purchase-bar">
+    <div class="checkmark">
+        <svg viewBox="0 0 14 11" fill="none">
+            <path d="M1 5.5L5 9.5L13 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>
+    <div class="bar-content">
+        <span class="bar-text">Purchase Complete!</span>
+        <div class="progress-track">
+            <div class="progress-fill"></div>
+        </div>
+        <span class="confetti-icon">🎉</span>
+    </div>
+</div>
+
+<!-- ============================================
+     SECTION 1: CELEBRATION HERO
      ============================================ -->
 <section class="section-hero">
-    <div class="container">
+    <!-- Decorative elements -->
+    <div class="sparkle hero-sparkle-1" style="top: 30px; left: 12%;">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 0L12 8L20 10L12 12L10 20L8 12L0 10L8 8L10 0Z" fill="#FF6B6B" opacity="0.6"/></svg>
+    </div>
+    <div class="sparkle hero-sparkle-2" style="top: 80px; right: 15%; animation-delay: 0.5s;">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 0L12 8L20 10L12 12L10 20L8 12L0 10L8 8L10 0Z" fill="#7FDBCA" opacity="0.5"/></svg>
+    </div>
+    <div class="sparkle hero-sparkle-3" style="bottom: 120px; left: 8%; animation-delay: 1s;">
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M10 0L12 8L20 10L12 12L10 20L8 12L0 10L8 8L10 0Z" fill="#FF85A2" opacity="0.5"/></svg>
+    </div>
+    <div class="dollar-float" style="top: 50px; left: 6%; transform: rotate(-15deg);">$</div>
+    <div class="dollar-float" style="top: 100px; right: 8%; transform: rotate(20deg);">$</div>
+    <div class="dollar-float" style="bottom: 140px; right: 5%; transform: rotate(-10deg);">$</div>
+
+    <div class="hero-container">
         <div class="hero-badge">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                <path d="M9 1.5L10.5 6L15 6.5L11.5 9.5L12.5 14L9 12L5.5 14L6.5 9.5L3 6.5L7.5 6L9 1.5Z" fill="currentColor"/>
-            </svg>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 0L10 6L16 8L10 10L8 16L6 10L0 8L6 6L8 0Z" fill="currentColor"/></svg>
             Smart Move
         </div>
-        <h1 class="hero-title">You're All Set. Here's Your Toolkit.</h1>
+
+        <h1 class="hero-title">You Got It! <span class="highlight">Here's Your Toolkit</span></h1>
+
+        <p class="hero-annotation">^ that was a great deal, btw ✨</p>
+
         <p class="hero-subtitle">
-            You just grabbed the essentials — the replays, the decision frameworks, the AI prompts that actually work. <strong>Everything you need to follow along and implement.</strong> Smart move.
+            You grabbed the essentials — the replays, the decision frameworks, the AI prompts that actually work. <strong>Everything you need to follow along and implement.</strong>
         </p>
 
-        <!-- Video Embed Placeholder -->
-        <div class="video-container">
-            <div class="video-placeholder">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
-                    <circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="2"/>
-                    <path d="M26 22L44 32L26 42V22Z" fill="currentColor"/>
-                </svg>
-                <p>Thank You Video Embed</p>
-            </div>
-            <!-- Mobile Play Overlay -->
-            <div class="mobile-play-overlay" id="mobilePlayBtn">
-                <iframe
-                    class="preview-video"
-                    id="previewVideo"
-                    src="https://scripts.converteai.net/4a88e4d6-10d6-46da-b41b-334366e58f7b/players/69268e3d1ec0bc043c339ac6/embed.html?muted=true"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
-                    style="pointer-events: none;"
-                ></iframe>
-                <div class="play-button-overlay">
-                    <div class="play-icon-circle">
-                        <svg viewBox="0 0 24 24" fill="none">
-                            <path d="M5 3L19 12L5 21V3Z" fill="#2F5F61"/>
+        <!-- Video -->
+        <div class="video-wrapper">
+            <div class="video-frame">
+                <div class="video-inner">
+                    <div class="video-placeholder">
+                        <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                            <circle cx="32" cy="32" r="30" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                            <path d="M26 22L44 32L26 42V22Z" fill="rgba(255,255,255,0.5)"/>
                         </svg>
+                        <p>Quick Thank You from Bailey</p>
                     </div>
-                    <span class="tap-text">Tap to watch with sound</span>
+
+                    <!-- Mobile Play Overlay -->
+                    <div class="mobile-play-overlay" id="mobilePlayBtn">
+                        <iframe
+                            class="preview-video"
+                            id="previewVideo"
+                            src="https://scripts.converteai.net/4a88e4d6-10d6-46da-b41b-334366e58f7b/players/69268e3d1ec0bc043c339ac6/embed.html?muted=true"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                            style="pointer-events: none;"
+                        ></iframe>
+                        <div class="play-button-overlay">
+                            <div class="play-icon-circle">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 3L19 12L5 21V3Z" fill="#FF6B6B"/>
+                                </svg>
+                            </div>
+                            <span class="tap-text">Tap to watch with sound</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="video-label">Watch this first! (2 min) 👆</p>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     SECTION 2: YOUR GAME PLAN (Step by Step)
+     ============================================ -->
+<section class="section-gameplan">
+    <div class="gameplan-container">
+        <div class="gameplan-header">
+            <h2>Here's Your Game Plan</h2>
+            <p class="handwritten">3 simple steps, you've got this!</p>
+        </div>
+
+        <div class="steps-container">
+            <!-- Step 1: Grab Your Stuff -->
+            <div class="step-card step-1">
+                <div class="step-number">Step 1</div>
+                <div class="step-content">
+                    <h3 class="step-title">
+                        <span class="icon">📦</span>
+                        Grab Your Stuff
+                    </h3>
+                    <p class="step-description">
+                        Your toolkit lives in two places. Get access to both right now (takes 30 seconds):
+                    </p>
+                    <div class="step-actions">
+                        <a href="#" class="action-btn whatsapp">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5l-1.4 5 5.2-1.3c1.5.9 3.2 1.4 5 1.4 5.5 0 10-4.5 10-10S17.5 2 12 2z" fill="currentColor"/>
+                            </svg>
+                            Join WhatsApp Community
+                        </a>
+                        <a href="#" class="action-btn notion">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <rect x="7" y="8" width="10" height="2" rx="1" fill="currentColor"/>
+                                <rect x="7" y="12" width="7" height="2" rx="1" fill="currentColor"/>
+                            </svg>
+                            Open Notion Dashboard
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Mark Your Calendar -->
+            <div class="step-card step-2">
+                <div class="step-number">Step 2</div>
+                <div class="step-content">
+                    <h3 class="step-title">
+                        <span class="icon">📅</span>
+                        Mark Your Calendar
+                    </h3>
+                    <p class="step-description">
+                        The challenge starts soon! Block these times so you don't miss anything:
+                    </p>
+
+                    <div class="schedule-grid">
+                        <div class="schedule-day">
+                            <div class="day-label">Day 1</div>
+                            <div class="day-date">Tuesday, Dec 9th</div>
+                            <div class="day-time">7:00 PM EST</div>
+                        </div>
+                        <div class="schedule-day">
+                            <div class="day-label">Day 2</div>
+                            <div class="day-date">Wednesday, Dec 10th</div>
+                            <div class="day-time">7:00 PM EST</div>
+                        </div>
+                        <div class="schedule-day">
+                            <div class="day-label">Day 3</div>
+                            <div class="day-date">Thursday, Dec 11th</div>
+                            <div class="day-time">7:00 PM EST</div>
+                        </div>
+                    </div>
+
+                    <p class="calendar-note">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L10 5.5L15 6.5L11.5 10L12.5 15L8 12.5L3.5 15L4.5 10L1 6.5L6 5.5L8 1Z" fill="currentColor"/></svg>
+                        You'll get replays anyway — but live is where the magic happens!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Step 3: Show Up Ready -->
+            <div class="step-card step-3">
+                <div class="step-number">Step 3</div>
+                <div class="step-content">
+                    <h3 class="step-title">
+                        <span class="icon">🚀</span>
+                        Show Up Ready
+                    </h3>
+                    <p class="step-description">
+                        A few quick tips to get the most out of this:
+                    </p>
+
+                    <div class="tips-list">
+                        <div class="tip-item">
+                            <div class="tip-icon">💻</div>
+                            <p><strong>Watch on desktop</strong> — you'll want to take notes</p>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-icon">📝</div>
+                            <p><strong>Have your toolkit open</strong> — reference the prompts live</p>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-icon">⏰</div>
+                            <p><strong>Show up on time</strong> — the first 10 minutes are gold</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1080,167 +1558,107 @@
 </section>
 
 <!-- ============================================
-     SECTION 2: DUAL CTA SECTION
-     (Build this in Framer - this is a reference)
+     SECTION 3: WHAT YOU GOT (Value Stack)
      ============================================ -->
-<section class="section-dual-cta">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Grab Your Stuff</h2>
-        </div>
-
-        <div class="cta-grid">
-            <!-- WhatsApp Card -->
-            <div class="cta-card whatsapp">
-                <div class="cta-icon">
-                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-                        <path d="M18 3C9.72 3 3 9.72 3 18C3 20.85 3.78 23.52 5.13 25.8L3 33L10.44 30.93C12.63 32.16 15.21 32.85 18 32.85C26.28 32.85 33 26.13 33 17.85C33 9.72 26.28 3 18 3Z" fill="rgba(255,255,255,0.2)"/>
-                        <path d="M25.5 21.6C25.14 22.68 23.58 23.58 22.38 23.82C21.54 23.97 20.46 24.09 17.22 22.74C13.08 21.03 10.38 16.83 10.17 16.56C9.96 16.29 8.4 14.25 8.4 12.15C8.4 10.05 9.51 9.03 9.93 8.58C10.29 8.19 10.89 8.01 11.46 8.01C11.64 8.01 11.82 8.01 11.97 8.04C12.39 8.07 12.6 8.1 12.87 8.73C13.23 9.54 14.1 11.64 14.19 11.85C14.31 12.06 14.4 12.33 14.25 12.6C14.1 12.87 13.98 13.02 13.77 13.26C13.56 13.5 13.38 13.68 13.17 13.95C12.96 14.19 12.75 14.46 12.99 14.88C13.23 15.3 14.1 16.74 15.39 17.91C17.04 19.38 18.39 19.86 18.87 20.07C19.23 20.22 19.65 20.19 19.89 19.92C20.22 19.56 20.61 18.96 21.03 18.39C21.33 17.97 21.72 17.91 22.11 18.06C22.53 18.18 24.6 19.2 25.02 19.41C25.47 19.62 25.74 19.74 25.86 19.92C25.98 20.1 25.98 20.94 25.5 21.6Z" fill="#FFFFFF"/>
-                    </svg>
-                </div>
-                <h3>Join the Free WhatsApp</h3>
-                <p>This is where the community hangs out. Reminders, wins, and momentum.</p>
-                <a href="#" class="cta-button whatsapp">
-                    Join the WhatsApp
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                        <path d="M6 12L12 6M12 6H7M12 6V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-            </div>
-
-            <!-- Notion Card -->
-            <div class="cta-card notion">
-                <div class="cta-icon">
-                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-                        <rect x="6" y="6" width="24" height="24" rx="4" fill="rgba(255,255,255,0.2)"/>
-                        <rect x="10" y="11" width="16" height="2" rx="1" fill="#FFFFFF"/>
-                        <rect x="10" y="16" width="12" height="2" rx="1" fill="#FFFFFF"/>
-                        <rect x="10" y="21" width="14" height="2" rx="1" fill="#FFFFFF"/>
-                    </svg>
-                </div>
-                <h3>Access Your Toolkit</h3>
-                <p>All your downloads in one place — replays, templates, prompts, and trends.</p>
-                <a href="#" class="cta-button notion">
-                    Open Your Notion Dashboard
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                        <path d="M6 12L12 6M12 6H7M12 6V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ============================================
-     SECTION 3: VALUE STACK (Embeddable HTML)
-     Claude Code builds this
-     ============================================ -->
-<section class="section-value-stack">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">What's Inside Your <span class="price-tag">$17</span> Toolkit</h2>
+<section class="section-value">
+    <div class="value-container">
+        <div class="value-header">
+            <h2>What's Inside Your <span class="price-highlight">$17</span> Toolkit</h2>
+            <p class="handwritten">You're gonna love this stuff 💕</p>
         </div>
 
         <div class="value-grid">
-            <!-- Card 1: 7-Day Replay Pass -->
-            <div class="value-card value-card-1">
-                <div class="value-icon">📺</div>
-                <h4>7-Day Replay Pass</h4>
-                <p>All 3 days of the challenge in HD. Watch, rewatch, pause, take notes. Downloadable slides included.</p>
+            <!-- Item 1: Replay Pass -->
+            <div class="value-item">
+                <span class="item-number">#1</span>
+                <div class="item-icon">
+                    <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="#FF6B6B" stroke-width="2"/><path d="M10 9L15 12L10 15V9Z" fill="#FF6B6B"/></svg>
+                </div>
+                <div class="item-content">
+                    <h4>7-Day Replay Pass</h4>
+                    <p>All 3 days in HD. Watch, rewatch, pause, take notes. Downloadable slides included.</p>
+                </div>
             </div>
 
-            <!-- Card 2: Delete Decision Matrix -->
-            <div class="value-card value-card-2">
-                <div class="value-icon">🔀</div>
-                <h4>Delete Decision Matrix</h4>
-                <p>The flowchart that ends the overthinking. Fix it, rework it, or delete it — decided in 60 seconds flat.</p>
+            <!-- Item 2: Decision Matrix -->
+            <div class="value-item">
+                <span class="item-number">#2</span>
+                <div class="item-icon">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L12 8M12 16L12 22M2 12H8M16 12H22" stroke="#7FDBCA" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="3" stroke="#7FDBCA" stroke-width="2"/></svg>
+                </div>
+                <div class="item-content">
+                    <h4>Delete Decision Matrix</h4>
+                    <p>The flowchart that ends the overthinking. Fix it, rework it, or delete it — decided in 60 seconds.</p>
+                </div>
             </div>
 
-            <!-- Card 3: 10 AI Prompts -->
-            <div class="value-card value-card-3">
-                <div class="value-icon">🤖</div>
-                <h4>10 Launch-Ready AI Prompts</h4>
-                <p>Copy/paste prompts I actually use to spin up beginner-friendly products fast. Not generic garbage.</p>
+            <!-- Item 3: AI Prompts -->
+            <div class="value-item">
+                <span class="item-number">#3</span>
+                <div class="item-icon">
+                    <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#FFD93D" stroke-width="2"/><path d="M12 7V12L15 14" stroke="#FFD93D" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="2" fill="#FFD93D"/></svg>
+                </div>
+                <div class="item-content">
+                    <h4>10 Launch-Ready AI Prompts</h4>
+                    <p>Copy/paste prompts I actually use to spin up beginner-friendly products fast. Not generic garbage.</p>
+                </div>
             </div>
 
-            <!-- Card 4: Trend Snapshot -->
-            <div class="value-card value-card-4">
-                <div class="value-icon">📈</div>
-                <h4>January 2026 Trend Snapshot</h4>
-                <p>What I'm currently watching on Etsy so you're not building on stale trends.</p>
+            <!-- Item 4: Trend Snapshot -->
+            <div class="value-item">
+                <span class="item-number">#4</span>
+                <div class="item-icon">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M3 17L9 11L13 15L21 7" stroke="#FF85A2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 7H21V11" stroke="#FF85A2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="item-content">
+                    <h4>January 2026 Trend Snapshot</h4>
+                    <p>What I'm currently watching on Etsy so you're not building on stale trends.</p>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- ============================================
-     SECTION 4: BEFORE DAY 1 CHECKLIST (Embeddable HTML)
-     Claude Code builds this
+     SECTION 4: SCHEDULE REMINDER CARD
      ============================================ -->
-<section class="section-checklist">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Before Day 1, Do This</h2>
-        </div>
+<section class="section-reminder">
+    <div class="reminder-card">
+        <div class="reminder-icon">🗓️</div>
+        <h3>The Challenge Starts:</h3>
 
-        <div class="checklist-card">
-            <div class="checklist-items">
-                <div class="checklist-item" onclick="this.classList.toggle('checked')">
-                    <div class="checkbox">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M3 8L6.5 11.5L13 5" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <span class="checklist-text"><strong>Join the WhatsApp</strong> — Button's above, takes 10 seconds</span>
-                </div>
-
-                <div class="checklist-item" onclick="this.classList.toggle('checked')">
-                    <div class="checkbox">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M3 8L6.5 11.5L13 5" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <span class="checklist-text"><strong>Bookmark your Notion dashboard</strong> — So you can find your stuff fast</span>
-                </div>
-
-                <div class="checklist-item" onclick="this.classList.toggle('checked')">
-                    <div class="checkbox">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M3 8L6.5 11.5L13 5" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <span class="checklist-text"><strong>Add all 3 days to your calendar</strong> — Day 1, Day 2, Day 3. Times are in your confirmation email.</span>
-                </div>
-
-                <div class="checklist-item" onclick="this.classList.toggle('checked')">
-                    <div class="checkbox">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M3 8L6.5 11.5L13 5" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <span class="checklist-text"><strong>Watch on desktop, not your phone</strong> — Trust me, you'll want to take notes</span>
-                </div>
+        <div class="reminder-schedule">
+            <div class="reminder-day">
+                <div class="label">Day 1</div>
+                <div class="date">Tues, December 9th</div>
+                <div class="time">7:00 PM EST</div>
             </div>
-
-            <p class="checklist-note">You've got the tools. Now let's make sure you're in the room.</p>
+            <div class="reminder-day">
+                <div class="label">Day 2</div>
+                <div class="date">Wed, December 10th</div>
+                <div class="time">7:00 PM EST</div>
+            </div>
+            <div class="reminder-day">
+                <div class="label">Day 3</div>
+                <div class="date">Thurs, December 11th</div>
+                <div class="time">7:00 PM EST</div>
+            </div>
         </div>
+
+        <p class="reminder-footer">See you there! ✨</p>
     </div>
 </section>
 
 <!-- ============================================
-     SECTION 5: CLOSING SECTION (Embeddable HTML)
-     Claude Code builds this
+     SECTION 5: CLOSING
      ============================================ -->
 <section class="section-closing">
-    <div class="container">
-        <h2 class="closing-title">See You on Day 1.</h2>
+    <div class="closing-container">
+        <h2>You've Got What You Need.</h2>
         <p class="closing-text">
-            You've got what you need to follow along and actually implement this stuff. <strong>The replay pass means you won't miss anything.</strong> The toolkit means you won't get stuck overthinking.
+            Now it's just about showing up. The replay pass means you won't miss anything. The toolkit means you won't get stuck overthinking. Let's make this challenge count.
         </p>
-        <p class="closing-text">
-            Now it's just about showing up.
-        </p>
-        <p class="closing-signoff">— Bailey</p>
+        <p class="closing-signoff">— Bailey <span class="closing-heart">❤️</span></p>
     </div>
 </section>
 
@@ -1309,47 +1727,34 @@
     let scrollPosition = 0;
 
     function openDrawer() {
-        // Save scroll position
         scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-
-        // Lock scroll
         document.body.classList.add('drawer-open');
         document.documentElement.classList.add('drawer-open');
         document.body.style.top = `-${scrollPosition}px`;
-
-        // Show overlay
         videoOverlay.classList.add('open');
 
-        // Try to lock parent frame scroll too (for Framer embeds)
         try {
             if (window.parent && window.parent !== window) {
                 window.parent.document.body.style.overflow = 'hidden';
             }
         } catch(e) {}
 
-        // Initialize video after animation
         setTimeout(initDrawerVideo, 100);
     }
 
     function closeDrawer() {
         videoOverlay.classList.remove('open');
-
-        // Unlock scroll
         document.body.classList.remove('drawer-open');
         document.documentElement.classList.remove('drawer-open');
         document.body.style.top = '';
-
-        // Restore scroll position
         window.scrollTo(0, scrollPosition);
 
-        // Unlock parent frame scroll too
         try {
             if (window.parent && window.parent !== window) {
                 window.parent.document.body.style.overflow = '';
             }
         } catch(e) {}
 
-        // Destroy video after animation
         setTimeout(destroyDrawerVideo, 350);
     }
 
@@ -1361,7 +1766,6 @@
         });
     }
 
-    // Close when clicking overlay (but not the drawer itself)
     if (videoOverlay) {
         videoOverlay.addEventListener('click', function(e) {
             if (e.target === videoOverlay) closeDrawer();
@@ -1413,13 +1817,44 @@
         }
     }
 
-    // Checklist functionality
-    const checklistItems = document.querySelectorAll('.checklist-item');
-    checklistItems.forEach(item => {
-        item.addEventListener('click', function() {
-            this.classList.toggle('checked');
-        });
-    });
+    // Confetti burst on page load
+    function createConfettiBurst() {
+        const colors = ['#FF6B6B', '#FF85A2', '#7FDBCA', '#FFD93D', '#FFB3C6'];
+        const container = document.body;
+
+        for (let i = 0; i < 50; i++) {
+            setTimeout(() => {
+                const confetti = document.createElement('div');
+                confetti.style.cssText = `
+                    position: fixed;
+                    width: ${Math.random() * 8 + 4}px;
+                    height: ${Math.random() * 8 + 4}px;
+                    background: ${colors[Math.floor(Math.random() * colors.length)]};
+                    top: -20px;
+                    left: ${Math.random() * 100}vw;
+                    border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+                    pointer-events: none;
+                    z-index: 10000;
+                    animation: confettiFall ${Math.random() * 2 + 2}s ease-out forwards;
+                `;
+                container.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 4000);
+            }, i * 30);
+        }
+    }
+
+    // Add confetti animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes confettiFall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Trigger confetti on load
+    setTimeout(createConfettiBurst, 500);
 })();
 </script>
 
