@@ -1,0 +1,1882 @@
+<!-- Free Registrant Success Page - Framer Embed Version -->
+<!-- Add these to Framer's custom code in Site Settings > General > Custom Code > Head -->
+<!--
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/add-to-calendar-button@2" async defer></script>
+-->
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap');
+    @import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap');
+
+    @font-face {
+        font-family: 'Ogg';
+        src: url('https://cdn.jsdelivr.net/gh/nicxvan/ogg-font@master/fonts/Ogg-Bold.woff2') format('woff2');
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    .free-page {
+        --rose-gold: #C9A87C;
+        --rose-gold-dark: #B8956A;
+        --champagne: #F5EBE0;
+        --deep-teal: #1A3D3B;
+        --teal: #4ECDC4;
+        --soft-pink: #FFD1DC;
+        --pink-vibrant: #FF8FAB;
+        --cream: #FDFCF9;
+        --warm-cream: #FAF7F2;
+        --warm-gray: #5A5A5A;
+        --light-gray: #8A8A8A;
+        --peach: #FFE5D4;
+        --energy-coral: #FF7F6E;
+        --whatsapp-green: #25D366;
+        font-family: 'Satoshi', -apple-system, sans-serif;
+        font-weight: 400;
+        color: #2c2c2c;
+        line-height: 1.6;
+        width: 100%;
+        position: relative;
+    }
+
+    .free-page * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    :root, html, body {
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+        overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+    }
+
+    .free-page h1, .free-page h2, .free-page h3 {
+        font-family: 'Ogg', Georgia, serif;
+        font-weight: 700;
+        line-height: 1.1;
+    }
+
+    /* Scroll-triggered animations */
+    .free-page .fade-in-section {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+
+    .free-page .fade-in-section.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Confetti Animation */
+    .free-page .confetti {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        pointer-events: none;
+        z-index: 9998;
+    }
+
+    @keyframes confettiFall {
+        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+
+    @keyframes confettiBurst {
+        0% { transform: translate(0, 0) scale(1); opacity: 1; }
+        100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+    }
+
+    /* ========================================
+       HERO SECTION
+       ======================================== */
+    .free-page .hero {
+        min-height: auto;
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding: 60px 24px 80px;
+        background: linear-gradient(180deg, #FFF9F5 0%, var(--warm-cream) 50%, var(--cream) 100%);
+        overflow: hidden;
+    }
+
+    .free-page .hero::before {
+        content: '';
+        position: absolute;
+        top: -50px;
+        right: -100px;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(255, 143, 171, 0.15) 0%, transparent 70%);
+        pointer-events: none;
+    }
+
+    .free-page .hero::after {
+        content: '';
+        position: absolute;
+        bottom: -100px;
+        left: -100px;
+        width: 350px;
+        height: 350px;
+        background: radial-gradient(circle, rgba(78, 205, 196, 0.1) 0%, transparent 70%);
+        pointer-events: none;
+    }
+
+    .free-page .hero-container {
+        max-width: 800px;
+        margin: 0 auto;
+        width: 100%;
+        position: relative;
+        text-align: center;
+    }
+
+    .free-page .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(135deg, rgba(78, 205, 196, 0.15), rgba(78, 205, 196, 0.05));
+        color: var(--deep-teal);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        padding: 10px 20px;
+        border-radius: 30px;
+        margin-bottom: 24px;
+        border: 1px solid rgba(78, 205, 196, 0.2);
+        animation: badgePulse 2s ease-in-out infinite;
+    }
+
+    @keyframes badgePulse {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(78, 205, 196, 0.3); }
+        50% { box-shadow: 0 0 0 8px rgba(78, 205, 196, 0); }
+    }
+
+    .free-page .hero h1 {
+        font-size: clamp(36px, 6vw, 56px);
+        color: var(--deep-teal);
+        margin-bottom: 20px;
+        letter-spacing: -1.5px;
+        line-height: 1.1;
+    }
+
+    .free-page .hero h1 .emoji {
+        display: inline-block;
+        animation: emojiWave 1s ease-in-out infinite;
+    }
+
+    @keyframes emojiWave {
+        0%, 100% { transform: rotate(0deg); }
+        25% { transform: rotate(15deg); }
+        75% { transform: rotate(-10deg); }
+    }
+
+    .free-page .hero-subtitle {
+        font-size: 18px;
+        color: var(--warm-gray);
+        max-width: 550px;
+        margin: 0 auto 40px;
+        line-height: 1.7;
+    }
+
+    .free-page .hero-subtitle strong {
+        color: var(--deep-teal);
+        font-weight: 600;
+    }
+
+    /* VSL Frame */
+    .free-page .vsl-container {
+        max-width: 700px;
+        margin: 0 auto;
+        animation: vslReveal 1s ease-out 0.3s both;
+    }
+
+    @keyframes vslReveal {
+        from { opacity: 0; transform: scale(0.95) translateY(20px); }
+        to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .free-page .vsl-frame {
+        background: #fff;
+        border-radius: 20px;
+        padding: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.03), 0 8px 24px rgba(0,0,0,0.04), 0 0 0 1px rgba(78, 205, 196, 0.1);
+        position: relative;
+    }
+
+    .free-page .vsl-inner {
+        background: linear-gradient(135deg, #f8f8f8, #f2f2f2);
+        border-radius: 14px;
+        aspect-ratio: 16/9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .free-page .vsl-inner vturb-smartplayer {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+
+    .free-page .vsl-note {
+        text-align: center;
+        margin-top: 16px;
+        font-family: 'Caveat', cursive;
+        font-size: 20px;
+        color: var(--light-gray);
+    }
+
+    /* ========================================
+       CHECKLIST SECTION (THE MAIN EVENT)
+       ======================================== */
+    .free-page .checklist-section {
+        padding: 80px 24px 100px;
+        background: linear-gradient(180deg, var(--cream) 0%, #fff 100%);
+        position: relative;
+    }
+
+    .free-page .checklist-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--teal), var(--pink-vibrant));
+        border-radius: 2px;
+    }
+
+    .free-page .checklist-container {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .free-page .checklist-header {
+        text-align: center;
+        margin-bottom: 48px;
+    }
+
+    .free-page .checklist-header h2 {
+        font-size: clamp(32px, 5vw, 44px);
+        color: var(--deep-teal);
+        margin-bottom: 8px;
+    }
+
+    .free-page .checklist-header p {
+        font-size: 17px;
+        color: var(--light-gray);
+        font-style: italic;
+    }
+
+    /* Progress Bar */
+    .free-page .progress-wrapper {
+        margin-bottom: 40px;
+        padding: 20px 24px;
+        background: linear-gradient(135deg, rgba(78, 205, 196, 0.08), rgba(255, 143, 171, 0.08));
+        border-radius: 16px;
+        border: 1px solid rgba(78, 205, 196, 0.15);
+    }
+
+    .free-page .progress-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+    }
+
+    .free-page .progress-text {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--deep-teal);
+    }
+
+    .free-page .progress-percentage {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--teal);
+    }
+
+    .free-page .progress-bar {
+        height: 8px;
+        background: rgba(0,0,0,0.06);
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .free-page .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--teal), var(--pink-vibrant));
+        border-radius: 4px;
+        width: 0%;
+        transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* Checklist Cards */
+    .free-page .checklist-items {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .free-page .checklist-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 28px;
+        border: 2px solid rgba(0,0,0,0.04);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .free-page .checklist-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: var(--card-accent, var(--teal));
+        opacity: 0.5;
+        transition: opacity 0.3s ease;
+    }
+
+    .free-page .checklist-card:hover {
+        border-color: rgba(78, 205, 196, 0.2);
+        box-shadow: 0 8px 24px rgba(78, 205, 196, 0.1);
+        transform: translateX(4px);
+    }
+
+    .free-page .checklist-card:hover::before {
+        opacity: 1;
+    }
+
+    .free-page .checklist-card.completed {
+        background: linear-gradient(135deg, rgba(78, 205, 196, 0.05), rgba(78, 205, 196, 0.02));
+        border-color: var(--teal);
+    }
+
+    .free-page .checklist-card.completed::before {
+        opacity: 1;
+        background: var(--teal);
+    }
+
+    .free-page .card-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        cursor: pointer;
+    }
+
+    .free-page .check-box {
+        width: 28px;
+        height: 28px;
+        flex-shrink: 0;
+        position: relative;
+        margin-top: 2px;
+    }
+
+    .free-page .check-circle {
+        width: 28px;
+        height: 28px;
+        border: 2px solid #ddd;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+    }
+
+    .free-page .checklist-card:hover .check-circle {
+        border-color: var(--teal);
+    }
+
+    .free-page .check-tick {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, var(--teal), #3DBDB5);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: scale(0);
+        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .free-page .checklist-card.completed .check-tick {
+        transform: scale(1);
+    }
+
+    .free-page .checklist-card.completed .check-circle {
+        border-color: var(--teal);
+    }
+
+    .free-page .card-content {
+        flex: 1;
+    }
+
+    .free-page .card-title {
+        font-family: 'Satoshi', sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--deep-teal);
+        margin-bottom: 6px;
+        transition: opacity 0.3s ease;
+    }
+
+    .free-page .card-description {
+        font-size: 15px;
+        color: var(--warm-gray);
+        line-height: 1.6;
+    }
+
+    .free-page .checklist-card.completed .card-title,
+    .free-page .checklist-card.completed .card-description {
+        opacity: 0.6;
+    }
+
+    /* Calendar Card Special Styling */
+    .free-page .calendar-card {
+        --card-accent: var(--pink-vibrant);
+    }
+
+    .free-page .calendar-dates {
+        margin-top: 20px;
+        padding: 20px;
+        background: linear-gradient(135deg, rgba(255, 143, 171, 0.06), rgba(255, 143, 171, 0.02));
+        border-radius: 12px;
+        border: 1px solid rgba(255, 143, 171, 0.15);
+    }
+
+    .free-page .date-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .free-page .date-row:last-child {
+        border-bottom: none;
+    }
+
+    .free-page .date-day {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--pink-vibrant);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        width: 50px;
+    }
+
+    .free-page .date-info {
+        font-size: 14px;
+        color: var(--warm-gray);
+    }
+
+    .free-page .date-info strong {
+        color: var(--deep-teal);
+    }
+
+    .free-page .calendar-btn-wrapper {
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-start;
+        position: relative;
+        z-index: 100;
+    }
+
+    .free-page .calendar-btn-wrapper add-to-calendar-button {
+        --btn-background: #1A3D3B;
+        --btn-background-hover: #234d4a;
+        --btn-text: #ffffff;
+        --btn-text-hover: #ffffff;
+        --font: 'Satoshi', -apple-system, sans-serif;
+        --btn-shadow: 0 2px 8px rgba(26, 61, 59, 0.2);
+        --btn-shadow-hover: 0 4px 16px rgba(26, 61, 59, 0.25);
+        --list-background: #ffffff;
+        --list-text: #333333;
+        --list-background-hover: #f5f5f5;
+        --list-text-hover: #1A3D3B;
+        --list-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        --btn-border: none;
+        --checkmark-background: #4ECDC4;
+    }
+
+    /* WhatsApp Card */
+    .free-page .whatsapp-card {
+        --card-accent: var(--whatsapp-green);
+    }
+
+    .free-page .whatsapp-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 16px;
+        background: linear-gradient(135deg, var(--whatsapp-green), #20BA5C);
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        padding: 14px 24px;
+        border-radius: 50px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+    }
+
+    .free-page .whatsapp-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    }
+
+    /* Desktop Card */
+    .free-page .desktop-card {
+        --card-accent: var(--rose-gold);
+    }
+
+    /* Inbox Card */
+    .free-page .inbox-card {
+        --card-accent: var(--deep-teal);
+    }
+
+    /* Completion Message */
+    .free-page .completion-message {
+        margin-top: 32px;
+        padding: 24px;
+        background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(255, 143, 171, 0.1));
+        border-radius: 16px;
+        text-align: center;
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--deep-teal);
+        border: 2px solid var(--teal);
+        display: none;
+        animation: messageIn 0.5s ease both;
+    }
+
+    @keyframes messageIn {
+        from { opacity: 0; transform: translateY(-10px) scale(0.95); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .free-page .completion-message.show {
+        display: block;
+    }
+
+    /* ========================================
+       3-DAY BREAKDOWN SECTION
+       ======================================== */
+    .free-page .breakdown-section {
+        padding: 80px 24px 100px;
+        background: linear-gradient(180deg, #fff 0%, var(--warm-cream) 100%);
+    }
+
+    .free-page .breakdown-container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .free-page .breakdown-header {
+        text-align: center;
+        margin-bottom: 56px;
+    }
+
+    .free-page .breakdown-header h2 {
+        font-size: clamp(32px, 5vw, 44px);
+        color: var(--deep-teal);
+        position: relative;
+        display: inline-block;
+    }
+
+    .free-page .breakdown-header h2::after {
+        content: '';
+        position: absolute;
+        bottom: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--teal), var(--pink-vibrant), var(--rose-gold));
+        border-radius: 2px;
+    }
+
+    /* Day Cards */
+    .free-page .day-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .free-page .day-card {
+        background: #fff;
+        border-radius: 24px;
+        padding: 36px;
+        position: relative;
+        border: 1px solid rgba(0,0,0,0.04);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+        transition: all 0.4s ease;
+        overflow: hidden;
+    }
+
+    .free-page .day-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: var(--day-color, var(--teal));
+    }
+
+    .free-page .day-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+
+    .free-page .day-card-1 { --day-color: var(--teal); }
+    .free-page .day-card-2 { --day-color: var(--pink-vibrant); }
+    .free-page .day-card-3 { --day-color: var(--rose-gold); }
+
+    .free-page .day-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(135deg, var(--day-color), rgba(0,0,0,0.1));
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        padding: 8px 16px;
+        border-radius: 20px;
+        margin-bottom: 16px;
+    }
+
+    .free-page .day-card h3 {
+        font-size: 24px;
+        color: var(--deep-teal);
+        margin-bottom: 16px;
+        line-height: 1.3;
+    }
+
+    .free-page .day-intro {
+        font-size: 16px;
+        color: var(--warm-gray);
+        line-height: 1.7;
+        margin-bottom: 24px;
+        font-style: italic;
+    }
+
+    .free-page .day-bullets {
+        list-style: none;
+        padding: 0;
+    }
+
+    .free-page .day-bullets li {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 10px 0;
+        font-size: 15px;
+        color: var(--warm-gray);
+        line-height: 1.6;
+        border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .free-page .day-bullets li:last-child {
+        border-bottom: none;
+    }
+
+    .free-page .day-bullets li::before {
+        content: '→';
+        color: var(--day-color);
+        font-weight: 700;
+        flex-shrink: 0;
+    }
+
+    .free-page .day-bullets li strong {
+        color: var(--deep-teal);
+    }
+
+    /* ========================================
+       VIP UPSELL SECTION
+       ======================================== */
+    .free-page .upsell-section {
+        padding: 60px 24px;
+        background: linear-gradient(135deg, rgba(201, 168, 124, 0.08), rgba(255, 209, 220, 0.08));
+    }
+
+    .free-page .upsell-container {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .free-page .upsell-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 36px;
+        border: 1px solid rgba(201, 168, 124, 0.2);
+        box-shadow: 0 4px 20px rgba(201, 168, 124, 0.1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .free-page .upsell-card::before {
+        content: '';
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        width: 150px;
+        height: 150px;
+        background: radial-gradient(circle, rgba(201, 168, 124, 0.15), transparent 70%);
+        pointer-events: none;
+    }
+
+    .free-page .upsell-icon {
+        font-size: 28px;
+        margin-bottom: 16px;
+    }
+
+    .free-page .upsell-card h3 {
+        font-size: 26px;
+        color: var(--deep-teal);
+        margin-bottom: 16px;
+    }
+
+    .free-page .upsell-card p {
+        font-size: 16px;
+        color: var(--warm-gray);
+        line-height: 1.7;
+        margin-bottom: 12px;
+    }
+
+    .free-page .upsell-card p:last-of-type {
+        margin-bottom: 24px;
+    }
+
+    .free-page .upsell-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--rose-gold-dark);
+        font-size: 15px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .free-page .upsell-link:hover {
+        color: var(--deep-teal);
+        gap: 12px;
+    }
+
+    /* ========================================
+       CLOSING SECTION
+       ======================================== */
+    .free-page .closing-section {
+        padding: 80px 24px 100px;
+        background: var(--deep-teal);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .free-page .closing-section::before {
+        content: '';
+        position: absolute;
+        top: -150px;
+        left: -150px;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(78, 205, 196, 0.15), transparent 60%);
+        pointer-events: none;
+    }
+
+    .free-page .closing-section::after {
+        content: '';
+        position: absolute;
+        bottom: -100px;
+        right: -100px;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(255, 143, 171, 0.1), transparent 60%);
+        pointer-events: none;
+    }
+
+    .free-page .closing-container {
+        max-width: 650px;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+    }
+
+    .free-page .closing-section h2 {
+        font-size: clamp(32px, 5vw, 42px);
+        color: #fff;
+        margin-bottom: 24px;
+    }
+
+    .free-page .closing-text {
+        font-size: 18px;
+        color: rgba(255,255,255,0.8);
+        line-height: 1.8;
+        margin-bottom: 16px;
+    }
+
+    .free-page .closing-text strong {
+        color: #fff;
+        font-weight: 600;
+    }
+
+    .free-page .closing-emphasis {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--teal);
+        margin: 32px 0;
+    }
+
+    .free-page .signature {
+        margin-top: 48px;
+        padding-top: 32px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .free-page .signature-text {
+        font-family: 'Caveat', cursive;
+        font-size: 32px;
+        color: var(--soft-pink);
+        margin-bottom: 4px;
+    }
+
+    .free-page .signature-name {
+        font-size: 14px;
+        color: rgba(255,255,255,0.5);
+    }
+
+    /* ========================================
+       MOBILE VIDEO DRAWER
+       ======================================== */
+    .free-page .video-drawer-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.97);
+        z-index: 10000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+        overflow: hidden;
+    }
+
+    .free-page .video-drawer-overlay.open {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    body.drawer-open,
+    html.drawer-open {
+        overflow: hidden !important;
+        position: fixed !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .free-page .video-drawer {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        max-height: 90vh;
+        background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
+        z-index: 10001;
+        opacity: 0;
+        transform: scale(0.9);
+        transition: all 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+        border-radius: 24px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(78, 205, 196, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+
+    .free-page .video-drawer-overlay.open .video-drawer {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    .free-page .drawer-header {
+        width: 100%;
+        padding: 18px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: linear-gradient(180deg, rgba(78, 205, 196, 0.08) 0%, transparent 100%);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        flex-shrink: 0;
+        position: relative;
+    }
+
+    .free-page .drawer-header::before {
+        content: '';
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 36px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.25);
+        border-radius: 2px;
+    }
+
+    .free-page .drawer-title {
+        font-family: 'Satoshi', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--teal);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    .free-page .drawer-close-btn {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .free-page .drawer-close-btn:hover,
+    .free-page .drawer-close-btn:active {
+        background: rgba(255, 255, 255, 0.15);
+        transform: scale(1.05);
+    }
+
+    .free-page .drawer-close-btn svg {
+        width: 14px;
+        height: 14px;
+        stroke: rgba(255, 255, 255, 0.7);
+    }
+
+    .free-page .drawer-video-container {
+        width: 100%;
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px 16px 12px;
+        position: relative;
+    }
+
+    .free-page .drawer-video-container iframe {
+        width: 100% !important;
+        height: 100% !important;
+        display: block !important;
+        aspect-ratio: 16/9;
+        border-radius: 12px;
+    }
+
+    .free-page #drawer-video-wrapper {
+        width: 100%;
+        aspect-ratio: 16/9;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        position: relative;
+        background: #111;
+    }
+
+    .free-page .drawer-footer {
+        padding: 20px 24px 24px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .free-page .drawer-footer::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(circle, rgba(78, 205, 196, 0.15), transparent 70%);
+        transform: translate(-50%, -50%);
+        animation: pulseGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+        0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+        50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+    }
+
+    .free-page .drawer-rings {
+        position: relative;
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 16px;
+    }
+
+    .free-page .drawer-rings .ring {
+        position: absolute;
+        inset: 0;
+        border: 2px solid rgba(78, 205, 196, 0.3);
+        border-radius: 50%;
+        animation: ringPulse 2s ease-out infinite;
+    }
+
+    .free-page .drawer-rings .ring:nth-child(2) { animation-delay: 0.4s; }
+    .free-page .drawer-rings .ring:nth-child(3) { animation-delay: 0.8s; }
+
+    @keyframes ringPulse {
+        0% { transform: scale(0.5); opacity: 1; }
+        100% { transform: scale(1.5); opacity: 0; }
+    }
+
+    .free-page .drawer-rings .icon-circle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 44px;
+        height: 44px;
+        background: linear-gradient(135deg, var(--teal), #3DBDB5);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 20px rgba(78, 205, 196, 0.4);
+    }
+
+    .free-page .drawer-rings .icon-circle svg {
+        width: 20px;
+        height: 20px;
+        fill: #fff;
+    }
+
+    .free-page .drawer-footer-text {
+        position: relative;
+        z-index: 1;
+        font-family: 'Satoshi', sans-serif;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.5;
+    }
+
+    .free-page .drawer-footer-text strong {
+        color: var(--teal);
+        font-weight: 600;
+    }
+
+    /* Mobile Play Overlay */
+    .free-page .mobile-play-overlay {
+        position: absolute;
+        inset: 0;
+        display: none;
+        cursor: pointer;
+        border-radius: 14px;
+        z-index: 10;
+        overflow: hidden;
+    }
+
+    .free-page .mobile-play-overlay .preview-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 14px;
+    }
+
+    .free-page .mobile-play-overlay .play-button-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 8px;
+        background: rgba(0, 0, 0, 0.3);
+        transition: background 0.3s ease;
+    }
+
+    .free-page .mobile-play-overlay:active .play-button-overlay {
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .free-page .mobile-play-overlay .play-icon-circle {
+        width: 64px;
+        height: 64px;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        transition: transform 0.2s ease;
+    }
+
+    .free-page .mobile-play-overlay:active .play-icon-circle {
+        transform: scale(0.95);
+    }
+
+    .free-page .mobile-play-overlay .play-icon-circle svg {
+        width: 24px;
+        height: 24px;
+        margin-left: 3px;
+    }
+
+    .free-page .mobile-play-overlay .tap-text {
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+        letter-spacing: 0.3px;
+    }
+
+    @media (max-width: 768px) {
+        .free-page .mobile-play-overlay {
+            display: block !important;
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+        }
+        .free-page .vsl-inner > vturb-smartplayer {
+            display: none !important;
+            visibility: hidden !important;
+            position: absolute !important;
+            width: 0 !important;
+            height: 0 !important;
+        }
+        .free-page .vsl-inner {
+            min-height: 200px;
+            aspect-ratio: 16/9;
+            position: relative;
+        }
+    }
+
+    @media (min-width: 769px) {
+        .free-page .video-drawer,
+        .free-page .video-drawer-overlay { display: none !important; }
+        .free-page .mobile-play-overlay { display: none !important; }
+    }
+
+    /* ========================================
+       RESPONSIVE STYLES
+       ======================================== */
+    @media (max-width: 768px) {
+        .free-page .hero {
+            padding: 40px 20px 60px;
+        }
+
+        .free-page .hero h1 {
+            font-size: 32px;
+        }
+
+        .free-page .hero-subtitle {
+            font-size: 16px;
+        }
+
+        .free-page .checklist-section,
+        .free-page .breakdown-section {
+            padding: 60px 20px 80px;
+        }
+
+        .free-page .checklist-header h2,
+        .free-page .breakdown-header h2 {
+            font-size: 28px;
+        }
+
+        .free-page .checklist-card {
+            padding: 24px 20px;
+        }
+
+        .free-page .day-card {
+            padding: 28px 24px;
+        }
+
+        .free-page .day-card h3 {
+            font-size: 20px;
+        }
+
+        .free-page .upsell-card {
+            padding: 28px 24px;
+        }
+
+        .free-page .closing-section {
+            padding: 60px 20px 80px;
+        }
+
+        .free-page .calendar-btn-wrapper {
+            width: 100%;
+        }
+
+        .free-page .calendar-btn-wrapper add-to-calendar-button {
+            width: 100%;
+        }
+
+        .free-page .whatsapp-btn {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .free-page .hero h1 {
+            font-size: 28px;
+        }
+
+        .free-page .hero-badge {
+            font-size: 11px;
+            padding: 8px 14px;
+        }
+
+        .free-page .checklist-header h2,
+        .free-page .breakdown-header h2 {
+            font-size: 24px;
+        }
+
+        .free-page .card-title {
+            font-size: 16px;
+        }
+
+        .free-page .card-description {
+            font-size: 14px;
+        }
+
+        .free-page .day-card h3 {
+            font-size: 18px;
+        }
+
+        .free-page .day-bullets li {
+            font-size: 14px;
+        }
+
+        .free-page .closing-section h2 {
+            font-size: 26px;
+        }
+
+        .free-page .closing-text {
+            font-size: 16px;
+        }
+    }
+</style>
+
+<!-- Load Calendar Button Script -->
+<script src="https://cdn.jsdelivr.net/npm/add-to-calendar-button@2" async defer></script>
+
+<div class="free-page">
+    <!-- ========================================
+         SECTION 1: HERO
+         ======================================== -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-badge">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M8 1L10 5.5L15 6L11.5 9.5L12.5 14.5L8 12L3.5 14.5L4.5 9.5L1 6L6 5.5L8 1Z" fill="currentColor"/>
+                </svg>
+                You're In
+            </div>
+
+            <h1>You're Registered! <span class="emoji">🎉</span><br>Now Let's Make Sure You Actually Show Up.</h1>
+
+            <p class="hero-subtitle">
+                Your spot's saved for all 3 days. But real talk — <strong>this only works if you're in the room.</strong> Let's lock that in.
+            </p>
+
+            <div class="vsl-container">
+                <div class="vsl-frame">
+                    <div class="vsl-inner">
+                        <!-- Replace with actual video embed -->
+                        <vturb-smartplayer id="vid-placeholder-free"></vturb-smartplayer>
+                        <div class="mobile-play-overlay" id="mobilePlayBtn">
+                            <iframe
+                                class="preview-video"
+                                id="previewVideo"
+                                src="https://scripts.converteai.net/4a88e4d6-10d6-46da-b41b-334366e58f7b/players/69268e3d1ec0bc043c339ac6/embed.html?muted=true"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen
+                                style="pointer-events: none;"
+                            ></iframe>
+                            <div class="play-button-overlay">
+                                <div class="play-icon-circle">
+                                    <svg viewBox="0 0 24 24" fill="none">
+                                        <path d="M5 3L19 12L5 21V3Z" fill="#1A3D3B"/>
+                                    </svg>
+                                </div>
+                                <span class="tap-text">Tap to watch with sound</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="vsl-note">A quick message from Bailey</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         SECTION 2: MICRO-COMMITMENT CHECKLIST
+         ======================================== -->
+    <section class="checklist-section fade-in-section">
+        <div class="checklist-container">
+            <div class="checklist-header">
+                <h2>Okay Do These Right Now</h2>
+                <p>(Not Later, Now)</p>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-wrapper">
+                <div class="progress-header">
+                    <span class="progress-text" id="progressText">0 of 4 complete</span>
+                    <span class="progress-percentage" id="progressPercentage">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+
+            <div class="checklist-items">
+                <!-- Calendar Card -->
+                <div class="checklist-card calendar-card" data-index="0">
+                    <div class="card-header">
+                        <div class="check-box">
+                            <div class="check-circle"></div>
+                            <div class="check-tick">
+                                <svg width="14" height="11" viewBox="0 0 14 11" fill="none">
+                                    <path d="M1 5L5 9L13 1" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h4 class="card-title">Add All 3 Days to Your Calendar</h4>
+                            <p class="card-description">I'm serious. Do it while you're here. Life WILL try to take over.</p>
+                        </div>
+                    </div>
+
+                    <div class="calendar-dates">
+                        <div class="date-row">
+                            <span class="date-day">Day 1</span>
+                            <span class="date-info"><strong>Tuesday, December 9th</strong> @ 7pm EST</span>
+                        </div>
+                        <div class="date-row">
+                            <span class="date-day">Day 2</span>
+                            <span class="date-info"><strong>Wednesday, December 10th</strong> @ 7pm EST</span>
+                        </div>
+                        <div class="date-row">
+                            <span class="date-day">Day 3</span>
+                            <span class="date-info"><strong>Thursday, December 11th</strong> @ 7pm EST</span>
+                        </div>
+                    </div>
+
+                    <div class="calendar-btn-wrapper">
+                        <add-to-calendar-button
+                            name="Bailey's 3-Day Etsy Challenge"
+                            description="Your FREE access to the 3-Day Challenge![br][br]Day 1: The 90-Minute Etsy Reset[br]Day 2: AI Design Lab[br]Day 3: The Empire System[br][br]Watch on desktop for the best experience!"
+                            startDate="2025-12-09"
+                            startTime="19:00"
+                            endDate="2025-12-11"
+                            endTime="20:00"
+                            timeZone="US/Eastern"
+                            location="Online - Link in your email"
+                            options="'Apple','Google','iCal'"
+                            buttonStyle="flat"
+                            trigger="click"
+                            hideCheckmark
+                            size="4"
+                            label="Add All 3 Days to Calendar"
+                        ></add-to-calendar-button>
+                    </div>
+                </div>
+
+                <!-- WhatsApp Card -->
+                <div class="checklist-card whatsapp-card" data-index="1">
+                    <div class="card-header">
+                        <div class="check-box">
+                            <div class="check-circle"></div>
+                            <div class="check-tick">
+                                <svg width="14" height="11" viewBox="0 0 14 11" fill="none">
+                                    <path d="M1 5L5 9L13 1" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h4 class="card-title">Join the Free WhatsApp Group</h4>
+                            <p class="card-description">This is where I send reminders, drop little bonus tips, and where you'll meet all the other women doing this with you. It's also how I'll make sure you don't forget 😉</p>
+                        </div>
+                    </div>
+
+                    <a href="#" target="_blank" class="whatsapp-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5l-1.4 5 5.2-1.3c1.5.9 3.2 1.4 5 1.4 5.5 0 10-4.5 10-10S17.5 2 12 2z" fill="currentColor"/>
+                        </svg>
+                        Join the WhatsApp
+                    </a>
+                </div>
+
+                <!-- Desktop Card -->
+                <div class="checklist-card desktop-card" data-index="2">
+                    <div class="card-header">
+                        <div class="check-box">
+                            <div class="check-circle"></div>
+                            <div class="check-tick">
+                                <svg width="14" height="11" viewBox="0 0 14 11" fill="none">
+                                    <path d="M1 5L5 9L13 1" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h4 class="card-title">Watch on Desktop, Not Your Phone</h4>
+                            <p class="card-description">I'm gonna be showing you my screen, walking through real examples. Your phone's too small for this. Laptop or desktop, please and thank you.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Inbox Card -->
+                <div class="checklist-card inbox-card" data-index="3">
+                    <div class="card-header">
+                        <div class="check-box">
+                            <div class="check-circle"></div>
+                            <div class="check-tick">
+                                <svg width="14" height="11" viewBox="0 0 14 11" fill="none">
+                                    <path d="M1 5L5 9L13 1" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h4 class="card-title">Check Your Inbox</h4>
+                            <p class="card-description">Your confirmation email has all the links and the schedule. If you don't see it, check spam. (Subject line: "You're in!")</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="completion-message" id="completionMessage">
+                🎉 You're all set! See you on Day 1 — don't be late!
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         SECTION 3: 3-DAY BREAKDOWN
+         ======================================== -->
+    <section class="breakdown-section fade-in-section">
+        <div class="breakdown-container">
+            <div class="breakdown-header">
+                <h2>Here's What We're Doing Together</h2>
+            </div>
+
+            <div class="day-cards">
+                <!-- DAY 1 -->
+                <div class="day-card day-card-1">
+                    <div class="day-badge">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <rect x="1" y="3" width="12" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M4 1V4M10 1V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        Day 1 — Tuesday, December 9th @ 7pm EST
+                    </div>
+
+                    <h3>The 90-Minute Etsy Reset: Delete What's Dead and Choose What's Worth Building for 2026</h3>
+
+                    <p class="day-intro">Okay so this one sounds dramatic but stay with me. I'm showing you exactly why deleting a huge chunk of my shop was the turning point — and how to figure out what YOU should cut without all the emotional spiraling.</p>
+
+                    <ul class="day-bullets">
+                        <li><strong>Why your favorite designs are probably your biggest problem</strong> (I know, I know... but it's true)</li>
+                        <li>The <strong>"Daycare Math"</strong> that forced me to change everything — I was working ALL week and barely keeping anything after paying for childcare</li>
+                        <li>How one of my students went from hundreds of listings and almost no sales to <strong>consistent months after deleting most of her shop</strong></li>
+                        <li>The <strong>Delete Decision Matrix</strong> — Know EXACTLY what to cut without the emotional drama</li>
+                        <li>Why successful shops actually have MORE dead products than struggling ones (this is gonna blow your mind)</li>
+                        <li>The <strong>January Gold Rush opportunity</strong> you're gonna miss if you don't reset your shop NOW</li>
+                        <li>How to find your hidden winners in 15 minutes using my <strong>3-Column Framework</strong></li>
+                    </ul>
+                </div>
+
+                <!-- DAY 2 -->
+                <div class="day-card day-card-2">
+                    <div class="day-badge">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <rect x="1" y="3" width="12" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M4 1V4M10 1V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        Day 2 — Wednesday, December 10th @ 7pm EST
+                    </div>
+
+                    <h3>AI Design Lab: Watch Me Build $3-$5 Products Live (And Plan Your First Winner With Me)</h3>
+
+                    <p class="day-intro">No slides on this one, y'all. I'm literally opening up my tools and building something from nothing while you watch. You'll see exactly how I think through it, what prompts I use, and how I get from "idea" to "done" fast.</p>
+
+                    <ul class="day-bullets">
+                        <li>Why most Etsy sellers using AI are <strong>creating garbage that doesn't sell</strong> (and the simple fix that changes everything)</li>
+                        <li>How to create a complete product in about <strong>30 minutes using AI</strong> — I'm doing it LIVE, no prep</li>
+                        <li>The <strong>exact prompt formula</strong> that generates winners vs. the generic prompts that create trash</li>
+                        <li>How to turn one good idea into <strong>multiple variations fast</strong> (this alone will multiply your productivity)</li>
+                        <li>The <strong>4-Generation Rule</strong> — Why you should NEVER accept the first AI result. Ever.</li>
+                        <li>The simple AI toolkit I actually use in my real shop — <strong>no complicated tech stacks, no pricey software</strong></li>
+                        <li>The specific tools I'm leaning on right now, including <strong>free and cheap options</strong> you can start with tonight</li>
+                    </ul>
+                </div>
+
+                <!-- DAY 3 -->
+                <div class="day-card day-card-3">
+                    <div class="day-badge">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <rect x="1" y="3" width="12" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M4 1V4M10 1V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        Day 3 — Thursday, December 11th @ 7pm EST
+                    </div>
+
+                    <h3>The Empire System: The Boring 3-Hour Weekly Routine That Helps Shops Grow to 500-4,000+ Sales (While Keeping Their Day Jobs)</h3>
+
+                    <p class="day-intro">This is the unsexy stuff nobody wants to talk about. The actual routine. The systems. How I manage a real shop with four kids and don't lose my mind. It's not glamorous but it's what actually gets results.</p>
+
+                    <ul class="day-bullets">
+                        <li>How to manage a strategic Etsy shop in about <strong>3 hours a week</strong> (Monday = Research, Wednesday = Create, Friday = Optimize)</li>
+                        <li>The simple tracking spreadsheet that tells you <strong>what to scale vs. what to pause</strong> — takes a few minutes to update</li>
+                        <li>My <strong>"Batch Everything" method</strong> that massively boosts productivity (never do one of anything again)</li>
+                        <li>A practical rule that <strong>removes emotion from business decisions</strong> — so you don't delete winners early or cling to losers forever</li>
+                        <li>How to know when it actually makes sense to <strong>hire help</strong> — and what to delegate first so you're not wasting money</li>
+                        <li>The <strong>seasonal planning rhythm</strong> that keeps you ahead of trends instead of scrambling last minute</li>
+                        <li>How to take one product that's starting to sell and <strong>turn it into a whole collection</strong> without burning yourself out</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         SECTION 4: VIP UPSELL (SOFT)
+         ======================================== -->
+    <section class="upsell-section fade-in-section">
+        <div class="upsell-container">
+            <div class="upsell-card">
+                <div class="upsell-icon">💡</div>
+                <h3>Want a Head Start?</h3>
+                <p>VIPs get the Quick Start Kit before Day 1 — that's my $1M shop walkthrough, 50 product examples, and the framework I use to figure out what stays and what goes.</p>
+                <p>Plus: 7 days in the VIP WhatsApp where you can ask me real questions about YOUR shop, two extra live sessions just for VIPs, and an Implementation Kit that actually helps you finish what you start.</p>
+                <p>Just saying. It's there if you want it.</p>
+                <a href="#" class="upsell-link">
+                    See What VIPs Get
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         SECTION 5: CLOSING
+         ======================================== -->
+    <section class="closing-section fade-in-section">
+        <div class="closing-container">
+            <h2>You Already Did the Hard Part.</h2>
+            <p class="closing-text">
+                Real talk — most people think about fixing their Etsy shop for MONTHS. They save videos. They screenshot posts. They tell themselves "I'll get to it eventually."
+            </p>
+            <p class="closing-text">
+                <strong>You just actually did something.</strong> You registered. That's already different.
+            </p>
+            <p class="closing-emphasis">
+                Now do the next thing: add the dates, join the WhatsApp, and show up on Day 1.
+            </p>
+            <p class="closing-text">
+                The people who get results are the people who are in the room. <strong>Be in the room.</strong>
+            </p>
+
+            <div class="signature">
+                <p class="signature-text">See you there!</p>
+                <p class="signature-name">— Bailey ❤️</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobile Video Drawer -->
+    <div class="video-drawer-overlay" id="videoOverlay">
+        <div class="video-drawer" id="videoDrawer">
+            <div class="drawer-header">
+                <span class="drawer-title">A Message For You</span>
+                <div class="drawer-close-btn" id="drawerClose">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="drawer-video-container" id="drawerVideoContainer">
+                <div id="drawer-video-wrapper">
+                    <!-- Video iframe loaded on open -->
+                </div>
+            </div>
+            <div class="drawer-footer">
+                <div class="drawer-rings">
+                    <div class="ring"></div>
+                    <div class="ring"></div>
+                    <div class="ring"></div>
+                    <div class="icon-circle">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                        </svg>
+                    </div>
+                </div>
+                <p class="drawer-footer-text">
+                    You're <strong>registered</strong>! Watch this quick message to make sure you're ready.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+(function() {
+    const isMobile = window.innerWidth <= 768;
+
+    // Scroll-triggered fade-in
+    const fadeElements = document.querySelectorAll('.free-page .fade-in-section');
+    const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    fadeElements.forEach(el => fadeObserver.observe(el));
+
+    // Checklist functionality
+    const checklistCards = document.querySelectorAll('.free-page .checklist-card');
+    const progressFill = document.getElementById('progressFill');
+    const progressText = document.getElementById('progressText');
+    const progressPercentage = document.getElementById('progressPercentage');
+    const completionMessage = document.getElementById('completionMessage');
+    let checkedCount = 0;
+    const totalItems = checklistCards.length;
+    const savedState = JSON.parse(localStorage.getItem('freeChecklist') || '{}');
+
+    checklistCards.forEach((card, index) => {
+        if (savedState[index]) {
+            card.classList.add('completed');
+            checkedCount++;
+        }
+
+        const header = card.querySelector('.card-header');
+        if (header) {
+            header.addEventListener('click', function() {
+                const isChecked = card.classList.contains('completed');
+                if (!isChecked) {
+                    card.classList.add('completed');
+                    checkedCount++;
+                    createConfetti(card);
+                    savedState[index] = true;
+                } else {
+                    card.classList.remove('completed');
+                    checkedCount--;
+                    savedState[index] = false;
+                }
+                localStorage.setItem('freeChecklist', JSON.stringify(savedState));
+                updateProgress();
+            });
+        }
+    });
+
+    function updateProgress() {
+        const percentage = Math.round((checkedCount / totalItems) * 100);
+        progressFill.style.width = percentage + '%';
+        progressText.textContent = `${checkedCount} of ${totalItems} complete`;
+        progressPercentage.textContent = percentage + '%';
+
+        if (checkedCount === totalItems) {
+            completionMessage.classList.add('show');
+            createBigConfetti();
+        } else {
+            completionMessage.classList.remove('show');
+        }
+    }
+
+    function createConfetti(element) {
+        const rect = element.getBoundingClientRect();
+        const x = rect.left + 30;
+        const y = rect.top + 30;
+        const colors = ['#4ECDC4', '#FF8FAB', '#C9A87C', '#1A3D3B', '#FFD1DC'];
+
+        for (let i = 0; i < 15; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.cssText = `left:${x}px;top:${y}px;background:${colors[Math.floor(Math.random()*colors.length)]};animation:confettiBurst 0.7s ease-out forwards;border-radius:${Math.random() > 0.5 ? '50%' : '2px'};`;
+            const angle = (i / 15) * Math.PI * 2;
+            const distance = 50 + Math.random() * 40;
+            confetti.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
+            confetti.style.setProperty('--ty', Math.sin(angle) * distance + 'px');
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 700);
+        }
+    }
+
+    function createBigConfetti() {
+        const colors = ['#4ECDC4', '#FF8FAB', '#C9A87C', '#1A3D3B', '#FFD1DC'];
+        for (let i = 0; i < 40; i++) {
+            setTimeout(() => {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                const startX = window.innerWidth / 2 + (Math.random() - 0.5) * 200;
+                confetti.style.cssText = `left:${startX}px;top:${window.innerHeight/2}px;background:${colors[Math.floor(Math.random()*colors.length)]};animation:confettiBurst 1s ease-out forwards;border-radius:${Math.random() > 0.5 ? '50%' : '2px'};`;
+                const angle = (i / 40) * Math.PI * 2;
+                const distance = 100 + Math.random() * 120;
+                confetti.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
+                confetti.style.setProperty('--ty', Math.sin(angle) * distance + 'px');
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 1000);
+            }, i * 25);
+        }
+    }
+
+    updateProgress();
+
+    // Mobile Video Drawer
+    const mobilePlayBtn = document.getElementById('mobilePlayBtn');
+    const videoDrawer = document.getElementById('videoDrawer');
+    const videoOverlay = document.getElementById('videoOverlay');
+    const drawerClose = document.getElementById('drawerClose');
+    const drawerVideoWrapper = document.getElementById('drawer-video-wrapper');
+    let drawerVideoInitialized = false;
+
+    function initDrawerVideo() {
+        if (drawerVideoInitialized) return;
+        drawerVideoInitialized = true;
+
+        const iframe = document.createElement('iframe');
+        iframe.src = 'https://scripts.converteai.net/4a88e4d6-10d6-46da-b41b-334366e58f7b/players/69268e3d1ec0bc043c339ac6/embed.html';
+        iframe.style.cssText = 'width:100%;height:100%;border:none;display:block;border-radius:12px;';
+        iframe.allow = 'accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;fullscreen';
+        iframe.allowFullscreen = true;
+        drawerVideoWrapper.innerHTML = '';
+        drawerVideoWrapper.appendChild(iframe);
+    }
+
+    function destroyDrawerVideo() {
+        drawerVideoWrapper.innerHTML = '';
+        drawerVideoInitialized = false;
+    }
+
+    let scrollPosition = 0;
+
+    function openDrawer() {
+        scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        document.body.classList.add('drawer-open');
+        document.documentElement.classList.add('drawer-open');
+        document.body.style.top = `-${scrollPosition}px`;
+        videoOverlay.classList.add('open');
+
+        try {
+            if (window.parent && window.parent !== window) {
+                window.parent.document.body.style.overflow = 'hidden';
+            }
+        } catch(e) {}
+
+        setTimeout(initDrawerVideo, 100);
+    }
+
+    function closeDrawer() {
+        videoOverlay.classList.remove('open');
+        document.body.classList.remove('drawer-open');
+        document.documentElement.classList.remove('drawer-open');
+        document.body.style.top = '';
+        window.scrollTo(0, scrollPosition);
+
+        try {
+            if (window.parent && window.parent !== window) {
+                window.parent.document.body.style.overflow = '';
+            }
+        } catch(e) {}
+
+        setTimeout(destroyDrawerVideo, 350);
+    }
+
+    if (mobilePlayBtn) {
+        mobilePlayBtn.addEventListener('click', openDrawer);
+        mobilePlayBtn.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            openDrawer();
+        });
+    }
+
+    if (videoOverlay) {
+        videoOverlay.addEventListener('click', function(e) {
+            if (e.target === videoOverlay) closeDrawer();
+        });
+    }
+    if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+
+    // Swipe to close
+    if (videoDrawer) {
+        let startY = 0, currentY = 0, isDragging = false;
+        const drawerHeader = videoDrawer.querySelector('.drawer-header');
+        const drawerFooter = videoDrawer.querySelector('.drawer-footer');
+
+        function handleTouchStart(e) {
+            startY = e.touches[0].clientY;
+            currentY = startY;
+            isDragging = true;
+            videoDrawer.style.transition = 'none';
+        }
+        function handleTouchMove(e) {
+            if (!isDragging) return;
+            currentY = e.touches[0].clientY;
+            const diff = currentY - startY;
+            if (diff > 0) {
+                const dragOffset = diff * 0.6;
+                videoDrawer.style.transform = `translateY(${dragOffset}px) scale(${1 - dragOffset * 0.001})`;
+                videoDrawer.style.opacity = 1 - (dragOffset / 400);
+            }
+        }
+        function handleTouchEnd() {
+            if (!isDragging) return;
+            isDragging = false;
+            videoDrawer.style.transition = 'all 0.35s cubic-bezier(0.32, 0.72, 0, 1)';
+            if (currentY - startY > 120) closeDrawer();
+            videoDrawer.style.transform = '';
+            videoDrawer.style.opacity = '';
+            startY = 0; currentY = 0;
+        }
+
+        if (drawerHeader) {
+            drawerHeader.addEventListener('touchstart', handleTouchStart, { passive: true });
+            drawerHeader.addEventListener('touchmove', handleTouchMove, { passive: true });
+            drawerHeader.addEventListener('touchend', handleTouchEnd);
+        }
+        if (drawerFooter) {
+            drawerFooter.addEventListener('touchstart', handleTouchStart, { passive: true });
+            drawerFooter.addEventListener('touchmove', handleTouchMove, { passive: true });
+            drawerFooter.addEventListener('touchend', handleTouchEnd);
+        }
+    }
+
+    // Only load Vturb player script on desktop
+    if (!isMobile) {
+        var s = document.createElement('script');
+        s.src = 'https://scripts.converteai.net/4a88e4d6-10d6-46da-b41b-334366e58f7b/players/69268e3d1ec0bc043c339ac6/v4/player.js';
+        s.async = true;
+        document.head.appendChild(s);
+    }
+})();
+</script>
