@@ -62,9 +62,9 @@
             --cream: #FFF9F5;
             --cream-dark: #FFF0E8;
             --warm-white: #FFFCFA;
-            --text-dark: #1a1a1a;
-            --text-medium: #444444;
-            --text-light: #666666;
+            --text-dark: #111111;
+            --text-medium: #333333;
+            --text-light: #555555;
             --gold-accent: #FFD93D;
             --whatsapp-green: #25D366;
         }
@@ -648,19 +648,6 @@
             --list-shadow: 0 4px 20px rgba(0,0,0,0.15);
             --btn-border: none;
             --checkmark-background: #5ECFBD;
-            --overlay-background: rgba(0, 0, 0, 0.3);
-            --overlay-cursor: pointer;
-        }
-
-        /* Fix calendar dropdown overlay on desktop */
-        .calendar-btn-wrapper add-to-calendar-button::part(atcb-bgoverlay) {
-            position: fixed !important;
-            inset: 0 !important;
-            z-index: 9998 !important;
-        }
-
-        .calendar-btn-wrapper add-to-calendar-button::part(atcb-list) {
-            z-index: 9999 !important;
         }
 
         /* Tips in Step 3 */
@@ -1544,6 +1531,8 @@
                             buttonStyle="round"
                             trigger="click"
                             hideCheckmark
+                            hideBackground
+                            listStyle="dropdownStatic"
                             size="4"
                             label="Add All 3 Days to Calendar"
                         ></add-to-calendar-button>
