@@ -489,22 +489,13 @@
 
     /* Resume Watching Prompt */
     .vip-page .resume-prompt {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        z-index: 10;
-        background: rgba(0, 0, 0, 0.6);
-        border-radius: 12px;
+        display: none !important;
+        visibility: hidden !important;
     }
 
     .vip-page .resume-prompt.show {
-        display: flex;
-        animation: resumePromptIn 0.3s ease-out;
+        display: none !important;
+        visibility: hidden !important;
     }
 
     .vip-page .resume-prompt-inner {
@@ -1300,10 +1291,23 @@
             grid-template-columns: 1fr;
             gap: 40px;
             text-align: center;
+            justify-items: center;
         }
-        .vip-page .hero-text { order: 1; }
-        .vip-page .vsl-container { order: 2; }
-        .vip-page .hero-subtitle { margin: 0 auto; }
+        .vip-page .hero-text {
+            order: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .vip-page .vsl-container {
+            order: 2;
+            width: 100%;
+            max-width: 500px;
+        }
+        .vip-page .hero-subtitle { margin: 0 auto; text-align: center; }
+        .vip-page .hero h1 { text-align: center; width: 100%; }
+        .vip-page .hero-eyebrow { justify-content: center; }
     }
 
     @media (max-width: 768px) {
@@ -1837,13 +1841,9 @@
             }
         } catch(e) {}
 
-        // Check if user has watched before - show resume prompt or start video
+        // Start video after drawer opens
         setTimeout(function() {
-            if (hasWatchedBefore()) {
-                showResumePrompt();
-            } else {
-                initDrawerVideo(false);
-            }
+            initDrawerVideo(false);
         }, 100);
     }
 
