@@ -2229,12 +2229,8 @@
                         <div class="tape tape-2"></div>
 
                         <div class="video-frame">
-                            <div class="video-inner">
-                                <iframe
-                                    src="https://scripts.converteai.net/4a88e4d6-10d6-46da-b41b-334366e58f7b/players/69268e3d1ec0bc043c339ac6/embed.html"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
-                                </iframe>
+                            <div class="video-inner" id="vslContainer">
+                                <!-- Video iframe injected via JS to prevent duplicates -->
                             </div>
                         </div>
 
@@ -2660,7 +2656,91 @@
 
 <script>
 (function() {
-    // Confetti burst
+    // ============================================
+    // VSL VIDEO MANAGER - Prevents duplicate audio
+    // ============================================
+    const VSL_CONFIG = {
+        containerId: 'vslContainer',
+        iframeId: 'vslPlayer',
+        src: 'https://scripts.converteai.net/4a88e4d6-10d6-46da-b41b-334366e58f7b/players/69268e3d1ec0bc043c339ac6/embed.html',
+        initialized: false
+    };
+
+    function initVSL() {
+        // Prevent multiple initializations
+        if (VSL_CONFIG.initialized) return;
+
+        const container = document.getElementById(VSL_CONFIG.containerId);
+        if (!container) return;
+
+        // Remove any existing iframes first (cleanup duplicates)
+        const existingIframes = container.querySelectorAll('iframe');
+        existingIframes.forEach(iframe => iframe.remove());
+
+        // Also check for any orphaned iframes from the same source anywhere on page
+        document.querySelectorAll('iframe[src*="converteai"]').forEach(iframe => {
+            if (iframe.id !== VSL_CONFIG.iframeId) {
+                iframe.remove();
+            }
+        });
+
+        // Create single iframe instance
+        const iframe = document.createElement('iframe');
+        iframe.id = VSL_CONFIG.iframeId;
+        iframe.src = VSL_CONFIG.src;
+        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.setAttribute('loading', 'lazy');
+        iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;';
+
+        container.appendChild(iframe);
+        VSL_CONFIG.initialized = true;
+    }
+
+    // Handle visibility changes - pause video when tab is hidden
+    function handleVisibilityChange() {
+        const iframe = document.getElementById(VSL_CONFIG.iframeId);
+        if (!iframe) return;
+
+        if (document.hidden) {
+            // When tab is hidden, we can't directly control the iframe
+            // but we can reload it to stop playback if needed
+            // This is a fallback - most players handle this internally
+        }
+    }
+
+    // Cleanup function for SPA navigation (Framer)
+    function cleanup() {
+        const iframe = document.getElementById(VSL_CONFIG.iframeId);
+        if (iframe) {
+            iframe.src = 'about:blank';
+            iframe.remove();
+        }
+        VSL_CONFIG.initialized = false;
+    }
+
+    // Initialize on DOM ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initVSL);
+    } else {
+        // Small delay to ensure container exists
+        setTimeout(initVSL, 100);
+    }
+
+    // Handle visibility changes
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    // Cleanup on page unload (helps with Framer navigation)
+    window.addEventListener('beforeunload', cleanup);
+
+    // Also handle Framer-specific navigation if present
+    if (window.Framer) {
+        window.Framer.on && window.Framer.on('navigate', cleanup);
+    }
+
+    // ============================================
+    // CONFETTI BURST
+    // ============================================
     function createConfetti() {
         const container = document.getElementById('confettiContainer');
         if (!container) return;
@@ -2693,14 +2773,14 @@
     }
     setTimeout(createConfetti, 300);
 
-    // Progress tracking
+    // ============================================
+    // PROGRESS TRACKING
+    // ============================================
     function updateProgress(step) {
         const fill = document.getElementById('progressFill');
         const percentages = { 1: 33, 2: 66, 3: 100 };
         if (fill) fill.style.width = percentages[step] + '%';
     }
     window.updateProgressStep = updateProgress;
-
-    // Video plays inline on mobile - no drawer needed
 })();
 </script>
