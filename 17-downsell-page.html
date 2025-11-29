@@ -13,6 +13,18 @@
         font-display: swap;
     }
 
+    /* ==========================================
+       GLOBAL FIXES FOR WIDTH/OVERFLOW
+       ========================================== */
+    .downsell-page,
+    .downsell-page *,
+    .downsell-page *::before,
+    .downsell-page *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
     .downsell-page {
         --coral: #FF6B6B;
         --coral-dark: #E85555;
@@ -35,14 +47,13 @@
         color: #333;
         line-height: 1.6;
         width: 100%;
+        max-width: 100vw;
         position: relative;
         background: var(--cream);
-    }
-
-    .downsell-page * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+        overflow-x: hidden;
+        /* Mobile scroll fix */
+        touch-action: pan-y;
+        -webkit-overflow-scrolling: touch;
     }
 
     /* Hide scrollbar for Framer embeds - but ALLOW vertical scrolling */
@@ -62,12 +73,6 @@
         height: 0 !important;
     }
 
-    /* Ensure touch scrolling works on mobile */
-    .downsell-page {
-        touch-action: pan-y;
-        -webkit-overflow-scrolling: touch;
-    }
-
     .downsell-page h1, .downsell-page h2, .downsell-page h3 {
         font-family: 'Ogg', Georgia, serif;
         font-weight: 700;
@@ -82,6 +87,7 @@
         top: 0;
         left: 0;
         right: 0;
+        width: 100%;
         z-index: 9999;
         background: linear-gradient(135deg, #FFF5F0 0%, #FFE8E0 50%, #FFDDD3 100%);
         padding: 12px 20px;
@@ -89,6 +95,7 @@
         align-items: center;
         justify-content: center;
         gap: 16px;
+        flex-wrap: wrap;
         box-shadow: 0 2px 20px rgba(255, 107, 107, 0.15);
         border-bottom: 1px solid rgba(255, 107, 107, 0.15);
     }
@@ -96,6 +103,7 @@
     .downsell-page .urgency-bar .timer-icon {
         width: 24px;
         height: 24px;
+        flex-shrink: 0;
         animation: urgencyPulse 1.5s ease-in-out infinite;
     }
 
@@ -109,6 +117,7 @@
         font-weight: 700;
         color: var(--coral-dark);
         letter-spacing: 0.3px;
+        text-align: center;
     }
 
     .downsell-page .urgency-bar .urgency-text span {
@@ -124,6 +133,7 @@
         background: rgba(255, 107, 107, 0.2);
         border-radius: 10px;
         overflow: hidden;
+        flex-shrink: 0;
     }
 
     .downsell-page .urgency-bar .progress-fill {
@@ -140,66 +150,143 @@
     }
 
     /* ==========================================
-       HERO SECTION
+       HERO SECTION - REDESIGNED WITH LIFE
        ========================================== */
     .downsell-page .hero-section {
-        padding: 60px 24px 50px;
-        background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 100%);
+        padding: 50px 20px 60px;
+        background:
+            url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%23FFD166" opacity="0.3"/></svg>') repeat,
+            linear-gradient(180deg, var(--cream) 0%, #FFF5EE 50%, var(--cream-dark) 100%);
+        background-size: 30px 30px, 100% 100%;
         text-align: center;
         position: relative;
         overflow: hidden;
+        width: 100%;
     }
 
-    .downsell-page .hero-section::before {
-        content: '';
+    /* Floating decorative elements */
+    .downsell-page .hero-decor {
         position: absolute;
-        top: 40px;
-        left: 10%;
-        width: 80px;
-        height: 80px;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><path d="M40 5 L45 30 L70 25 L50 40 L65 65 L40 50 L15 65 L30 40 L10 25 L35 30 Z" fill="%23FFD166" opacity="0.15"/></svg>');
-        background-size: contain;
-        animation: float 6s ease-in-out infinite;
+        pointer-events: none;
+        z-index: 0;
     }
 
-    .downsell-page .hero-section::after {
-        content: '';
-        position: absolute;
-        top: 100px;
+    .downsell-page .hero-decor.dollar-1 {
+        top: 15%;
+        left: 5%;
+        font-size: 32px;
+        animation: floatSpin 8s ease-in-out infinite;
+        opacity: 0.6;
+    }
+
+    .downsell-page .hero-decor.dollar-2 {
+        top: 60%;
+        left: 8%;
+        font-size: 24px;
+        animation: floatSpin 10s ease-in-out infinite reverse;
+        opacity: 0.4;
+    }
+
+    .downsell-page .hero-decor.dollar-3 {
+        top: 25%;
+        right: 6%;
+        font-size: 28px;
+        animation: floatSpin 7s ease-in-out infinite;
+        opacity: 0.5;
+    }
+
+    .downsell-page .hero-decor.dollar-4 {
+        top: 70%;
+        right: 10%;
+        font-size: 22px;
+        animation: floatSpin 9s ease-in-out infinite reverse;
+        opacity: 0.4;
+    }
+
+    .downsell-page .hero-decor.sparkle-1 {
+        top: 10%;
+        left: 15%;
+        width: 20px;
+        height: 20px;
+        animation: sparkle 3s ease-in-out infinite;
+    }
+
+    .downsell-page .hero-decor.sparkle-2 {
+        top: 35%;
+        right: 12%;
+        width: 16px;
+        height: 16px;
+        animation: sparkle 4s ease-in-out infinite 0.5s;
+    }
+
+    .downsell-page .hero-decor.sparkle-3 {
+        bottom: 20%;
+        left: 12%;
+        width: 14px;
+        height: 14px;
+        animation: sparkle 3.5s ease-in-out infinite 1s;
+    }
+
+    .downsell-page .hero-decor.star-1 {
+        top: 20%;
+        right: 20%;
+        width: 24px;
+        height: 24px;
+        animation: twinkle 4s ease-in-out infinite;
+    }
+
+    .downsell-page .hero-decor.star-2 {
+        bottom: 30%;
         right: 8%;
-        width: 60px;
-        height: 60px;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><circle cx="30" cy="30" r="25" fill="none" stroke="%23FF6B9D" stroke-width="2" opacity="0.2" stroke-dasharray="5 5"/></svg>');
-        background-size: contain;
-        animation: float 8s ease-in-out infinite reverse;
+        width: 18px;
+        height: 18px;
+        animation: twinkle 5s ease-in-out infinite 1s;
     }
 
-    @keyframes float {
-        0%, 100% { transform: translateY(0) rotate(0deg); }
-        50% { transform: translateY(-10px) rotate(5deg); }
+    @keyframes floatSpin {
+        0%, 100% { transform: translateY(0) rotate(-5deg); }
+        50% { transform: translateY(-15px) rotate(5deg); }
+    }
+
+    @keyframes sparkle {
+        0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.7; }
+        50% { transform: scale(1.3) rotate(180deg); opacity: 1; }
+    }
+
+    @keyframes twinkle {
+        0%, 100% { transform: scale(1); opacity: 0.5; }
+        50% { transform: scale(1.2); opacity: 0.9; }
     }
 
     .downsell-page .hero-container {
         max-width: 700px;
+        width: 100%;
         margin: 0 auto;
         position: relative;
         z-index: 1;
+        padding: 0 10px;
+    }
+
+    /* WAIT Badge with hand icon */
+    .downsell-page .wait-badge-wrapper {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 20px;
     }
 
     .downsell-page .wait-badge {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
+        gap: 10px;
         background: linear-gradient(135deg, var(--coral), var(--pink));
         color: white;
-        font-size: 12px;
+        font-size: 13px;
         font-weight: 800;
         letter-spacing: 1.5px;
         text-transform: uppercase;
-        padding: 10px 20px;
+        padding: 12px 24px;
         border-radius: 50px;
-        margin-bottom: 24px;
-        box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
+        box-shadow: 0 6px 25px rgba(255, 107, 107, 0.4);
         animation: badgePop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
     }
 
@@ -208,24 +295,84 @@
         to { opacity: 1; transform: scale(1) translateY(0); }
     }
 
-    .downsell-page .wait-badge svg {
-        width: 18px;
-        height: 18px;
-        animation: handWave 1s ease-in-out infinite;
+    .downsell-page .wait-badge .hand-icon {
+        font-size: 20px;
+        animation: handWave 1.2s ease-in-out infinite;
     }
 
     @keyframes handWave {
         0%, 100% { transform: rotate(0deg); }
-        25% { transform: rotate(20deg); }
-        75% { transform: rotate(-20deg); }
+        20% { transform: rotate(20deg); }
+        40% { transform: rotate(-10deg); }
+        60% { transform: rotate(15deg); }
+        80% { transform: rotate(-5deg); }
+    }
+
+    /* Handwritten annotation near badge */
+    .downsell-page .badge-annotation {
+        position: absolute;
+        top: -15px;
+        right: -80px;
+        font-family: 'Caveat', cursive;
+        font-size: 18px;
+        color: var(--coral);
+        transform: rotate(8deg);
+        white-space: nowrap;
+        animation: fadeUp 0.8s ease-out 0.3s both;
+    }
+
+    .downsell-page .badge-annotation::before {
+        content: '';
+        position: absolute;
+        left: -20px;
+        top: 50%;
+        width: 15px;
+        height: 2px;
+        background: var(--coral);
+        transform: rotate(-20deg);
+    }
+
+    /* Hero Title with visual treatment */
+    .downsell-page .hero-title-wrapper {
+        position: relative;
+        margin-bottom: 24px;
     }
 
     .downsell-page .hero-title {
-        font-size: clamp(32px, 5vw, 48px);
+        font-size: clamp(28px, 5vw, 44px);
         color: var(--navy);
-        margin-bottom: 20px;
         letter-spacing: -1px;
         animation: fadeUp 0.8s ease-out 0.2s both;
+        line-height: 1.2;
+    }
+
+    .downsell-page .hero-title .line-1 {
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    .downsell-page .hero-title .line-2 {
+        display: block;
+        position: relative;
+    }
+
+    .downsell-page .hero-title .real-word {
+        position: relative;
+        display: inline-block;
+        color: var(--coral);
+    }
+
+    .downsell-page .hero-title .real-word::after {
+        content: '';
+        position: absolute;
+        bottom: 2px;
+        left: -4px;
+        right: -4px;
+        height: 8px;
+        background: linear-gradient(90deg, var(--gold) 0%, rgba(255, 209, 102, 0.4) 100%);
+        border-radius: 4px;
+        z-index: -1;
+        transform: rotate(-1deg);
     }
 
     @keyframes fadeUp {
@@ -233,13 +380,23 @@
         to { opacity: 1; transform: translateY(0); }
     }
 
-    .downsell-page .hero-subtitle {
-        font-size: 18px;
-        color: var(--warm-gray);
-        max-width: 560px;
-        margin: 0 auto;
-        line-height: 1.7;
+    /* Handwritten note under title */
+    .downsell-page .title-annotation {
+        font-family: 'Caveat', cursive;
+        font-size: 20px;
+        color: var(--pink);
+        margin-top: 12px;
         animation: fadeUp 0.8s ease-out 0.4s both;
+    }
+
+    .downsell-page .hero-subtitle {
+        font-size: 17px;
+        color: var(--warm-gray);
+        max-width: 540px;
+        width: 100%;
+        margin: 0 auto;
+        line-height: 1.75;
+        animation: fadeUp 0.8s ease-out 0.5s both;
     }
 
     .downsell-page .hero-subtitle strong {
@@ -249,126 +406,295 @@
 
     .downsell-page .hero-concern {
         font-family: 'Caveat', cursive;
-        font-size: 26px;
+        font-size: 28px;
         color: var(--coral);
-        margin-top: 16px;
-        animation: fadeUp 0.8s ease-out 0.6s both;
+        margin-top: 20px;
+        animation: fadeUp 0.8s ease-out 0.7s both;
+        position: relative;
+        display: inline-block;
+    }
+
+    .downsell-page .hero-concern::after {
+        content: '...';
+        animation: dots 1.5s ease-in-out infinite;
+    }
+
+    @keyframes dots {
+        0%, 20% { opacity: 0; }
+        40% { opacity: 1; }
+    }
+
+    /* Arrow pointing down to next section */
+    .downsell-page .scroll-arrow {
+        margin-top: 30px;
+        animation: bounce 2s ease-in-out infinite;
+    }
+
+    .downsell-page .scroll-arrow svg {
+        width: 24px;
+        height: 24px;
+        color: var(--pink-light);
+    }
+
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(8px); }
     }
 
     /* ==========================================
-       REAL TALK SECTION
+       REAL TALK SECTION - PERSONAL LETTER
        ========================================== */
     .downsell-page .real-talk-section {
-        padding: 50px 24px;
-        background: #FFFFFF;
+        padding: 60px 20px;
+        background:
+            url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect fill="none" stroke="%23FFE8E0" stroke-width="0.5" x="0" y="0" width="200" height="200"/></svg>') repeat,
+            #FFFFFF;
+        background-size: 40px 40px, 100% 100%;
         position: relative;
+        width: 100%;
+        overflow: hidden;
     }
 
+    /* Decorative tape at top */
     .downsell-page .real-talk-section::before {
         content: '';
         position: absolute;
-        top: 0;
+        top: -2px;
         left: 50%;
-        transform: translateX(-50%);
-        width: 200px;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, var(--pink-light), transparent);
+        transform: translateX(-50%) rotate(-1deg);
+        width: 120px;
+        height: 30px;
+        background: linear-gradient(135deg, rgba(255, 209, 102, 0.7), rgba(255, 209, 102, 0.5));
+        border-radius: 2px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     .downsell-page .real-talk-container {
-        max-width: 640px;
+        max-width: 620px;
+        width: 100%;
         margin: 0 auto;
+        position: relative;
+        padding: 0 10px;
     }
 
     .downsell-page .letter-card {
-        background: linear-gradient(180deg, #FFFBF8 0%, #FFF7F2 100%);
-        border-radius: 20px;
-        padding: 40px 36px;
-        border: 1px solid rgba(255, 107, 157, 0.15);
-        box-shadow: 0 4px 24px rgba(255, 107, 107, 0.06);
+        background:
+            linear-gradient(180deg, #FFFDFB 0%, #FFF9F5 100%);
+        border-radius: 4px;
+        padding: 45px 40px;
+        border: 1px solid rgba(255, 179, 209, 0.2);
+        box-shadow:
+            0 1px 3px rgba(0, 0, 0, 0.04),
+            0 8px 30px rgba(255, 107, 107, 0.08),
+            inset 0 0 60px rgba(255, 245, 238, 0.5);
         position: relative;
+        transform: rotate(-0.5deg);
     }
 
-    .downsell-page .letter-card::before {
-        content: '"';
+    /* Big decorative quote mark */
+    .downsell-page .letter-card .quote-mark {
         position: absolute;
         top: 20px;
-        left: 24px;
+        left: 25px;
         font-family: 'Ogg', Georgia, serif;
-        font-size: 80px;
-        color: var(--pink-light);
-        opacity: 0.3;
+        font-size: 120px;
         line-height: 1;
+        background: linear-gradient(135deg, var(--pink-light), rgba(255, 179, 209, 0.3));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        pointer-events: none;
+    }
+
+    /* Bailey avatar and "from" */
+    .downsell-page .letter-from {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 24px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .downsell-page .bailey-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--coral), var(--pink));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 700;
+        font-size: 18px;
+        box-shadow: 0 4px 12px rgba(255, 107, 157, 0.3);
+    }
+
+    .downsell-page .from-text {
+        font-family: 'Caveat', cursive;
+        font-size: 20px;
+        color: var(--warm-gray);
+    }
+
+    .downsell-page .from-text strong {
+        color: var(--coral);
     }
 
     .downsell-page .letter-body {
         font-size: 16px;
         color: var(--warm-gray);
-        line-height: 1.8;
+        line-height: 1.85;
+        position: relative;
+        z-index: 1;
     }
 
     .downsell-page .letter-body p {
-        margin-bottom: 16px;
+        margin-bottom: 18px;
     }
 
     .downsell-page .letter-body p:last-of-type {
         margin-bottom: 0;
     }
 
+    .downsell-page .letter-body strong {
+        color: var(--navy);
+        font-weight: 700;
+    }
+
+    /* Margin annotation */
+    .downsell-page .margin-note {
+        position: absolute;
+        right: -20px;
+        font-family: 'Caveat', cursive;
+        font-size: 16px;
+        color: var(--coral);
+        transform: rotate(3deg);
+        white-space: nowrap;
+    }
+
+    .downsell-page .margin-note.note-1 {
+        top: 120px;
+    }
+
+    .downsell-page .margin-note.note-2 {
+        top: 280px;
+    }
+
+    /* BACKUP PLAN - Big highlighted moment */
+    .downsell-page .backup-plan-wrapper {
+        margin: 32px -20px;
+        padding: 28px 24px;
+        background: linear-gradient(135deg, rgba(255, 107, 107, 0.08) 0%, rgba(255, 107, 157, 0.12) 100%);
+        border-left: 4px solid var(--coral);
+        position: relative;
+    }
+
     .downsell-page .backup-plan {
-        display: block;
+        font-family: 'Ogg', Georgia, serif;
+        font-size: clamp(26px, 4vw, 34px);
         background: linear-gradient(135deg, var(--coral), var(--pink));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        font-family: 'Ogg', Georgia, serif;
-        font-size: 28px;
-        font-weight: 700;
-        margin: 24px 0;
         text-align: center;
         position: relative;
     }
 
-    .downsell-page .backup-plan::before,
-    .downsell-page .backup-plan::after {
-        content: '';
+    .downsell-page .backup-plan-annotation {
         position: absolute;
-        top: 50%;
-        width: 40px;
-        height: 2px;
-        background: linear-gradient(90deg, var(--pink-light), transparent);
+        top: -12px;
+        right: 20px;
+        font-family: 'Caveat', cursive;
+        font-size: 18px;
+        color: var(--gold-dark);
+        transform: rotate(5deg);
     }
 
-    .downsell-page .backup-plan::before { left: 0; }
-    .downsell-page .backup-plan::after { right: 0; transform: rotate(180deg); }
+    .downsell-page .backup-plan-annotation::before {
+        content: '\2193';
+        margin-right: 4px;
+    }
 
+    /* Handwritten closing note */
     .downsell-page .handwritten-note {
         font-family: 'Caveat', cursive;
-        font-size: 22px;
+        font-size: 24px;
         color: var(--coral);
-        margin-top: 20px;
+        margin-top: 24px;
         text-align: center;
+        position: relative;
+    }
+
+    .downsell-page .handwritten-note::before {
+        content: '\2728';
+        margin-right: 8px;
+    }
+
+    .downsell-page .handwritten-note::after {
+        content: '\2728';
+        margin-left: 8px;
+    }
+
+    /* Bailey signature */
+    .downsell-page .letter-signature {
+        margin-top: 24px;
+        text-align: right;
+        font-family: 'Caveat', cursive;
+        font-size: 28px;
+        color: var(--navy);
     }
 
     /* ==========================================
-       PRICE SECTION
+       PRICE SECTION - DEAL ENERGY
        ========================================== */
     .downsell-page .price-section {
-        padding: 50px 24px;
-        background: linear-gradient(135deg, var(--cream-dark) 0%, var(--cream) 100%);
+        padding: 50px 20px;
+        background: linear-gradient(180deg, var(--cream-dark) 0%, var(--cream) 100%);
         text-align: center;
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    /* Decorative corner flourishes */
+    .downsell-page .price-section::before,
+    .downsell-page .price-section::after {
+        content: '';
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><path d="M10 70 Q40 40 70 10" stroke="%23FFB3D1" stroke-width="2" fill="none" opacity="0.4"/><circle cx="15" cy="65" r="3" fill="%23FFD166" opacity="0.5"/><circle cx="65" cy="15" r="3" fill="%23FFD166" opacity="0.5"/></svg>');
+        background-size: contain;
+    }
+
+    .downsell-page .price-section::before {
+        top: 10px;
+        left: 10px;
+    }
+
+    .downsell-page .price-section::after {
+        bottom: 10px;
+        right: 10px;
+        transform: rotate(180deg);
     }
 
     .downsell-page .price-container {
-        max-width: 500px;
+        max-width: 480px;
+        width: 100%;
         margin: 0 auto;
+        position: relative;
+        z-index: 1;
+        padding: 0 10px;
     }
 
     .downsell-page .price-card {
         background: #FFFFFF;
         border-radius: 24px;
-        padding: 40px 32px;
-        box-shadow: 0 8px 40px rgba(255, 107, 107, 0.1), 0 0 0 1px rgba(255, 107, 107, 0.1);
+        padding: 36px 28px;
+        box-shadow:
+            0 4px 6px rgba(255, 107, 107, 0.07),
+            0 10px 40px rgba(255, 107, 107, 0.12),
+            0 0 0 1px rgba(255, 107, 107, 0.08);
         position: relative;
         overflow: hidden;
     }
@@ -379,96 +705,200 @@
         top: 0;
         left: 0;
         right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, var(--coral), var(--pink), var(--gold));
+        height: 5px;
+        background: linear-gradient(90deg, var(--coral), var(--pink), var(--gold), var(--pink), var(--coral));
+        background-size: 200% 100%;
+        animation: gradientShift 3s ease-in-out infinite;
+    }
+
+    @keyframes gradientShift {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
+
+    /* Limited time ribbon */
+    .downsell-page .limited-ribbon {
+        position: absolute;
+        top: 18px;
+        right: -35px;
+        background: var(--coral);
+        color: white;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+        padding: 6px 40px;
+        transform: rotate(45deg);
+        box-shadow: 0 2px 8px rgba(255, 107, 107, 0.4);
     }
 
     .downsell-page .deal-badge {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
+        gap: 8px;
         background: linear-gradient(135deg, var(--gold), var(--gold-dark));
         color: #333;
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 800;
         letter-spacing: 1px;
         text-transform: uppercase;
-        padding: 8px 16px;
+        padding: 10px 20px;
         border-radius: 50px;
         margin-bottom: 20px;
-        box-shadow: 0 4px 12px rgba(255, 209, 102, 0.4);
+        box-shadow: 0 4px 15px rgba(255, 209, 102, 0.5);
+        animation: dealPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes dealPulse {
+        0%, 100% { box-shadow: 0 4px 15px rgba(255, 209, 102, 0.5); }
+        50% { box-shadow: 0 4px 25px rgba(255, 209, 102, 0.7); }
     }
 
     .downsell-page .price-display {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 16px;
+        gap: 20px;
         margin-bottom: 16px;
+        position: relative;
     }
 
     .downsell-page .original-price {
-        font-size: 28px;
+        font-size: 32px;
         font-weight: 700;
         color: #ccc;
         text-decoration: line-through;
         text-decoration-color: var(--coral);
         text-decoration-thickness: 3px;
+        position: relative;
     }
 
     .downsell-page .sale-price {
         font-family: 'Ogg', Georgia, serif;
-        font-size: 56px;
+        font-size: 64px;
         font-weight: 700;
         background: linear-gradient(135deg, var(--coral), var(--pink));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         line-height: 1;
+        position: relative;
+    }
+
+    .downsell-page .sale-price::after {
+        content: 'only';
+        position: absolute;
+        top: -12px;
+        right: -30px;
+        font-family: 'Caveat', cursive;
+        font-size: 16px;
+        -webkit-text-fill-color: var(--coral);
+        transform: rotate(10deg);
     }
 
     .downsell-page .price-note {
         font-size: 14px;
         color: var(--warm-gray);
-        margin-bottom: 20px;
+        margin-bottom: 24px;
     }
 
+    /* Trust badges - VISUAL with icons */
     .downsell-page .trust-badges {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 12px;
+        gap: 10px;
     }
 
     .downsell-page .trust-badge {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
-        background: var(--cream);
-        padding: 8px 14px;
-        border-radius: 20px;
-        font-size: 12px;
+        gap: 8px;
+        background: linear-gradient(135deg, #F8F8F8, #FFFFFF);
+        padding: 10px 16px;
+        border-radius: 12px;
+        font-size: 13px;
         font-weight: 600;
         color: var(--navy);
+        border: 1px solid rgba(78, 205, 196, 0.2);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     }
 
-    .downsell-page .trust-badge svg {
-        width: 14px;
-        height: 14px;
-        color: var(--teal);
+    .downsell-page .trust-badge .badge-icon {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .downsell-page .trust-badge .badge-icon.green {
+        background: linear-gradient(135deg, #4ECDC4, #3DBDB5);
+    }
+
+    .downsell-page .trust-badge .badge-icon.gold {
+        background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    }
+
+    .downsell-page .trust-badge .badge-icon.pink {
+        background: linear-gradient(135deg, var(--coral), var(--pink));
+    }
+
+    .downsell-page .trust-badge .badge-icon svg {
+        width: 12px;
+        height: 12px;
+        color: white;
     }
 
     /* ==========================================
-       WHAT YOU GET SECTION - THE HEART
+       SECTION DIVIDER - Visual Flow
+       ========================================== */
+    .downsell-page .section-divider {
+        height: 60px;
+        position: relative;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .downsell-page .section-divider .divider-line {
+        width: 2px;
+        height: 40px;
+        background: linear-gradient(180deg, var(--pink-light), var(--coral), var(--pink-light));
+        border-radius: 2px;
+        position: relative;
+    }
+
+    .downsell-page .section-divider .divider-dot {
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 8px;
+        height: 8px;
+        background: var(--coral);
+        border-radius: 50%;
+    }
+
+    /* ==========================================
+       WHAT YOU GET SECTION - Already good
        ========================================== */
     .downsell-page .value-section {
-        padding: 60px 24px;
+        padding: 60px 20px;
         background: #FFFFFF;
+        width: 100%;
+        overflow: hidden;
     }
 
     .downsell-page .value-container {
-        max-width: 900px;
+        max-width: 880px;
+        width: 100%;
         margin: 0 auto;
+        padding: 0 10px;
     }
 
     .downsell-page .value-header {
@@ -477,7 +907,7 @@
     }
 
     .downsell-page .value-header h2 {
-        font-size: clamp(28px, 4vw, 40px);
+        font-size: clamp(26px, 4vw, 38px);
         color: var(--navy);
         margin-bottom: 8px;
     }
@@ -488,17 +918,18 @@
         color: var(--coral);
     }
 
-    /* 2x2 Grid with Visual Variety */
+    /* 2x2 Grid */
     .downsell-page .value-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 24px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        width: 100%;
     }
 
     .downsell-page .value-card {
         background: var(--cream);
         border-radius: 20px;
-        padding: 32px 28px;
+        padding: 28px 24px;
         position: relative;
         border: 1px solid transparent;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -527,25 +958,21 @@
         opacity: 1;
     }
 
-    /* Card 1: 7-Day Replay Pass - VIDEO/ACCESS feel */
     .downsell-page .value-card.replay {
         --card-accent: var(--teal);
         background: linear-gradient(180deg, #F0FFFE 0%, #E8FAF9 100%);
     }
 
-    /* Card 2: Delete Decision Matrix - FLOWCHART feel */
     .downsell-page .value-card.matrix {
         --card-accent: var(--pink);
         background: linear-gradient(180deg, #FFF5F8 0%, #FFEBF1 100%);
     }
 
-    /* Card 3: 10 AI Prompts - COLLECTION feel */
     .downsell-page .value-card.prompts {
         --card-accent: var(--gold-dark);
         background: linear-gradient(180deg, #FFFCF0 0%, #FFF8E0 100%);
     }
 
-    /* Card 4: Trend Snapshot - INSIDER/DATA feel */
     .downsell-page .value-card.trends {
         --card-accent: var(--coral);
         background: linear-gradient(180deg, #FFF5F2 0%, #FFEEE8 100%);
@@ -553,45 +980,51 @@
 
     .downsell-page .value-card .illustration {
         width: 100%;
-        height: 120px;
-        margin-bottom: 20px;
+        height: 110px;
+        margin-bottom: 18px;
         display: flex;
         align-items: center;
         justify-content: center;
+        overflow: hidden;
+    }
+
+    .downsell-page .value-card .illustration svg {
+        max-width: 100%;
+        height: auto;
     }
 
     .downsell-page .value-card .card-badge {
         position: absolute;
-        top: 16px;
-        right: 16px;
-        font-size: 10px;
+        top: 14px;
+        right: 14px;
+        font-size: 9px;
         font-weight: 800;
         letter-spacing: 1px;
         text-transform: uppercase;
-        padding: 6px 12px;
+        padding: 5px 10px;
         border-radius: 20px;
-        background: rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.85);
         color: var(--navy);
     }
 
     .downsell-page .value-card h3 {
         font-family: 'Satoshi', sans-serif;
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 700;
         color: var(--navy);
-        margin-bottom: 8px;
+        margin-bottom: 6px;
         line-height: 1.3;
     }
 
     .downsell-page .value-card .tagline {
         font-family: 'Caveat', cursive;
-        font-size: 18px;
+        font-size: 17px;
         color: var(--card-accent);
-        margin-bottom: 12px;
+        margin-bottom: 10px;
     }
 
     .downsell-page .value-card p {
-        font-size: 14px;
+        font-size: 13px;
         color: var(--warm-gray);
         line-height: 1.7;
     }
@@ -605,21 +1038,24 @@
        CLOSE SECTION
        ========================================== */
     .downsell-page .close-section {
-        padding: 50px 24px;
+        padding: 50px 20px 30px;
         background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 100%);
+        width: 100%;
     }
 
     .downsell-page .close-container {
-        max-width: 600px;
+        max-width: 580px;
+        width: 100%;
         margin: 0 auto;
         text-align: center;
+        padding: 0 10px;
     }
 
     .downsell-page .close-text {
-        font-size: 17px;
+        font-size: 16px;
         color: var(--warm-gray);
         line-height: 1.8;
-        margin-bottom: 16px;
+        margin-bottom: 14px;
     }
 
     .downsell-page .close-text strong {
@@ -629,40 +1065,43 @@
 
     .downsell-page .close-question {
         font-family: 'Ogg', Georgia, serif;
-        font-size: 28px;
+        font-size: clamp(24px, 4vw, 30px);
         color: var(--navy);
-        margin: 24px 0;
+        margin: 24px 0 12px;
     }
 
     .downsell-page .close-answer {
         font-family: 'Caveat', cursive;
-        font-size: 24px;
+        font-size: 26px;
         color: var(--coral);
-        margin-bottom: 32px;
+        margin-bottom: 0;
     }
 
     /* ==========================================
        CTA SECTION
        ========================================== */
     .downsell-page .cta-section {
-        padding: 50px 24px 80px;
+        padding: 20px 20px 80px;
         background: linear-gradient(180deg, var(--cream-dark) 0%, var(--cream) 100%);
         text-align: center;
+        width: 100%;
     }
 
     .downsell-page .cta-container {
-        max-width: 500px;
+        max-width: 480px;
+        width: 100%;
         margin: 0 auto;
+        padding: 0 10px;
     }
 
     .downsell-page .trust-line {
-        font-size: 13px;
+        font-size: 12px;
         color: var(--light-gray);
         margin-bottom: 20px;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 8px;
+        gap: 6px 12px;
     }
 
     .downsell-page .trust-line span {
@@ -675,24 +1114,24 @@
         width: 14px;
         height: 14px;
         color: var(--teal);
+        flex-shrink: 0;
     }
 
     .downsell-page .main-cta {
-        display: inline-flex;
+        display: flex;
         align-items: center;
         justify-content: center;
         gap: 12px;
         background: linear-gradient(135deg, var(--coral), var(--pink));
         color: white;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 700;
-        padding: 20px 40px;
+        padding: 20px 32px;
         border-radius: 60px;
         text-decoration: none;
         box-shadow: 0 8px 30px rgba(255, 107, 107, 0.35), 0 4px 15px rgba(255, 107, 157, 0.25);
         transition: all 0.3s ease;
         width: 100%;
-        max-width: 420px;
         position: relative;
         overflow: hidden;
     }
@@ -704,7 +1143,7 @@
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
         animation: ctaShine 3s ease-in-out infinite;
     }
 
@@ -722,6 +1161,10 @@
         transform: translateY(-1px) scale(0.99);
     }
 
+    .downsell-page .main-cta svg {
+        flex-shrink: 0;
+    }
+
     .downsell-page .exit-link {
         display: block;
         margin-top: 20px;
@@ -737,45 +1180,209 @@
     }
 
     /* ==========================================
+       INLINE CTA - Repeatable Throughout Page
+       ========================================== */
+    .downsell-page .inline-cta-wrapper {
+        padding: 40px 20px;
+        background: linear-gradient(135deg, rgba(255, 107, 107, 0.05) 0%, rgba(255, 107, 157, 0.08) 100%);
+        text-align: center;
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .downsell-page .inline-cta-wrapper::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--pink-light), transparent);
+    }
+
+    .downsell-page .inline-cta-wrapper::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--pink-light), transparent);
+    }
+
+    .downsell-page .inline-cta-container {
+        max-width: 480px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 10px;
+    }
+
+    .downsell-page .inline-cta-text {
+        font-family: 'Caveat', cursive;
+        font-size: 22px;
+        color: var(--coral);
+        margin-bottom: 16px;
+    }
+
+    .downsell-page .inline-cta-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background: linear-gradient(135deg, var(--coral), var(--pink));
+        color: white;
+        font-size: 15px;
+        font-weight: 700;
+        padding: 16px 28px;
+        border-radius: 50px;
+        text-decoration: none;
+        box-shadow: 0 6px 25px rgba(255, 107, 107, 0.3);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .downsell-page .inline-cta-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        animation: ctaShine 3s ease-in-out infinite;
+    }
+
+    .downsell-page .inline-cta-btn:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 8px 30px rgba(255, 107, 107, 0.4);
+    }
+
+    .downsell-page .inline-skip-link {
+        display: block;
+        margin-top: 12px;
+        font-size: 13px;
+        color: var(--light-gray);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .downsell-page .inline-skip-link:hover {
+        color: var(--warm-gray);
+        text-decoration: underline;
+    }
+
+    /* Enhanced Close Section - More Visual Energy */
+    .downsell-page .close-section .sparkle-decoration {
+        display: inline-block;
+        animation: twinkle 2s ease-in-out infinite;
+    }
+
+    .downsell-page .final-cta-wrapper {
+        background: linear-gradient(135deg, #FFF5F0 0%, #FFE8E0 50%, #FFF5F8 100%);
+        border-radius: 20px;
+        padding: 35px 25px;
+        margin-top: 30px;
+        position: relative;
+        border: 2px solid rgba(255, 107, 157, 0.2);
+        box-shadow: 0 8px 30px rgba(255, 107, 107, 0.12);
+    }
+
+    .downsell-page .final-cta-sparkle {
+        position: absolute;
+        top: -15px;
+        font-size: 28px;
+        animation: twinkle 2s ease-in-out infinite;
+    }
+
+    .downsell-page .final-cta-sparkle.left {
+        left: 20px;
+    }
+
+    .downsell-page .final-cta-sparkle.right {
+        right: 20px;
+        animation-delay: 0.5s;
+    }
+
+    .downsell-page .final-cta-label {
+        font-family: 'Caveat', cursive;
+        font-size: 20px;
+        color: var(--coral);
+        margin-bottom: 12px;
+    }
+
+    .downsell-page .final-price-reminder {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+
+    .downsell-page .final-price-reminder .old-price {
+        font-size: 18px;
+        color: #ccc;
+        text-decoration: line-through;
+    }
+
+    .downsell-page .final-price-reminder .new-price {
+        font-family: 'Ogg', Georgia, serif;
+        font-size: 32px;
+        background: linear-gradient(135deg, var(--coral), var(--pink));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* ==========================================
        RESPONSIVE STYLES
        ========================================== */
     @media (max-width: 768px) {
         .downsell-page .hero-section {
-            padding: 50px 20px 40px;
+            padding: 40px 16px 50px;
         }
 
         .downsell-page .hero-title {
-            font-size: 28px;
+            font-size: 26px;
         }
 
-        .downsell-page .hero-subtitle {
-            font-size: 16px;
+        .downsell-page .badge-annotation {
+            display: none;
+        }
+
+        .downsell-page .hero-decor.dollar-1,
+        .downsell-page .hero-decor.dollar-4 {
+            display: none;
         }
 
         .downsell-page .value-grid {
             grid-template-columns: 1fr;
-            gap: 20px;
+            gap: 16px;
         }
 
         .downsell-page .letter-card {
-            padding: 32px 24px;
+            padding: 35px 24px;
+            transform: none;
+        }
+
+        .downsell-page .margin-note {
+            display: none;
         }
 
         .downsell-page .backup-plan {
             font-size: 24px;
         }
 
-        .downsell-page .backup-plan::before,
-        .downsell-page .backup-plan::after {
-            display: none;
-        }
-
         .downsell-page .price-card {
-            padding: 32px 24px;
+            padding: 30px 24px;
         }
 
         .downsell-page .sale-price {
-            font-size: 48px;
+            font-size: 52px;
+        }
+
+        .downsell-page .sale-price::after {
+            display: none;
         }
 
         .downsell-page .trust-badges {
@@ -783,12 +1390,12 @@
         }
 
         .downsell-page .trust-badge {
-            font-size: 11px;
-            padding: 6px 12px;
+            font-size: 12px;
+            padding: 8px 12px;
         }
 
         .downsell-page .value-card {
-            padding: 28px 24px;
+            padding: 24px 20px;
         }
 
         .downsell-page .value-card .illustration {
@@ -796,64 +1403,137 @@
         }
 
         .downsell-page .main-cta {
-            font-size: 16px;
-            padding: 18px 32px;
+            font-size: 15px;
+            padding: 18px 24px;
+        }
+
+        .downsell-page .limited-ribbon {
+            display: none;
         }
     }
 
     @media (max-width: 480px) {
         .downsell-page .urgency-bar {
-            padding: 10px 16px;
-            gap: 10px;
+            padding: 10px 12px;
+            gap: 8px;
         }
 
         .downsell-page .urgency-bar .urgency-text {
-            font-size: 12px;
+            font-size: 11px;
         }
 
         .downsell-page .urgency-bar .progress-mini {
-            width: 60px;
+            width: 50px;
         }
 
         .downsell-page .hero-section {
-            padding: 40px 16px 30px;
+            padding: 35px 12px 40px;
         }
 
         .downsell-page .hero-title {
-            font-size: 24px;
+            font-size: 22px;
         }
 
         .downsell-page .wait-badge {
-            font-size: 10px;
-            padding: 8px 16px;
+            font-size: 11px;
+            padding: 10px 18px;
         }
 
-        .downsell-page .real-talk-section,
-        .downsell-page .price-section,
-        .downsell-page .value-section,
-        .downsell-page .close-section,
-        .downsell-page .cta-section {
-            padding: 40px 16px;
+        .downsell-page .hero-subtitle {
+            font-size: 15px;
+        }
+
+        .downsell-page .hero-concern {
+            font-size: 24px;
+        }
+
+        .downsell-page .real-talk-section {
+            padding: 50px 12px;
         }
 
         .downsell-page .letter-card {
-            padding: 28px 20px;
+            padding: 30px 18px;
         }
 
         .downsell-page .letter-body {
             font-size: 15px;
         }
 
+        .downsell-page .backup-plan-wrapper {
+            margin: 24px -10px;
+            padding: 20px 16px;
+        }
+
         .downsell-page .backup-plan {
             font-size: 22px;
+        }
+
+        .downsell-page .backup-plan-annotation {
+            display: none;
+        }
+
+        .downsell-page .price-section {
+            padding: 40px 12px;
+        }
+
+        .downsell-page .price-card {
+            padding: 28px 20px;
+        }
+
+        .downsell-page .sale-price {
+            font-size: 48px;
+        }
+
+        .downsell-page .value-section {
+            padding: 50px 12px;
         }
 
         .downsell-page .value-header h2 {
             font-size: 24px;
         }
 
+        .downsell-page .value-card h3 {
+            font-size: 17px;
+        }
+
+        .downsell-page .close-section {
+            padding: 40px 12px 40px;
+        }
+
+        .downsell-page .inline-cta-wrapper {
+            padding: 30px 12px;
+        }
+
+        .downsell-page .inline-cta-text {
+            font-size: 18px;
+        }
+
+        .downsell-page .inline-cta-btn {
+            font-size: 13px;
+            padding: 14px 20px;
+        }
+
+        .downsell-page .final-cta-wrapper {
+            padding: 28px 18px;
+            margin-top: 24px;
+        }
+
+        .downsell-page .final-cta-sparkle {
+            font-size: 22px;
+            top: -12px;
+        }
+
+        .downsell-page .final-price-reminder .new-price {
+            font-size: 28px;
+        }
+
         .downsell-page .close-question {
-            font-size: 24px;
+            font-size: 22px;
+        }
+
+        .downsell-page .trust-line {
+            font-size: 11px;
+            gap: 4px 8px;
         }
     }
 </style>
@@ -874,20 +1554,55 @@
 
     <!-- HERO SECTION -->
     <section class="hero-section">
+        <!-- Floating decorative elements -->
+        <span class="hero-decor dollar-1">$</span>
+        <span class="hero-decor dollar-2">$</span>
+        <span class="hero-decor dollar-3">$</span>
+        <span class="hero-decor dollar-4">$</span>
+
+        <svg class="hero-decor sparkle-1" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L13.5 9L20 8L14 12L17 19L12 14L7 19L10 12L4 8L10.5 9L12 2Z" fill="#FFD166"/>
+        </svg>
+        <svg class="hero-decor sparkle-2" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L13.5 9L20 8L14 12L17 19L12 14L7 19L10 12L4 8L10.5 9L12 2Z" fill="#FF6B9D"/>
+        </svg>
+        <svg class="hero-decor sparkle-3" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L13.5 9L20 8L14 12L17 19L12 14L7 19L10 12L4 8L10.5 9L12 2Z" fill="#4ECDC4"/>
+        </svg>
+        <svg class="hero-decor star-1" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFB3D1"/>
+        </svg>
+        <svg class="hero-decor star-2" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFD166" opacity="0.6"/>
+        </svg>
+
         <div class="hero-container">
-            <div class="wait-badge">
-                <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M7 11V7a5 5 0 0110 0v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <rect x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="2"/>
-                    <circle cx="12" cy="16" r="1" fill="currentColor"/>
-                </svg>
-                WAIT — BEFORE YOU GO
+            <div class="wait-badge-wrapper">
+                <div class="wait-badge">
+                    <span class="hand-icon">&#9995;</span>
+                    WAIT — BEFORE YOU GO
+                </div>
+                <span class="badge-annotation">don't leave yet!</span>
             </div>
-            <h1 class="hero-title">Okay, VIP's Not Your Thing.<br/>But Can I Be Real With You For a Sec?</h1>
+
+            <div class="hero-title-wrapper">
+                <h1 class="hero-title">
+                    <span class="line-1">Okay, VIP's Not Your Thing.</span>
+                    <span class="line-2">But Can I Be <span class="real-word">Real</span> With You?</span>
+                </h1>
+                <p class="title-annotation">&#8595; just give me 60 seconds &#8595;</p>
+            </div>
+
             <p class="hero-subtitle">
                 You signed up for this challenge for a reason. <strong>Something about your shop isn't working</strong> the way you want it to. And you're here because you actually want to fix it.
             </p>
-            <p class="hero-concern">So here's my concern...</p>
+            <p class="hero-concern">So here's my concern</p>
+
+            <div class="scroll-arrow">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 5V19M12 19L5 12M12 19L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
         </div>
     </section>
 
@@ -895,6 +1610,17 @@
     <section class="real-talk-section">
         <div class="real-talk-container">
             <div class="letter-card">
+                <span class="quote-mark">"</span>
+
+                <!-- Margin annotations -->
+                <span class="margin-note note-1">&#8592; so true!</span>
+                <span class="margin-note note-2">&#8592; this happens a lot</span>
+
+                <div class="letter-from">
+                    <div class="bailey-avatar">B</div>
+                    <span class="from-text">A note from <strong>Bailey</strong></span>
+                </div>
+
                 <div class="letter-body">
                     <p>The challenge is 3 days. Three 90-minute sessions packed with everything I know about cleaning up your shop, building products that actually sell, and running this whole thing in about 3 hours a week.</p>
 
@@ -903,50 +1629,89 @@
                     <p>Meetings pop up. Dinner runs late. You're tired and think "I'll just be extra focused tomorrow." And then Day 3 comes and you realize you missed the part you actually needed most.</p>
 
                     <p>I'm not saying that to scare you. I'm saying it because <strong>I've seen it happen SO many times.</strong> People register with the best intentions and then... life.</p>
-
-                    <span class="backup-plan">This is your backup plan.</span>
-
-                    <p>For $17, you get recordings of all 3 days. Watch live if you can. But if something comes up? You're not scrambling. You're not messaging me "Bailey do you have the replay??" You just... have it.</p>
-
-                    <p class="handwritten-note">Plus I'm throwing in the actual tools I use in my own shop — not just the training.</p>
                 </div>
+
+                <div class="backup-plan-wrapper">
+                    <span class="backup-plan-annotation">the important part</span>
+                    <div class="backup-plan">This is your backup plan.</div>
+                </div>
+
+                <div class="letter-body">
+                    <p>For $17, you get recordings of all 3 days. Watch live if you can. But if something comes up? You're not scrambling. You're not messaging me "Bailey do you have the replay??" You just... have it.</p>
+                </div>
+
+                <p class="handwritten-note">Plus I'm throwing in the actual tools I use in my own shop — not just the training.</p>
+
+                <p class="letter-signature">— Bailey</p>
             </div>
         </div>
     </section>
+
+    <!-- INLINE CTA 1 - After Real Talk -->
+    <div class="inline-cta-wrapper">
+        <div class="inline-cta-container">
+            <p class="inline-cta-text">Ready to secure your backup plan?</p>
+            <a href="https://digitallypurposed.thrivecart.com/7-day-replay-pass/" class="inline-cta-btn" target="_blank" onclick="window.open(this.href, '_blank'); return false;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                GET THE REPLAYS + TOOLKIT — $17
+            </a>
+            <a href="https://www.etsyupgrade.com/free-whatsapp" class="inline-skip-link" target="_blank" onclick="window.open(this.href, '_blank'); return false;">No thanks, I'll take my chances</a>
+        </div>
+    </div>
+
+    <!-- SECTION DIVIDER -->
+    <div class="section-divider">
+        <div class="divider-line">
+            <div class="divider-dot"></div>
+        </div>
+    </div>
 
     <!-- PRICE SECTION -->
     <section class="price-section">
         <div class="price-container">
             <div class="price-card">
+                <div class="limited-ribbon">LIMITED</div>
+
                 <div class="deal-badge">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                         <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor"/>
                     </svg>
                     STEAL OF A DEAL
                 </div>
+
                 <div class="price-display">
                     <span class="original-price">$27</span>
                     <span class="sale-price">$17</span>
                 </div>
+
                 <p class="price-note">One-time payment. No subscriptions. No "surprise" upsells inside.</p>
+
                 <div class="trust-badges">
                     <span class="trust-badge">
-                        <svg viewBox="0 0 24 24" fill="none">
-                            <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+                        <span class="badge-icon green">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
                         Instant Access
                     </span>
                     <span class="trust-badge">
-                        <svg viewBox="0 0 24 24" fill="none">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                        Secure Checkout
+                        <span class="badge-icon gold">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="currentColor"/>
+                            </svg>
+                        </span>
+                        Secure
                     </span>
                     <span class="trust-badge">
-                        <svg viewBox="0 0 24 24" fill="none">
-                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-                            <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
+                        <span class="badge-icon pink">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 7V12L15 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </span>
                         This Page Only
                     </span>
                 </div>
@@ -954,12 +1719,33 @@
         </div>
     </section>
 
+    <!-- INLINE CTA 2 - After Price -->
+    <div class="inline-cta-wrapper">
+        <div class="inline-cta-container">
+            <p class="inline-cta-text">$17 for peace of mind? Yes please!</p>
+            <a href="https://digitallypurposed.thrivecart.com/7-day-replay-pass/" class="inline-cta-btn" target="_blank" onclick="window.open(this.href, '_blank'); return false;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                I'M IN — GIVE ME ACCESS NOW
+            </a>
+            <a href="https://www.etsyupgrade.com/free-whatsapp" class="inline-skip-link" target="_blank" onclick="window.open(this.href, '_blank'); return false;">Skip this offer</a>
+        </div>
+    </div>
+
+    <!-- SECTION DIVIDER -->
+    <div class="section-divider">
+        <div class="divider-line">
+            <div class="divider-dot"></div>
+        </div>
+    </div>
+
     <!-- WHAT YOU GET SECTION -->
     <section class="value-section">
         <div class="value-container">
             <div class="value-header">
                 <h2>Here's What's Inside</h2>
-                <p class="sparkle">Everything for just $17 ✨</p>
+                <p class="sparkle">Everything for just $17 &#10024;</p>
             </div>
 
             <div class="value-grid">
@@ -967,147 +1753,129 @@
                 <div class="value-card replay">
                     <span class="card-badge">7 DAYS</span>
                     <div class="illustration">
-                        <!-- Custom SVG: Video player with 3 day thumbnails -->
-                        <svg width="180" height="100" viewBox="0 0 180 100" fill="none">
-                            <!-- Main screen -->
-                            <rect x="10" y="10" width="100" height="65" rx="8" fill="#2F5F61"/>
-                            <rect x="15" y="15" width="90" height="55" rx="4" fill="#1A3D3B"/>
-                            <!-- Play button -->
-                            <circle cx="60" cy="42" r="14" fill="#4ECDC4" opacity="0.9"/>
-                            <path d="M55 35L70 42L55 49V35Z" fill="white"/>
-                            <!-- Progress bar -->
-                            <rect x="18" y="60" width="84" height="4" rx="2" fill="#4ECDC4" opacity="0.3"/>
-                            <rect x="18" y="60" width="50" height="4" rx="2" fill="#4ECDC4"/>
-                            <!-- Day thumbnails stacked -->
-                            <rect x="120" y="8" width="50" height="26" rx="4" fill="#4ECDC4" opacity="0.2"/>
-                            <text x="145" y="24" font-family="Satoshi" font-size="9" fill="#2F5F61" text-anchor="middle" font-weight="700">DAY 1</text>
-                            <rect x="120" y="38" width="50" height="26" rx="4" fill="#4ECDC4" opacity="0.3"/>
-                            <text x="145" y="54" font-family="Satoshi" font-size="9" fill="#2F5F61" text-anchor="middle" font-weight="700">DAY 2</text>
-                            <rect x="120" y="68" width="50" height="26" rx="4" fill="#4ECDC4" opacity="0.4"/>
-                            <text x="145" y="84" font-family="Satoshi" font-size="9" fill="#2F5F61" text-anchor="middle" font-weight="700">DAY 3</text>
-                            <!-- HD badge -->
-                            <rect x="85" y="18" width="18" height="10" rx="2" fill="#FFD166"/>
-                            <text x="94" y="26" font-family="Satoshi" font-size="7" fill="#333" text-anchor="middle" font-weight="800">HD</text>
+                        <svg width="160" height="90" viewBox="0 0 160 90" fill="none">
+                            <rect x="8" y="8" width="88" height="58" rx="6" fill="#2F5F61"/>
+                            <rect x="12" y="12" width="80" height="50" rx="3" fill="#1A3D3B"/>
+                            <circle cx="52" cy="37" r="12" fill="#4ECDC4" opacity="0.9"/>
+                            <path d="M48 31L60 37L48 43V31Z" fill="white"/>
+                            <rect x="14" y="54" width="76" height="3" rx="1.5" fill="#4ECDC4" opacity="0.3"/>
+                            <rect x="14" y="54" width="45" height="3" rx="1.5" fill="#4ECDC4"/>
+                            <rect x="105" y="6" width="44" height="23" rx="3" fill="#4ECDC4" opacity="0.2"/>
+                            <text x="127" y="20" font-family="Arial" font-size="8" fill="#2F5F61" text-anchor="middle" font-weight="700">DAY 1</text>
+                            <rect x="105" y="33" width="44" height="23" rx="3" fill="#4ECDC4" opacity="0.3"/>
+                            <text x="127" y="47" font-family="Arial" font-size="8" fill="#2F5F61" text-anchor="middle" font-weight="700">DAY 2</text>
+                            <rect x="105" y="60" width="44" height="23" rx="3" fill="#4ECDC4" opacity="0.4"/>
+                            <text x="127" y="74" font-family="Arial" font-size="8" fill="#2F5F61" text-anchor="middle" font-weight="700">DAY 3</text>
+                            <rect x="76" y="14" width="14" height="8" rx="2" fill="#FFD166"/>
+                            <text x="83" y="21" font-family="Arial" font-size="6" fill="#333" text-anchor="middle" font-weight="800">HD</text>
                         </svg>
                     </div>
                     <h3>7-Day Replay Pass</h3>
                     <p class="tagline">All 3 days. HD. Watch whenever.</p>
-                    <p>Full recordings of every session — <span class="highlight">Day 1, Day 2, Day 3.</span> Pause when you need to, rewind the parts that matter, take notes at your own pace. Plus the slides are downloadable. <span class="highlight">You registered for this training. This makes sure you actually get it.</span></p>
+                    <p>Full recordings of every session — <span class="highlight">Day 1, Day 2, Day 3.</span> Pause, rewind, take notes. Plus downloadable slides. <span class="highlight">You registered for this. This makes sure you get it.</span></p>
                 </div>
 
                 <!-- Card 2: Delete Decision Matrix -->
                 <div class="value-card matrix">
                     <span class="card-badge">INSTANT</span>
                     <div class="illustration">
-                        <!-- Custom SVG: Decision flowchart -->
-                        <svg width="180" height="100" viewBox="0 0 180 100" fill="none">
-                            <!-- Start node -->
-                            <rect x="60" y="5" width="60" height="22" rx="11" fill="#FF6B9D"/>
-                            <text x="90" y="19" font-family="Satoshi" font-size="9" fill="white" text-anchor="middle" font-weight="700">YOUR LISTING</text>
-                            <!-- Arrow down -->
-                            <path d="M90 27L90 35" stroke="#FF6B9D" stroke-width="2"/>
-                            <path d="M86 32L90 38L94 32" fill="#FF6B9D"/>
-                            <!-- Decision diamond -->
-                            <path d="M90 40L120 55L90 70L60 55Z" fill="#FFB3D1" stroke="#FF6B9D" stroke-width="2"/>
-                            <text x="90" y="57" font-family="Satoshi" font-size="7" fill="#333" text-anchor="middle" font-weight="600">SELLING?</text>
-                            <!-- Three outcome boxes -->
-                            <rect x="10" y="75" width="45" height="20" rx="4" fill="#4ECDC4"/>
-                            <text x="32" y="88" font-family="Satoshi" font-size="8" fill="white" text-anchor="middle" font-weight="700">FIX IT</text>
-                            <rect x="68" y="75" width="45" height="20" rx="4" fill="#FFD166"/>
-                            <text x="90" y="88" font-family="Satoshi" font-size="8" fill="#333" text-anchor="middle" font-weight="700">REWORK</text>
-                            <rect x="125" y="75" width="45" height="20" rx="4" fill="#FF6B6B"/>
-                            <text x="147" y="88" font-family="Satoshi" font-size="8" fill="white" text-anchor="middle" font-weight="700">DELETE</text>
-                            <!-- Arrows to outcomes -->
-                            <path d="M68 62L32 75" stroke="#FF6B9D" stroke-width="1.5"/>
-                            <path d="M90 70L90 75" stroke="#FF6B9D" stroke-width="1.5"/>
-                            <path d="M112 62L147 75" stroke="#FF6B9D" stroke-width="1.5"/>
-                            <!-- Sparkle -->
-                            <path d="M150 20L152 25L157 27L152 29L150 34L148 29L143 27L148 25Z" fill="#FF6B9D" opacity="0.5"/>
+                        <svg width="160" height="90" viewBox="0 0 160 90" fill="none">
+                            <rect x="50" y="4" width="54" height="18" rx="9" fill="#FF6B9D"/>
+                            <text x="77" y="16" font-family="Arial" font-size="7" fill="white" text-anchor="middle" font-weight="700">YOUR LISTING</text>
+                            <path d="M77 22V28" stroke="#FF6B9D" stroke-width="2"/>
+                            <path d="M74 26L77 30L80 26" fill="#FF6B9D"/>
+                            <path d="M77 32L102 44L77 56L52 44Z" fill="#FFB3D1" stroke="#FF6B9D" stroke-width="2"/>
+                            <text x="77" y="46" font-family="Arial" font-size="6" fill="#333" text-anchor="middle" font-weight="600">SELLING?</text>
+                            <rect x="8" y="62" width="40" height="18" rx="3" fill="#4ECDC4"/>
+                            <text x="28" y="74" font-family="Arial" font-size="7" fill="white" text-anchor="middle" font-weight="700">FIX IT</text>
+                            <rect x="57" y="62" width="40" height="18" rx="3" fill="#FFD166"/>
+                            <text x="77" y="74" font-family="Arial" font-size="7" fill="#333" text-anchor="middle" font-weight="700">REWORK</text>
+                            <rect x="106" y="62" width="40" height="18" rx="3" fill="#FF6B6B"/>
+                            <text x="126" y="74" font-family="Arial" font-size="7" fill="white" text-anchor="middle" font-weight="700">DELETE</text>
+                            <path d="M58 50L28 62" stroke="#FF6B9D" stroke-width="1.5"/>
+                            <path d="M77 56V62" stroke="#FF6B9D" stroke-width="1.5"/>
+                            <path d="M96 50L126 62" stroke="#FF6B9D" stroke-width="1.5"/>
                         </svg>
                     </div>
                     <h3>Delete Decision Matrix</h3>
-                    <p class="tagline">The flowchart that ends the overthinking.</p>
-                    <p>You know that spiral? Staring at a listing that's not really selling, but you spent forever on it... <span class="highlight">This stops that.</span> Answer a few questions, and it tells you exactly what to do: Fix it. Rework it. Or delete it. Done in 60 seconds.</p>
+                    <p class="tagline">The flowchart that ends overthinking.</p>
+                    <p>Staring at a listing that's not selling? <span class="highlight">This stops the spiral.</span> Answer a few questions, know exactly what to do: Fix it. Rework it. Or delete it. Done in 60 seconds.</p>
                 </div>
 
                 <!-- Card 3: 10 AI Prompts -->
                 <div class="value-card prompts">
                     <span class="card-badge">10 PROMPTS</span>
                     <div class="illustration">
-                        <!-- Custom SVG: Chat bubbles / prompt collection -->
-                        <svg width="180" height="100" viewBox="0 0 180 100" fill="none">
-                            <!-- Stacked prompt cards -->
-                            <rect x="20" y="30" width="70" height="45" rx="8" fill="#F4A261" opacity="0.3" transform="rotate(-5 20 30)"/>
-                            <rect x="25" y="25" width="70" height="45" rx="8" fill="#F4A261" opacity="0.5" transform="rotate(-2 25 25)"/>
-                            <rect x="30" y="20" width="70" height="45" rx="8" fill="#F4A261"/>
-                            <!-- Prompt lines -->
-                            <rect x="38" y="30" width="45" height="4" rx="2" fill="white" opacity="0.8"/>
-                            <rect x="38" y="38" width="35" height="4" rx="2" fill="white" opacity="0.6"/>
-                            <rect x="38" y="46" width="50" height="4" rx="2" fill="white" opacity="0.4"/>
-                            <!-- AI chip icon -->
-                            <rect x="110" y="20" width="50" height="50" rx="8" fill="#2F5F61"/>
-                            <circle cx="135" cy="45" r="15" fill="#4ECDC4"/>
-                            <path d="M128 45L133 50L143 40" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <!-- Connection lines -->
-                            <path d="M100 42L110 42" stroke="#F4A261" stroke-width="2" stroke-dasharray="4 2"/>
-                            <!-- Number badge -->
-                            <circle cx="30" cy="20" r="14" fill="#FF6B9D"/>
-                            <text x="30" y="25" font-family="Satoshi" font-size="12" fill="white" text-anchor="middle" font-weight="800">10</text>
-                            <!-- Sparkles -->
-                            <path d="M155 15L157 20L162 22L157 24L155 29L153 24L148 22L153 20Z" fill="#FFD166"/>
+                        <svg width="160" height="90" viewBox="0 0 160 90" fill="none">
+                            <rect x="16" y="26" width="62" height="40" rx="6" fill="#F4A261" opacity="0.3" transform="rotate(-4 16 26)"/>
+                            <rect x="20" y="22" width="62" height="40" rx="6" fill="#F4A261" opacity="0.5" transform="rotate(-2 20 22)"/>
+                            <rect x="24" y="18" width="62" height="40" rx="6" fill="#F4A261"/>
+                            <rect x="30" y="26" width="40" height="3" rx="1.5" fill="white" opacity="0.8"/>
+                            <rect x="30" y="33" width="30" height="3" rx="1.5" fill="white" opacity="0.6"/>
+                            <rect x="30" y="40" width="44" height="3" rx="1.5" fill="white" opacity="0.4"/>
+                            <rect x="95" y="18" width="44" height="44" rx="6" fill="#2F5F61"/>
+                            <circle cx="117" cy="40" r="14" fill="#4ECDC4"/>
+                            <path d="M110 40L115 45L125 35" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M86 38L95 38" stroke="#F4A261" stroke-width="2" stroke-dasharray="3 2"/>
+                            <circle cx="24" cy="18" r="12" fill="#FF6B9D"/>
+                            <text x="24" y="22" font-family="Arial" font-size="10" fill="white" text-anchor="middle" font-weight="800">10</text>
                         </svg>
                     </div>
                     <h3>10 Launch-Ready AI Prompts</h3>
-                    <p class="tagline">The ones I actually use. Not the generic stuff.</p>
-                    <p>These are the <span class="highlight">exact prompts I use</span> to create products that actually sell. They're specific. They're tested. And they're beginner-friendly — just copy, paste, and generate. Skip the trial and error.</p>
+                    <p class="tagline">The ones I actually use. Not generic.</p>
+                    <p>These are the <span class="highlight">exact prompts I use</span> to create products that sell. Specific. Tested. Beginner-friendly — copy, paste, generate. Skip the trial and error.</p>
                 </div>
 
                 <!-- Card 4: January 2026 Trend Snapshot -->
                 <div class="value-card trends">
                     <span class="card-badge">2026</span>
                     <div class="illustration">
-                        <!-- Custom SVG: Trend graph / insider report -->
-                        <svg width="180" height="100" viewBox="0 0 180 100" fill="none">
-                            <!-- Report card -->
-                            <rect x="25" y="10" width="80" height="80" rx="8" fill="white" stroke="#FF6B6B" stroke-width="2"/>
-                            <!-- Header stripe -->
-                            <rect x="25" y="10" width="80" height="20" rx="8" fill="#FF6B6B"/>
-                            <rect x="25" y="22" width="80" height="8" fill="#FF6B6B"/>
-                            <text x="65" y="24" font-family="Satoshi" font-size="8" fill="white" text-anchor="middle" font-weight="800">TREND REPORT</text>
-                            <!-- Trend graph -->
-                            <path d="M35 75 L50 65 L65 70 L80 50 L95 45" stroke="#FF6B6B" stroke-width="3" stroke-linecap="round" fill="none"/>
-                            <circle cx="95" cy="45" r="4" fill="#FF6B6B"/>
-                            <!-- Grid lines -->
-                            <path d="M35 50 L95 50" stroke="#FFE0D8" stroke-width="1"/>
-                            <path d="M35 60 L95 60" stroke="#FFE0D8" stroke-width="1"/>
-                            <path d="M35 70 L95 70" stroke="#FFE0D8" stroke-width="1"/>
-                            <!-- Rising arrow -->
-                            <path d="M120 70L120 30" stroke="#4ECDC4" stroke-width="3" stroke-linecap="round"/>
-                            <path d="M112 40L120 28L128 40" fill="#4ECDC4"/>
-                            <!-- Trend labels -->
-                            <rect x="115" y="72" width="50" height="18" rx="4" fill="#4ECDC4" opacity="0.2"/>
-                            <text x="140" y="84" font-family="Satoshi" font-size="8" fill="#2F5F61" text-anchor="middle" font-weight="600">RISING</text>
-                            <!-- Jan 2026 badge -->
-                            <rect x="130" y="10" width="40" height="20" rx="4" fill="#FFD166"/>
-                            <text x="150" y="23" font-family="Satoshi" font-size="8" fill="#333" text-anchor="middle" font-weight="800">JAN '26</text>
-                            <!-- Sparkle -->
-                            <path d="M160 45L162 50L167 52L162 54L160 59L158 54L153 52L158 50Z" fill="#FF6B6B" opacity="0.6"/>
+                        <svg width="160" height="90" viewBox="0 0 160 90" fill="none">
+                            <rect x="20" y="8" width="72" height="72" rx="6" fill="white" stroke="#FF6B6B" stroke-width="2"/>
+                            <rect x="20" y="8" width="72" height="18" rx="6" fill="#FF6B6B"/>
+                            <rect x="20" y="20" width="72" height="6" fill="#FF6B6B"/>
+                            <text x="56" y="20" font-family="Arial" font-size="7" fill="white" text-anchor="middle" font-weight="800">TREND REPORT</text>
+                            <path d="M28 68L42 58L56 62L70 44L84 40" stroke="#FF6B6B" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                            <circle cx="84" cy="40" r="3" fill="#FF6B6B"/>
+                            <path d="M28 46L84 46" stroke="#FFE0D8" stroke-width="1"/>
+                            <path d="M28 54L84 54" stroke="#FFE0D8" stroke-width="1"/>
+                            <path d="M28 62L84 62" stroke="#FFE0D8" stroke-width="1"/>
+                            <path d="M108 62V28" stroke="#4ECDC4" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M100 36L108 24L116 36" fill="#4ECDC4"/>
+                            <rect x="100" y="66" width="44" height="14" rx="3" fill="#4ECDC4" opacity="0.2"/>
+                            <text x="122" y="76" font-family="Arial" font-size="7" fill="#2F5F61" text-anchor="middle" font-weight="600">RISING</text>
+                            <rect x="112" y="8" width="36" height="16" rx="3" fill="#FFD166"/>
+                            <text x="130" y="19" font-family="Arial" font-size="7" fill="#333" text-anchor="middle" font-weight="800">JAN '26</text>
                         </svg>
                     </div>
                     <h3>January 2026 Trend Snapshot</h3>
                     <p class="tagline">What I'm watching right now.</p>
-                    <p>Trends move fast on Etsy. What's hot now might be oversaturated by January. This is my current watch list. <span class="highlight">What's rising. What's fading. What I think is about to pop off.</span> Build ahead of the wave, not behind it.</p>
+                    <p>Trends move fast. This is my current watch list. <span class="highlight">What's rising. What's fading. What's about to pop off.</span> Build ahead of the wave, not behind it.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- INLINE CTA 3 - After Value -->
+    <div class="inline-cta-wrapper">
+        <div class="inline-cta-container">
+            <p class="inline-cta-text">All of this. $17. Let's go!</p>
+            <a href="https://digitallypurposed.thrivecart.com/7-day-replay-pass/" class="inline-cta-btn" target="_blank" onclick="window.open(this.href, '_blank'); return false;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                YES — GET EVERYTHING FOR $17
+            </a>
+            <a href="https://www.etsyupgrade.com/free-whatsapp" class="inline-skip-link" target="_blank" onclick="window.open(this.href, '_blank'); return false;">No thanks, I'll pass</a>
+        </div>
+    </div>
+
     <!-- CLOSE SECTION -->
     <section class="close-section">
         <div class="close-container">
-            <p class="close-text">Here's the thing...</p>
+            <p class="close-text"><span class="sparkle-decoration">&#10024;</span> Here's the thing... <span class="sparkle-decoration">&#10024;</span></p>
             <p class="close-text">
-                You didn't register for this challenge just to browse. <strong>Something about your shop needs to change.</strong> Maybe sales are inconsistent. Maybe you're spending way too much time for what you're getting back. Maybe you're just tired of guessing what's gonna work.
+                You didn't register for this challenge just to browse. <strong>Something about your shop needs to change.</strong> Maybe sales are inconsistent. Maybe you're spending way too much time. Maybe you're just tired of guessing.
             </p>
             <p class="close-text">
                 This challenge is where we fix that.
@@ -1116,52 +1884,51 @@
                 And for <strong>$17</strong>, you're making sure you don't miss any of it — even if life gets in the way. Plus you're walking away with the actual tools, not just the training.
             </p>
             <h3 class="close-question">Is that worth it?</h3>
-            <p class="close-answer">I think you already know the answer.</p>
-        </div>
-    </section>
+            <p class="close-answer">I think you already know the answer. &#128521;</p>
 
-    <!-- CTA SECTION -->
-    <section class="cta-section">
-        <div class="cta-container">
-            <div class="trust-line">
-                <span>
-                    <svg viewBox="0 0 24 24" fill="none">
-                        <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- FINAL CTA - Wrapped in a nice box -->
+            <div class="final-cta-wrapper">
+                <span class="final-cta-sparkle left">&#10024;</span>
+                <span class="final-cta-sparkle right">&#10024;</span>
+                <p class="final-cta-label">Last chance on this page!</p>
+                <div class="final-price-reminder">
+                    <span class="old-price">$27</span>
+                    <span class="new-price">$17</span>
+                </div>
+
+                <div class="trust-line">
+                    <span>
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        One-time payment
+                    </span>
+                    <span>&#8226;</span>
+                    <span>
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Instant access
+                    </span>
+                    <span>&#8226;</span>
+                    <span>
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 7V12L15 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        This page only
+                    </span>
+                </div>
+
+                <a href="https://digitallypurposed.thrivecart.com/7-day-replay-pass/" class="main-cta" style="margin-top: 20px;" target="_blank" onclick="window.open(this.href, '_blank'); return false;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    One-time payment
-                </span>
-                <span>•</span>
-                <span>
-                    <svg viewBox="0 0 24 24" fill="none">
-                        <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    No upsells inside
-                </span>
-                <span>•</span>
-                <span>
-                    <svg viewBox="0 0 24 24" fill="none">
-                        <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    Instant access
-                </span>
-                <span>•</span>
-                <span>
-                    <svg viewBox="0 0 24 24" fill="none">
-                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-                        <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                    This page only
-                </span>
+                    YES — GIVE ME THE REPLAYS + TOOLKIT FOR $17
+                </a>
+
+                <a href="https://www.etsyupgrade.com/free-whatsapp" class="exit-link" target="_blank" onclick="window.open(this.href, '_blank'); return false;">No thanks, I'll try to catch everything live</a>
             </div>
-
-            <a href="#" class="main-cta">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                YES — GIVE ME THE REPLAYS + TOOLKIT FOR $17
-            </a>
-
-            <a href="#" class="exit-link">No thanks, I'll try to catch everything live</a>
         </div>
     </section>
 </div>
@@ -1173,7 +1940,7 @@
 
     const observerOptions = {
         threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        rootMargin: '0px 0px -30px 0px'
     };
 
     const sectionObserver = new IntersectionObserver((entries) => {
@@ -1186,10 +1953,10 @@
     }, observerOptions);
 
     sections.forEach((section, index) => {
-        if (index > 0) { // Skip urgency bar
+        if (index > 0) {
             section.style.opacity = '0';
-            section.style.transform = 'translateY(20px)';
-            section.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+            section.style.transform = 'translateY(15px)';
+            section.style.transition = `opacity 0.5s ease ${index * 0.08}s, transform 0.5s ease ${index * 0.08}s`;
             sectionObserver.observe(section);
         }
     });
@@ -1197,23 +1964,16 @@
     // Value card hover effects
     const valueCards = document.querySelectorAll('.downsell-page .value-card');
     valueCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.querySelector('.illustration svg').style.transform = 'scale(1.05)';
-            this.querySelector('.illustration svg').style.transition = 'transform 0.3s ease';
-        });
-        card.addEventListener('mouseleave', function() {
-            this.querySelector('.illustration svg').style.transform = 'scale(1)';
-        });
+        const svg = card.querySelector('.illustration svg');
+        if (svg) {
+            card.addEventListener('mouseenter', function() {
+                svg.style.transform = 'scale(1.05)';
+                svg.style.transition = 'transform 0.3s ease';
+            });
+            card.addEventListener('mouseleave', function() {
+                svg.style.transform = 'scale(1)';
+            });
+        }
     });
-
-    // CTA button click tracking (placeholder)
-    const mainCta = document.querySelector('.downsell-page .main-cta');
-    if (mainCta) {
-        mainCta.addEventListener('click', function(e) {
-            // Add your checkout URL here
-            // e.preventDefault();
-            // window.location.href = 'YOUR_CHECKOUT_URL';
-        });
-    }
 })();
 </script>
